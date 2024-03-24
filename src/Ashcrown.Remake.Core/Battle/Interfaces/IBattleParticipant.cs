@@ -1,5 +1,6 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Interfaces;
+using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
@@ -9,7 +10,7 @@ public interface IBattleParticipant
 {
     IEnumerable<IChampion> Champions { get; init; }
     IEnumerable<int> Energy { get; init; }
-    bool AiControlled { get; init; }
+    bool IsAiControlled { get; init; }
 
     bool IsDead();
     int GetNumberOfDead();
@@ -22,4 +23,6 @@ public interface IBattleParticipant
     int GetTotalEnergy();
     IChampion GetRandomAliveChampion();
     IEnumerable<IChampion> GetOtherChampions(IChampion champion);
+    void UseAbilities(IEnumerable<UsedAbility> usedAbility, IEnumerable<int> usedEnergy);
+    void UseAbility(int championNo, int abilityNo, IEnumerable<int> targets);
 }
