@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1D24B05F-A2CA-419F-A79F-34868C427794}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{072AD334-82D3-4B3A-83E7-53C006B2D10A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ashcrown.Remake.Core", "src\Ashcrown.Remake.Core\Ashcrown.Remake.Core.csproj", "{2591EA2B-106E-4602-A34F-6ABAB0A6BF6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{901331B4-7DE3-4BD3-A7A9-9674566F6850}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.gitattributes = .gitattributes
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ashcrown.Remake.Core.Tests", "test\Ashcrown.Remake.Core.Tests\Ashcrown.Remake.Core.Tests.csproj", "{EFF55BE4-21A3-4F65-8BB6-B51F81490CC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2591EA2B-106E-4602-A34F-6ABAB0A6BF6B} = {1D24B05F-A2CA-419F-A79F-34868C427794}
+		{EFF55BE4-21A3-4F65-8BB6-B51F81490CC0} = {072AD334-82D3-4B3A-83E7-53C006B2D10A}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2591EA2B-106E-4602-A34F-6ABAB0A6BF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2591EA2B-106E-4602-A34F-6ABAB0A6BF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2591EA2B-106E-4602-A34F-6ABAB0A6BF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2591EA2B-106E-4602-A34F-6ABAB0A6BF6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFF55BE4-21A3-4F65-8BB6-B51F81490CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFF55BE4-21A3-4F65-8BB6-B51F81490CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFF55BE4-21A3-4F65-8BB6-B51F81490CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFF55BE4-21A3-4F65-8BB6-B51F81490CC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
