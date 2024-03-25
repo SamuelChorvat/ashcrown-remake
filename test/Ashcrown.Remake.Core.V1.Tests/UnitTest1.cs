@@ -1,4 +1,4 @@
-namespace Ashcrown.Remake.Core.Tests;
+namespace Ashcrown.Remake.Core.V1.Tests;
 
 public class UnitTest1
 {
