@@ -121,8 +121,8 @@ public interface IAbility
 	int GetTotalCurrentCost();
 	void SetCooldownModifier(int mod);
 	void RemoveCooldownModifier(int mod);
-	IList<int> GetCostAsList(); // TODO Remove?
-	IList<string> GetAbClassAsList(); // TODO Remove?
+	//IList<int> GetCostAsList(); // TODO Remove?
+	//IList<string> GetAbClassAsList(); // TODO Remove?
 	string GetClientTarget();
 	int ReceiveAbilityDamageModifier(IChampion target, int amount);
 	int DealAbilityHealingModifier(IChampion target, int amount);
@@ -135,14 +135,14 @@ public interface IAbility
 	void AdditionalSubtractHealthLogic(int toSubtract, IActiveEffect activeEffect, IChampion victim, AppliedAdditionalLogic appliedAdditionalLogic);
 	int SubtractHealthModifier(int toSubtract, IChampion victim);
 	bool UseChecks();
-	List<int> TargetsModifier(List<int> targets);
+	int[] TargetsModifier(int[] targets); // TODO List
 	void StartTurnChecks();
 	void EndTurnChecks();
 	void OnUse();
 	bool IsInvisible();
 	bool IsAiActive();
 	AiMaximizedAbility AiMaximizeAbility();
-	List<int> GetPossibleTargets(List<int> emptyTargets);
+	int[] GetPossibleTargets(); // TODO List && int[] emptyTargets not needed as input param
 	int CalculateTotalPointsForTarget(IChampion target);
 	
 	// Use this for abilities like Dura's Whirlwind
