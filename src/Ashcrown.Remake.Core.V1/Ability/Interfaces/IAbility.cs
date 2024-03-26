@@ -105,7 +105,7 @@ public interface IAbility
 	string AeEnemyName { get; set; }
 
 	bool AiStandardSelfInvulnerability { get; set; }
-	bool AiActive { set; }
+	bool AiActive { set; get; }
 	IAiAbilityHelper AiAbilityHelper { get; init; }
 	
 	int GetCurrentCd();
@@ -140,7 +140,6 @@ public interface IAbility
 	void EndTurnChecks();
 	void OnUse();
 	bool IsInvisible();
-	bool IsAiActive();
 	AiMaximizedAbility AiMaximizeAbility();
 	int[] GetPossibleTargets(); // TODO List && int[] emptyTargets not needed as input param
 	int CalculateTotalPointsForTarget(IChampion target);
@@ -148,6 +147,4 @@ public interface IAbility
 	// Use this for abilities like Dura's Whirlwind
 	// Where there is an effect that we are not applying for each target but just once
 	int CalculateSingletonSelfEffectTotalPoints();
-	
-	IAiAbilityHelper GetAiAbilityHelper();
 }
