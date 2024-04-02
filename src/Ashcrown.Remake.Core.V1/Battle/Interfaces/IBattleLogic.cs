@@ -17,9 +17,9 @@ public interface IBattleLogic
 	IBattlePlayer GetAiOpponentPlayerInfo();
 	void ProcessDeaths();
 	bool IsPlayerDead(int playerNo);
-	bool AbilitiesUsed(int playerNo, Object info, int[] spentRes); //TODO Model with the end turn info
+	bool AbilitiesUsed(int playerNo, Object info, int[] spentRes); //TODO Model with the end turn info, also the win condition checking should go to ChangeTurnAndGetInfo
 	public void InitializePlayers();
 	void EndTurnProcesses(int playerNo);
-	void ChangeTurnAndSendInfo(); //TODO change this into event?, probably in IBattle?
+	Object ChangeTurnAndGetInfo(); //TODO change this into event?, probably in IBattle?
 	DateTime GetBattleDuration();
 }
