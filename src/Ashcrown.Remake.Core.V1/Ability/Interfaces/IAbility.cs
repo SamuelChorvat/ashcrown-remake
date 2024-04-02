@@ -114,13 +114,13 @@ public interface IAbility
 	void AdditionalSubtractHealthLogic(int toSubtract, IActiveEffect activeEffect, IChampion victim, AppliedAdditionalLogic appliedAdditionalLogic);
 	int SubtractHealthModifier(int toSubtract, IChampion victim);
 	bool UseChecks();
-	int[] TargetsModifier(int[] targets); // TODO List
+	int[] TargetsModifier(int[] targets); // TODO Was List
 	void StartTurnChecks();
 	void EndTurnChecks();
 	void OnUse();
 	bool IsInvisible();
 	AiMaximizedAbility AiMaximizeAbility();
-	int[] GetPossibleTargets(); // TODO List && int[] emptyTargets not needed as input param
+	int[] GetPossibleTargets(); // TODO Was List && int[] emptyTargets not needed as input param
 	int CalculateTotalPointsForTarget(IChampion target);
 	
 	// Use this for abilities like Dura's Whirlwind

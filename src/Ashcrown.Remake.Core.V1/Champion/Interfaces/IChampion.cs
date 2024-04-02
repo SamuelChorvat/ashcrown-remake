@@ -7,7 +7,7 @@ namespace Ashcrown.Remake.Core.V1.Champion.Interfaces;
 public interface IChampion
 {
     IBattleLogic BattleLogic { get; init; }
-    IPlayerBattleInfo PlayerBattleInfo { get; init; }
+    IBattlePlayer BattlePlayer { get; init; }
     int ChampionNo { get; init; }
     string Name { get; set; }
     int Health { get; set; }
@@ -38,18 +38,11 @@ public interface IChampion
     void EndTurnMethods();
     IList<IAbility> GetAbilitiesArray(int abilitySlot);
     bool AiCanCounterAbilitySelf(IAbility ability);
-
     bool AiCanCounterAbilityTarget(IAbility ability);
-
     bool AiCanReflectAbilitySelf(IAbility ability);
-
     bool AiCanReflectAbilityTarget(IAbility ability);
-
     int GetTargetNo(IChampion championTargeting);
-
     int AiApplyChampionSpecificPenalty(int totalPoints, IAbility ability);
-
     bool ReceivedReflectStun();
-
     bool[] GetEnergyUsage();
 }
