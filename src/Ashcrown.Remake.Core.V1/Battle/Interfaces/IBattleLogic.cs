@@ -20,6 +20,6 @@ public interface IBattleLogic
 	bool AbilitiesUsed(int playerNo, Object info, int[] spentRes); //TODO Model with the end turn info
 	public void InitializePlayers();
 	void EndTurnProcesses(int playerNo);
-	void ChangeTurnAndSendInfo(); //TODO change this into event so UI can subscribe to it
+	void ChangeTurnAndSendInfo(); //TODO change this into event?, probably in IBattle?
 	DateTime GetBattleDuration();
 }
