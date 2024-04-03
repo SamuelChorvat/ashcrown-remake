@@ -20,7 +20,7 @@ public interface IActiveEffect
     int Stacks { get; set; }
     bool Infinite { get; set; }
     IActiveEffect? CasterLink { get; set; }
-    List<IActiveEffect>? ChildrenLinks { get; set; }
+    IList<IActiveEffect>? ChildrenLinks { get; set; }
     bool Fresh { get; set; }
     bool Paused { get; set; }
     bool Source { get; set; }

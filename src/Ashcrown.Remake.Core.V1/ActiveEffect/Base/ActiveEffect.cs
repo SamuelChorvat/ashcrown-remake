@@ -27,7 +27,7 @@ public abstract class ActiveEffect(
     public int Stacks { get; set; }
     public bool Infinite { get; set; }
     public IActiveEffect? CasterLink { get; set; }
-    public List<IActiveEffect>? ChildrenLinks { get; set; }
+    public IList<IActiveEffect>? ChildrenLinks { get; set; }
     public bool Fresh { get; set; } = true;
     public bool Paused { get; set; }
     public bool Source { get; set; }
