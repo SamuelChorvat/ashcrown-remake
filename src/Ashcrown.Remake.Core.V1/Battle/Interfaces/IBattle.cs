@@ -1,10 +1,7 @@
 namespace Ashcrown.Remake.Core.V1.Battle.Interfaces;
 
-public interface IAiBattle
+public interface IBattle
 {
-    void InitializeAiBattle();
-    void EndMyTurn();
-    void EndAiTurn();
     void ExchangeEnergy();
     void GetTargets();
     void GetUsableAbilities();

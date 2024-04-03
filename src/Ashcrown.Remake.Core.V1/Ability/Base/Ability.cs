@@ -37,10 +37,10 @@ public abstract class Ability(
     public required AbilityTarget Target { get; set; } = abilityTarget;
     public required AbilityType AbilityType { get; set; } = abilityType;
     public required IAiAbilityHelper AiAbilityHelper { get; init; } = aiAbilityHelper;
-    public bool Active { get; set; }
+    public bool Active { get; set; } = true;
     public bool IgnoreInvulnerability { get; set; }
-    public bool Counterable { get; set; }
-    public bool Reflectable { get; set; }
+    public bool Counterable { get; set; } = true;
+    public bool Reflectable { get; set; } = true;
     public bool JustUsed { get; set; }
     public bool Harmful { get; set; }
     public bool Helpful { get; set; }

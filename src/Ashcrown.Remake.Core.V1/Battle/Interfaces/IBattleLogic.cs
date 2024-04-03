@@ -21,5 +21,6 @@ public interface IBattleLogic
 	public void InitializePlayers();
 	void EndTurnProcesses(int playerNo);
 	Object ChangeTurnAndGetInfo(); //TODO change this into event?, probably in IBattle?
+	int GetWhoseTurnNo();
 	DateTime GetBattleDuration();
 }

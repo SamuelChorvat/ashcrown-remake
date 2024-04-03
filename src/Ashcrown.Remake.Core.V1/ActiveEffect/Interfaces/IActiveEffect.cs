@@ -14,13 +14,13 @@ public interface IActiveEffect
     string Description { get; set; }
     int Duration { get; set; }
     int TimeLeft { get; set; }
-    string[] AeClass { get; set; }
-    int Destructible { get; set; }
+    AbilityClass[]? ActiveEffectClasses { get; set; }
+    int DestructibleDefense { get; set; }
     bool Hidden { get; set; }
     int Stacks { get; set; }
     bool Infinite { get; set; }
-    IActiveEffect CasterLink { get; set; }
-    List<IActiveEffect> ChildrenLinks { get; set; }
+    IActiveEffect? CasterLink { get; set; }
+    List<IActiveEffect>? ChildrenLinks { get; set; }
     bool Fresh { get; set; }
     bool Paused { get; set; }
     bool Source { get; set; }
@@ -37,9 +37,9 @@ public interface IActiveEffect
     bool Healing { get; set; }
     bool Damaging { get; set; }
     bool Invulnerability { get; set; }
-    string[] TypeOfInvulnerability { get; set; }
+    AbilityClass[]? TypeOfInvulnerability { get; set; }
     bool Stun { get; set; }
-    string[] StunType { get; set; }
+    AbilityClass[]? StunType { get; set; }
     bool IgnoreHealing { get; set; }
     bool IgnoreDamage { get; set; }
     bool DisableInvulnerability { get; set; }
@@ -53,9 +53,9 @@ public interface IActiveEffect
     bool InvulnerableToFriendlyAbilities { get; set; }
     bool EndsOnCasterStun { get; set; }
     bool PauseOnCasterStun { get; set; }
-    bool PauseOnTarInvul { get; set; }
+    bool PauseOnTargetInvulnerability { get; set; }
     bool EndsOnCasterDeath { get; set; }
-    bool EndsOnTarInvul { get; set; }
+    bool EndsOnTargetInvulnerability { get; set; }
     bool EndsOnTargetDeath { get; set; }
     int EnergyAmount { get; set; }
     bool EnergySteal { get; set; }
@@ -64,39 +64,40 @@ public interface IActiveEffect
     int Damage2 { get; set; }
     int BonusDamage1 { get; set; }
     int Heal1 { get; set; }
-    int ReceiveDmgReductPoint1 { get; set; }
+    int ReceiveDamageReductionPoint1 { get; set; }
     int ReceiveDmgIncreasePoint1 { get; set; }
-    int ReceiveDmgReductPercent1 { get; set; }
-    int DestructDef1 { get; set; }
-    int DealDmgReductPoint1 { get; set; }
+    int ReceiveDamageReductionPercent1 { get; set; }
+    int DestructibleDefense1 { get; set; }
+    int DealDamageReductionPoint1 { get; set; }
     int DealDmgIncreasePoint1 { get; set; }
-    int DealHealIncreasPoint1 { get; set; }
-    int DealHealReductPercent1 { get; set; }
-    int ReceiveHealReductPercent1 { get; set; }
+    int DealHealIncreasePoint1 { get; set; }
+    int DealHealReductionPercent1 { get; set; }
+    int ReceiveHealReductionPercent1 { get; set; }
     int Duration1 { get; set; }
     int Duration2 { get; set; }
-    PointsPercentageModifier AllDamageDealModifier { get; set; }
-    PointsPercentageModifier PhysicalDamageDealModifier { get; set; }
-    PointsPercentageModifier MagicDamageDealModifier { get; set; }
-    PointsPercentageModifier AllDamageReceiveModifier { get; set; }
-    PointsPercentageModifier PhysicalDamageReceiveModifier { get; set; }
-    PointsPercentageModifier MagicDamageReceiveModifier { get; set; }
-    PointsPercentageModifier HealingDealModifier { get; set; }
-    PointsPercentageModifier HealingReceiveModifier { get; set; }
+    PointsPercentageModifier? AllDamageDealModifier { get; set; }
+    PointsPercentageModifier? PhysicalDamageDealModifier { get; set; }
+    PointsPercentageModifier? MagicDamageDealModifier { get; set; }
+    PointsPercentageModifier? AllDamageReceiveModifier { get; set; }
+    PointsPercentageModifier? PhysicalDamageReceiveModifier { get; set; }
+    PointsPercentageModifier? MagicDamageReceiveModifier { get; set; }
+    PointsPercentageModifier? HealingDealModifier { get; set; }
+    PointsPercentageModifier? HealingReceiveModifier { get; set; }
     bool RemoveIt { get; set; }
 
-    string GetTimeLeftAffix();
-    string GetTimeLeftAffix(int turnsLeft);
+    string GetDescriptionWithTimeLeftAffix(int playerNo);
+    string GetTimeLeftAffix(int? customTurnsLeft);
     string GetTimeLeftAffixActionControl();
     string GetActionControlDescription();
     void TickDown();
     bool WasCastedByMe(int playerNo); // TODO Swap all playerNo stuff with ref to Player instead?
+    string GetAbilityName();
     bool IsHidden(int playerNo);
     bool InvulnerabilityContains(AbilityClass abilityClass);
     bool StunnedContains(AbilityClass abilityClass);
     void AddStack(IActiveEffect activeEffect);
     void StandardStack(IActiveEffect activeEffect);
-    void DestructibleStack(IActiveEffect activeEffect);
+    void DestructibleDefenseStack(IActiveEffect activeEffect);
     void OnAdd();
     void OnRemove();
     void OnApply();
