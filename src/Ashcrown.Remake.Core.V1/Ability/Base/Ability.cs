@@ -212,7 +212,7 @@ public abstract class Ability(
                || AbilityClasses.Contains(abilityClass);
     }
 
-    public int TotalCost(int[] cost)
+    public int TotalCost(IEnumerable<int> cost)
     {
         return cost.Sum();
     }

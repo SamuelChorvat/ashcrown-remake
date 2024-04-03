@@ -95,7 +95,7 @@ public interface IAbility
 	void PutOnCooldown();
 	void TickDownCooldown();
 	bool AbilityClassesContains(AbilityClass abilityClass);
-	int TotalCost(int[] cost);
+	int TotalCost(IEnumerable<int> cost);
 	void RemoveCostModifier(int mod);
 	bool IsFree();
 	int GetTotalCurrentCost();
