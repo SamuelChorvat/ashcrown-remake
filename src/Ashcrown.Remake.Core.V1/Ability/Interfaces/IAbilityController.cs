@@ -7,12 +7,10 @@ namespace Ashcrown.Remake.Core.V1.Ability.Interfaces;
 public interface IAbilityController
 {
     IChampion Owner { get; init; }
-    IAbility LastUsed { get; set; }
-    bool UsedNewAbility { get; set; }
+    IAbility? LastUsed { get; }
+    bool UsedNewAbility { get; }
     bool AiAbilitySelected { set; }
     bool UseAbility(IAbility ability, int[] targets);
-    IActiveEffect InitActiveEffect(string aeOwner, string aeName, IAbility ability, IChampion target); // TODO Move this to factory
-    IAbility InitAbility(string championName, string abilityName, IChampion target); // TODO Move this to factory
     bool ClientCanUseAbilityChecks(IAbility ability);
     bool IsStunnedToUseAbility(IAbility ability);
     IAbility GetMyAbilityByName(string abilityName);
