@@ -100,10 +100,10 @@ public abstract class Champion(
     public int GetTargetNo(IChampion championTargeting)
     {
         if (championTargeting.BattlePlayer.PlayerNo == BattlePlayer.PlayerNo) {
-            return championNo - 1;
+            return ChampionNo - 1;
         }
 
-        return 3 + championNo - 1;
+        return 3 + ChampionNo - 1;
     }
 
     public virtual int AiApplyChampionSpecificPenalty(int totalPoints, IAbility ability)
