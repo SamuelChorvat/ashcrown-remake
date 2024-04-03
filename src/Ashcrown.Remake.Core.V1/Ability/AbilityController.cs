@@ -5,6 +5,7 @@ using Ashcrown.Remake.Core.V1.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.V1.Ai.Models;
 using Ashcrown.Remake.Core.V1.Battle.Models;
 using Ashcrown.Remake.Core.V1.Champion.Interfaces;
+using Ashcrown.Remake.Core.V1.Champions.Moroz.ActiveEffects;
 
 namespace Ashcrown.Remake.Core.V1.Ability;
 
@@ -17,7 +18,7 @@ public class AbilityController(
 
     public required IChampion Owner { get; init; } = owner;
 
-    public IAbility? LastUsed { get; private set; }
+    public IAbility? LastUsedAbility { get; private set; }
 
     public bool UsedNewAbility { get; private set; }
 
@@ -25,12 +26,12 @@ public class AbilityController(
     
     public bool UseAbility(IAbility ability, int[] targets)
     {
+        UseAbilityChecks(ability, targets);
         return ability.AbilityType switch
         {
-            AbilityType.EnemyDebuff => UseEnemyDebuff(targets, ability.Name, ability.ActiveEffectOwner,
-                ability.ActiveEffectName),
-            AbilityType.AllyHeal => UseAllyHeal(targets, ability.Name),
-            AbilityType.AlliesHeal => UseAlliesHeal(targets, ability.Name),
+            AbilityType.EnemyDebuff => UseEnemyDebuff(targets, ability),
+            AbilityType.AllyHeal => UseAllyHeal(targets, ability),
+            AbilityType.AlliesHeal => UseAlliesHeal(targets, ability),
             AbilityType.EnemiesDebuff => UseEnemiesDebuff(targets, ability.Name, ability.ActiveEffectOwner,
                 ability.ActiveEffectName),
             AbilityType.AllyBuff => UseAllyBuff(targets, ability.Name, ability.ActiveEffectOwner,
@@ -129,24 +130,56 @@ public class AbilityController(
         throw new NotImplementedException();
     }
 
-    private bool UseAlliesHeal(int[] targets, string abilityName)
+    private bool UseAlliesHeal(int[] targets, IAbility usedAbility)
     {
-        throw new NotImplementedException();
+        if (CounterOnMe(usedAbility, targets)) {
+            return true;
+        }
+
+        var toHeal = usedAbility.Heal1;
+
+        for (var i = 0; i < targets.Length - 3; i++)
+        {
+            if (targets[i] != 1) continue;
+            Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+
+            Owner.ChampionController.DealAbilityHealing(toHeal,
+                Owner.BattlePlayer.Champions[i],
+                usedAbility, new AppliedAdditionalLogic());
+        }
+
+        usedAbility.OnUse();
+
+        return true;
     }
 
-    private bool UseAllyHeal(int[] targets, string abilityName)
+    private bool UseAllyHeal(int[] targets, IAbility usedAbility)
     {
-        throw new NotImplementedException();
-    }
-
-    private bool UseEnemyDebuff(int[] targets, string abilityName, string? abilityActiveEffectOwner, string? abilityActiveEffectName)
-    {
-        if (!UseAbilityChecks(GetMyAbilityByName(abilityName), targets)) {
-            return false;
+        if (CounterOnMe(usedAbility, targets)) {
+            return true;
         }
 		
-        var usedAbility = GetMyAbilityByName(abilityName);
+        var toHeal = usedAbility.Heal1;
 		
+        for (var i = 0; i < targets.Length - 3; i++)
+        {
+            if (targets[i] != 1) continue;
+            Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+
+            Owner.ChampionController.DealAbilityHealing(toHeal,
+                Owner.BattlePlayer.Champions[i],
+                usedAbility, new AppliedAdditionalLogic());
+
+            usedAbility.OnUse();
+				
+            return true;
+        }
+		
+        return false;
+    }
+
+    private bool UseEnemyDebuff(int[] targets, IAbility usedAbility)
+    {
         if (CounterOnMe(usedAbility, targets)) {
             return true;
         }
@@ -166,8 +199,8 @@ public class AbilityController(
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
 
-            var activeEffect = activeEffectFactory.CreateActiveEffect(abilityActiveEffectOwner!, 
-                abilityActiveEffectName!, usedAbility, target);
+            var activeEffect = activeEffectFactory.CreateActiveEffect(usedAbility.ActiveEffectOwner!, 
+                usedAbility.ActiveEffectName!, usedAbility, target);
             activeEffect.Reflected = abilityReflected.Reflected;
 
             target.ChampionController.TargetedByAbility(usedAbility);
@@ -196,7 +229,18 @@ public class AbilityController(
 
     public IAbility GetMyAbilityByName(string abilityName)
     {
-        throw new NotImplementedException();
+        foreach (var slotAbilities in Owner.Abilities)
+        {
+            foreach (var ability in slotAbilities)
+            {
+                if (ability.Name.Equals(abilityName))
+                {
+                    return ability;
+                }
+            }
+        }
+
+        throw new Exception($"Ability {abilityName} doesn't exist");
     }
 
     public IAbility GetCurrentAbility(int abilityNo)
@@ -259,8 +303,43 @@ public class AbilityController(
         throw new NotImplementedException();
     }
 
-    private bool UseAbilityChecks(IAbility ability, int[] targets)
+    private void UseAbilityChecks(IAbility ability, int[] targets)
     {
-        throw new NotImplementedException();
+        if(ability == null) {
+            throw new Exception("Ability doesn't exist");
+        }
+
+        if (!ability.IsReady() || !ability.Active) {
+            throw new Exception($"Ability not ready({ability.IsReady()}) or active({ability.Active})");
+        }
+
+        //TODO How should this work? Should champion killed by reflected ability be able to use selected ability? (Currently they are)
+        if (!Owner.Alive && !(Owner.ReceivedReflectedAbilities.Count > 0)) {
+            throw new Exception("Not alive");
+        }
+		
+        if (ability.Target == AbilityTarget.Self && targets[Owner.ChampionNo - 1] != 1
+                                                 && GetNumberOfTargets(targets) == 1) {
+            throw new Exception("Can only be selfcasted");
+        }
+		
+        if (!ability.SelfCast && targets[Owner.ChampionNo - 1] == 1) {
+            throw new Exception("Can't be selfcasted");
+        }
+		
+        if (IsStunnedToUseAbility(ability) && !Owner.ReceivedReflectStun()) {
+            throw new Exception("Stunned to use problem");
+        }
+
+        IceTombMeActiveEffect.CheckToRemove(Owner);
+
+        if (!ability.UseChecks()) {
+            throw new Exception("Use checks failed");
+        }
+		
+        ability.PutOnCooldown();
+        ability.TimesUsed += 1;
+        UsedNewAbility = true;
+        LastUsedAbility = ability;
     }
 }

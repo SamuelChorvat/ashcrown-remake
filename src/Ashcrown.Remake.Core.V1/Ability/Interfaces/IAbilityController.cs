@@ -7,7 +7,7 @@ namespace Ashcrown.Remake.Core.V1.Ability.Interfaces;
 public interface IAbilityController
 {
     IChampion Owner { get; init; }
-    IAbility? LastUsed { get; }
+    IAbility? LastUsedAbility { get; }
     bool UsedNewAbility { get; }
     bool AiAbilitySelected { set; }
     bool UseAbility(IAbility ability, int[] targets);

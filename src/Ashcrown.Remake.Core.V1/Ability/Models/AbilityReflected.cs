@@ -10,7 +10,7 @@ public class AbilityReflected
 
     public required bool Reflected
     {
-        get => !KingdomGuardianAllyAE.IsKingdomGuardianAllyActiveEffect(ReflectActiveEffect) && _reflected;
+        get => !KingdomGuardianAllyActiveEffect.IsKingdomGuardianAllyActiveEffect(ReflectActiveEffect) && _reflected;
         init => _reflected = value;
     }
 
@@ -33,6 +33,6 @@ public class AbilityReflected
 
     public bool IsSelfReflected()
     {
-        return KingdomGuardianAllyAE.IsKingdomGuardianAllyActiveEffect(ReflectActiveEffect);
+        return KingdomGuardianAllyActiveEffect.IsKingdomGuardianAllyActiveEffect(ReflectActiveEffect);
     }
 }
