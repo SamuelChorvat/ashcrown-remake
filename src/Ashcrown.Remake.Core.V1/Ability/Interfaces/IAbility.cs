@@ -14,7 +14,7 @@ public interface IAbility
 	string Description { get; set; }
 	int OriginalCooldown { get; set; }
 	int[] OriginalCost { get; set; }
-	string[] Classes { get; set; }
+	AbilityClass[] AbilityClasses { get; set; }
 	bool Active { get; set; }
 	bool IgnoreInvulnerability { get; set; }
 	bool Counterable { get; set; }
@@ -28,18 +28,18 @@ public interface IAbility
 	bool Healing { get; set; }
 	bool Damaging { get; set; }
 	int EnergyAmount { get; set; }
-	bool UniqueAe { get; set; }
+	bool UniqueActiveEffect { get; set; }
 	bool Invisible { get; set; }
 	bool CostIncrease { get; set; }
-	string[] CostIncreaseClasses { get; set; }
-	string[] CostDecreaseClasses { get; set; }
-	string[] CooldownDecreaseClasses { get; set; }
-	string[] CounterClasses { get; set; }
+	string[]? CostIncreaseClasses { get; set; }
+	string[]? CostDecreaseClasses { get; set; }
+	string[]? CooldownDecreaseClasses { get; set; }
+	string[]? CounterClasses { get; set; }
 	bool CannotBeIgnored { get; set; }
 	bool Invulnerability { get; set; }
-	string[] TypeOfInvulnerability { get; set; }
+	string[]? TypeOfInvulnerability { get; set; }
 	bool Stun { get; set; }
-	string[] StunType { get; set; }
+	string[]? StunType { get; set; }
 	bool DisableInvulnerability { get; set; }
 	bool DisableDamageReceiveReduction { get; set; }
 	bool IgnoreStuns { get; set; }
@@ -49,6 +49,8 @@ public interface IAbility
 	bool MagicDamage { get; set; }
 	bool PhysicalDamage { get; set; }
 	int ToReady { get; set; }
+	int CooldownModifier { set; }
+	int RandomCostModifier { set; }
 	AbilityTarget Target { get; set; }
 	bool SelfDisplay { get; set; }
 	bool SelfCast { get; set; }
@@ -61,49 +63,43 @@ public interface IAbility
 	int BonusDamage2 { get; set; }
 	int Heal1 { get; set; }
 	int BonusHeal1 { get; set; }
-	int ReceiveDmgReductPoint1 { get; set; }
-	int ReceiveDmgIncreasePoint1 { get; set; }
-	int ReceiveDmgReductPercent1 { get; set; }
-	int DestructDef1 { get; set; }
-	int DealDmgReductPoint1 { get; set; }
+	int ReceiveDamageReductionPoint1 { get; set; }
+	int ReceiveDamageIncreasePoint1 { get; set; }
+	int ReceiveDamageReductionPercent1 { get; set; }
+	int DestructibleDefense1 { get; set; }
+	int DealDamageReductionPoint1 { get; set; }
 	int DealDmgIncreasePoint1 { get; set; }
 	int DealHealIncreasePoint1 { get; set; }
-	int DealHealReductPercent1 { get; set; }
-	int ReceiveHealReductPercent1 { get; set; }
+	int DealHealReductionPercent1 { get; set; }
+	int ReceiveHealReductionPercent1 { get; set; }
 	int Duration1 { get; set; }
 	int Duration2 { get; set; }
 	bool EnergySteal { get; set; }
 	bool EnergyRemove { get; set; }
 	bool DoNotModifyOnDealDamage { get; set; }
 	AbilityType AbilityType { get; set; }
-	string AeOwner { get; set; }
-	string AeName { get; set; }
-	string AeSourceName { get; set; }
-	string AeTargetName { get; set; }
-	string AeAlliesName { get; set; }
-	string AeEnemiesName { get; set; }
-	string AeAllyName { get; set; }
-	string AeEnemyName { get; set; }
+	string? ActiveEffectOwner { get; set; }
+	string? ActiveEffectName { get; set; }
+	string? ActiveEffectSourceName { get; set; }
+	string? ActiveEffectTargetName { get; set; }
+	string? ActiveEffectAlliesName { get; set; }
+	string? ActiveEffectEnemiesName { get; set; }
+	string? ActiveEffectAllyName { get; set; }
+	string? ActiveEffectEnemyName { get; set; }
 	bool AiStandardSelfInvulnerability { get; set; }
 	bool AiActive { set; get; }
-	IAiAbilityHelper AiAbilityHelper { get; init; }
 	
-	int GetCurrentCd();
+	int GetCurrentCooldown();
 	int[] GetCurrentCost();
 	bool IsReady();
 	void PutOnCooldown();
 	void TickDownCooldown();
-	bool ClassContains(string className);
+	bool AbilityClassesContains(AbilityClass abilityClass);
 	int TotalCost(int[] cost);
-	void SetCostModifier(int mod);
 	void RemoveCostModifier(int mod);
 	bool IsFree();
 	int GetTotalCurrentCost();
-	void SetCooldownModifier(int mod);
 	void RemoveCooldownModifier(int mod);
-	//IList<int> GetCostAsList(); // TODO Remove?
-	//IList<string> GetAbClassAsList(); // TODO Remove?
-	string GetClientTarget();
 	int ReceiveAbilityDamageModifier(IChampion target, int amount);
 	int DealAbilityHealingModifier(IChampion target, int amount);
 	bool CustomReceiveAbilityDamageLogic(IChampion target, AppliedAdditionalLogic appliedAdditionalLogic);
@@ -118,7 +114,6 @@ public interface IAbility
 	void StartTurnChecks();
 	void EndTurnChecks();
 	void OnUse();
-	bool IsInvisible();
 	AiMaximizedAbility AiMaximizeAbility();
 	int[] GetPossibleTargets(); // TODO Was List && int[] emptyTargets not needed as input param
 	int CalculateTotalPointsForTarget(IChampion target);
