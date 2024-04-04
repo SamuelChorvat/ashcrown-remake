@@ -8,17 +8,17 @@ public class AbilityReflected
 {
     private readonly bool _reflected;
 
-    public required bool Reflected
+    public bool Reflected
     {
         get => !KingdomGuardianAllyActiveEffect.IsKingdomGuardianAllyActiveEffect(ReflectActiveEffect) && _reflected;
-        init => _reflected = value;
+        private init => _reflected = value;
     }
 
-    public required IAbility ReflectedAbility { get; init; }
-    public required IActiveEffect ReflectActiveEffect { get; init; }
-    public required int[] Targets { get; init; }
+    public IAbility ReflectedAbility { get; init; }
+    private IActiveEffect? ReflectActiveEffect { get; init; }
+    public int[] Targets { get; init; }
 
-    public AbilityReflected(bool reflected, IAbility reflectedAbility, IActiveEffect reflectActiveEffect, int[] targets)
+    public AbilityReflected(bool reflected, IAbility reflectedAbility, IActiveEffect? reflectActiveEffect, int[] targets)
     {
         Reflected = reflected;
         ReflectedAbility = reflectedAbility;
@@ -27,7 +27,7 @@ public class AbilityReflected
 
         if (reflected)
         {
-            reflectActiveEffect.ModifyTargetsOnReflect(reflectedAbility, targets);
+            reflectActiveEffect?.ModifyTargetsOnReflect(reflectedAbility, targets);
         }
     }
 

@@ -56,6 +56,7 @@ public abstract class Champion(
         new List<IAbility> { startAbility3 },
         new List<IAbility> { startAbility4 }
     ];
+    public required IList<IActiveEffect> ActiveEffects { get; init; } = new List<IActiveEffect>();
     public required IAbilityController AbilityController { get; init; } //TODO
     public required IActiveEffectController ActiveEffectController { get; init; } //TODO
     public required IChampionController ChampionController { get; init; } //TODO

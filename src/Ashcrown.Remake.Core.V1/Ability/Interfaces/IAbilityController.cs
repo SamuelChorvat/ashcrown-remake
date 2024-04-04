@@ -1,4 +1,5 @@
 ﻿using Ashcrown.Remake.Core.V1.ActiveEffect.Interfaces;
+using Ashcrown.Remake.Core.V1.Ai.Interfaces;
 using Ashcrown.Remake.Core.V1.Ai.Models;
 using Ashcrown.Remake.Core.V1.Champion.Interfaces;
 
@@ -21,6 +22,5 @@ public interface IAbilityController
     int[] GetPossibleTargetsForAbility(int abilityNo);
     int[] GetUsableAbilities(int[] currentEnergy, int toSubtract);
     void SetAiActiveAbilities(int[] currentResources, int toSubtract); //TODO Move to AI?
-    AiMaximizedAbility GetBestMaximizedAbility(); //TODO Move to AI?
-    bool IsAiAbilitySelected(); //TODO Move to AI?
+    AiMaximizedAbility? GetBestMaximizedAbility<T>() where T : IAiUtils; //TODO Move to AI?
 }

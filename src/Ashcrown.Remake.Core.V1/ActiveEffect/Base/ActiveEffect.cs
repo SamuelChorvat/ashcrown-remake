@@ -27,7 +27,7 @@ public abstract class ActiveEffect(
     public int Stacks { get; set; }
     public bool Infinite { get; set; }
     public IActiveEffect? CasterLink { get; set; }
-    public IList<IActiveEffect>? ChildrenLinks { get; set; }
+    public required IList<IActiveEffect> ChildrenLinks { get; set; } = new List<IActiveEffect>();
     public bool Fresh { get; set; } = true;
     public bool Paused { get; set; }
     public bool Source { get; set; }
@@ -82,14 +82,14 @@ public abstract class ActiveEffect(
     public int ReceiveHealReductionPercent1 { get; set; }
     public int Duration1 { get; set; }
     public int Duration2 { get; set; }
-    public PointsPercentageModifier? AllDamageDealModifier { get; set; }
-    public PointsPercentageModifier? PhysicalDamageDealModifier { get; set; }
-    public PointsPercentageModifier? MagicDamageDealModifier { get; set; }
-    public PointsPercentageModifier? AllDamageReceiveModifier { get; set; }
-    public PointsPercentageModifier? PhysicalDamageReceiveModifier { get; set; }
-    public PointsPercentageModifier? MagicDamageReceiveModifier { get; set; }
-    public PointsPercentageModifier? HealingDealModifier { get; set; }
-    public PointsPercentageModifier? HealingReceiveModifier { get; set; }
+    public PointsPercentageModifier? AllDamageDealModifier { get; set; } = new();
+    public PointsPercentageModifier? PhysicalDamageDealModifier { get; set; } = new();
+    public PointsPercentageModifier? MagicDamageDealModifier { get; set; } = new();
+    public PointsPercentageModifier? AllDamageReceiveModifier { get; set; } = new();
+    public PointsPercentageModifier? PhysicalDamageReceiveModifier { get; set; } = new();
+    public PointsPercentageModifier? MagicDamageReceiveModifier { get; set; } = new();
+    public PointsPercentageModifier? HealingDealModifier { get; set; } = new();
+    public PointsPercentageModifier? HealingReceiveModifier { get; set; } = new();
     public bool RemoveIt { get; set; }
 
     public virtual string GetDescriptionWithTimeLeftAffix(int playerNo)

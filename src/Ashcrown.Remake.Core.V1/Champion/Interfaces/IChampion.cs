@@ -24,6 +24,7 @@ public interface IChampion
     int AiTotalHealingToReceive { get; set; }
     IAbility[] CurrentAbilities { get; init; }
     IList<IAbility>[] Abilities { get; init; } 
+    IList<IActiveEffect> ActiveEffects { get; init; }
     IAbilityController AbilityController { get; init; }
     IActiveEffectController ActiveEffectController { get; init; }
     IChampionController ChampionController { get; init; }
