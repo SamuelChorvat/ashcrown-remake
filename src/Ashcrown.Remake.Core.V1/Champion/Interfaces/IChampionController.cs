@@ -70,7 +70,7 @@ public interface IChampionController
     bool IsIgnoringReceivedDamageReduction();
     bool IsInvulnerabilityDisabled();
     bool IsInvulnerableToFriendlyAbility(IAbility ability);
-    bool IsInvulnerableTo(IAbility ability, IActiveEffect activeEffect);
+    bool IsInvulnerableTo(IAbility? ability = null, IActiveEffect? activeEffect = null);
     bool IsClientChampionInvulnerableTo(IAbility ability);
     void EnemyDebuffMyBuff(IActiveEffect activeEffect, IAbility ability, string activeEffectOwnerName, string debuffName, string buffName, AppliedAdditionalLogic appliedAdditionalLogic);
     void EnemyDamageMyBuff(IAbility ability, string abName, string activeEffectOwnerName, string buffName, AppliedAdditionalLogic appliedAdditionalLogic);
