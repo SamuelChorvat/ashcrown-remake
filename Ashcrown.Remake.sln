@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ashcrown.Remake.Core.V1", "src\Ashcrown.Remake.Core.V1\Ashcrown.Remake.Core.V1.csproj", "{B4BC104E-0AB9-4938-B663-4EA579F44189}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ashcrown.Remake.Core", "src\Ashcrown.Remake.Core\Ashcrown.Remake.Core.csproj", "{B4BC104E-0AB9-4938-B663-4EA579F44189}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ashcrown.Remake.Core.V1.Tests", "test\Ashcrown.Remake.Core.V1.Tests\Ashcrown.Remake.Core.V1.Tests.csproj", "{0BAD5022-B25A-43AB-BFE3-EEDD11DA7171}"
 EndProject
