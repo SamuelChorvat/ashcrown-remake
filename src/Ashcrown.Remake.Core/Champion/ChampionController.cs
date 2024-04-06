@@ -6,6 +6,7 @@ using Ashcrown.Remake.Core.Battle.Enums;
 using Ashcrown.Remake.Core.Battle.Models;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Cronos.ActiveEffects;
+using Ashcrown.Remake.Core.Champions.Hannibal.Abilities;
 using Ashcrown.Remake.Core.Champions.Jafali.Abilities;
 using Ashcrown.Remake.Core.Champions.Jafali.Champion;
 using Ashcrown.Remake.Core.Champions.Jane.ActiveEffects;
@@ -699,7 +700,7 @@ public class ChampionController(IChampion owner) : IChampionController
 		
         if (Owner.Health + toAdd >= 100) {
             Owner.Health = 100;
-        } else if(owner.Alive) {
+        } else if(Owner.Alive) {
             Owner.Health += toAdd;
         }
     }
@@ -713,27 +714,42 @@ public class ChampionController(IChampion owner) : IChampionController
 
     public void ProcessDeath()
     {
-        throw new NotImplementedException();
+        if (!Owner.Died) return;
+        Owner.Health = 0;
+        Owner.Alive = false;
+        Owner.ActiveEffectController.RemoveMyActiveEffectsOnDeathFromAll();
+
+        foreach (var activeEffect in Owner.ActiveEffects) {
+            activeEffect.AdditionalProcessDeathLogic();
+        }
+			
+        Owner.ActiveEffectController.ClearActiveEffects();
+
+        SacrificialPact.RebornHannibal(Owner);
     }
 
     public void OnStun(IAbility ability)
     {
-        throw new NotImplementedException();
+        if (IsIgnoringStuns()) return;
+        Owner.ActiveEffectController.RemoveMyActiveEffectsOnStunFromAll();
+        Owner.ActiveEffectController.PauseMyActiveEffectsOnStunFromAll();
     }
 
     public void OnInvulnerability(IAbility ability)
     {
-        throw new NotImplementedException();
+        if (IsInvulnerabilityDisabled()) return;
+        Owner.ActiveEffectController.RemoveActiveEffectsOnInvulnerability();
+        Owner.ActiveEffectController.PauseActiveEffectsOnInvulnerability();
     }
 
     public bool IsIgnoringHealing()
     {
-        throw new NotImplementedException();
+        return !IsIgnoringHarmful() && Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.IgnoreHealing);
     }
 
     public bool IsIgnoringStuns()
     {
-        throw new NotImplementedException();
+        return IsIgnoringHarmful() || Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.IgnoreStuns);
     }
 
     public bool IsIgnoringDamage()
