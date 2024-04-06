@@ -1,6 +1,5 @@
 using Ashcrown.Remake.Core.V1.Ability.Enums;
 using Ashcrown.Remake.Core.V1.Ability.Interfaces;
-using Ashcrown.Remake.Core.V1.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.V1.Ai.Interfaces;
 using Ashcrown.Remake.Core.V1.Ai.Models;
 using Ashcrown.Remake.Core.V1.Battle.Models;
@@ -272,7 +271,7 @@ public abstract class Ability(
     {
     }
 
-    public virtual void AdditionalSubtractHealthLogic(int toSubtract, IActiveEffect activeEffect, IChampion victim,
+    public virtual void AdditionalSubtractHealthLogic(int toSubtract, IChampion victim,
         AppliedAdditionalLogic appliedAdditionalLogic)
     {
     }

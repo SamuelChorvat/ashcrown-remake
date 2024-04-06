@@ -107,7 +107,7 @@ public interface IAbility
 	int DealAbilityDamageModifier(IChampion target, int amount, bool secondary);
 	void AdditionalDealAbilityDamageLogic(IChampion target, AppliedAdditionalLogic appliedAdditionalLogic);
 	void AdditionalReceiveAbilityEnergyStealLogic(IChampion target, AppliedAdditionalLogic appliedAdditionalLogic);
-	void AdditionalSubtractHealthLogic(int toSubtract, IActiveEffect activeEffect, IChampion victim, AppliedAdditionalLogic appliedAdditionalLogic);
+	void AdditionalSubtractHealthLogic(int toSubtract, IChampion victim, AppliedAdditionalLogic appliedAdditionalLogic);
 	int SubtractHealthModifier(int toSubtract, IChampion victim);
 	bool UseChecks();
 	int[] TargetsModifier(int[] targets); // TODO Was List

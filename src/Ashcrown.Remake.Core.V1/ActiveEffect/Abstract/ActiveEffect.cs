@@ -274,7 +274,7 @@ public abstract class ActiveEffect(
     {
     }
 
-    public virtual void RemoveDestructibleDefense(IAbility ability, IActiveEffect activeEffect)
+    public virtual void RemoveDestructibleDefense(IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
     }
 

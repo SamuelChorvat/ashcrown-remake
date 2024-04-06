@@ -113,7 +113,7 @@ public interface IActiveEffect
 
     void AdditionalReceiveActiveEffectLogic(IChampion target, AppliedAdditionalLogic appliedAdditionalLogic);
 
-    void RemoveDestructibleDefense(IAbility ability, IActiveEffect activeEffect);
+    void RemoveDestructibleDefense(IAbility? ability = null, IActiveEffect? activeEffect = null);
 
     void AdditionalSubtractHealthLogic(int toSubtract, IChampion victim, AppliedAdditionalLogic appliedAdditionalLogic);
 

@@ -9,9 +9,11 @@ using Ashcrown.Remake.Core.V1.Champions.Cronos.ActiveEffects;
 using Ashcrown.Remake.Core.V1.Champions.Jafali.Abilities;
 using Ashcrown.Remake.Core.V1.Champions.Jafali.Champion;
 using Ashcrown.Remake.Core.V1.Champions.Jane.ActiveEffects;
+using Ashcrown.Remake.Core.V1.Champions.Lucifer.ActiveEffects;
 using Ashcrown.Remake.Core.V1.Champions.Luther.ActiveEffects;
 using Ashcrown.Remake.Core.V1.Champions.Nikto.ActiveEffects;
 using Ashcrown.Remake.Core.V1.Champions.Samson.ActiveEffects;
+using Ashcrown.Remake.Core.V1.Champions.Xikan.ActiveEffects;
 
 namespace Ashcrown.Remake.Core.V1.Champion;
 
@@ -413,53 +415,300 @@ public class ChampionController(IChampion owner) : IChampionController
 
     public int DealDamageModifiersIgnoreDamageReduction(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        throw new NotImplementedException();
+        var newAmount = amount;
+		
+        if (TotalAllDamageDealIncrease.Percentage > 0) {
+            if (newAmount > 0) {
+                var modifyBy = (100 + TotalAllDamageDealIncrease.Percentage) / (double) 100;
+                newAmount = (int) (newAmount * modifyBy);
+            }
+        } 
+		
+        newAmount += TotalAllDamageDealIncrease.Points;
+			
+		
+        if(ability is {MagicDamage: true} || activeEffect is {MagicDamage: true}) {
+            newAmount += TotalMagicDamageDealIncrease.Points;
+        } else if (ability is {PhysicalDamage: true} || activeEffect is {PhysicalDamage: true}) {
+            newAmount += TotalPhysicalDamageDealIncrease.Points;
+        }
+		
+        return newAmount;
     }
 
     public int ReceiveDamageModifiersCaseNoDisables(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        throw new NotImplementedException();
+        int newAmount = amount;
+		
+		if (TotalAllDamageReceiveIncrease.Percentage > 0 || TotalAllDamageReceiveReduce.Percentage > 0) {
+			if (newAmount > 0) {
+				var modifyBy = (100 + TotalAllDamageReceiveIncrease.Percentage - TotalAllDamageReceiveReduce.Percentage) / (double) 100;
+				if (modifyBy <= 0) {
+					newAmount = 0;
+				} else {
+					newAmount = (int) (newAmount * modifyBy);
+				}
+			}
+		} 
+		
+		if (TotalAllDamageReceiveIncrease.Points > TotalAllDamageReceiveReduce.Points) {
+			TotalAllDamageReceiveIncrease.Points -= TotalAllDamageReceiveReduce.Points;
+			newAmount += TotalAllDamageReceiveIncrease.Points;
+			TotalAllDamageReceiveIncrease.Points = 0;
+			TotalAllDamageReceiveReduce.Points = 0;
+		} else if (TotalAllDamageReceiveIncrease.Points < TotalAllDamageReceiveReduce.Points) {
+			TotalAllDamageReceiveReduce.Points -= TotalAllDamageReceiveIncrease.Points;
+			if (TotalAllDamageReceiveReduce.Points > newAmount) {
+				TotalAllDamageReceiveReduce.Points -= newAmount;
+				newAmount = 0;
+			} else {
+				newAmount -= TotalAllDamageReceiveReduce.Points;
+				TotalAllDamageReceiveReduce.Points = 0;
+			}
+		}
+			
+		
+		if(ability is {MagicDamage: true} || activeEffect is {MagicDamage: true}) {
+			if (TotalMagicDamageReceiveIncrease.Points > TotalMagicDamageReceiveReduce.Points) {
+				TotalMagicDamageReceiveIncrease.Points -= TotalMagicDamageReceiveReduce.Points;
+				newAmount += TotalMagicDamageReceiveIncrease.Points;
+				TotalMagicDamageReceiveIncrease.Points = 0;
+				TotalMagicDamageReceiveReduce.Points = 0;
+			} else if (TotalMagicDamageReceiveIncrease.Points < TotalMagicDamageReceiveReduce.Points) {
+				TotalMagicDamageReceiveReduce.Points -= TotalMagicDamageReceiveIncrease.Points;
+				if (TotalMagicDamageReceiveReduce.Points > newAmount) {
+					TotalMagicDamageReceiveReduce.Points -= newAmount;
+					newAmount = 0;
+				} else {
+					newAmount -= TotalMagicDamageReceiveReduce.Points;
+					TotalMagicDamageReceiveReduce.Points = 0;
+				}
+			}
+		} else if (ability is {PhysicalDamage: true} || activeEffect is {PhysicalDamage: true}) {
+			if (TotalPhysicalDamageReceiveIncrease.Points > TotalPhysicalDamageReceiveReduce.Points) {
+				TotalPhysicalDamageReceiveIncrease.Points -= TotalPhysicalDamageReceiveReduce.Points;
+				newAmount += TotalPhysicalDamageReceiveIncrease.Points;
+				TotalPhysicalDamageReceiveIncrease.Points = 0;
+				TotalPhysicalDamageReceiveReduce.Points = 0;
+			} else if (TotalPhysicalDamageReceiveIncrease.Points < TotalPhysicalDamageReceiveReduce.Points) {
+				TotalPhysicalDamageReceiveReduce.Points -= TotalPhysicalDamageReceiveIncrease.Points;
+				if (TotalPhysicalDamageReceiveReduce.Points > newAmount) {
+					TotalPhysicalDamageReceiveReduce.Points -= newAmount;
+					newAmount = 0;
+				} else {
+					newAmount -= TotalPhysicalDamageReceiveReduce.Points;
+					TotalPhysicalDamageReceiveReduce.Points = 0;
+				}
+			}
+		}
+		
+		return newAmount;
     }
 
     public int ReceiveDamageModifiersCaseCannotReduceDamage(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        throw new NotImplementedException();
+        var newAmount = amount;
+		
+        if (TotalAllDamageReceiveIncrease.Percentage > 0) {
+            if (newAmount > 0) {
+                var modifyBy = (100 + TotalAllDamageReceiveIncrease.Percentage) / (double) 100;
+                newAmount = (int) (newAmount * modifyBy);	
+            }
+        } 
+		
+        if (TotalAllDamageReceiveIncrease.Points > 0) {
+            newAmount += TotalAllDamageReceiveIncrease.Points;
+            TotalAllDamageReceiveIncrease.Points = 0;
+        } 
+			
+		
+        if(ability is {MagicDamage: true} || activeEffect is {MagicDamage: true})
+        {
+            if (TotalMagicDamageReceiveIncrease.Points <= 0) return newAmount;
+            newAmount += TotalMagicDamageReceiveIncrease.Points;
+            TotalMagicDamageReceiveIncrease.Points = 0;
+        } else if (ability is {PhysicalDamage: true} || activeEffect is {PhysicalDamage: true})
+        {
+            if (TotalPhysicalDamageReceiveIncrease.Points <= 0) return newAmount;
+            newAmount += TotalPhysicalDamageReceiveIncrease.Points;
+            TotalPhysicalDamageReceiveIncrease.Points = 0;
+        }
+		
+        return newAmount;
     }
 
     public int DealHealingModifiersCaseNoDisables(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        throw new NotImplementedException();
+        var newAmount = amount;
+		
+        if (TotalHealingDealIncrease.Percentage > 0 || TotalHealingDealReduce.Percentage > 0) {
+            if (newAmount > 0) {
+                var modifyBy = (100 + TotalHealingDealIncrease.Percentage - TotalHealingDealReduce.Percentage) / (double) 100;
+                if (modifyBy <= 0) {
+                    newAmount = 0;
+                } else {
+                    newAmount = (int) (newAmount * modifyBy);
+                }
+            }
+        } 
+		
+        if (TotalHealingDealIncrease.Points > TotalHealingDealReduce.Points) {
+            newAmount += TotalHealingDealIncrease.Points - TotalHealingDealReduce.Points;
+        } else if (TotalHealingDealIncrease.Points < TotalHealingDealReduce.Points) {
+            if (TotalHealingDealReduce.Points - TotalHealingDealIncrease.Points > newAmount) {
+                newAmount = 0;
+            } else {
+                newAmount -= (TotalHealingDealReduce.Points - TotalHealingDealIncrease.Points);
+            }
+        }
+		
+        return newAmount;
     }
 
     public int ReceiveHealingModifiersCaseNoDisables(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        throw new NotImplementedException();
+        var newAmount = amount;
+		
+        if (TotalHealingReceiveIncrease.Percentage > 0 || TotalHealingReceiveReduce.Percentage > 0) {
+            if (newAmount > 0) {
+                var modifyBy = (100 + TotalHealingReceiveIncrease.Percentage - TotalHealingReceiveReduce.Percentage) / (double) 100;
+                if (modifyBy <= 0) {
+                    newAmount = 0;
+                } else {
+                    newAmount = (int) (newAmount * modifyBy);
+                }
+            }
+        } 
+		
+        if (TotalHealingReceiveIncrease.Points > TotalHealingReceiveReduce.Points) {
+            TotalHealingReceiveIncrease.Points -= TotalHealingReceiveReduce.Points;
+            newAmount += TotalHealingReceiveIncrease.Points;
+            TotalHealingReceiveIncrease.Points = 0;
+            TotalHealingReceiveReduce.Points = 0;
+        } else if (TotalHealingReceiveIncrease.Points < TotalHealingReceiveReduce.Points) {
+            TotalHealingReceiveReduce.Points -= TotalHealingReceiveIncrease.Points;
+            if (TotalHealingReceiveReduce.Points > newAmount) {
+                TotalHealingReceiveReduce.Points -= newAmount;
+                newAmount = 0;
+            } else {
+                newAmount -= TotalHealingReceiveReduce.Points;
+                TotalHealingReceiveReduce.Points = 0;
+            }
+        }
+		
+        return newAmount;
     }
 
     public int ReceiveHealingModifiersCaseIgnoreHealingReduction(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        throw new NotImplementedException();
+        var newAmount = amount;
+		
+        if (TotalHealingReceiveIncrease.Percentage > 0) {
+            if (newAmount > 0) {
+                var modifyBy = (100 + TotalHealingReceiveIncrease.Percentage) / (double) 100;
+                newAmount = (int) (newAmount * modifyBy);
+            }
+        } 
+		
+        newAmount += TotalHealingReceiveIncrease.Points;
+        TotalHealingReceiveIncrease.Points = 0;
+		
+        return newAmount;
     }
 
     public int ApplyDestructibleDefense(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        throw new NotImplementedException();
+        var newAmount = amount;
+		
+        foreach (var presentActiveEffect in Owner.ActiveEffects)
+        {
+            if (presentActiveEffect.DestructibleDefense <= newAmount) {
+                newAmount -= presentActiveEffect.DestructibleDefense;
+                presentActiveEffect.DestructibleDefense = 0;
+                presentActiveEffect.RemoveDestructibleDefense(ability, activeEffect);
+				
+            } else if(presentActiveEffect.DestructibleDefense > newAmount) {
+                presentActiveEffect.DestructibleDefense -= newAmount;
+                newAmount = 0;
+                break;
+            }
+        }
+		
+        return newAmount;
     }
 
     public void SubtractHealth(int toSubtract, AppliedAdditionalLogic appliedAdditionalLogic, 
         IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        throw new NotImplementedException();
+        if(!Owner.Alive) {
+            return;
+        }
+
+        if (ability is not {CannotBeIgnored: true}) {
+            if(IsIgnoringDamage()
+               || IsInvulnerableTo(ability, activeEffect)
+               || IsIgnoringHarmful()) {
+                return;
+            }
+        }
+		
+        var toSubtractModified = toSubtract;
+        toSubtractModified = Math.Max(toSubtractModified, 0);
+		
+        if (activeEffect != null) {
+            if (!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.AdditionalSubtractHealthLogicActiveEffect, activeEffect.Name)) {
+                appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.AdditionalSubtractHealthLogicActiveEffect, activeEffect.Name);
+                activeEffect.AdditionalSubtractHealthLogic(toSubtractModified, Owner, appliedAdditionalLogic);
+            }
+        }
+		
+        if (ability != null) {
+            if (!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.AdditionalSubtractHealthLogicAbility, ability.Name)) {
+                appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.AdditionalSubtractHealthLogicAbility, ability.Name);
+                ability.AdditionalSubtractHealthLogic(toSubtractModified, Owner, appliedAdditionalLogic);
+            }
+            toSubtractModified = ability.SubtractHealthModifier(toSubtractModified, Owner);
+        }
+
+        toSubtractModified = HeartOfNatureActiveEffect.PreventDeath(toSubtractModified, ability, Owner);
+		
+        if (Owner.Health - toSubtractModified <= 0) {
+
+            DarkChaliceActiveEffect.Trigger(Owner);
+			
+            OnDeath();
+        } else {
+            Owner.Health -= toSubtractModified;
+
+            var currentActiveEffects = Owner.ActiveEffectController.GetCurrentActiveEffectsSeparately();
+            foreach (var presentActiveEffect in currentActiveEffects) {
+                presentActiveEffect.AfterSubtractHealthLogic();
+            }
+        }
     }
 
     public void AddHealth(int toAdd)
     {
-        throw new NotImplementedException();
+        if(!Owner.Alive || Owner.Health == 0) {
+            return;
+        }
+		
+        if(IsIgnoringHealing()) {
+            return;
+        }
+		
+        if (Owner.Health + toAdd >= 100) {
+            Owner.Health = 100;
+        } else if(owner.Alive) {
+            Owner.Health += toAdd;
+        }
     }
 
     public void OnDeath()
     {
-        throw new NotImplementedException();
+        if (Owner.Died) return;
+        Owner.Died = true;
+        Owner.BattleLogic.DiedChampions.Add(Owner);
     }
 
     public void ProcessDeath()

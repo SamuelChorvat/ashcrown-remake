@@ -9,6 +9,6 @@ public enum AdditionalLogic
     CustomDealActiveEffectLogic,
     CustomReceiveAbilityDamageLogic,
     AdditionalReceiveAbilityHealingLogic,
-    AdditionalSubtractHealthLogicAe,
+    AdditionalSubtractHealthLogicActiveEffect,
     AdditionalSubtractHealthLogicAbility,
 }
