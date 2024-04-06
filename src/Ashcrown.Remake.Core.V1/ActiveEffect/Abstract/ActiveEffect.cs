@@ -5,7 +5,7 @@ using Ashcrown.Remake.Core.V1.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.V1.Battle.Models;
 using Ashcrown.Remake.Core.V1.Champion.Interfaces;
 
-namespace Ashcrown.Remake.Core.V1.ActiveEffect.Base;
+namespace Ashcrown.Remake.Core.V1.ActiveEffect.Abstract;
 
 public abstract class ActiveEffect(
     IAbility originAbility,

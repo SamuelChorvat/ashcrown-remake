@@ -7,7 +7,7 @@ using Ashcrown.Remake.Core.V1.Ai.Models;
 using Ashcrown.Remake.Core.V1.Battle.Models;
 using Ashcrown.Remake.Core.V1.Champion.Interfaces;
 
-namespace Ashcrown.Remake.Core.V1.Ability.Base;
+namespace Ashcrown.Remake.Core.V1.Ability.Abstract;
 
 public abstract class Ability(
     IChampion champion,

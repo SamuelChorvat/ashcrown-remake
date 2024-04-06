@@ -3,7 +3,7 @@ using Ashcrown.Remake.Core.V1.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.V1.Battle.Interfaces;
 using Ashcrown.Remake.Core.V1.Champion.Interfaces;
 
-namespace Ashcrown.Remake.Core.V1.Champion.Base;
+namespace Ashcrown.Remake.Core.V1.Champion.Abstract;
 
 public abstract class Champion(
     IBattleLogic battleLogic,
