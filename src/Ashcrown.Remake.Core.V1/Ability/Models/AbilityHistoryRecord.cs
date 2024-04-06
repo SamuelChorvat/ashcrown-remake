@@ -2,19 +2,19 @@ using Ashcrown.Remake.Core.V1.Ability.Enums;
 
 namespace Ashcrown.Remake.Core.V1.Ability.Models;
 
-public interface AbilityHistoryRecord
+public class AbilityHistoryRecord
 {
-    public int TurnNo { get; set; }
-    public int PlayerNo { get; set; }
-    public string PlayerName { get; set; }
-    public string CasterName { get; set; }
-    public string AbilityName { get; set; }
-    public string AbilityDescription { get; set; }
-    public int[] AbilityCost { get; set; }
-    public List<AbilityClass> AbilityClasses { get; set; }
-    public int AbilityCooldown { get; set; }
-    public List<string> TargetNames { get; }
-    public bool Invisible { get; set; }
+    public required int TurnNo { get; set; }
+    public required int PlayerNo { get; set; }
+    public required string PlayerName { get; set; }
+    public required string CasterName { get; set; }
+    public required string AbilityName { get; set; }
+    public required string AbilityDescription { get; set; }
+    public required int[] AbilityCost { get; set; }
+    public required IReadOnlyList<AbilityClass> AbilityClasses { get; set; }
+    public required int AbilityCooldown { get; set; }
+    public List<string> TargetNames { get; } = [];
+    public required bool Invisible { get; set; }
 
     public string GetClassesAsString() {
         var toReturn = "";

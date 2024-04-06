@@ -1,4 +1,4 @@
-using Ashcrown.Remake.Core.Ability.Enums;
+using Ashcrown.Remake.Core.V1.Ability.Enums;
 using Ashcrown.Remake.Core.V1.Ai.Models;
 using Ashcrown.Remake.Core.V1.Champion.Interfaces;
 

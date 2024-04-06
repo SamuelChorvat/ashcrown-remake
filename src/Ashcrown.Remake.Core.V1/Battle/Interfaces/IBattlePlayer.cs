@@ -1,4 +1,4 @@
-﻿using Ashcrown.Remake.Core.Ability.Enums;
+﻿using Ashcrown.Remake.Core.V1.Ability.Enums;
 using Ashcrown.Remake.Core.V1.Ability.Interfaces;
 using Ashcrown.Remake.Core.V1.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.V1.Champion.Interfaces;
@@ -19,7 +19,7 @@ public interface IBattlePlayer
 	bool ChampionUseAbility(int championNo, int abilityNo, int[] targets);
 	IAbility GetAbility(int championNo, int abilityNo);
 	void GenerateEnergy();
-	int LoseRandomEnergy(IChampion target, IAbility ability, IActiveEffect activeEffect);
+	EnergyType LoseRandomEnergy(IChampion target, IAbility? ability = null, IActiveEffect? activeEffect = null);
 	void GainRandomEnergy();
 	void RemoveActiveEffectFromAll(string activeEffectName); //TODO should this check it from the same character?
 	IActiveEffect checkAEPresentOnAny(string activeEffectName, int championNo, int playerNo);

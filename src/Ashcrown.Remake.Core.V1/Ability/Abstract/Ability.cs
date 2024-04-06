@@ -1,4 +1,3 @@
-using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.V1.Ability.Enums;
 using Ashcrown.Remake.Core.V1.Ability.Interfaces;
 using Ashcrown.Remake.Core.V1.ActiveEffect.Interfaces;

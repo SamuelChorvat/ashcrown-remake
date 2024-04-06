@@ -5,6 +5,7 @@ using Ashcrown.Remake.Core.V1.Battle.Models;
 
 namespace Ashcrown.Remake.Core.V1.Champion.Interfaces;
 
+//TODO Refactor this? Move some to IChampion and maybe create IModifierController instead?
 public interface IChampionController
 {
     IChampion Owner { get; init; }
@@ -44,20 +45,21 @@ public interface IChampionController
     void DealActiveEffectEnergySteal(IChampion target, IActiveEffect activeEffect, AppliedAdditionalLogic appliedAdditionalLogic);
     void ReceiveAbilityEnergySteal(IAbility ability, int amount, bool secondary, AppliedAdditionalLogic appliedAdditionalLogic);
     void ReceiveActiveEffectEnergySteal(IActiveEffect activeEffect, int amount, AppliedAdditionalLogic appliedAdditionalLogic);
-    int ApplyToDealDamageModifiers(int amount, IAbility ability, IActiveEffect activeEffect);
-    int ApplyToReceiveDamageModifiers(int amount, IAbility ability, IActiveEffect activeEffect);
-    int ApplyToDealHealingModifiers(int amount, IAbility ability, IActiveEffect activeEffect);
-    int ApplyToReceiveHealingModifiers(int amount, IAbility ability, IActiveEffect activeEffect);
+    int ApplyToDealDamageModifiers(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int ApplyToReceiveDamageModifiers(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int ApplyToDealHealingModifiers(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int ApplyToReceiveHealingModifiers(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
     void SetModifiers();
-    int DealDamageModifiersNoDisables(int amount, IAbility ability, IActiveEffect activeEffect);
-    int DealDamageModifiersIgnoreDamageReduction(int amount, IAbility ability, IActiveEffect activeEffect);
-    int ReceiveDamageModifiersCaseNoDisables(int amount, IAbility ability, IActiveEffect activeEffect);
-    int ReceiveDamageModifiersCaseCannotReduceDamage(int amount, IAbility ability, IActiveEffect activeEffect);
-    int DealHealingModifiersCaseNoDisables(int amount, IAbility ability, IActiveEffect activeEffect);
-    int ReceiveHealingModifiersCaseNoDisables(int amount, IAbility ability, IActiveEffect activeEffect);
-    int ReceiveHealingModifiersCaseIgnoreHealingReduction(int amount, IAbility ability, IActiveEffect activeEffect);
-    int ApplyDestructibleDefense(int amount, IAbility ability, IActiveEffect activeEffect);
-    void SubtractHealth(int toSubtract, IAbility ability, IActiveEffect activeEffect, AppliedAdditionalLogic appliedAdditionalLogic);
+    int DealDamageModifiersNoDisables(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int DealDamageModifiersIgnoreDamageReduction(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int ReceiveDamageModifiersCaseNoDisables(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int ReceiveDamageModifiersCaseCannotReduceDamage(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int DealHealingModifiersCaseNoDisables(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int ReceiveHealingModifiersCaseNoDisables(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int ReceiveHealingModifiersCaseIgnoreHealingReduction(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    int ApplyDestructibleDefense(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null);
+    void SubtractHealth(int toSubtract, AppliedAdditionalLogic appliedAdditionalLogic, 
+        IAbility? ability = null, IActiveEffect? activeEffect = null);
     void AddHealth(int toAdd);
     void OnDeath();
     void ProcessDeath();

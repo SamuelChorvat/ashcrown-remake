@@ -1,4 +1,4 @@
-﻿namespace Ashcrown.Remake.Core.Ability.Enums;
+﻿namespace Ashcrown.Remake.Core.V1.Ability.Enums;
 
 public enum EnergyType
 {
@@ -6,5 +6,6 @@ public enum EnergyType
     Red,
     Green,
     Purple,
-    Random
+    Random,
+    NoEnergy = -1
 }
