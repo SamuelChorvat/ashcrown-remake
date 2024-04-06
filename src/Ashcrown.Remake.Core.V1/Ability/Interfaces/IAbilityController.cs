@@ -18,7 +18,7 @@ public interface IAbilityController
     IAbility GetCurrentAbility(int abilityNo);
     void StartTurnFieldsReset();
     void TickDownAbilitiesCooldowns();
-    int GetNumberOfTargets(int[] targets);
+    int GetNumberOfTargets(IEnumerable<int> targets);
     int[] GetPossibleTargetsForAbility(int abilityNo);
     int[] GetUsableAbilities(int[] currentEnergy, int toSubtract);
     void SetAiActiveAbilities(int[] currentResources, int toSubtract); //TODO Move to AI?

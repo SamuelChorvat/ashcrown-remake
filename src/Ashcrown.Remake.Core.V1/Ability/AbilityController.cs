@@ -825,7 +825,7 @@ public class AbilityController(
         }
     }
 
-    public int GetNumberOfTargets(int[] targets)
+    public int GetNumberOfTargets(IEnumerable<int> targets)
     {
         return targets.Count(target => target == 1);
     }
