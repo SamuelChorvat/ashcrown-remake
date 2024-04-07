@@ -1,11 +1,9 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Interfaces;
-using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models.Dtos;
 using Ashcrown.Remake.Core.Champion.Interfaces;
-using Ashcrown.Remake.Core.Champions.Sanguimon.Champion;
 
 namespace Ashcrown.Remake.Core.Battle;
 
