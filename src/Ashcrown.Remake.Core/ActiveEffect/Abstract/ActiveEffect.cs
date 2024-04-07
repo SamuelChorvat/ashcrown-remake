@@ -3,7 +3,9 @@ using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models;
+using Ashcrown.Remake.Core.Battle.Models.Dtos;
 using Ashcrown.Remake.Core.Champion.Interfaces;
+using Ashcrown.Remake.Core.Champions.Sanguimon.Champion;
 
 namespace Ashcrown.Remake.Core.ActiveEffect.Abstract;
 
@@ -355,5 +357,19 @@ public abstract class ActiveEffect(
                 throw new ArgumentOutOfRangeException(paramName:nameof(reflectedAbility), 
                     message:"Reflected ability type out of range");
         }
+    }
+
+    public virtual ActiveEffectUpdate GetActiveEffectUpdate(int playerNo)
+    {
+        return new ActiveEffectUpdate
+        {
+            // TODO Refactor this to override in the AE
+            OriginAbilityName = Name.Equals(SanguimonNames.HuntActiveEffect)
+                ? SanguimonNames.Hunt
+                : GetAbilityName(),
+            Description = GetDescriptionWithTimeLeftAffix(playerNo),
+            Stacks = Stacks,
+            MeCast = WasCastedByMe(playerNo)
+        };
     }
 }

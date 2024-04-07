@@ -2,6 +2,7 @@
 using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.Battle.Models;
+using Ashcrown.Remake.Core.Battle.Models.Dtos;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.ActiveEffect.Interfaces;
@@ -104,38 +105,22 @@ public interface IActiveEffect
     void OnApplyDot();
     void OnApplyActionControlMe();
     void OnApplyActionControlTargetDamage();
-    
     int ReceiveActiveEffectDamageModifier(IChampion target, int amount);
-
     bool CustomDealActiveEffectLogic(IChampion dealer, IChampion target, IAbility ability, AppliedAdditionalLogic appliedAdditionalLogic);
-
     void AdditionalDealActiveEffectLogic(IChampion dealer, IChampion target, IAbility ability, bool secondary, AppliedAdditionalLogic appliedAdditionalLogic);
-
     void AdditionalReceiveActiveEffectLogic(IChampion target, AppliedAdditionalLogic appliedAdditionalLogic);
-
     void RemoveDestructibleDefense(IAbility? ability = null, IActiveEffect? activeEffect = null);
-
     void AdditionalSubtractHealthLogic(int toSubtract, IChampion victim, AppliedAdditionalLogic appliedAdditionalLogic);
-
     void AfterSubtractHealthLogic();
-
     void AdditionalProcessDeathLogic();
-
     void DealReaction(IAbility ability);
-
     void ReceiveReaction(IAbility ability);
-
     bool CounterOnEnemy(IAbility ability);
-
     bool ReflectOnEnemy(IAbility ability);
-
     bool CounterOnMe(IAbility ability);
-
     bool ActiveEffectChecks();
-
     void StartTurnChecks();
-
     void EndTurnChecks();
-
     void ModifyTargetsOnReflect(IAbility reflectedAbility, int[] targets);
+    ActiveEffectUpdate GetActiveEffectUpdate(int playerNo);
 }

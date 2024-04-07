@@ -3,6 +3,7 @@ using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Ai.Models;
 using Ashcrown.Remake.Core.Battle.Models;
+using Ashcrown.Remake.Core.Battle.Models.Dtos;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Ability.Abstract;
@@ -406,5 +407,24 @@ public abstract class Ability(
     public virtual int CalculateSingletonSelfEffectTotalPoints()
     {
         return 0;
+    }
+
+    public virtual AbilityUpdate GetAbilityUpdate(int abilityNo)
+    {
+        return new AbilityUpdate
+        {
+            Name = Name,
+            Description = Description,
+            Cooldown = GetCurrentCooldown(),
+            ReadyIn = champion.Alive ? ToReady : 0,
+            Cost = GetCurrentCost(),
+            CanUse = champion.AbilityController.ClientCanUseAbilityChecks(this)
+                     && champion.AbilityController.GetNumberOfTargets(
+                         champion.AbilityController.GetPossibleTargetsForAbility(abilityNo)) > 0,
+            Target = Target,
+            SelfDisplay = SelfDisplay,
+            SelfCast = SelfCast,
+            Classes = AbilityClasses
+        };
     }
 }

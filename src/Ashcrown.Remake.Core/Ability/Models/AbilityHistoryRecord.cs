@@ -1,4 +1,5 @@
 using Ashcrown.Remake.Core.Ability.Enums;
+using Ashcrown.Remake.Core.Battle.Models.Dtos;
 
 namespace Ashcrown.Remake.Core.Ability.Models;
 
@@ -11,7 +12,7 @@ public class AbilityHistoryRecord
     public required string AbilityName { get; set; }
     public required string AbilityDescription { get; set; }
     public required int[] AbilityCost { get; set; }
-    public required IReadOnlyList<AbilityClass> AbilityClasses { get; set; }
+    public required IList<AbilityClass> AbilityClasses { get; set; }
     public required int AbilityCooldown { get; set; }
     public List<string> TargetNames { get; } = [];
     public required bool Invisible { get; set; }
@@ -32,5 +33,22 @@ public class AbilityHistoryRecord
     public bool IsFree()
     {
         return AbilityCost.All(amount => amount <= 0);
+    }
+
+    public AbilityHistoryUpdate GetAbilityHistoryUpdate()
+    {
+        return new AbilityHistoryUpdate
+        {
+            TurnNo = TurnNo,
+            PlayerName = PlayerName,
+            CasterName = CasterName,
+            AbilityName = AbilityName,
+            AbilityDescription = AbilityDescription,
+            AbilityFree = IsFree(),
+            AbilityCost = AbilityCost,
+            AbilityClasses = AbilityClasses,
+            AbilityCooldown = AbilityCooldown,
+            TargetNames = TargetNames
+        };
     }
 }

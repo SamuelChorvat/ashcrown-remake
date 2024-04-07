@@ -4,6 +4,7 @@ namespace Ashcrown.Remake.Core.Battle.Interfaces;
 
 public interface IBattleLogic
 {
+	IBattleHistoryRecorder BattleHistoryRecorder { get; init; }
 	IList<IChampion> DiedChampions { get; init; }
 	DateTime StartTime { get; init; }
 	int TurnCount { get; init; }

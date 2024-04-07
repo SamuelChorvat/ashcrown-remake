@@ -4,6 +4,7 @@ using Ashcrown.Remake.Core.Battle.Models;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Ai.Interfaces;
+using Ashcrown.Remake.Core.Battle.Models.Dtos;
 
 namespace Ashcrown.Remake.Core.Ability.Interfaces;
 
@@ -121,4 +122,5 @@ public interface IAbility
 	// Use this for abilities like Dura's Whirlwind
 	// Where there is an effect that we are not applying for each target but just once
 	int CalculateSingletonSelfEffectTotalPoints();
+	AbilityUpdate GetAbilityUpdate(int abilityNo);
 }

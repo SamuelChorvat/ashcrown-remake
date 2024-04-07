@@ -1,9 +1,11 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Interfaces;
+using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models.Dtos;
 using Ashcrown.Remake.Core.Champion.Interfaces;
+using Ashcrown.Remake.Core.Champions.Sanguimon.Champion;
 
 namespace Ashcrown.Remake.Core.Battle;
 
@@ -209,17 +211,92 @@ public class BattlePlayer(IBattleLogic battleLogic) : IBattlePlayer
 
     public PlayerUpdate GetPlayerUpdate()
     {
-        throw new NotImplementedException();
+        var playerUpdate = new PlayerUpdate
+        {
+            Energy = Energy,
+            LastTurn = BattleLogic.TurnCount,
+            EnergyExchangeRatio = Math.Max(1, GetAliveChampions().Count),
+            AbilityHistoryUpdates = GetAbilityHistoryUpdates()
+        };
+
+		for (var i = 0; i < Champions.Length; i++)
+        {
+            playerUpdate.MyChampions[i] = Champions[i].Name;
+            playerUpdate.OpponentChampions[i] = BattleLogic.GetOppositePlayer(PlayerNo).Champions[i].Name;
+		}
+		
+        
+		for (var i = 0; i < 3; i++) {
+            var myChampionsUpdate = new MyChampionUpdate();
+			var champion = Champions[i];
+            
+            myChampionsUpdate.Health = champion.Health;
+			for (var j = 0; j < 4; j++)
+            {
+                myChampionsUpdate.AbilityUpdates[j] = champion.CurrentAbilities[j].GetAbilityUpdate(j + 1);
+            }
+
+            foreach (var activeEffect in champion.ActiveEffects)
+            {
+                if(activeEffect.IsHidden(PlayerNo)) {
+                    continue;
+                }
+                
+                myChampionsUpdate.ActiveEffectUpdates.Add(activeEffect.GetActiveEffectUpdate(PlayerNo));
+            }
+
+            playerUpdate.MyChampionUpdates[i] = myChampionsUpdate;
+        }
+		
+        var opponentChampionsUpdate = new OpponentChampionUpdate();
+		for (var i = 0; i < 3; i++) {
+			var champion = BattleLogic.GetOppositePlayer(PlayerNo).Champions[i];
+			
+			opponentChampionsUpdate.Health = champion.Health;
+
+            foreach (var activeEffect in champion.ActiveEffects)
+            {
+                if(activeEffect.IsHidden(PlayerNo)) {
+                    continue;
+                }
+                
+                opponentChampionsUpdate.ActiveEffectUpdates.Add(activeEffect.GetActiveEffectUpdate(PlayerNo));
+            }
+
+            playerUpdate.OpponentChampionUpdates[i] = opponentChampionsUpdate;
+        }
+		
+		return playerUpdate;
     }
 
     public TargetsUpdate GetTargets(int championNo, int abilityNo)
     {
-        throw new NotImplementedException();
+        return new TargetsUpdate
+        {
+            ChampionNo = championNo,
+            AbilityNo = abilityNo,
+            Targets = Champions[championNo - 1].AbilityController.GetPossibleTargetsForAbility(abilityNo)
+        };
     }
 
     public UsableAbilitiesUpdate GetUsableAbilities(int[] currentResources, int energyToSubtract)
     {
-        throw new NotImplementedException();
+        var usableAbilitiesUpdate = new UsableAbilitiesUpdate();
+        
+        for(var i = 0; i < Champions.Length; i++)
+        {
+            usableAbilitiesUpdate.UsableAbilities[i] = Champions[i].AbilityController
+                .GetUsableAbilities(currentResources, energyToSubtract);
+        }
+
+        return usableAbilitiesUpdate;
+    }
+
+    private List<AbilityHistoryUpdate> GetAbilityHistoryUpdates()
+    {
+        return (from abilityHistoryRecord in BattleLogic.BattleHistoryRecorder.AbilityHistoryRecords 
+            where abilityHistoryRecord.PlayerNo == PlayerNo 
+                  || !abilityHistoryRecord.Invisible select abilityHistoryRecord.GetAbilityHistoryUpdate()).ToList();
     }
 
     public IBattlePlayer GetEnemyPlayer()
