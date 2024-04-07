@@ -2,11 +2,8 @@ using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Microsoft.Extensions.Logging;
-using IActiveEffect = Ashcrown.Remake.Core.ActiveEffect.Interfaces.IActiveEffect;
 
 namespace Ashcrown.Remake.Core.ActiveEffect;
-
-using IActiveEffect = Interfaces.IActiveEffect;
 
 public class ActiveEffectController(
     IChampion owner,

@@ -1,7 +1,7 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
-using Ashcrown.Remake.Core.Battle.Models.Dtos;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Battle.Interfaces;

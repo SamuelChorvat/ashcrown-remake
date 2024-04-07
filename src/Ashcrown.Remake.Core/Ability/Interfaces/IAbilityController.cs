@@ -1,7 +1,6 @@
 ﻿using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Ai.Models;
 using Ashcrown.Remake.Core.Champion.Interfaces;
-using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 
 namespace Ashcrown.Remake.Core.Ability.Interfaces;
 

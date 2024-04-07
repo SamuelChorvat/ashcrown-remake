@@ -3,7 +3,7 @@ using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Ai.Models;
 using Ashcrown.Remake.Core.Battle.Models;
-using Ashcrown.Remake.Core.Battle.Models.Dtos;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Ability.Abstract;

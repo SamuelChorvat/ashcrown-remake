@@ -2,9 +2,7 @@
 using Ashcrown.Remake.Core.Ai.Models;
 using Ashcrown.Remake.Core.Battle.Models;
 using Ashcrown.Remake.Core.Champion.Interfaces;
-using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
-using Ashcrown.Remake.Core.Ai.Interfaces;
-using Ashcrown.Remake.Core.Battle.Models.Dtos;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 
 namespace Ashcrown.Remake.Core.Ability.Interfaces;
 

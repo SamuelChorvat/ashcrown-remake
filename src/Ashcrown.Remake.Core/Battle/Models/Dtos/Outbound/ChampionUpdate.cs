@@ -1,4 +1,4 @@
-﻿namespace Ashcrown.Remake.Core.Battle.Models.Dtos;
+﻿namespace Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 
 public abstract class ChampionUpdate
 {

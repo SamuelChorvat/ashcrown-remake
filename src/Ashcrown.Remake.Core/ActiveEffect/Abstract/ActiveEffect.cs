@@ -3,7 +3,7 @@ using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models;
-using Ashcrown.Remake.Core.Battle.Models.Dtos;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Sanguimon.Champion;
 

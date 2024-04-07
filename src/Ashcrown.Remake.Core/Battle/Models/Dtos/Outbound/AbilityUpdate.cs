@@ -1,6 +1,6 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 
-namespace Ashcrown.Remake.Core.Battle.Models.Dtos;
+namespace Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 
 public class AbilityUpdate
 {
