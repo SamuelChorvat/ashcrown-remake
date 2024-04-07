@@ -8,6 +8,7 @@ namespace Ashcrown.Remake.Core.Battle.Interfaces;
 public interface IBattlePlayer
 {
     int PlayerNo { get; init; }
+    IBattleLogic BattleLogic { get; init; }
 	IChampion[] Champions { get; init; }
 	int[] Energy { get; init; }
 	bool AiOpponent { get; init; }
@@ -21,17 +22,17 @@ public interface IBattlePlayer
 	void GenerateEnergy();
 	EnergyType LoseRandomEnergy(IChampion target, IAbility? ability = null, IActiveEffect? activeEffect = null);
 	void GainRandomEnergy();
-	void RemoveActiveEffectFromAll(string activeEffectName); //TODO should this check it from the same character?
-	IActiveEffect checkAEPresentOnAny(string activeEffectName, int championNo, int playerNo);
+	void RemoveActiveEffectFromAll(string activeEffectName);
+	IActiveEffect? CheckActiveEffectPresentOnAny(string activeEffectName, int championNo, int playerNo);
 	void TriggerStartTurnMethods();
 	void CheckResume();
 	void TriggerEndTurnMethods();
 	IChampion GetRandomMyChampion();
-	IChampion GetRandomEnemyChampion(); //TODO what about invulnerability, what if the target is invulnerable, Seth ignores invul for now
-	IList<IChampion> GetOtherChampions(IChampion champion); //TODO does this behave correctly in reflect scenario?
+	IChampion GetRandomEnemyChampion();
+	IChampion[]? GetOtherChampions(IChampion champion);
 	Object GetPlayerUpdate(); //TODO Model for player update
 	Object GetTargets(int championNo, int abilityNo); //TODO Model
-	Object GetUsableAbilities(int[] currentResources, int energyToSubtract);
+	Object GetUsableAbilities(int[] currentResources, int energyToSubtract); //TODO Model
 	IBattlePlayer GetEnemyPlayer();
 	int GetTotalEnergy();
 	bool AiCanAnyoneTargetCounterAbility(IAbility ability);
