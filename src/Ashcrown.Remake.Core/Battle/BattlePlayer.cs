@@ -2,6 +2,7 @@
 using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Battle.Interfaces;
+using Ashcrown.Remake.Core.Battle.Models.Dtos;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Battle;
@@ -206,17 +207,17 @@ public class BattlePlayer(IBattleLogic battleLogic) : IBattlePlayer
         };
     }
 
-    public object GetPlayerUpdate()
+    public PlayerUpdate GetPlayerUpdate()
     {
         throw new NotImplementedException();
     }
 
-    public object GetTargets(int championNo, int abilityNo)
+    public TargetsUpdate GetTargets(int championNo, int abilityNo)
     {
         throw new NotImplementedException();
     }
 
-    public object GetUsableAbilities(int[] currentResources, int energyToSubtract)
+    public UsableAbilitiesUpdate GetUsableAbilities(int[] currentResources, int energyToSubtract)
     {
         throw new NotImplementedException();
     }

@@ -1,6 +1,7 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
+using Ashcrown.Remake.Core.Battle.Models.Dtos;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Battle.Interfaces;
@@ -30,9 +31,9 @@ public interface IBattlePlayer
 	IChampion GetRandomMyChampion();
 	IChampion GetRandomEnemyChampion();
 	IChampion[]? GetOtherChampions(IChampion champion);
-	Object GetPlayerUpdate(); //TODO Model for player update
-	Object GetTargets(int championNo, int abilityNo); //TODO Model
-	Object GetUsableAbilities(int[] currentResources, int energyToSubtract); //TODO Model
+	PlayerUpdate GetPlayerUpdate();
+	TargetsUpdate GetTargets(int championNo, int abilityNo);
+	UsableAbilitiesUpdate GetUsableAbilities(int[] currentResources, int energyToSubtract);
 	IBattlePlayer GetEnemyPlayer();
 	int GetTotalEnergy();
 	bool AiCanAnyoneTargetCounterAbility(IAbility ability);
