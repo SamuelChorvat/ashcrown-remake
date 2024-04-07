@@ -82,14 +82,14 @@ public abstract class ActiveEffect(
     public int ReceiveHealReductionPercent1 { get; set; }
     public int Duration1 { get; set; }
     public int Duration2 { get; set; }
-    public PointsPercentageModifier? AllDamageDealModifier { get; set; } = new();
-    public PointsPercentageModifier? PhysicalDamageDealModifier { get; set; } = new();
-    public PointsPercentageModifier? MagicDamageDealModifier { get; set; } = new();
-    public PointsPercentageModifier? AllDamageReceiveModifier { get; set; } = new();
-    public PointsPercentageModifier? PhysicalDamageReceiveModifier { get; set; } = new();
-    public PointsPercentageModifier? MagicDamageReceiveModifier { get; set; } = new();
-    public PointsPercentageModifier? HealingDealModifier { get; set; } = new();
-    public PointsPercentageModifier? HealingReceiveModifier { get; set; } = new();
+    public PointsPercentageModifier AllDamageDealModifier { get; set; } = new();
+    public PointsPercentageModifier PhysicalDamageDealModifier { get; set; } = new();
+    public PointsPercentageModifier MagicDamageDealModifier { get; set; } = new();
+    public PointsPercentageModifier AllDamageReceiveModifier { get; set; } = new();
+    public PointsPercentageModifier PhysicalDamageReceiveModifier { get; set; } = new();
+    public PointsPercentageModifier MagicDamageReceiveModifier { get; set; } = new();
+    public PointsPercentageModifier HealingDealModifier { get; set; } = new();
+    public PointsPercentageModifier HealingReceiveModifier { get; set; } = new();
     public bool RemoveIt { get; set; }
 
     public virtual string GetDescriptionWithTimeLeftAffix(int playerNo)

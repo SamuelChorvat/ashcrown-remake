@@ -18,7 +18,9 @@ using Ashcrown.Remake.Core.Champions.Xikan.ActiveEffects;
 
 namespace Ashcrown.Remake.Core.Champion;
 
-public class ChampionController(IChampion owner) : IChampionController
+public class ChampionController(
+    IChampion owner,
+    IActiveEffectFactory activeEffectFactory) : IChampionController
 {
     public required IChampion Owner { get; init; } = owner;
     
@@ -754,85 +756,261 @@ public class ChampionController(IChampion owner) : IChampionController
 
     public bool IsIgnoringDamage()
     {
-        throw new NotImplementedException();
+        return IsIgnoringHarmful() || Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.IgnoreDamage);
     }
 
     public bool IsIgnoringHarmful()
     {
-        throw new NotImplementedException();
+        return Owner.ActiveEffects.Any(t => t.IgnoreHarmful);
     }
 
     public bool IsIgnoringReceivedDamageReduction()
     {
-        throw new NotImplementedException();
+        return !IsIgnoringHarmful() 
+               && Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.DisableDamageReceiveReduction);
     }
 
     public bool IsInvulnerabilityDisabled()
     {
-        throw new NotImplementedException();
+        return !Owner.ChampionController.IsIgnoringHarmful() 
+               && Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.DisableInvulnerability);
     }
 
-    public bool IsInvulnerableToFriendlyAbility(IAbility ability)
+    public bool IsInvulnerableToFriendlyAbility(IAbility? ability)
     {
-        throw new NotImplementedException();
+        if (ability == null
+            || Owner.ChampionController.IsIgnoringHarmful()
+            || ability.Owner.BattlePlayer.PlayerNo != Owner.BattlePlayer.PlayerNo
+            || !ability.Helpful) {
+            return false;
+        }
+
+        return Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.InvulnerableToFriendlyAbilities);
     }
 
     public bool IsInvulnerableTo(IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        throw new NotImplementedException();
+        if(!Owner.Alive) {
+            return true;
+        }
+		
+        switch (ability)
+        {
+            case null when activeEffect == null:
+                return false;
+            case {Owner: not null} when IsInvulnerableToFriendlyAbility(ability):
+                return true;
+        }
+
+        if (IsInvulnerabilityDisabled()) {
+            return false;
+        }
+		
+        if (ability is {IgnoreInvulnerability: true}) {
+            return false;
+        }
+		
+        if (activeEffect is {IgnoreInvulnerability: true}) {
+            return false;
+        }
+
+        AbilityClass[] classes = [];
+		
+        if (ability != null) {
+            classes = ability.AbilityClasses;
+        } else if (activeEffect != null)
+        {
+            classes = activeEffect.ActiveEffectClasses ?? activeEffect.OriginAbility.AbilityClasses;
+        }
+
+        return Owner.ActiveEffects.Any(t => classes.Any(t.InvulnerabilityContains));
     }
 
-    public bool IsClientChampionInvulnerableTo(IAbility ability)
+    public bool IsClientChampionInvulnerableTo(IAbility? ability)
     {
-        throw new NotImplementedException();
+        if(!Owner.Alive) {
+            return true;
+        }
+		
+        if (ability == null) {
+            return false;
+        }
+		
+        if (IsInvulnerabilityDisabled()) {
+            return false;
+        }
+		
+        return !ability.IgnoreInvulnerability 
+               && Owner.ActiveEffects.Where(activeEffect => !activeEffect.Hidden)
+                   .Any(activeEffect => ability.AbilityClasses.Any(activeEffect.InvulnerabilityContains));
     }
 
     public void EnemyDebuffMyBuff(IActiveEffect activeEffect, IAbility ability, string activeEffectOwnerName, string debuffName,
         string buffName, AppliedAdditionalLogic appliedAdditionalLogic)
     {
-        throw new NotImplementedException();
+        if (!activeEffect.Name.Equals(debuffName)) return;
+        if (!Owner.ActiveEffectController.ActiveEffectPresentByActiveEffectName(buffName) ||
+            !Owner.ActiveEffectController.GetLastActiveEffectByName(buffName)!.Fresh) {
+            DealActiveEffect(Owner, ability, 
+                activeEffectFactory.CreateActiveEffect(activeEffectOwnerName, buffName, ability, Owner), 
+                true, appliedAdditionalLogic);
+        }
     }
 
-    public void EnemyDamageMyBuff(IAbility ability, string abName, string activeEffectOwnerName, string buffName,
+    public void EnemyDamageMyBuff(IAbility ability, string abilityName, string activeEffectOwnerName, string buffName,
         AppliedAdditionalLogic appliedAdditionalLogic)
     {
-        throw new NotImplementedException();
+        if (!ability.Name.Equals(abilityName)) return;
+        if (!Owner.ActiveEffectController.ActiveEffectPresentByActiveEffectName(buffName) ||
+            !Owner.ActiveEffectController.GetLastActiveEffectByName(buffName)!.Fresh) {
+            DealActiveEffect(Owner, ability, 
+                activeEffectFactory.CreateActiveEffect(activeEffectOwnerName, buffName, ability, Owner), 
+                true, appliedAdditionalLogic);
+        }
     }
 
     public void DealReactionsCheck(IAbility ability, bool secondary)
     {
-        throw new NotImplementedException();
+        if (secondary) {
+            return;
+        }
+
+        var currentActiveEffects = Owner.ActiveEffectController.GetCurrentActiveEffectsSeparately();
+        foreach (var activeEffect in currentActiveEffects) {
+            activeEffect.DealReaction(ability);
+        }
     }
 
     public void ReceiveReactionsCheck(IAbility ability, bool secondary)
     {
-        throw new NotImplementedException();
+        if (secondary) {
+            return;
+        }
+
+        var currentActiveEffects = Owner.ActiveEffectController.GetCurrentActiveEffectsSeparately();
+        foreach (var activeEffect in currentActiveEffects) {
+            activeEffect.ReceiveReaction(ability);
+        }
     }
 
     public void AddActiveEffectModifiers(IActiveEffect activeEffect)
     {
-        throw new NotImplementedException();
+        // Deal Damage
+        AddModifierOperation(TotalAllDamageDealIncrease, TotalAllDamageDealReduce, activeEffect.AllDamageDealModifier);
+        AddModifierOperation(TotalPhysicalDamageDealIncrease, TotalPhysicalDamageDealReduce, activeEffect.PhysicalDamageDealModifier);
+        AddModifierOperation(TotalMagicDamageDealIncrease, TotalMagicDamageDealReduce, activeEffect.MagicDamageDealModifier);
+		
+        // Receive Damage
+        AddModifierOperation(TotalAllDamageReceiveIncrease, TotalAllDamageReceiveReduce, activeEffect.AllDamageReceiveModifier);
+        AddModifierOperation(TotalPhysicalDamageReceiveIncrease, TotalPhysicalDamageReceiveReduce, activeEffect.PhysicalDamageReceiveModifier);
+        AddModifierOperation(TotalMagicDamageReceiveIncrease, TotalMagicDamageReceiveIncrease, activeEffect.MagicDamageReceiveModifier);
+		
+        // Deal Healing
+        AddModifierOperation(TotalHealingDealIncrease, TotalHealingDealReduce, activeEffect.HealingDealModifier);
+		
+        // Receive Healing
+        AddModifierOperation(TotalHealingReceiveIncrease, TotalHealingReceiveReduce, activeEffect.HealingReceiveModifier);
     }
 
     public void RemoveActiveEffectModifiers(IActiveEffect activeEffect)
     {
-        throw new NotImplementedException();
+        //Deal Damage
+        RemoveModifierOperation(TotalAllDamageDealIncrease, TotalAllDamageDealReduce, activeEffect.AllDamageDealModifier);
+        RemoveModifierOperation(TotalPhysicalDamageDealIncrease, TotalPhysicalDamageDealReduce, activeEffect.PhysicalDamageDealModifier);
+        RemoveModifierOperation(TotalMagicDamageDealIncrease, TotalMagicDamageDealReduce, activeEffect.MagicDamageDealModifier);
+		
+        // Receive Damage
+        RemoveModifierOperation(TotalAllDamageReceiveIncrease, TotalAllDamageReceiveReduce, activeEffect.AllDamageReceiveModifier);
+        RemoveModifierOperation(TotalPhysicalDamageReceiveIncrease, TotalPhysicalDamageReceiveReduce, activeEffect.PhysicalDamageReceiveModifier);
+        RemoveModifierOperation(TotalMagicDamageReceiveIncrease, TotalMagicDamageReceiveReduce, activeEffect.MagicDamageReceiveModifier);
+		
+        // Deal Healing
+        RemoveModifierOperation(TotalHealingDealIncrease, TotalHealingDealReduce, activeEffect.HealingDealModifier);
+		
+        // Receive Healing
+        RemoveModifierOperation(TotalHealingReceiveIncrease, TotalHealingReceiveReduce, activeEffect.HealingReceiveModifier);
     }
 
-    public void AddModifierOperation(PointsPercentageModifier modifierIncreaseRef, PointsPercentageModifier modifierReduceRef,
-        PointsPercentageModifier abRefModifier)
+    public void AddModifierOperation(PointsPercentageModifier modifierIncrease, PointsPercentageModifier modifierReduce,
+        PointsPercentageModifier modifier)
     {
-        throw new NotImplementedException();
+        switch (modifier.Points)
+        {
+            case > 0:
+                modifierIncrease.Points += modifier.Points;
+                break;
+            case < 0:
+                modifierReduce.Points -= modifier.Points;
+                break;
+        }
+
+        switch (modifier.Percentage)
+        {
+            case > 0:
+                modifierIncrease.Percentage += modifier.Percentage;
+                break;
+            case < 0:
+                modifierReduce.Percentage -= modifier.Percentage;
+                break;
+        }
     }
 
-    public void RemoveModifierOperation(PointsPercentageModifier modifierIncreaseRef, PointsPercentageModifier modifierReduceRef,
-        PointsPercentageModifier abRefModifier)
+    public void RemoveModifierOperation(PointsPercentageModifier modifierIncrease, PointsPercentageModifier modifierReduce,
+        PointsPercentageModifier modifier)
     {
-        throw new NotImplementedException();
+        switch (modifier.Points)
+        {
+            case > 0 when modifierIncrease.Points >= modifier.Points:
+                modifierIncrease.Points -= modifier.Points;
+                break;
+            case > 0:
+                modifierIncrease.Points = 0;
+                break;
+            case < 0 when modifierReduce.Points >= -modifier.Points:
+                modifierReduce.Points -= -modifier.Points;
+                break;
+            case < 0:
+                modifierReduce.Points = 0;
+                break;
+        }
+
+        switch (modifier.Percentage)
+        {
+            case > 0 when modifierIncrease.Percentage >= modifier.Percentage:
+                modifierIncrease.Percentage -= modifier.Percentage;
+                break;
+            case > 0:
+                modifierIncrease.Percentage = 0;
+                break;
+            case < 0 when modifierReduce.Percentage >= -modifier.Percentage:
+                modifierReduce.Percentage -= -modifier.Percentage;
+                break;
+            case < 0:
+                modifierReduce.Percentage = 0;
+                break;
+        }
     }
 
     public void InitializeModifiers()
     {
-        throw new NotImplementedException();
+        TotalAllDamageDealReduce = new PointsPercentageModifier();
+        TotalAllDamageDealIncrease = new PointsPercentageModifier();
+        TotalAllDamageReceiveReduce = new PointsPercentageModifier();
+        TotalAllDamageReceiveIncrease = new PointsPercentageModifier();
+
+        TotalPhysicalDamageDealReduce = new PointsPercentageModifier();
+        TotalPhysicalDamageDealIncrease = new PointsPercentageModifier();
+        TotalPhysicalDamageReceiveReduce = new PointsPercentageModifier();
+        TotalPhysicalDamageReceiveIncrease = new PointsPercentageModifier();
+
+        TotalMagicDamageDealReduce = new PointsPercentageModifier();
+        TotalMagicDamageDealIncrease = new PointsPercentageModifier();
+        TotalMagicDamageReceiveReduce = new PointsPercentageModifier();
+        TotalMagicDamageReceiveIncrease = new PointsPercentageModifier();
+
+        TotalHealingDealReduce = new PointsPercentageModifier();
+        TotalHealingDealIncrease = new PointsPercentageModifier();
+        TotalHealingReceiveReduce = new PointsPercentageModifier();
+        TotalHealingReceiveIncrease = new PointsPercentageModifier();
     }
 }

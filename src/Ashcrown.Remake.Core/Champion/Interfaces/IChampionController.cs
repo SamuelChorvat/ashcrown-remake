@@ -71,16 +71,16 @@ public interface IChampionController
     bool IsIgnoringHarmful();
     bool IsIgnoringReceivedDamageReduction();
     bool IsInvulnerabilityDisabled();
-    bool IsInvulnerableToFriendlyAbility(IAbility ability);
+    bool IsInvulnerableToFriendlyAbility(IAbility? ability);
     bool IsInvulnerableTo(IAbility? ability = null, IActiveEffect? activeEffect = null);
-    bool IsClientChampionInvulnerableTo(IAbility ability);
+    bool IsClientChampionInvulnerableTo(IAbility? ability);
     void EnemyDebuffMyBuff(IActiveEffect activeEffect, IAbility ability, string activeEffectOwnerName, string debuffName, string buffName, AppliedAdditionalLogic appliedAdditionalLogic);
-    void EnemyDamageMyBuff(IAbility ability, string abName, string activeEffectOwnerName, string buffName, AppliedAdditionalLogic appliedAdditionalLogic);
+    void EnemyDamageMyBuff(IAbility ability, string abilityName, string activeEffectOwnerName, string buffName, AppliedAdditionalLogic appliedAdditionalLogic);
     void DealReactionsCheck(IAbility ability, bool secondary);
     void ReceiveReactionsCheck(IAbility ability, bool secondary);
     void AddActiveEffectModifiers(IActiveEffect activeEffect);
     void RemoveActiveEffectModifiers(IActiveEffect activeEffect);
-    void AddModifierOperation(PointsPercentageModifier modifierIncreaseRef, PointsPercentageModifier modifierReduceRef, PointsPercentageModifier abRefModifier);
-    void RemoveModifierOperation(PointsPercentageModifier modifierIncreaseRef, PointsPercentageModifier modifierReduceRef, PointsPercentageModifier abRefModifier);
+    void AddModifierOperation(PointsPercentageModifier modifierIncrease, PointsPercentageModifier modifierReduce, PointsPercentageModifier modifier);
+    void RemoveModifierOperation(PointsPercentageModifier modifierIncrease, PointsPercentageModifier modifierReduce, PointsPercentageModifier modifier);
     void InitializeModifiers();
 }

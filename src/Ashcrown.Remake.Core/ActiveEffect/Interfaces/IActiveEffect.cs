@@ -75,14 +75,14 @@ public interface IActiveEffect
     int ReceiveHealReductionPercent1 { get; set; }
     int Duration1 { get; set; }
     int Duration2 { get; set; }
-    PointsPercentageModifier? AllDamageDealModifier { get; set; }
-    PointsPercentageModifier? PhysicalDamageDealModifier { get; set; }
-    PointsPercentageModifier? MagicDamageDealModifier { get; set; }
-    PointsPercentageModifier? AllDamageReceiveModifier { get; set; }
-    PointsPercentageModifier? PhysicalDamageReceiveModifier { get; set; }
-    PointsPercentageModifier? MagicDamageReceiveModifier { get; set; }
-    PointsPercentageModifier? HealingDealModifier { get; set; }
-    PointsPercentageModifier? HealingReceiveModifier { get; set; }
+    PointsPercentageModifier AllDamageDealModifier { get; set; }
+    PointsPercentageModifier PhysicalDamageDealModifier { get; set; }
+    PointsPercentageModifier MagicDamageDealModifier { get; set; }
+    PointsPercentageModifier AllDamageReceiveModifier { get; set; }
+    PointsPercentageModifier PhysicalDamageReceiveModifier { get; set; }
+    PointsPercentageModifier MagicDamageReceiveModifier { get; set; }
+    PointsPercentageModifier HealingDealModifier { get; set; }
+    PointsPercentageModifier HealingReceiveModifier { get; set; }
     bool RemoveIt { get; set; }
 
     string GetDescriptionWithTimeLeftAffix(int playerNo);
