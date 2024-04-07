@@ -1,12 +1,19 @@
-﻿using Ashcrown.Remake.Core.Battle.Interfaces;
+﻿using Ashcrown.Remake.Core.Ability.Models;
+using Ashcrown.Remake.Core.Battle.Interfaces;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 using Ashcrown.Remake.Core.Champion.Interfaces;
+using FluentValidation;
+using Microsoft.Extensions.Logging;
 
 namespace Ashcrown.Remake.Core.Battle;
 
 public class BattleLogic(
     bool aiBattle,
     ITeamFactory teamFactory,
-    IBattleHistoryRecorder battleHistoryRecorder) : IBattleLogic
+    IBattleHistoryRecorder battleHistoryRecorder,
+    IValidator<EndTurn> endTurnValidator,
+    ILogger<BattleLogic> logger) : IBattleLogic
 {
     public IBattleHistoryRecorder BattleHistoryRecorder { get; init; } = battleHistoryRecorder;
     public IList<IChampion> DiedChampions { get; init; } = new List<IChampion>();
@@ -60,8 +67,28 @@ public class BattleLogic(
         return GetBattlePlayer(playerNo).IsDead();
     }
 
-    public bool AbilitiesUsed(int playerNo, object info, int[] spentRes)
+    public bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentRes)
     {
+        var validationResults = endTurnValidator.Validate(endTurn);
+
+        if (!validationResults.IsValid)
+        {
+            logger.LogError("Validation failed -> {validationResults}",validationResults.ToString());
+            return false;
+        }
+
+        var usedAbilities = new UsedAbility[3];
+
+        foreach (var endTurnAbility in endTurn.EndTurnAbilities!)
+        {
+            usedAbilities[(int) (endTurnAbility.Order - 1)!] = new UsedAbility
+            {
+                AbilityNo = (int) endTurnAbility.AbilityNo!,
+                ChampionNo = (int) endTurnAbility.CasterNo!,
+                Targets = endTurnAbility.Targets!
+            };
+        }
+        
         throw new NotImplementedException();
     }
 
@@ -75,7 +102,7 @@ public class BattleLogic(
         throw new NotImplementedException();
     }
 
-    public object ChangeTurnAndGetInfo()
+    public PlayerUpdate ChangeTurnAndGetInfo()
     {
         throw new NotImplementedException();
     }

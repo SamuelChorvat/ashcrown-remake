@@ -1,4 +1,6 @@
-﻿using Ashcrown.Remake.Core.Champion.Interfaces;
+﻿using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
+using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Battle.Interfaces;
 
@@ -18,10 +20,10 @@ public interface IBattleLogic
 	IBattlePlayer GetAiOpponentPlayerInfo();
 	void ProcessDeaths();
 	bool IsPlayerDead(int playerNo);
-	bool AbilitiesUsed(int playerNo, Object info, int[] spentRes); //TODO Model with the end turn info, also the win condition checking should go to ChangeTurnAndGetInfo
+	bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentRes);
 	public void InitializePlayers();
 	void EndTurnProcesses(int playerNo);
-	Object ChangeTurnAndGetInfo(); //TODO change this into event?, probably in IBattle?
+	PlayerUpdate ChangeTurnAndGetInfo();
 	int GetWhoseTurnNo();
 	DateTime GetBattleDuration();
 }
