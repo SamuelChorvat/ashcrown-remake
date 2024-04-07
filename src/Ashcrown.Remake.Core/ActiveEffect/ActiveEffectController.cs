@@ -132,9 +132,9 @@ public class ActiveEffectController(
     {
         for (var i = 1; i <= 2; i++) {
             for (var j = 0; j < 3; j++) {
-                if (Owner.BattleLogic.GetPlayerBattleInfo(i).Champions[j].Alive 
-                    && Owner != Owner.BattleLogic.GetPlayerBattleInfo(i).Champions[j]) {
-                    Owner.BattleLogic.GetPlayerBattleInfo(i).Champions[j]
+                if (Owner.BattleLogic.GetBattlePlayer(i).Champions[j].Alive 
+                    && Owner != Owner.BattleLogic.GetBattlePlayer(i).Champions[j]) {
+                    Owner.BattleLogic.GetBattlePlayer(i).Champions[j]
                         .ActiveEffectController.RemoveChampionsActiveEffectsOnStun(Owner);
                 }
             }
@@ -148,8 +148,8 @@ public class ActiveEffectController(
     {
         for (var i = 1; i <= 2; i++) {
             for (var j = 0; j < 3; j++) {
-                if (Owner.BattleLogic.GetPlayerBattleInfo(i).Champions[j].Alive) {
-                    Owner.BattleLogic.GetPlayerBattleInfo(i).Champions[j]
+                if (Owner.BattleLogic.GetBattlePlayer(i).Champions[j].Alive) {
+                    Owner.BattleLogic.GetBattlePlayer(i).Champions[j]
                         .ActiveEffectController.RemoveChampionsActiveEffectsOnDeath(Owner);
                 }
             }
@@ -160,9 +160,9 @@ public class ActiveEffectController(
     {
         for (var i = 1; i <= 2; i++) {
             for (var j = 0; j < 3; j++) {
-                if (Owner.BattleLogic.GetPlayerBattleInfo(i).Champions[j].Alive 
-                    && Owner != Owner.BattleLogic.GetPlayerBattleInfo(i).Champions[j]) {
-                    Owner.BattleLogic.GetPlayerBattleInfo(i).Champions[j]
+                if (Owner.BattleLogic.GetBattlePlayer(i).Champions[j].Alive 
+                    && Owner != Owner.BattleLogic.GetBattlePlayer(i).Champions[j]) {
+                    Owner.BattleLogic.GetBattlePlayer(i).Champions[j]
                         .ActiveEffectController.PauseChampionsActiveEffectsOnStun(Owner);
                 }
             }

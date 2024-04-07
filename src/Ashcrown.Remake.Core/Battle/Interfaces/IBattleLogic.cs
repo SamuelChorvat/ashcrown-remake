@@ -9,9 +9,9 @@ public interface IBattleLogic
 	DateTime StartTime { get; init; }
 	int TurnCount { get; init; }
 	bool AiBattle { get; init; }
-	IBattlePlayer[] PlayersBattleInfo { init; }
-	void SetPlayerBattleInfo(int playerNo, string[] championNames, bool aiOpponent);
-	IBattlePlayer GetPlayerBattleInfo(int playerNo);
+	IBattlePlayer[] BattlePlayers { init; }
+	void SetBattlePlayer(int playerNo, string[] championNames, bool aiOpponent);
+	IBattlePlayer GetBattlePlayer(int playerNo);
 	IBattlePlayer GetOppositePlayer(int playerNo);
 	int GetOppositePlayerNo(int playerNo);
 	int GetAiOpponentPlayerNo();

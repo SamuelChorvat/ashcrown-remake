@@ -7,13 +7,26 @@ using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Battle;
 
-public class BattlePlayer(IBattleLogic battleLogic) : IBattlePlayer
+public class BattlePlayer : IBattlePlayer
 {
     public int PlayerNo { get; init; }
-    public IBattleLogic BattleLogic { get; init; } = battleLogic;
-    public IChampion[] Champions { get; init; } = [];
+    public IBattleLogic BattleLogic { get; init; }
+    public IChampion[] Champions { get; init; }
     public int[] Energy { get; init; } = [0,0,0,0];
     public bool AiOpponent { get; init; }
+
+    public BattlePlayer(
+        int playerNo,
+        bool aiOpponent,
+        string[] playersChampionsNames,
+        IBattleLogic battleLogic,
+        ITeamFactory teamFactory)
+    {
+        PlayerNo = playerNo;
+        AiOpponent = aiOpponent;
+        Champions = teamFactory.CreateTeam(playersChampionsNames, this);
+        BattleLogic = battleLogic;
+    }
     
     public bool IsDead()
     {
