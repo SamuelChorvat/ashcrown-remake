@@ -80,13 +80,13 @@ public class BattlePlayer : IBattlePlayer
         for (var i = 0; i < 3; i++)
         {
             if (!Champions[i].Alive) continue;
-            var energyToAdd = random.Next(4) + 1;
+            var energyToAdd = random.Next(4);
             var sameEnergyAdded = energyAdded.Count( x => x == energyToAdd);
 
             if (sameEnergyAdded == 2) {
                 var replacementEnergyToAdd = energyToAdd;
                 while (replacementEnergyToAdd == energyToAdd) {
-                    replacementEnergyToAdd = random.Next(4) + 1;
+                    replacementEnergyToAdd = random.Next(4);
                 }
                 energyToAdd = replacementEnergyToAdd;
             } else {
@@ -328,5 +328,10 @@ public class BattlePlayer : IBattlePlayer
     public bool AiCanAnyoneTargetReflectAbility(IAbility ability)
     {
         return Champions.Any(champion => champion.AiCanReflectAbilityTarget(ability));
+    }
+
+    public void GainGoingFirstEnergy()
+    {
+        GainRandomEnergy();
     }
 }

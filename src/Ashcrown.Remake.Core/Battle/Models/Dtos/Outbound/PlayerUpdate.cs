@@ -1,7 +1,8 @@
 ﻿namespace Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 
-public class PlayerUpdate
+public class PlayerUpdate : EventArgs
 {
+    public bool YourTurn { get; set; }
     public int? TurnTime { get; set; }
     public int LastTurn { get; set; }
     public int EnergyExchangeRatio { get; set; }

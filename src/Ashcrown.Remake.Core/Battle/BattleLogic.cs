@@ -16,6 +16,10 @@ public class BattleLogic(
     IValidator<EndTurn> endTurnValidator,
     ILogger<BattleLogic> logger) : IBattleLogic
 {
+    private bool _gameEnded;
+    
+    public event EventHandler<PlayerUpdate>? TurnChanged;
+    public event EventHandler<BattleEndedUpdate>? BattleEnded;
     public IBattleHistoryRecorder BattleHistoryRecorder { get; init; } = battleHistoryRecorder;
     public IList<IChampion> DiedChampions { get; init; } = new List<IChampion>();
     public DateTime StartTime { get; init; } = DateTime.UtcNow;
@@ -23,7 +27,19 @@ public class BattleLogic(
     public bool AiBattle { get; init; } = aiBattle;
     public IBattlePlayer[] BattlePlayers { get; init; } = new IBattlePlayer[2];
     public IBattlePlayer WhoseTurn { get; private set; } = null!;
-    
+
+    public bool GameEnded
+    {
+        get => _gameEnded;
+        set
+        {
+            if (!_gameEnded)
+            {
+                _gameEnded = value;
+            }
+        }
+    }
+
     public void SetBattlePlayer(int playerNo, string[] championNames, bool aiOpponent)
     {
         BattlePlayers[playerNo - 1] = new BattlePlayer(playerNo, aiOpponent, championNames, this, teamFactory);
@@ -126,7 +142,7 @@ public class BattleLogic(
 
     public void InitializePlayers()
     {
-        throw new NotImplementedException();
+        WhoseTurn.GainGoingFirstEnergy();
     }
 
     public void EndTurnProcesses(int playerNo)
@@ -134,7 +150,12 @@ public class BattleLogic(
         throw new NotImplementedException();
     }
 
-    public PlayerUpdate ChangeTurnAndGetInfo()
+    private void OnTurnChanged()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private void OnGameEnded()
     {
         throw new NotImplementedException();
     }

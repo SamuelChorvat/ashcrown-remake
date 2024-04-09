@@ -38,4 +38,5 @@ public interface IBattlePlayer
 	int GetTotalEnergy();
 	bool AiCanAnyoneTargetCounterAbility(IAbility ability);
 	bool AiCanAnyoneTargetReflectAbility(IAbility ability);
+	void GainGoingFirstEnergy();
 }

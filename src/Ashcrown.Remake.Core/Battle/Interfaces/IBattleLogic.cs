@@ -6,6 +6,8 @@ namespace Ashcrown.Remake.Core.Battle.Interfaces;
 
 public interface IBattleLogic
 {
+	event EventHandler<PlayerUpdate>? TurnChanged;
+	event EventHandler<BattleEndedUpdate>? BattleEnded;
 	IBattleHistoryRecorder BattleHistoryRecorder { get; init; }
 	IList<IChampion> DiedChampions { get; init; }
 	DateTime StartTime { get; init; }
@@ -13,6 +15,7 @@ public interface IBattleLogic
 	bool AiBattle { get; init; }
 	IBattlePlayer[] BattlePlayers { init; }
 	IBattlePlayer WhoseTurn { get;}
+	bool GameEnded { get; set; }
 	void SetBattlePlayer(int playerNo, string[] championNames, bool aiOpponent);
 	IBattlePlayer GetBattlePlayer(int playerNo);
 	IBattlePlayer GetOppositePlayer(int playerNo);
@@ -24,6 +27,5 @@ public interface IBattleLogic
 	bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentEnergy);
 	public void InitializePlayers();
 	void EndTurnProcesses(int playerNo);
-	PlayerUpdate ChangeTurnAndGetInfo();
 	DateTime GetBattleDuration();
 }
