@@ -116,9 +116,6 @@ public interface IAbility
 	AiMaximizedAbility AiMaximizeAbility();
 	int[] GetPossibleTargets(); // TODO Was List && int[] emptyTargets not needed as input param
 	int CalculateTotalPointsForTarget(IChampion target);
-	
-	// Use this for abilities like Dura's Whirlwind
-	// Where there is an effect that we are not applying for each target but just once
 	int CalculateSingletonSelfEffectTotalPoints();
 	AbilityUpdate GetAbilityUpdate(int abilityNo);
 }
