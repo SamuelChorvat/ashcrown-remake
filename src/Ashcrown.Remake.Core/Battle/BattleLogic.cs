@@ -21,12 +21,13 @@ public class BattleLogic(
     public DateTime StartTime { get; init; } = DateTime.UtcNow;
     public int TurnCount { get; init; }
     public bool AiBattle { get; init; } = aiBattle;
-    public IBattlePlayer[] BattlePlayers { get; init; } = [];
+    public IBattlePlayer[] BattlePlayers { get; init; } = new IBattlePlayer[2];
     public IBattlePlayer WhoseTurn { get; private set; } = null!;
     
     public void SetBattlePlayer(int playerNo, string[] championNames, bool aiOpponent)
     {
         BattlePlayers[playerNo - 1] = new BattlePlayer(playerNo, aiOpponent, championNames, this, teamFactory);
+        WhoseTurn = BattlePlayers[0];
     }
 
     public IBattlePlayer GetBattlePlayer(int playerNo)
