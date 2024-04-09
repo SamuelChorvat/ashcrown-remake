@@ -20,7 +20,7 @@ public interface IBattleLogic
 	IBattlePlayer GetAiOpponentPlayerInfo();
 	void ProcessDeaths();
 	bool IsPlayerDead(int playerNo);
-	bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentRes);
+	bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentEnergy);
 	public void InitializePlayers();
 	void EndTurnProcesses(int playerNo);
 	PlayerUpdate ChangeTurnAndGetInfo();

@@ -1,4 +1,5 @@
-﻿using Ashcrown.Remake.Core.Ability.Models;
+﻿using Ashcrown.Remake.Core.Ability.Enums;
+using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
@@ -67,7 +68,7 @@ public class BattleLogic(
         return GetBattlePlayer(playerNo).IsDead();
     }
 
-    public bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentRes)
+    public bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentEnergy)
     {
         var validationResults = endTurnValidator.Validate(endTurn);
 
@@ -77,7 +78,7 @@ public class BattleLogic(
             return false;
         }
 
-        var usedAbilities = new UsedAbility[3];
+        var usedAbilities = new UsedAbility?[3];
 
         foreach (var endTurnAbility in endTurn.EndTurnAbilities!)
         {
@@ -88,8 +89,37 @@ public class BattleLogic(
                 Targets = endTurnAbility.Targets!
             };
         }
+
+        if (!IsCostValid(playerNo, spentEnergy, usedAbilities))
+        {
+            logger.LogError("Invalid cost");
+            return false;
+        }
+
+        if (!AreTargetsValid(playerNo, usedAbilities))
+        {
+            logger.LogError("Invalid targets problem");
+            return false;
+        }
         
-        throw new NotImplementedException();
+        BattleHistoryRecorder.RecordInAbilityHistory(usedAbilities);
+        
+        foreach (var usedAbility in usedAbilities)
+        {
+            if (usedAbility == null) continue;
+            if (!GetBattlePlayer(playerNo).ChampionUseAbility(usedAbility.ChampionNo, usedAbility.AbilityNo, usedAbility.Targets)) {
+                logger.LogError("Use ability problem champNo = {ChampionNo} ({ChampionName}), abilityNo = {AbilityNo} ({AbilityName})", 
+                    usedAbility.ChampionNo,
+                    GetBattlePlayer(playerNo).Champions[usedAbility.ChampionNo - 1].Name, 
+                    usedAbility.AbilityNo, 
+                    GetBattlePlayer(playerNo).Champions[usedAbility.ChampionNo - 1].AbilityController.GetCurrentAbility(usedAbility.AbilityNo).Name);
+                logger.LogError("{AbilityHistoryString}",BattleHistoryRecorder.GetAbilityHistoryString());
+                return false;
+            }
+            ProcessDeaths();
+        }
+
+        return true;
     }
 
     public void InitializePlayers()
@@ -115,5 +145,96 @@ public class BattleLogic(
     public DateTime GetBattleDuration()
     {
         throw new NotImplementedException();
+    }
+
+    private bool IsCostValid(int playerNo, IEnumerable<int> spentEnergy, IEnumerable<UsedAbility?> usedAbilities)
+    {
+        var tempToSpend = spentEnergy.ToArray();
+        var toSubtract = 0;
+        foreach (var usedAbility in usedAbilities)
+        {
+            if (usedAbility == null) {
+                continue;
+            }
+            var abilityCost = GetBattlePlayer(playerNo).GetAbility(usedAbility.ChampionNo, usedAbility.AbilityNo).GetCurrentCost();
+            toSubtract += abilityCost[^1];
+            for (var j = 0; j < abilityCost.Length - 1; j++) {
+                if (tempToSpend[j] < abilityCost[j]) {
+                    logger.LogError("Cost problem 1");
+                    return false;
+                }
+                tempToSpend[j] -= abilityCost[j];
+            }
+        }
+        
+        var totalTempToSpend = 0;
+        foreach (var energyQuantity in tempToSpend)
+        {
+            if (energyQuantity < 0) {
+                logger.LogError("Cost problem 2");
+                return false;
+            }
+            totalTempToSpend += energyQuantity;
+        }
+
+        if (totalTempToSpend < toSubtract ) {
+            logger.LogError("Cost problem 3");
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool AreTargetsValid(int playerNo, IEnumerable<UsedAbility?> usedAbilities)
+    {
+        return !(from usedAbility in usedAbilities.OfType<UsedAbility>() 
+            let validTargets = GetBattlePlayer(playerNo).Champions[usedAbility.ChampionNo - 1]
+                .AbilityController.GetPossibleTargetsForAbility(usedAbility.AbilityNo) 
+            where !AreTargetsValidHelper(GetBattlePlayer(playerNo).Champions[usedAbility.ChampionNo - 1]
+                .AbilityController.GetCurrentAbility(usedAbility.AbilityNo).Target, validTargets, usedAbility.Targets) 
+            select usedAbility).Any();
+    }
+    
+    private bool AreTargetsValidHelper(AbilityTarget target, IReadOnlyList<int> validTargets, IReadOnlyCollection<int> targets)
+    {
+        if (targets.Count != 6) {
+            return false;
+        }
+
+        if (targets.Where((t, i) => t == 1 && validTargets[i] != 1).Any())
+        {
+            logger.LogError("Invalid targets problem 1");
+            return false;
+        }
+
+        if (GetTotalNumberOfTargets(targets) <= 0) {
+            logger.LogError("Invalid targets problem 2");
+            return false;
+        }
+
+        switch (target) {
+            case AbilityTarget.Self:
+            case AbilityTarget.Ally:
+            case AbilityTarget.Enemy:
+            case AbilityTarget.AllyOrEnemy:
+                if (GetTotalNumberOfTargets(targets) != 1) {
+                    logger.LogError("Invalid targets problem 3");
+                    return false;
+                }
+                break;
+            case AbilityTarget.Allies:
+            case AbilityTarget.Enemies:
+            case AbilityTarget.All:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(target), target, null);
+        }
+
+        return true;
+    }
+
+    private static int GetTotalNumberOfTargets(IEnumerable<int> targets)
+    {
+        return targets.Count(t => t == 1);
     }
 }
