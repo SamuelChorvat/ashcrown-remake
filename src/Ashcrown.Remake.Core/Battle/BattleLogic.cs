@@ -22,6 +22,7 @@ public class BattleLogic(
     public int TurnCount { get; init; }
     public bool AiBattle { get; init; } = aiBattle;
     public IBattlePlayer[] BattlePlayers { get; init; } = [];
+    public IBattlePlayer WhoseTurn { get; private set; } = null!;
     
     public void SetBattlePlayer(int playerNo, string[] championNames, bool aiOpponent)
     {
@@ -133,11 +134,6 @@ public class BattleLogic(
     }
 
     public PlayerUpdate ChangeTurnAndGetInfo()
-    {
-        throw new NotImplementedException();
-    }
-
-    public int GetWhoseTurnNo()
     {
         throw new NotImplementedException();
     }

@@ -106,7 +106,7 @@ public abstract class ActiveEffect(
         {
             > 1 when !Infinite => $"\n<color=#EAB65B>{turnsLeft} TURNS LEFT</color>",
             1 when !Infinite => 
-                Target.BattlePlayer.PlayerNo == Target.BattleLogic.GetWhoseTurnNo()
+                Target.BattlePlayer.PlayerNo == Target.BattleLogic.WhoseTurn.PlayerNo
                 ? "\n<color=#EAB65B>1 TURN LEFT</color>"
                 : "\n<color=#EAB65B>ENDS THIS TURN</color>",
             _ => Infinite ? "\n<color=#EAB65B>INFINITE</color>" : "\n<color=red>AFFIX ERROR</color>"
@@ -121,7 +121,7 @@ public abstract class ActiveEffect(
                 return "<color=#EAB65B>" + TimeLeft + " TURNS LEFT ON THE TARGET(S)</color>";
             case 1 when !Infinite:
             {
-                return Target.BattlePlayer.PlayerNo != Target.BattleLogic.GetWhoseTurnNo() 
+                return Target.BattlePlayer.PlayerNo != Target.BattleLogic.WhoseTurn.PlayerNo 
                     ? "<color=#EAB65B>1 TURN LEFT ON THE TARGET(S)</color>" 
                     : "<color=#EAB65B>ENDS THIS TURN ON THE TARGET(S)</color>";
             }
@@ -237,7 +237,7 @@ public abstract class ActiveEffect(
 
     public void OnApplyActionControlMe()
     {
-        if (ChildrenLinks?.Count == 0) {
+        if (ChildrenLinks.Count == 0) {
             RemoveIt = true;
         }
     }

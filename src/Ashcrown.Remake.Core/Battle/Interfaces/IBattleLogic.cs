@@ -12,6 +12,7 @@ public interface IBattleLogic
 	int TurnCount { get; init; }
 	bool AiBattle { get; init; }
 	IBattlePlayer[] BattlePlayers { init; }
+	IBattlePlayer WhoseTurn { get;}
 	void SetBattlePlayer(int playerNo, string[] championNames, bool aiOpponent);
 	IBattlePlayer GetBattlePlayer(int playerNo);
 	IBattlePlayer GetOppositePlayer(int playerNo);
@@ -24,6 +25,5 @@ public interface IBattleLogic
 	public void InitializePlayers();
 	void EndTurnProcesses(int playerNo);
 	PlayerUpdate ChangeTurnAndGetInfo();
-	int GetWhoseTurnNo();
 	DateTime GetBattleDuration();
 }
