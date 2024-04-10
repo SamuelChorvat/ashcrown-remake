@@ -30,15 +30,15 @@ public interface IAbility
 	bool UniqueActiveEffect { get; set; }
 	bool Invisible { get; set; }
 	bool CostIncrease { get; set; }
-	string[]? CostIncreaseClasses { get; set; }
-	string[]? CostDecreaseClasses { get; set; }
-	string[]? CooldownDecreaseClasses { get; set; }
-	string[]? CounterClasses { get; set; }
+	AbilityClass[]? CostIncreaseClasses { get; set; }
+	AbilityClass[]? CostDecreaseClasses { get; set; }
+	AbilityClass[]? CooldownDecreaseClasses { get; set; }
+	AbilityClass[]? CounterClasses { get; set; }
 	bool CannotBeIgnored { get; set; }
 	bool Invulnerability { get; set; }
-	string[]? TypeOfInvulnerability { get; set; }
+	AbilityClass[]? TypeOfInvulnerability { get; set; }
 	bool Stun { get; set; }
-	string[]? StunType { get; set; }
+	AbilityClass[]? StunType { get; set; }
 	bool DisableInvulnerability { get; set; }
 	bool DisableDamageReceiveReduction { get; set; }
 	bool IgnoreStuns { get; set; }

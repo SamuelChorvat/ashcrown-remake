@@ -52,15 +52,15 @@ public abstract class Ability(
     public bool UniqueActiveEffect { get; set; }
     public bool Invisible { get; set; }
     public bool CostIncrease { get; set; }
-    public string[]? CostIncreaseClasses { get; set; }
-    public string[]? CostDecreaseClasses { get; set; }
-    public string[]? CooldownDecreaseClasses { get; set; }
-    public string[]? CounterClasses { get; set; }
+    public AbilityClass[]? CostIncreaseClasses { get; set; }
+    public AbilityClass[]? CostDecreaseClasses { get; set; }
+    public AbilityClass[]? CooldownDecreaseClasses { get; set; }
+    public AbilityClass[]? CounterClasses { get; set; }
     public bool CannotBeIgnored { get; set; }
     public bool Invulnerability { get; set; }
-    public string[]? TypeOfInvulnerability { get; set; }
+    public AbilityClass[]? TypeOfInvulnerability { get; set; }
     public bool Stun { get; set; }
-    public string[]? StunType { get; set; }
+    public AbilityClass[]? StunType { get; set; }
     public bool DisableInvulnerability { get; set; }
     public bool DisableDamageReceiveReduction { get; set; }
     public bool IgnoreStuns { get; set; }
@@ -416,11 +416,11 @@ public abstract class Ability(
             Name = Name,
             Description = Description,
             Cooldown = GetCurrentCooldown(),
-            ReadyIn = champion.Alive ? ToReady : 0,
+            ReadyIn = Owner.Alive ? ToReady : 0,
             Cost = GetCurrentCost(),
-            CanUse = champion.AbilityController.ClientCanUseAbilityChecks(this)
-                     && champion.AbilityController.GetNumberOfTargets(
-                         champion.AbilityController.GetPossibleTargetsForAbility(abilityNo)) > 0,
+            CanUse = Owner.AbilityController.ClientCanUseAbilityChecks(this)
+                     && Owner.AbilityController.GetNumberOfTargets(
+                         Owner.AbilityController.GetPossibleTargetsForAbility(abilityNo)) > 0,
             Target = Target,
             SelfDisplay = SelfDisplay,
             SelfCast = SelfCast,

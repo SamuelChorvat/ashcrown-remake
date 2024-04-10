@@ -788,7 +788,7 @@ public class ChampionController(
         return Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.InvulnerableToFriendlyAbilities);
     }
 
-    public bool IsInvulnerableTo(IAbility? ability = null, IActiveEffect? activeEffect = null)
+    public bool IsInvulnerableTo(IAbility? ability = null, IActiveEffect? activeEffect = null, AbilityClass[]? abilityClasses = null)
     {
         if(!Owner.Alive) {
             return true;
@@ -821,6 +821,10 @@ public class ChampionController(
         } else if (activeEffect != null)
         {
             classes = activeEffect.ActiveEffectClasses ?? activeEffect.OriginAbility.AbilityClasses;
+        }
+        else if (abilityClasses != null)
+        {
+            classes = abilityClasses;
         }
 
         return Owner.ActiveEffects.Any(t => classes.Any(t.InvulnerabilityContains));

@@ -1,4 +1,5 @@
-﻿using Ashcrown.Remake.Core.Ability.Interfaces;
+﻿using Ashcrown.Remake.Core.Ability.Enums;
+using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models;
@@ -72,7 +73,7 @@ public interface IChampionController
     bool IsIgnoringReceivedDamageReduction();
     bool IsInvulnerabilityDisabled();
     bool IsInvulnerableToFriendlyAbility(IAbility? ability);
-    bool IsInvulnerableTo(IAbility? ability = null, IActiveEffect? activeEffect = null);
+    bool IsInvulnerableTo(IAbility? ability = null, IActiveEffect? activeEffect = null, AbilityClass[]? abilityClasses = null);
     bool IsClientChampionInvulnerableTo(IAbility? ability);
     void EnemyDebuffMyBuff(IActiveEffect activeEffect, IAbility ability, string activeEffectOwnerName, string debuffName, string buffName, AppliedAdditionalLogic appliedAdditionalLogic);
     void EnemyDamageMyBuff(IAbility ability, string abilityName, string activeEffectOwnerName, string buffName, AppliedAdditionalLogic appliedAdditionalLogic);
