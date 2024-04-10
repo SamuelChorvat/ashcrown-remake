@@ -31,7 +31,7 @@ public interface IBattlePlayer
 	IChampion GetRandomMyChampion();
 	IChampion GetRandomEnemyChampion();
 	IChampion[]? GetOtherChampions(IChampion champion);
-	PlayerUpdate GetPlayerUpdate();
+	PlayerUpdate GetPlayerUpdate(IBattlePlayer whoseTurn);
 	TargetsUpdate GetTargets(int championNo, int abilityNo);
 	UsableAbilitiesUpdate GetUsableAbilities(int[] currentResources, int energyToSubtract);
 	IBattlePlayer GetEnemyPlayer();

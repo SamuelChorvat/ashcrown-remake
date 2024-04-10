@@ -1,5 +1,6 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Models;
+using Ashcrown.Remake.Core.Battle.Enums;
 using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
@@ -16,29 +17,16 @@ public class BattleLogic(
     IValidator<EndTurn> endTurnValidator,
     ILogger<BattleLogic> logger) : IBattleLogic
 {
-    private bool _gameEnded;
-    
     public event EventHandler<PlayerUpdate>? TurnChanged;
     public event EventHandler<BattleEndedUpdate>? BattleEnded;
     public IBattleHistoryRecorder BattleHistoryRecorder { get; init; } = battleHistoryRecorder;
     public IList<IChampion> DiedChampions { get; init; } = new List<IChampion>();
     public DateTime StartTime { get; init; } = DateTime.UtcNow;
-    public int TurnCount { get; init; }
+    public DateTime EndTime { get; private set; }
+    public int TurnCount { get; private set; }
     public bool AiBattle { get; init; } = aiBattle;
     public IBattlePlayer[] BattlePlayers { get; init; } = new IBattlePlayer[2];
     public IBattlePlayer WhoseTurn { get; private set; } = null!;
-
-    public bool GameEnded
-    {
-        get => _gameEnded;
-        set
-        {
-            if (!_gameEnded)
-            {
-                _gameEnded = value;
-            }
-        }
-    }
 
     public void SetBattlePlayer(int playerNo, string[] championNames, bool aiOpponent)
     {
@@ -66,7 +54,7 @@ public class BattleLogic(
         return BattlePlayers[0].AiOpponent ? 1 : 2;
     }
 
-    public IBattlePlayer GetAiOpponentPlayerInfo()
+    public IBattlePlayer GetAiOpponentBattlePlayer()
     {
         return BattlePlayers[0].AiOpponent ? BattlePlayers[0] : BattlePlayers[1];
     }
@@ -147,22 +135,50 @@ public class BattleLogic(
 
     public void EndTurnProcesses(int playerNo)
     {
-        throw new NotImplementedException();
+        GetBattlePlayer(playerNo).TriggerEndTurnMethods();
+        ProcessDeaths();
+        GetOppositePlayer(playerNo).TriggerStartTurnMethods();
+        ProcessDeaths();
+        GetBattlePlayer(playerNo).CheckResume();
+        GetOppositePlayer(playerNo).CheckResume();
+
+        if ((BattlePlayers[0].IsDead() && BattlePlayers[1].IsDead()) 
+            || TurnCount == BattleConstants.TurnLimit) {
+            OnBattleEnded();
+        } else if (BattlePlayers[0].IsDead() || BattlePlayers[1].IsDead()) {
+            OnBattleEnded(BattlePlayers[0].IsDead() 
+                ? BattlePlayers[1] : BattlePlayers[0]);
+        } else {
+            GetOppositePlayer(playerNo).GenerateEnergy();
+            OnTurnChanged();
+        }
     }
 
     private void OnTurnChanged()
     {
-        throw new NotImplementedException();
+        ChangeWhoseTurn();
+        TurnChanged?.Invoke(this, GetHumanBattlePlayer().GetPlayerUpdate(WhoseTurn));
     }
     
-    private void OnGameEnded()
+    private void OnBattleEnded(IBattlePlayer? winner = null)
     {
-        throw new NotImplementedException();
-    }
-
-    public DateTime GetBattleDuration()
-    {
-        throw new NotImplementedException();
+        EndTime = DateTime.UtcNow;
+        var battleEndedUpdate = new BattleEndedUpdate();
+        
+        if (winner == null)
+        {
+            battleEndedUpdate.BattleEndedState = BattleEndedState.Tie;
+        } 
+        else if (winner.AiOpponent)
+        {
+            battleEndedUpdate.BattleEndedState = BattleEndedState.Defeat;
+        }
+        else
+        {
+            battleEndedUpdate.BattleEndedState = BattleEndedState.Victory;
+        }
+        
+        BattleEnded?.Invoke(this, battleEndedUpdate);
     }
 
     private bool IsCostValid(int playerNo, IEnumerable<int> spentEnergy, IEnumerable<UsedAbility?> usedAbilities)
@@ -254,5 +270,16 @@ public class BattleLogic(
     private static int GetTotalNumberOfTargets(IEnumerable<int> targets)
     {
         return targets.Count(t => t == 1);
+    }
+
+    private void ChangeWhoseTurn()
+    {
+        WhoseTurn = WhoseTurn == BattlePlayers[0] ? BattlePlayers[1] : BattlePlayers[0];
+        TurnCount += 1;
+    }
+    
+    private IBattlePlayer GetHumanBattlePlayer()
+    {
+        return BattlePlayers[0].AiOpponent ? BattlePlayers[1] : BattlePlayers[0];
     }
 }

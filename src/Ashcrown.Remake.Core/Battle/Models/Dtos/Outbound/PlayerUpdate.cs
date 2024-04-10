@@ -2,9 +2,9 @@
 
 public class PlayerUpdate : EventArgs
 {
-    public bool YourTurn { get; set; }
+    public required bool MyTurn { get; set; }
     public int? TurnTime { get; set; }
-    public int LastTurn { get; set; }
+    public int TurnCount { get; set; }
     public int EnergyExchangeRatio { get; set; }
     public string[] MyChampions { get; set; } = new string[3];
     public string[] OpponentChampions { get; set; } = new string[3];

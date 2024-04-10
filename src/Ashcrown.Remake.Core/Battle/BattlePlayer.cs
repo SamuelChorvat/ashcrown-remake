@@ -220,12 +220,13 @@ public class BattlePlayer : IBattlePlayer
         };
     }
 
-    public PlayerUpdate GetPlayerUpdate()
+    public PlayerUpdate GetPlayerUpdate(IBattlePlayer whoseTurn)
     {
         var playerUpdate = new PlayerUpdate
         {
+            MyTurn = whoseTurn == this,
             Energy = Energy,
-            LastTurn = BattleLogic.TurnCount,
+            TurnCount = BattleLogic.TurnCount,
             EnergyExchangeRatio = Math.Max(1, GetAliveChampions().Count),
             AbilityHistoryUpdates = GetAbilityHistoryUpdates()
         };
@@ -276,7 +277,7 @@ public class BattlePlayer : IBattlePlayer
 
             playerUpdate.OpponentChampionUpdates[i] = opponentChampionsUpdate;
         }
-		
+        
 		return playerUpdate;
     }
 
