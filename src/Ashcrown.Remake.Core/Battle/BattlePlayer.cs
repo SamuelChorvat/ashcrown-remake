@@ -236,7 +236,6 @@ public class BattlePlayer : IBattlePlayer
             playerUpdate.MyChampions[i] = Champions[i].Name;
             playerUpdate.OpponentChampions[i] = BattleLogic.GetOppositePlayer(PlayerNo).Champions[i].Name;
 		}
-		
         
 		for (var i = 0; i < 3; i++) {
             var myChampionsUpdate = new MyChampionUpdate();
