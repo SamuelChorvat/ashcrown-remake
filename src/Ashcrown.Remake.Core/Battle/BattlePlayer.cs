@@ -24,7 +24,7 @@ public class BattlePlayer : IBattlePlayer
     {
         PlayerNo = playerNo;
         AiOpponent = aiOpponent;
-        Champions = teamFactory.CreateTeam(playersChampionsNames, this);
+        Champions = teamFactory.CreateTeam(battleLogic, playersChampionsNames, this);
         BattleLogic = battleLogic;
     }
     

@@ -4,5 +4,5 @@ namespace Ashcrown.Remake.Core.Battle.Interfaces;
 
 public interface ITeamFactory
 {
-    IChampion[] CreateTeam(string[] championNames, IBattlePlayer battlePlayer);
+    IChampion[] CreateTeam(IBattleLogic battleLogic, string[] championNames, IBattlePlayer battlePlayer);
 }
