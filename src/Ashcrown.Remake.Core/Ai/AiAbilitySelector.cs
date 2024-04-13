@@ -1,11 +1,12 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Ai.Models;
+using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Ai;
 
-public class AiAbilitySelector(IAiController aiController) : IAiAbilitySelector
+public class AiAbilitySelector(IBattleLogic battleLogic) : IAiAbilitySelector
 {
     public IList<AiMaximizedAbility> SelectAbilities<TAiUtils,TAiPointsCalculator>() 
         where TAiUtils : IAiUtils 
@@ -19,7 +20,7 @@ public class AiAbilitySelector(IAiController aiController) : IAiAbilitySelector
         ResetAiTotalDestructibleDefenseLeft();
         
         var toReturn = new List<AiMaximizedAbility>();
-        for (var i = 0; i < aiController.BattleLogic.GetAiOpponentBattlePlayer().Champions.Length; i++) {
+        for (var i = 0; i < battleLogic.GetAiOpponentBattlePlayer().Champions.Length; i++) {
             var maximizedAbility = GetMaximizedAbility<TAiUtils, TAiPointsCalculator>();
             if (maximizedAbility is {Points: > 0}) {
                 toReturn.Add(maximizedAbility);
@@ -35,12 +36,12 @@ public class AiAbilitySelector(IAiController aiController) : IAiAbilitySelector
 
     private void ResetAiActive()
     {
-        UpdateAiActive(aiController.BattleLogic.GetAiOpponentBattlePlayer().Energy, 0);
+        UpdateAiActive(battleLogic.GetAiOpponentBattlePlayer().Energy, 0);
     }
 
     private void UpdateAiActive(int[] energy, int toSubtract)
     {
-        foreach (var champion in aiController.BattleLogic.GetAiOpponentBattlePlayer().Champions)
+        foreach (var champion in battleLogic.GetAiOpponentBattlePlayer().Champions)
         {
             champion.AbilityController.SetAiActiveAbilities(energy, toSubtract);
         }
@@ -48,35 +49,35 @@ public class AiAbilitySelector(IAiController aiController) : IAiAbilitySelector
 
     private void ResetAiAbilitySelected()
     {
-        foreach (var champion in aiController.BattleLogic.GetAiOpponentBattlePlayer().Champions) {
+        foreach (var champion in battleLogic.GetAiOpponentBattlePlayer().Champions) {
             champion.AbilityController.AiAbilitySelected = false;
         }
     }
 
     private void ResetAiLethal()
     {
-        foreach (var champion in aiController.BattleLogic.GetAiOpponentBattlePlayer().GetEnemyPlayer().Champions) {
+        foreach (var champion in battleLogic.GetAiOpponentBattlePlayer().GetEnemyPlayer().Champions) {
             champion.AiLethal = false;
         }
     }
 
     private void ResetAiTotalDamageToReceiveAfterDestructible()
     {
-        foreach (var champion in aiController.BattleLogic.GetAiOpponentBattlePlayer().GetEnemyPlayer().Champions) {
+        foreach (var champion in battleLogic.GetAiOpponentBattlePlayer().GetEnemyPlayer().Champions) {
             champion.AiTotalDamageToReceiveAfterDestructible = 0;
         }
     }
 
     private void ResetAiTotalHealingToReceive()
     {
-        foreach (var champion in aiController.BattleLogic.GetAiOpponentBattlePlayer().Champions) {
+        foreach (var champion in battleLogic.GetAiOpponentBattlePlayer().Champions) {
             champion.AiTotalHealingToReceive = 0;
         }
     }
 
     private void ResetAiTotalDestructibleDefenseLeft()
     {
-        foreach (var champion in aiController.BattleLogic.GetAiOpponentBattlePlayer().GetEnemyPlayer().Champions) {
+        foreach (var champion in battleLogic.GetAiOpponentBattlePlayer().GetEnemyPlayer().Champions) {
             champion.AiTotalDestructibleDefenseLeft = GetTotalDestructibleDefense(champion);
         }
     }
@@ -92,7 +93,7 @@ public class AiAbilitySelector(IAiController aiController) : IAiAbilitySelector
         where TAiPointsCalculator : IAiPointsCalculator
     {
         var maximizedAbilities = 
-            (from champion in aiController.BattleLogic.GetAiOpponentBattlePlayer().Champions 
+            (from champion in battleLogic.GetAiOpponentBattlePlayer().Champions 
                 where !champion.AbilityController.AiAbilitySelected 
                 select champion.AbilityController.GetBestMaximizedAbility<TAiUtils, TAiPointsCalculator>())
             .ToList();
@@ -128,7 +129,7 @@ public class AiAbilitySelector(IAiController aiController) : IAiAbilitySelector
 
     private AiEnergyLeft GetEnergyLeft(IEnumerable<AiMaximizedAbility?> aiMaximizedAbilities)
     {
-        var energyLeft = new AiEnergyLeft(aiController.BattleLogic.GetAiOpponentBattlePlayer().Energy);
+        var energyLeft = new AiEnergyLeft(battleLogic.GetAiOpponentBattlePlayer().Energy);
 
         foreach (var aiMaximizedAbility in aiMaximizedAbilities) {
             if (aiMaximizedAbility == null) {

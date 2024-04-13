@@ -154,6 +154,12 @@ public class BattleLogic(
         }
     }
 
+    public void EndBattleOnAiError(string errorMessage)
+    {
+        logger.LogError("Ending battle due to AI error -> {ErrorMessage}", errorMessage);
+        OnBattleEnded(GetHumanBattlePlayer());
+    }
+
     private void OnTurnChanged()
     {
         ChangeWhoseTurn();

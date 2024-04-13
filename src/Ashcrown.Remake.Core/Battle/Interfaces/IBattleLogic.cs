@@ -27,4 +27,5 @@ public interface IBattleLogic
 	bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentEnergy);
 	public void InitializePlayers();
 	void EndTurnProcesses(int playerNo);
+	void EndBattleOnAiError(string errorMessage);
 }

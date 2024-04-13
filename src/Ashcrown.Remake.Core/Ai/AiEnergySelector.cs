@@ -5,15 +5,15 @@ using Ashcrown.Remake.Core.Battle.Interfaces;
 namespace Ashcrown.Remake.Core.Ai;
 
 public class AiEnergySelector(
-    IAiController aiController,
+    IBattleLogic battleLogic,
     IAiEnergyUsageController aiEnergyUsageController) : IAiEnergySelector
 {
     public int[] SelectEnergyToSpend(IList<AiMaximizedAbility> selectedAbilities)
     {
-        aiEnergyUsageController.CalculateEnergyUsage(aiController.BattleLogic.GetAiOpponentBattlePlayer().Champions);
+        aiEnergyUsageController.CalculateEnergyUsage(battleLogic.GetAiOpponentBattlePlayer().Champions);
 
         var energyToSpendWithoutRandom = GetEnergyToSpendWithoutRandom(selectedAbilities);
-        var energyLeftToSpend = GetEnergyLeftForSpending(aiController.BattleLogic.GetAiOpponentBattlePlayer(), 
+        var energyLeftToSpend = GetEnergyLeftForSpending(battleLogic.GetAiOpponentBattlePlayer(), 
             energyToSpendWithoutRandom);
 
         var randomEnergyToSpend = GetTotalRandomEnergyToSpend(selectedAbilities);
@@ -54,7 +54,7 @@ public class AiEnergySelector(
     private int[] GetEnergyToSpend(int[] energyToSpendWithoutRandom, int[] energyLeftToSpend, int randomEnergyToSpend)
     {
         if (energyLeftToSpend.Sum() == randomEnergyToSpend) {
-            return aiController.BattleLogic.GetAiOpponentBattlePlayer().Energy.ToArray();
+            return battleLogic.GetAiOpponentBattlePlayer().Energy.ToArray();
         }
 
         var randomEnergyLeftToSpend = randomEnergyToSpend;
@@ -64,7 +64,7 @@ public class AiEnergySelector(
             try {
                 index = (int) aiEnergyUsageController.GetLeastUsedEnergyType(energyLeftToSpend);
             } catch (Exception) {
-                aiController.EndMatchOnAiError("Exception getting least used energy");
+                battleLogic.EndBattleOnAiError("Exception getting least used energy");
                 return [];
             }
             energyToSpendWithoutRandom[index] += 1;
