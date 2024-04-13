@@ -9,7 +9,7 @@ using Ashcrown.Remake.Core.Champions.Luther.ActiveEffects;
 namespace Ashcrown.Remake.Core.Ai;
 
 // TODO AI Tests with random champions where player just passes until loss
-public class AiPointsCalculator : IAiPointsCalculator
+public abstract class AiPointsCalculator : IAiPointsCalculator
 {
     public static int GetInvulnerabilityPoints(int numberOfTurns, IAbility ability, IChampion target)
     {
@@ -124,11 +124,11 @@ public class AiPointsCalculator : IAiPointsCalculator
                                 + (target.ChampionController.IsIgnoringHarmful() ? 0 : target.ChampionController.TotalPhysicalDamageReceiveIncrease.Points)
                                 - (target.ChampionController.IsIgnoringReceivedDamageReduction() || ability.PiercingDamage ? 0 : target.ChampionController.TotalPhysicalDamageReceiveReduce.Points)
                                 , 0);
-                adjustedDamageAmountBeforeDestructible = (int) Math.Round(adjustedDamageAmountBeforeDestructible * (Math.Max(1f + caster.ChampionController.TotalPhysicalDamageDealIncrease.Percentage/100d
+                adjustedDamageAmountBeforeDestructible = (int) Math.Round(adjustedDamageAmountBeforeDestructible * Math.Max(1f + caster.ChampionController.TotalPhysicalDamageDealIncrease.Percentage/100d
                     - (caster.ChampionController.IsIgnoringHarmful() || ability.PiercingDamage ? 0 : caster.ChampionController.TotalPhysicalDamageDealReduce.Percentage/100d)
                     + (target.ChampionController.IsIgnoringHarmful() ? 0 : target.ChampionController.TotalPhysicalDamageReceiveIncrease.Percentage/100d)
                     - (target.ChampionController.IsIgnoringReceivedDamageReduction() || ability.PiercingDamage ? 0 : target.ChampionController.TotalPhysicalDamageReceiveReduce.Percentage/100d)
-                    , 0)));
+                    , 0));
             }
         }
 
