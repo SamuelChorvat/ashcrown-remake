@@ -9,7 +9,7 @@ public interface IAbilityController
     IChampion Owner { get; init; }
     IAbility? LastUsedAbility { get; }
     bool UsedNewAbility { get; }
-    bool AiAbilitySelected { set; }
+    bool AiAbilitySelected { set; get; }
     bool UseAbility(IAbility ability, int[] targets);
     bool ClientCanUseAbilityChecks(IAbility ability);
     bool IsStunnedToUseAbility(IAbility ability);
