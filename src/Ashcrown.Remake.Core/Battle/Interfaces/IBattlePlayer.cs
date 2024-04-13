@@ -9,6 +9,7 @@ namespace Ashcrown.Remake.Core.Battle.Interfaces;
 public interface IBattlePlayer
 {
     int PlayerNo { get; init; }
+    string PlayerName { get; init; }
     IBattleLogic BattleLogic { get; init; }
 	IChampion[] Champions { get; init; }
 	int[] Energy { get; init; }

@@ -16,7 +16,7 @@ public interface IBattleLogic
 	bool AiBattle { get; init; }
 	IBattlePlayer[] BattlePlayers { init; }
 	IBattlePlayer WhoseTurn { get;}
-	void SetBattlePlayer(int playerNo, string[] championNames, bool aiOpponent);
+	void SetBattlePlayer(int playerNo, string playerName, string[] championNames, bool aiOpponent);
 	IBattlePlayer GetBattlePlayer(int playerNo);
 	IBattlePlayer GetOppositePlayer(int playerNo);
 	int GetOppositePlayerNo(int playerNo);

@@ -10,6 +10,7 @@ namespace Ashcrown.Remake.Core.Battle;
 public class BattlePlayer : IBattlePlayer
 {
     public int PlayerNo { get; init; }
+    public string PlayerName { get; init; }
     public IBattleLogic BattleLogic { get; init; }
     public IChampion[] Champions { get; init; }
     public int[] Energy { get; init; } = [0,0,0,0];
@@ -17,12 +18,14 @@ public class BattlePlayer : IBattlePlayer
 
     public BattlePlayer(
         int playerNo,
+        string playerName,
         bool aiOpponent,
         string[] playersChampionsNames,
         IBattleLogic battleLogic,
         ITeamFactory teamFactory)
     {
         PlayerNo = playerNo;
+        PlayerName = playerName;
         AiOpponent = aiOpponent;
         Champions = teamFactory.CreateTeam(battleLogic, playersChampionsNames, this);
         BattleLogic = battleLogic;

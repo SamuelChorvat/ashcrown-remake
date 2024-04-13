@@ -28,9 +28,9 @@ public class BattleLogic(
     public IBattlePlayer[] BattlePlayers { get; init; } = new IBattlePlayer[2];
     public IBattlePlayer WhoseTurn { get; private set; } = null!;
 
-    public void SetBattlePlayer(int playerNo, string[] championNames, bool aiOpponent)
+    public void SetBattlePlayer(int playerNo, string playerName, string[] championNames, bool aiOpponent)
     {
-        BattlePlayers[playerNo - 1] = new BattlePlayer(playerNo, aiOpponent, championNames, this, teamFactory);
+        BattlePlayers[playerNo - 1] = new BattlePlayer(playerNo, playerName, aiOpponent, championNames, this, teamFactory);
         WhoseTurn = BattlePlayers[0];
     }
 
