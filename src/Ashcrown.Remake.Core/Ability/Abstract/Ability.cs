@@ -1,5 +1,6 @@
 using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Interfaces;
+using Ashcrown.Remake.Core.Ai;
 using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Ai.Models;
 using Ashcrown.Remake.Core.Battle.Models;
@@ -307,18 +308,18 @@ public abstract class Ability(
     public AiMaximizedAbility AiMaximizeAbility()
     {
         if (AiStandardSelfInvulnerability) {
-            return AiAbilityHelper.StandardSelfInvulnerabilityMaximizer();
+            return AiAbilityHelper.StandardSelfInvulnerabilityMaximizer<AiPointsCalculator>();
         }
 
         return Target switch
         {
-            AbilityTarget.Self => AiAbilityHelper.SelfTargetAbilityMaximizer(),
-            AbilityTarget.Ally => AiAbilityHelper.AllyTargetAbilityMaximizer(),
-            AbilityTarget.Allies => AiAbilityHelper.AlliesTargetAbilityMaximizer(),
-            AbilityTarget.Enemy => AiAbilityHelper.EnemyTargetAbilityMaximizer(),
-            AbilityTarget.Enemies => AiAbilityHelper.EnemiesTargetAbilityMaximizer(),
-            AbilityTarget.AllyOrEnemy => AiAbilityHelper.AllyOrEnemyTargetAbilityMaximizer(),
-            AbilityTarget.All => AiAbilityHelper.AllTargetAbilityMaximizer(),
+            AbilityTarget.Self => AiAbilityHelper.SelfTargetAbilityMaximizer<AiPointsCalculator>(),
+            AbilityTarget.Ally => AiAbilityHelper.AllyTargetAbilityMaximizer<AiPointsCalculator>(),
+            AbilityTarget.Allies => AiAbilityHelper.AlliesTargetAbilityMaximizer<AiPointsCalculator>(),
+            AbilityTarget.Enemy => AiAbilityHelper.EnemyTargetAbilityMaximizer<AiPointsCalculator>(),
+            AbilityTarget.Enemies => AiAbilityHelper.EnemiesTargetAbilityMaximizer<AiPointsCalculator>(),
+            AbilityTarget.AllyOrEnemy => AiAbilityHelper.AllyOrEnemyTargetAbilityMaximizer<AiPointsCalculator>(),
+            AbilityTarget.All => AiAbilityHelper.AllTargetAbilityMaximizer<AiPointsCalculator>(),
             _ => throw new ArgumentOutOfRangeException()
         };
     }
