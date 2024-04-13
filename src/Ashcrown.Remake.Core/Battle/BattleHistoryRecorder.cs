@@ -8,7 +8,7 @@ public class BattleHistoryRecorder(IBattleLogic battleLogic) : IBattleHistoryRec
 {
     public IList<AbilityHistoryRecord> AbilityHistoryRecords { get; init; } = new List<AbilityHistoryRecord>();
     
-    public void RecordInAbilityHistory(UsedAbility?[] used)
+    public void RecordInAbilityHistory(IEnumerable<UsedAbility?> used)
     {
 	    foreach (var usedAbility in used)
 	    {

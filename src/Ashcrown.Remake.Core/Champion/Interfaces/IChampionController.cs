@@ -9,7 +9,6 @@ namespace Ashcrown.Remake.Core.Champion.Interfaces;
 //TODO Refactor this? Move some to IChampion and maybe create IModifierController instead?
 public interface IChampionController
 {
-    IChampion Owner { get; init; }
     PointsPercentageModifier TotalAllDamageDealReduce { get; set; }
     PointsPercentageModifier TotalAllDamageDealIncrease { get; set; }
     PointsPercentageModifier TotalAllDamageReceiveReduce { get; set; }

@@ -4,7 +4,6 @@ namespace Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 
 public interface IActiveEffectController
 {
-    IChampion Owner { get; init; }
     void ApplyActiveEffects();
     void AddActiveEffect(IActiveEffect activeEffect);
     void RemoveActiveEffect(IActiveEffect activeEffect);

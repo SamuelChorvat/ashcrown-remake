@@ -22,8 +22,6 @@ public class ChampionController(
     IChampion owner,
     IActiveEffectFactory activeEffectFactory) : IChampionController
 {
-    public required IChampion Owner { get; init; } = owner;
-    
     public required PointsPercentageModifier TotalAllDamageDealReduce { get; set; } = new();
     public required PointsPercentageModifier TotalAllDamageDealIncrease { get; set; } = new();
     public required PointsPercentageModifier TotalAllDamageReceiveReduce { get; set; } = new();
@@ -46,7 +44,7 @@ public class ChampionController(
     
     public void TargetedByAbility(IAbility ability)
     {
-        GoldenAuraActiveEffect.CheckIfTriggeredAndApply(Owner, ability);
+        GoldenAuraActiveEffect.CheckIfTriggeredAndApply(owner, ability);
     }
 
     public void ReceiveAbilityDamage(int amount, IAbility ability, bool secondary, AppliedAdditionalLogic appliedAdditionalLogic)
@@ -55,15 +53,15 @@ public class ChampionController(
 
         if(!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.CustomReceiveAbilityDamageLogic, ability.Name)) {
             appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.CustomReceiveAbilityDamageLogic, ability.Name);
-            if (ability.CustomReceiveAbilityDamageLogic(Owner, appliedAdditionalLogic)) {
+            if (ability.CustomReceiveAbilityDamageLogic(owner, appliedAdditionalLogic)) {
                 return;
             }
         }
 		
-        var newAmount = ability.ReceiveAbilityDamageModifier(Owner, amount);
+        var newAmount = ability.ReceiveAbilityDamageModifier(owner, amount);
 		
         newAmount = ApplyToReceiveDamageModifiers(newAmount, ability);
-        newAmount = EmpBurstActiveEffect.ApplyEmpBurstAfflictionDamageIncrease(Owner, newAmount, ability);
+        newAmount = EmpBurstActiveEffect.ApplyEmpBurstAfflictionDamageIncrease(owner, newAmount, ability);
 
         SubtractHealth(newAmount, appliedAdditionalLogic, ability);
     }
@@ -72,10 +70,10 @@ public class ChampionController(
     {
         var newAmount = amount;
 
-        newAmount = activeEffect.ReceiveActiveEffectDamageModifier(Owner, newAmount);
+        newAmount = activeEffect.ReceiveActiveEffectDamageModifier(owner, newAmount);
 		
         newAmount = ApplyToReceiveDamageModifiers(newAmount, activeEffect:activeEffect);
-        newAmount = EmpBurstActiveEffect.ApplyEmpBurstAfflictionDamageIncrease(Owner, newAmount, activeEffect:activeEffect);
+        newAmount = EmpBurstActiveEffect.ApplyEmpBurstAfflictionDamageIncrease(owner, newAmount, activeEffect:activeEffect);
 
         SubtractHealth(newAmount,appliedAdditionalLogic, activeEffect:activeEffect);
     }
@@ -84,7 +82,7 @@ public class ChampionController(
     {
         if (!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.AdditionalReceiveAbilityHealingLogic, ability.Name)) {
             appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.AdditionalReceiveAbilityHealingLogic, ability.Name);
-            ability.AdditionalReceiveAbilityHealingLogic(Owner, appliedAdditionalLogic);
+            ability.AdditionalReceiveAbilityHealingLogic(owner, appliedAdditionalLogic);
         }
 		
         var newAmount = amount;
@@ -125,7 +123,7 @@ public class ChampionController(
             ability.AdditionalDealAbilityDamageLogic(target, appliedAdditionalLogic);
         }
         
-        newAmount = ForgeSpiritActiveEffect.AbilityDamageModifier(Owner, newAmount, ability);
+        newAmount = ForgeSpiritActiveEffect.AbilityDamageModifier(owner, newAmount, ability);
 		
         //Do not increase self damage or special cases
         if (ability is {DoNotModifyOnDealDamage: false, AfflictionDamage: false}) {
@@ -151,7 +149,7 @@ public class ChampionController(
             newAmount = 0;
         }
         
-        newAmount = ForgeSpiritActiveEffect.ActiveEffectDamageModifier(Owner, newAmount, activeEffect);
+        newAmount = ForgeSpiritActiveEffect.ActiveEffectDamageModifier(owner, newAmount, activeEffect);
 		
         //Do not increase self damage
         if (!activeEffect.OriginAbility.DoNotModifyOnDealDamage && !activeEffect.AfflictionDamage) {
@@ -174,19 +172,19 @@ public class ChampionController(
 
         if (!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.AdditionalDealActiveEffectLogic, activeEffect.Name)) {
             appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.AdditionalDealActiveEffectLogic, activeEffect.Name);
-            activeEffect.AdditionalDealActiveEffectLogic(Owner, target, ability, secondary, appliedAdditionalLogic);
+            activeEffect.AdditionalDealActiveEffectLogic(owner, target, ability, secondary, appliedAdditionalLogic);
         }
 
         if (!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.CustomDealActiveEffectLogic, activeEffect.Name)) {
             appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.CustomDealActiveEffectLogic, activeEffect.Name);
-            if (activeEffect.CustomDealActiveEffectLogic(Owner, target, ability, appliedAdditionalLogic)) {
+            if (activeEffect.CustomDealActiveEffectLogic(owner, target, ability, appliedAdditionalLogic)) {
                 return;
             }
         }
 
-        CounterShotActiveEffect.ReduceStunDuration(Owner, activeEffect);
-        AxeOfDoomDebuffActiveEffect.ReduceStunDuration(Owner, activeEffect);
-        AxeOfDoomDebuffActiveEffect.ReduceDealActiveEffectEnergyStealRemoveAmount(Owner, activeEffect);
+        CounterShotActiveEffect.ReduceStunDuration(owner, activeEffect);
+        AxeOfDoomDebuffActiveEffect.ReduceStunDuration(owner, activeEffect);
+        AxeOfDoomDebuffActiveEffect.ReduceDealActiveEffectEnergyStealRemoveAmount(owner, activeEffect);
 
         target.ChampionController.ReceiveActiveEffect(activeEffect, secondary, appliedAdditionalLogic);
     }
@@ -195,12 +193,12 @@ public class ChampionController(
     {
         if (!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.AdditionalReceiveActiveEffectLogic, activeEffect.Name)) {
             appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.AdditionalReceiveActiveEffectLogic, activeEffect.Name);
-            activeEffect.AdditionalReceiveActiveEffectLogic(Owner, appliedAdditionalLogic);
+            activeEffect.AdditionalReceiveActiveEffectLogic(owner, appliedAdditionalLogic);
         }
 		
         ReceiveReactionsCheck(activeEffect.OriginAbility, secondary);
 		
-        Owner.ActiveEffectController.AddActiveEffect(activeEffect);
+        owner.ActiveEffectController.AddActiveEffect(activeEffect);
     }
 
     public void DealAbilityHealing(int amount, IChampion target, IAbility ability, AppliedAdditionalLogic appliedAdditionalLogic)
@@ -236,7 +234,7 @@ public class ChampionController(
         DealReactionsCheck(ability, secondary);
 
         var amount = ability.EnergyAmount;
-        amount = AxeOfDoomDebuffActiveEffect.ReduceDealAbilityEnergyStealRemoveAmount(Owner, ability, amount);
+        amount = AxeOfDoomDebuffActiveEffect.ReduceDealAbilityEnergyStealRemoveAmount(owner, ability, amount);
         amount =  Math.Max(amount, 0);
 		
         target.ChampionController.ReceiveAbilityEnergySteal(ability, amount, secondary, appliedAdditionalLogic);
@@ -255,21 +253,21 @@ public class ChampionController(
     {
         if (!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.AdditionalReceiveAbilityEnergyStealLogic, ability.Name)) {
             appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.AdditionalReceiveAbilityEnergyStealLogic, ability.Name);
-            ability.AdditionalReceiveAbilityEnergyStealLogic(Owner, appliedAdditionalLogic);
+            ability.AdditionalReceiveAbilityEnergyStealLogic(owner, appliedAdditionalLogic);
         }
 		
         ReceiveReactionsCheck(ability, secondary);
 		
         if (ability.EnergyRemove) {
             for (var i = 0; i < amount; i ++) {
-                Owner.BattlePlayer.LoseRandomEnergy(Owner, ability);
+                owner.BattlePlayer.LoseRandomEnergy(owner, ability);
             }
         }
 
         if (!ability.EnergySteal) return;
         {
             for (var i = 0; i < amount; i++) {
-                var stolen = Owner.BattlePlayer.LoseRandomEnergy(Owner, ability);
+                var stolen = owner.BattlePlayer.LoseRandomEnergy(owner, ability);
                 if (stolen != EnergyType.NoEnergy) {
                     ability.Owner.BattlePlayer.AddEnergy(stolen);
                 } else {
@@ -284,14 +282,14 @@ public class ChampionController(
     {
         if (activeEffect.OriginAbility.EnergyRemove) {
             for (var i = 0; i < amount; i ++) {
-                Owner.BattlePlayer.LoseRandomEnergy(Owner, activeEffect:activeEffect);
+                owner.BattlePlayer.LoseRandomEnergy(owner, activeEffect:activeEffect);
             }
         }
 
         if (!activeEffect.OriginAbility.EnergySteal) return;
         {
             for (var i = 0; i < amount; i++) {
-                var stolen = Owner.BattlePlayer.LoseRandomEnergy(Owner, activeEffect:activeEffect);
+                var stolen = owner.BattlePlayer.LoseRandomEnergy(owner, activeEffect:activeEffect);
                 if (stolen != EnergyType.NoEnergy) {
                     activeEffect.OriginAbility.Owner.BattlePlayer.AddEnergy(stolen);
                 } else {
@@ -354,12 +352,12 @@ public class ChampionController(
 
     public void SetModifiers()
     {
-        if (!Owner.Alive) {
+        if (!owner.Alive) {
             return;
         }
 		
         InitializeModifiers();
-        foreach (var activeEffect in Owner.ActiveEffects)
+        foreach (var activeEffect in owner.ActiveEffects)
         {
             AddActiveEffectModifiers(activeEffect);
         }
@@ -623,7 +621,7 @@ public class ChampionController(
     {
         var newAmount = amount;
 		
-        foreach (var presentActiveEffect in Owner.ActiveEffects)
+        foreach (var presentActiveEffect in owner.ActiveEffects)
         {
             if (presentActiveEffect.DestructibleDefense <= newAmount) {
                 newAmount -= presentActiveEffect.DestructibleDefense;
@@ -643,7 +641,7 @@ public class ChampionController(
     public void SubtractHealth(int toSubtract, AppliedAdditionalLogic appliedAdditionalLogic, 
         IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        if(!Owner.Alive) {
+        if(!owner.Alive) {
             return;
         }
 
@@ -661,29 +659,29 @@ public class ChampionController(
         if (activeEffect != null) {
             if (!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.AdditionalSubtractHealthLogicActiveEffect, activeEffect.Name)) {
                 appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.AdditionalSubtractHealthLogicActiveEffect, activeEffect.Name);
-                activeEffect.AdditionalSubtractHealthLogic(toSubtractModified, Owner, appliedAdditionalLogic);
+                activeEffect.AdditionalSubtractHealthLogic(toSubtractModified, owner, appliedAdditionalLogic);
             }
         }
 		
         if (ability != null) {
             if (!appliedAdditionalLogic.CheckIfAlreadyApplied(AdditionalLogic.AdditionalSubtractHealthLogicAbility, ability.Name)) {
                 appliedAdditionalLogic.AddAppliedAdditionalLogic(AdditionalLogic.AdditionalSubtractHealthLogicAbility, ability.Name);
-                ability.AdditionalSubtractHealthLogic(toSubtractModified, Owner, appliedAdditionalLogic);
+                ability.AdditionalSubtractHealthLogic(toSubtractModified, owner, appliedAdditionalLogic);
             }
-            toSubtractModified = ability.SubtractHealthModifier(toSubtractModified, Owner);
+            toSubtractModified = ability.SubtractHealthModifier(toSubtractModified, owner);
         }
 
-        toSubtractModified = HeartOfNatureActiveEffect.PreventDeath(toSubtractModified, ability, Owner);
+        toSubtractModified = HeartOfNatureActiveEffect.PreventDeath(toSubtractModified, ability, owner);
 		
-        if (Owner.Health - toSubtractModified <= 0) {
+        if (owner.Health - toSubtractModified <= 0) {
 
-            DarkChaliceActiveEffect.Trigger(Owner);
+            DarkChaliceActiveEffect.Trigger(owner);
 			
             OnDeath();
         } else {
-            Owner.Health -= toSubtractModified;
+            owner.Health -= toSubtractModified;
 
-            var currentActiveEffects = Owner.ActiveEffectController.GetCurrentActiveEffectsSeparately();
+            var currentActiveEffects = owner.ActiveEffectController.GetCurrentActiveEffectsSeparately();
             foreach (var presentActiveEffect in currentActiveEffects) {
                 presentActiveEffect.AfterSubtractHealthLogic();
             }
@@ -692,7 +690,7 @@ public class ChampionController(
 
     public void AddHealth(int toAdd)
     {
-        if(!Owner.Alive || Owner.Health == 0) {
+        if(!owner.Alive || owner.Health == 0) {
             return;
         }
 		
@@ -700,97 +698,97 @@ public class ChampionController(
             return;
         }
 		
-        if (Owner.Health + toAdd >= 100) {
-            Owner.Health = 100;
-        } else if(Owner.Alive) {
-            Owner.Health += toAdd;
+        if (owner.Health + toAdd >= 100) {
+            owner.Health = 100;
+        } else if(owner.Alive) {
+            owner.Health += toAdd;
         }
     }
 
     public void OnDeath()
     {
-        if (Owner.Died) return;
-        Owner.Died = true;
-        Owner.BattleLogic.DiedChampions.Add(Owner);
+        if (owner.Died) return;
+        owner.Died = true;
+        owner.BattleLogic.DiedChampions.Add(owner);
     }
 
     public void ProcessDeath()
     {
-        if (!Owner.Died) return;
-        Owner.Health = 0;
-        Owner.Alive = false;
-        Owner.ActiveEffectController.RemoveMyActiveEffectsOnDeathFromAll();
+        if (!owner.Died) return;
+        owner.Health = 0;
+        owner.Alive = false;
+        owner.ActiveEffectController.RemoveMyActiveEffectsOnDeathFromAll();
 
-        foreach (var activeEffect in Owner.ActiveEffects) {
+        foreach (var activeEffect in owner.ActiveEffects) {
             activeEffect.AdditionalProcessDeathLogic();
         }
 			
-        Owner.ActiveEffectController.ClearActiveEffects();
+        owner.ActiveEffectController.ClearActiveEffects();
 
-        SacrificialPact.RebornHannibal(Owner);
+        SacrificialPact.RebornHannibal(owner);
     }
 
     public void OnStun(IAbility ability)
     {
         if (IsIgnoringStuns()) return;
-        Owner.ActiveEffectController.RemoveMyActiveEffectsOnStunFromAll();
-        Owner.ActiveEffectController.PauseMyActiveEffectsOnStunFromAll();
+        owner.ActiveEffectController.RemoveMyActiveEffectsOnStunFromAll();
+        owner.ActiveEffectController.PauseMyActiveEffectsOnStunFromAll();
     }
 
     public void OnInvulnerability(IAbility ability)
     {
         if (IsInvulnerabilityDisabled()) return;
-        Owner.ActiveEffectController.RemoveActiveEffectsOnInvulnerability();
-        Owner.ActiveEffectController.PauseActiveEffectsOnInvulnerability();
+        owner.ActiveEffectController.RemoveActiveEffectsOnInvulnerability();
+        owner.ActiveEffectController.PauseActiveEffectsOnInvulnerability();
     }
 
     public bool IsIgnoringHealing()
     {
-        return !IsIgnoringHarmful() && Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.IgnoreHealing);
+        return !IsIgnoringHarmful() && owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.IgnoreHealing);
     }
 
     public bool IsIgnoringStuns()
     {
-        return IsIgnoringHarmful() || Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.IgnoreStuns);
+        return IsIgnoringHarmful() || owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.IgnoreStuns);
     }
 
     public bool IsIgnoringDamage()
     {
-        return IsIgnoringHarmful() || Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.IgnoreDamage);
+        return IsIgnoringHarmful() || owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.IgnoreDamage);
     }
 
     public bool IsIgnoringHarmful()
     {
-        return Owner.ActiveEffects.Any(t => t.IgnoreHarmful);
+        return owner.ActiveEffects.Any(t => t.IgnoreHarmful);
     }
 
     public bool IsIgnoringReceivedDamageReduction()
     {
         return !IsIgnoringHarmful() 
-               && Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.DisableDamageReceiveReduction);
+               && owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.DisableDamageReceiveReduction);
     }
 
     public bool IsInvulnerabilityDisabled()
     {
-        return !Owner.ChampionController.IsIgnoringHarmful() 
-               && Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.DisableInvulnerability);
+        return !owner.ChampionController.IsIgnoringHarmful() 
+               && owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.DisableInvulnerability);
     }
 
     public bool IsInvulnerableToFriendlyAbility(IAbility? ability)
     {
         if (ability == null
-            || Owner.ChampionController.IsIgnoringHarmful()
-            || ability.Owner.BattlePlayer.PlayerNo != Owner.BattlePlayer.PlayerNo
+            || owner.ChampionController.IsIgnoringHarmful()
+            || ability.Owner.BattlePlayer.PlayerNo != owner.BattlePlayer.PlayerNo
             || !ability.Helpful) {
             return false;
         }
 
-        return Owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.InvulnerableToFriendlyAbilities);
+        return owner.ActiveEffects.Where(t => !t.Paused).Any(t => t.InvulnerableToFriendlyAbilities);
     }
 
     public bool IsInvulnerableTo(IAbility? ability = null, IActiveEffect? activeEffect = null, AbilityClass[]? abilityClasses = null)
     {
-        if(!Owner.Alive) {
+        if(!owner.Alive) {
             return true;
         }
 		
@@ -827,12 +825,12 @@ public class ChampionController(
             classes = abilityClasses;
         }
 
-        return Owner.ActiveEffects.Any(t => classes.Any(t.InvulnerabilityContains));
+        return owner.ActiveEffects.Any(t => classes.Any(t.InvulnerabilityContains));
     }
 
     public bool IsClientChampionInvulnerableTo(IAbility? ability)
     {
-        if(!Owner.Alive) {
+        if(!owner.Alive) {
             return true;
         }
 		
@@ -845,7 +843,7 @@ public class ChampionController(
         }
 		
         return !ability.IgnoreInvulnerability 
-               && Owner.ActiveEffects.Where(activeEffect => !activeEffect.Hidden)
+               && owner.ActiveEffects.Where(activeEffect => !activeEffect.Hidden)
                    .Any(activeEffect => ability.AbilityClasses.Any(activeEffect.InvulnerabilityContains));
     }
 
@@ -853,10 +851,10 @@ public class ChampionController(
         string buffName, AppliedAdditionalLogic appliedAdditionalLogic)
     {
         if (!activeEffect.Name.Equals(debuffName)) return;
-        if (!Owner.ActiveEffectController.ActiveEffectPresentByActiveEffectName(buffName) ||
-            !Owner.ActiveEffectController.GetLastActiveEffectByName(buffName)!.Fresh) {
-            DealActiveEffect(Owner, ability, 
-                activeEffectFactory.CreateActiveEffect(activeEffectOwnerName, buffName, ability, Owner), 
+        if (!owner.ActiveEffectController.ActiveEffectPresentByActiveEffectName(buffName) ||
+            !owner.ActiveEffectController.GetLastActiveEffectByName(buffName)!.Fresh) {
+            DealActiveEffect(owner, ability, 
+                activeEffectFactory.CreateActiveEffect(activeEffectOwnerName, buffName, ability, owner), 
                 true, appliedAdditionalLogic);
         }
     }
@@ -865,10 +863,10 @@ public class ChampionController(
         AppliedAdditionalLogic appliedAdditionalLogic)
     {
         if (!ability.Name.Equals(abilityName)) return;
-        if (!Owner.ActiveEffectController.ActiveEffectPresentByActiveEffectName(buffName) ||
-            !Owner.ActiveEffectController.GetLastActiveEffectByName(buffName)!.Fresh) {
-            DealActiveEffect(Owner, ability, 
-                activeEffectFactory.CreateActiveEffect(activeEffectOwnerName, buffName, ability, Owner), 
+        if (!owner.ActiveEffectController.ActiveEffectPresentByActiveEffectName(buffName) ||
+            !owner.ActiveEffectController.GetLastActiveEffectByName(buffName)!.Fresh) {
+            DealActiveEffect(owner, ability, 
+                activeEffectFactory.CreateActiveEffect(activeEffectOwnerName, buffName, ability, owner), 
                 true, appliedAdditionalLogic);
         }
     }
@@ -879,7 +877,7 @@ public class ChampionController(
             return;
         }
 
-        var currentActiveEffects = Owner.ActiveEffectController.GetCurrentActiveEffectsSeparately();
+        var currentActiveEffects = owner.ActiveEffectController.GetCurrentActiveEffectsSeparately();
         foreach (var activeEffect in currentActiveEffects) {
             activeEffect.DealReaction(ability);
         }
@@ -891,7 +889,7 @@ public class ChampionController(
             return;
         }
 
-        var currentActiveEffects = Owner.ActiveEffectController.GetCurrentActiveEffectsSeparately();
+        var currentActiveEffects = owner.ActiveEffectController.GetCurrentActiveEffectsSeparately();
         foreach (var activeEffect in currentActiveEffects) {
             activeEffect.ReceiveReaction(ability);
         }

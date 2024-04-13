@@ -1,12 +1,10 @@
 ﻿using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Ai.Models;
-using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Ability.Interfaces;
 
 public interface IAbilityController
 {
-    IChampion Owner { get; init; }
     IAbility? LastUsedAbility { get; }
     bool UsedNewAbility { get; }
     bool AiAbilitySelected { set; get; }

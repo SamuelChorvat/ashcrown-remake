@@ -15,8 +15,6 @@ public class AbilityController(
     IActiveEffectFactory activeEffectFactory) : IAbilityController
 {
     private bool _aiAbilitySelected;
-    
-    public required IChampion Owner { get; init; } = owner;
 
     public IAbility? LastUsedAbility { get; private set; }
 
@@ -24,7 +22,7 @@ public class AbilityController(
 
     public bool AiAbilitySelected
     {
-        get => !Owner.Alive || _aiAbilitySelected;
+        get => !owner.Alive || _aiAbilitySelected;
         set => _aiAbilitySelected = value;
     }
 
@@ -69,14 +67,14 @@ public class AbilityController(
         {
             if (targets[i] != 1) continue;
             if (i < 3) {
-                Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+                owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
 
                 if (abilityReflected.Reflected) {
-                    Owner.BattlePlayer.Champions[i].ReceivedReflectedAbilities.Add(usedAbility);
+                    owner.BattlePlayer.Champions[i].ReceivedReflectedAbilities.Add(usedAbility);
                 }
                 var toDeal = usedAbility.Damage1;
-                Owner.ChampionController.DealAbilityDamage(toDeal,
-                    Owner.BattlePlayer.Champions[i],
+                owner.ChampionController.DealAbilityDamage(toDeal,
+                    owner.BattlePlayer.Champions[i],
                     usedAbility,
                     false,
                     new AppliedAdditionalLogic());
@@ -86,9 +84,9 @@ public class AbilityController(
                 return true;
             } else {
                 var toDeal = usedAbility.Damage1;
-                Owner.BattlePlayer.GetEnemyPlayer().Champions[i-3].ChampionController.TargetedByAbility(usedAbility);
-                Owner.ChampionController.DealAbilityDamage(toDeal,
-                    Owner.BattlePlayer.GetEnemyPlayer().Champions[i-3],
+                owner.BattlePlayer.GetEnemyPlayer().Champions[i-3].ChampionController.TargetedByAbility(usedAbility);
+                owner.ChampionController.DealAbilityDamage(toDeal,
+                    owner.BattlePlayer.GetEnemyPlayer().Champions[i-3],
                     usedAbility,
                     false,
                     new AppliedAdditionalLogic());
@@ -117,22 +115,22 @@ public class AbilityController(
         {
             if (targets[i] != 1) continue;
             if (i < 3) {
-                Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+                owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
 
                 if (abilityReflected.Reflected) {
-                    Owner.BattlePlayer.Champions[i].ReceivedReflectedAbilities.Add(usedAbility);
+                    owner.BattlePlayer.Champions[i].ReceivedReflectedAbilities.Add(usedAbility);
                     var toDeal = usedAbility.Damage1;
-                    Owner.ChampionController.DealAbilityDamage(toDeal,
-                        Owner.BattlePlayer.Champions[i],
+                    owner.ChampionController.DealAbilityDamage(toDeal,
+                        owner.BattlePlayer.Champions[i],
                         usedAbility,
                         false,
                         new AppliedAdditionalLogic());
                 } else {
-                    Owner.ChampionController.DealActiveEffect(Owner.BattlePlayer.Champions[i],
+                    owner.ChampionController.DealActiveEffect(owner.BattlePlayer.Champions[i],
                         usedAbility,
                         activeEffectFactory.CreateActiveEffect(usedAbility.ActiveEffectOwner!, 
                             usedAbility.ActiveEffectName!, 
-                            usedAbility, Owner.BattlePlayer.Champions[i]),
+                            usedAbility, owner.BattlePlayer.Champions[i]),
                         false, new AppliedAdditionalLogic());
                 }
 
@@ -143,9 +141,9 @@ public class AbilityController(
 
             {
                 var toDeal = usedAbility.Damage1;
-                Owner.BattlePlayer.GetEnemyPlayer().Champions[i-3].ChampionController.TargetedByAbility(usedAbility);
-                Owner.ChampionController.DealAbilityDamage(toDeal,
-                    Owner.BattlePlayer.GetEnemyPlayer().Champions[i-3],
+                owner.BattlePlayer.GetEnemyPlayer().Champions[i-3].ChampionController.TargetedByAbility(usedAbility);
+                owner.ChampionController.DealAbilityDamage(toDeal,
+                    owner.BattlePlayer.GetEnemyPlayer().Champions[i-3],
                     usedAbility,
                     false,
                     new AppliedAdditionalLogic());
@@ -179,14 +177,14 @@ public class AbilityController(
                     abilityReflected.Reflected
                         ? usedAbility.ActiveEffectEnemyName!
                         : usedAbility.ActiveEffectAllyName!,
-                    usedAbility, Owner.BattlePlayer.Champions[i]);
+                    usedAbility, owner.BattlePlayer.Champions[i]);
                 activeEffect.Reflected = abilityReflected.Reflected;
                 if (abilityReflected.Reflected) {
-                    Owner.BattlePlayer.Champions[i].ReceivedReflectedAbilities.Add(usedAbility);
+                    owner.BattlePlayer.Champions[i].ReceivedReflectedAbilities.Add(usedAbility);
                 }
 
-                Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
-                Owner.ChampionController.DealActiveEffect(Owner.BattlePlayer.Champions[i],
+                owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+                owner.ChampionController.DealActiveEffect(owner.BattlePlayer.Champions[i],
                     usedAbility, 
                     activeEffect,
                     false, new AppliedAdditionalLogic());
@@ -196,12 +194,12 @@ public class AbilityController(
                 return true;
             }
 
-            Owner.BattlePlayer.GetEnemyPlayer().Champions[i-3].ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealActiveEffect(Owner.BattlePlayer.GetEnemyPlayer().Champions[i-3],
+            owner.BattlePlayer.GetEnemyPlayer().Champions[i-3].ChampionController.TargetedByAbility(usedAbility);
+            owner.ChampionController.DealActiveEffect(owner.BattlePlayer.GetEnemyPlayer().Champions[i-3],
                 usedAbility, 
                 activeEffectFactory.CreateActiveEffect(usedAbility.ActiveEffectOwner!, 
                     usedAbility.ActiveEffectEnemyName!, 
-                    usedAbility, Owner.BattlePlayer.GetEnemyPlayer().Champions[i-3]),
+                    usedAbility, owner.BattlePlayer.GetEnemyPlayer().Champions[i-3]),
                 false, new AppliedAdditionalLogic());
 
             usedAbility.OnUse();
@@ -224,14 +222,14 @@ public class AbilityController(
         }
 		
         var aeSource = activeEffectFactory.CreateActiveEffect(usedAbility.ActiveEffectOwner!,
-            usedAbility.ActiveEffectSourceName!, usedAbility, Owner);
+            usedAbility.ActiveEffectSourceName!, usedAbility, owner);
 		
         for (var i = abilityReflected.Reflected ? 0 : 3; 
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
@@ -244,13 +242,13 @@ public class AbilityController(
             aeSource.ChildrenLinks.Add(aeTarget);
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealActiveEffect(target,
+            owner.ChampionController.DealActiveEffect(target,
                 usedAbility,
                 aeTarget, 
                 false, new AppliedAdditionalLogic());
         }
 		
-        Owner.ChampionController.DealActiveEffect(Owner,
+        owner.ChampionController.DealActiveEffect(owner,
             usedAbility, 
             aeSource, 
             true, new AppliedAdditionalLogic());
@@ -275,14 +273,14 @@ public class AbilityController(
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
 
             var aeSource = activeEffectFactory.CreateActiveEffect(usedAbility.ActiveEffectOwner!,
-                usedAbility.ActiveEffectSourceName!, usedAbility, Owner);
+                usedAbility.ActiveEffectSourceName!, usedAbility, owner);
             var aeTarget = activeEffectFactory.CreateActiveEffect(usedAbility.ActiveEffectOwner!,
                 usedAbility.ActiveEffectTargetName!, usedAbility, target);
             aeTarget.Reflected = abilityReflected.Reflected;
@@ -291,12 +289,12 @@ public class AbilityController(
             aeSource.ChildrenLinks.Add(aeTarget);
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealActiveEffect(target,
+            owner.ChampionController.DealActiveEffect(target,
                 usedAbility,
                 aeTarget, 
                 false, new AppliedAdditionalLogic());
 				
-            Owner.ChampionController.DealActiveEffect(Owner,
+            owner.ChampionController.DealActiveEffect(owner,
                 usedAbility, 
                 aeSource, 
                 true, new AppliedAdditionalLogic());
@@ -324,14 +322,14 @@ public class AbilityController(
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealAbilityEnergySteal(
+            owner.ChampionController.DealAbilityEnergySteal(
                 target,
                 usedAbility, 
                 false, new AppliedAdditionalLogic());
@@ -361,14 +359,14 @@ public class AbilityController(
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealAbilityDamage(toDeal,
+            owner.ChampionController.DealAbilityDamage(toDeal,
                 target,
                 usedAbility, 
                 false, new AppliedAdditionalLogic());
@@ -396,14 +394,14 @@ public class AbilityController(
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealAbilityDamage(toDeal,
+            owner.ChampionController.DealAbilityDamage(toDeal,
                 target,
                 usedAbility, 
                 false, new AppliedAdditionalLogic());
@@ -433,8 +431,8 @@ public class AbilityController(
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
@@ -444,7 +442,7 @@ public class AbilityController(
             activeEffect.Reflected = abilityReflected.Reflected;
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealDamageAndAddActiveEffect(toDeal,
+            owner.ChampionController.DealDamageAndAddActiveEffect(toDeal,
                 target,
                 usedAbility,
                 activeEffect);
@@ -474,8 +472,8 @@ public class AbilityController(
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
@@ -485,7 +483,7 @@ public class AbilityController(
             activeEffect.Reflected = abilityReflected.Reflected;
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealDamageAndAddActiveEffect(toDeal,
+            owner.ChampionController.DealDamageAndAddActiveEffect(toDeal,
                 target,
                 usedAbility,
                 activeEffect);
@@ -510,12 +508,12 @@ public class AbilityController(
         for (var i = 0; i < targets.Length - 3; i++)
         {
             if (targets[i] != 1) continue;
-            Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealActiveEffect(Owner.BattlePlayer.Champions[i],
+            owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+            owner.ChampionController.DealActiveEffect(owner.BattlePlayer.Champions[i],
                 usedAbility, 
                 activeEffectFactory.CreateActiveEffect(usedAbility.ActiveEffectOwner!, 
                     usedAbility.ActiveEffectAlliesName!, usedAbility, 
-                    Owner.BattlePlayer.Champions[i]),
+                    owner.BattlePlayer.Champions[i]),
                 false, new AppliedAdditionalLogic());
         }
 		
@@ -523,8 +521,8 @@ public class AbilityController(
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
@@ -534,7 +532,7 @@ public class AbilityController(
             activeEffect.Reflected = abilityReflected.Reflected;
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealActiveEffect(target,
+            owner.ChampionController.DealActiveEffect(target,
                 usedAbility,
                 activeEffect,
                 false, new AppliedAdditionalLogic());
@@ -554,12 +552,12 @@ public class AbilityController(
         for (var i = 0; i < targets.Length - 3; i++)
         {
             if (targets[i] != 1) continue;
-            Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealActiveEffect(Owner.BattlePlayer.Champions[i],
+            owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+            owner.ChampionController.DealActiveEffect(owner.BattlePlayer.Champions[i],
                 usedAbility, 
                 activeEffectFactory.CreateActiveEffect(usedAbility.ActiveEffectOwner!, 
                     usedAbility.ActiveEffectName!, 
-                    usedAbility, Owner.BattlePlayer.Champions[i]),
+                    usedAbility, owner.BattlePlayer.Champions[i]),
                 false, new AppliedAdditionalLogic());
         }
 
@@ -577,11 +575,11 @@ public class AbilityController(
         for (var i = 0; i < targets.Length - 3; i++)
         {
             if (targets[i] != 1) continue;
-            Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealActiveEffect(Owner.BattlePlayer.Champions[i],
+            owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+            owner.ChampionController.DealActiveEffect(owner.BattlePlayer.Champions[i],
                 usedAbility, 
                 activeEffectFactory.CreateActiveEffect(usedAbility.ActiveEffectOwner!, 
-                    usedAbility.ActiveEffectName!, usedAbility, Owner.BattlePlayer.Champions[i]),
+                    usedAbility.ActiveEffectName!, usedAbility, owner.BattlePlayer.Champions[i]),
                 false, new AppliedAdditionalLogic());
 
             usedAbility.OnUse();
@@ -607,8 +605,8 @@ public class AbilityController(
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
@@ -618,7 +616,7 @@ public class AbilityController(
             activeEffect.Reflected = abilityReflected.Reflected;
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealActiveEffect(target,
+            owner.ChampionController.DealActiveEffect(target,
                 usedAbility,
                 activeEffect,
                 false, new AppliedAdditionalLogic());
@@ -640,10 +638,10 @@ public class AbilityController(
         for (var i = 0; i < targets.Length - 3; i++)
         {
             if (targets[i] != 1) continue;
-            Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+            owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
 
-            Owner.ChampionController.DealAbilityHealing(toHeal,
-                Owner.BattlePlayer.Champions[i],
+            owner.ChampionController.DealAbilityHealing(toHeal,
+                owner.BattlePlayer.Champions[i],
                 usedAbility, new AppliedAdditionalLogic());
         }
 
@@ -663,10 +661,10 @@ public class AbilityController(
         for (var i = 0; i < targets.Length - 3; i++)
         {
             if (targets[i] != 1) continue;
-            Owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
+            owner.BattlePlayer.Champions[i].ChampionController.TargetedByAbility(usedAbility);
 
-            Owner.ChampionController.DealAbilityHealing(toHeal,
-                Owner.BattlePlayer.Champions[i],
+            owner.ChampionController.DealAbilityHealing(toHeal,
+                owner.BattlePlayer.Champions[i],
                 usedAbility, new AppliedAdditionalLogic());
 
             usedAbility.OnUse();
@@ -692,8 +690,8 @@ public class AbilityController(
              i < (abilityReflected.Reflected ? targets.Length - 3 : targets.Length); i++)
         {
             if (targets[i] != 1) continue;
-            var target = abilityReflected.Reflected ? Owner.BattlePlayer.Champions[i]
-                : Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
+            var target = abilityReflected.Reflected ? owner.BattlePlayer.Champions[i]
+                : owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
             if (abilityReflected.Reflected) {
                 target.ReceivedReflectedAbilities.Add(usedAbility);
             }
@@ -703,7 +701,7 @@ public class AbilityController(
             activeEffect.Reflected = abilityReflected.Reflected;
 
             target.ChampionController.TargetedByAbility(usedAbility);
-            Owner.ChampionController.DealActiveEffect(target,
+            owner.ChampionController.DealActiveEffect(target,
                 usedAbility,
                 activeEffect,
                 false, new AppliedAdditionalLogic());
@@ -718,7 +716,7 @@ public class AbilityController(
 
     public bool ClientCanUseAbilityChecks(IAbility ability)
     {
-        if (!Owner.Alive || !ability.Active) {
+        if (!owner.Alive || !ability.Active) {
             return false;
         }
 		
@@ -726,7 +724,7 @@ public class AbilityController(
     }
 
     private bool ClientCanUseAbilityChecks(IAbility ability, IReadOnlyList<int> currentEnergy, int toSubtract) {
-        if (!Owner.Alive || !ability.Active) {
+        if (!owner.Alive || !ability.Active) {
             return false;
         }
 		
@@ -750,16 +748,16 @@ public class AbilityController(
 
     private bool SpendEnergyClientCheck(IAbility ability)
     {
-        if (Owner.BattlePlayer.GetTotalEnergy() == 0 && !ability.IsFree()) {
+        if (owner.BattlePlayer.GetTotalEnergy() == 0 && !ability.IsFree()) {
             return false;
         }
 
-        if (Owner.BattlePlayer.GetTotalEnergy() < ability.GetTotalCurrentCost()) {
+        if (owner.BattlePlayer.GetTotalEnergy() < ability.GetTotalCurrentCost()) {
             return false;
         }
 
         for (var i = 0; i < 4; i++) {
-            if (ability.GetCurrentCost()[i] > Owner.BattlePlayer.Energy[i]) {
+            if (ability.GetCurrentCost()[i] > owner.BattlePlayer.Energy[i]) {
                 return false;
             } 
         }
@@ -769,23 +767,23 @@ public class AbilityController(
 
     public bool IsStunnedToUseAbility(IAbility ability)
     {
-        if(!Owner.Alive) {
+        if(!owner.Alive) {
             return true;
         }
 		
-        if (Owner.ChampionController.IsIgnoringStuns()) {
+        if (owner.ChampionController.IsIgnoringStuns()) {
             return false;
         }
 		
-        return !Owner.ChampionController.IsIgnoringHarmful() && 
-               Owner.ActiveEffects.
-                   Where((_, i) => !Owner.ActiveEffects[i].Paused && ability.AbilityClasses.
-                       Any(abilityClass => Owner.ActiveEffects[i].StunnedContains(abilityClass))).Any();
+        return !owner.ChampionController.IsIgnoringHarmful() && 
+               owner.ActiveEffects.
+                   Where((_, i) => !owner.ActiveEffects[i].Paused && ability.AbilityClasses.
+                       Any(abilityClass => owner.ActiveEffects[i].StunnedContains(abilityClass))).Any();
     }
 
     public IAbility GetMyAbilityByName(string abilityName)
     {
-        foreach (var slotAbilities in Owner.Abilities)
+        foreach (var slotAbilities in owner.Abilities)
         {
             foreach (var ability in slotAbilities)
             {
@@ -801,7 +799,7 @@ public class AbilityController(
 
     public IAbility GetCurrentAbility(int abilityNo)
     {
-        return Owner.CurrentAbilities[abilityNo - 1];
+        return owner.CurrentAbilities[abilityNo - 1];
     }
 
     public void StartTurnFieldsReset()
@@ -812,11 +810,11 @@ public class AbilityController(
 
     public void TickDownAbilitiesCooldowns()
     {
-        if(!Owner.Alive) {
+        if(!owner.Alive) {
             return;
         }
 
-        foreach (var slotAbilities in Owner.Abilities)
+        foreach (var slotAbilities in owner.Abilities)
         {
             foreach (var ability in slotAbilities)
             {
@@ -833,7 +831,7 @@ public class AbilityController(
     public int[] GetPossibleTargetsForAbility(int abilityNo)
     {
         var emptyTargets = new[] {0,0,0,0,0,0};
-        return !Owner.Alive ? emptyTargets : GetCurrentAbility(abilityNo).GetPossibleTargets();
+        return !owner.Alive ? emptyTargets : GetCurrentAbility(abilityNo).GetPossibleTargets();
     }
 
     public int[] GetUsableAbilities(int[] currentEnergy, int toSubtract)
@@ -880,8 +878,8 @@ public class AbilityController(
             
             maximizedAbility.Ability = GetCurrentAbility(i);
             maximizedAbility.AbilityNo = i;
-            maximizedAbility.Champion = Owner;
-            maximizedAbility.CasterNo = Owner.ChampionNo;
+            maximizedAbility.Champion = owner;
+            maximizedAbility.CasterNo = owner.ChampionNo;
 
             toReturn = TAiUtils.GetHigherPointsAbility(toReturn, maximizedAbility);
         }
@@ -898,7 +896,7 @@ public class AbilityController(
         for (var i = 3; i < targets.Length; i++)
         {
             if (targets[i] != 1) continue;
-            var targetCharacter = Owner.BattlePlayer.GetEnemyPlayer().Champions[i-3];
+            var targetCharacter = owner.BattlePlayer.GetEnemyPlayer().Champions[i-3];
             if (targetCharacter.ActiveEffects.Any(activeEffect => activeEffect.CounterOnEnemy(ability)))
             {
                 return true;
@@ -917,7 +915,7 @@ public class AbilityController(
         for (var i = 3; i < targets.Length; i++)
         {
             if (targets[i] != 1) continue;
-            var targetCharacter = Owner.BattlePlayer.GetEnemyPlayer().Champions[i-3];
+            var targetCharacter = owner.BattlePlayer.GetEnemyPlayer().Champions[i-3];
             foreach (var activeEffect in targetCharacter.ActiveEffects) {
                 if (activeEffect.ReflectOnEnemy(ability)) {
                     return new AbilityReflected(true, ability, activeEffect, targets);
@@ -931,7 +929,7 @@ public class AbilityController(
     private bool CounterOnMe(IAbility ability, int[] targets)
     {
         //TODO add ignore harmful check here ??
-        return ability.Counterable && Owner.ActiveEffects.Any(activeEffect => activeEffect.CounterOnMe(ability));
+        return ability.Counterable && owner.ActiveEffects.Any(activeEffect => activeEffect.CounterOnMe(ability));
     }
 
     private void UseAbilityChecks(IAbility ability, int[] targets)
@@ -945,24 +943,24 @@ public class AbilityController(
         }
 
         //TODO How should this work? Should champion killed by reflected ability be able to use selected ability? (Currently they are)
-        if (!Owner.Alive && !(Owner.ReceivedReflectedAbilities.Count > 0)) {
+        if (!owner.Alive && !(owner.ReceivedReflectedAbilities.Count > 0)) {
             throw new Exception("Not alive");
         }
 		
-        if (ability.Target == AbilityTarget.Self && targets[Owner.ChampionNo - 1] != 1
+        if (ability.Target == AbilityTarget.Self && targets[owner.ChampionNo - 1] != 1
                                                  && GetNumberOfTargets(targets) == 1) {
             throw new Exception("Can only be selfcasted");
         }
 		
-        if (!ability.SelfCast && targets[Owner.ChampionNo - 1] == 1) {
+        if (!ability.SelfCast && targets[owner.ChampionNo - 1] == 1) {
             throw new Exception("Can't be selfcasted");
         }
 		
-        if (IsStunnedToUseAbility(ability) && !Owner.ReceivedReflectStun()) {
+        if (IsStunnedToUseAbility(ability) && !owner.ReceivedReflectStun()) {
             throw new Exception("Stunned to use problem");
         }
 
-        IceTombMeActiveEffect.CheckToRemove(Owner);
+        IceTombMeActiveEffect.CheckToRemove(owner);
 
         if (!ability.UseChecks()) {
             throw new Exception("Use checks failed");

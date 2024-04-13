@@ -9,10 +9,9 @@ public class ActiveEffectController(
     IChampion owner,
     ILogger<ActiveEffectController> logger) : IActiveEffectController
 {
-    public required IChampion Owner { get; init; } = owner;
     public void ApplyActiveEffects()
     {
-        if (!Owner.Alive) {
+        if (!owner.Alive) {
             return;
         }
 
@@ -20,7 +19,7 @@ public class ActiveEffectController(
         foreach (var activeEffect in currentActiveEffects) {
             logger.LogDebug( "Apply: {ActiveEffectName}", activeEffect.Name);
             if (activeEffect is { Stun: true, Paused: false }) {
-                Owner.ChampionController.OnStun(activeEffect.OriginAbility);
+                owner.ChampionController.OnStun(activeEffect.OriginAbility);
             }
             activeEffect.OnApply();
         }
@@ -38,21 +37,21 @@ public class ActiveEffectController(
             return;
         }
 
-        logger.LogDebug("{OwnerName}: {ActiveEffectName} added", Owner.Name, activeEffect.Name);
+        logger.LogDebug("{OwnerName}: {ActiveEffectName} added", owner.Name, activeEffect.Name);
 
-        activeEffect.Target = Owner;
-        Owner.ActiveEffects.Add(activeEffect);
+        activeEffect.Target = owner;
+        owner.ActiveEffects.Add(activeEffect);
 		
         AddActiveEffectModifiersOnAddNew(activeEffect);
 		
         activeEffect.OnAdd();
 		
         if (activeEffect is { Stun: true, Reflected: false }) {
-            Owner.ChampionController.OnStun(activeEffect.OriginAbility);
+            owner.ChampionController.OnStun(activeEffect.OriginAbility);
         }
 		
         if (activeEffect.Invulnerability) {
-            Owner.ChampionController.OnInvulnerability(activeEffect.OriginAbility);
+            owner.ChampionController.OnInvulnerability(activeEffect.OriginAbility);
         }	
     }
 
@@ -76,7 +75,7 @@ public class ActiveEffectController(
             }
         }
 		
-        Owner.ActiveEffects.Remove(activeEffect);
+        owner.ActiveEffects.Remove(activeEffect);
     }
 
     public void PauseActiveEffect(IActiveEffect activeEffect)
@@ -92,19 +91,19 @@ public class ActiveEffectController(
 
     public bool ActiveEffectPresentByOriginAbilityName(string abilityName)
     {
-        return Owner.ActiveEffects.Any(activeEffect => activeEffect.OriginAbility.Name.Equals(abilityName));
+        return owner.ActiveEffects.Any(activeEffect => activeEffect.OriginAbility.Name.Equals(abilityName));
     }
 
     public bool ActiveEffectPresentByActiveEffectName(string abilityName)
     {
-        return Owner.ActiveEffects.Any(activeEffect => activeEffect.Name.Equals(abilityName));
+        return owner.ActiveEffects.Any(activeEffect => activeEffect.Name.Equals(abilityName));
     }
 
     public void RemoveEnemyAfflictions()
     {
         var currentActiveEffects = GetCurrentActiveEffectsSeparately();
         foreach (var activeEffect in currentActiveEffects) {
-            if (activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo != Owner.BattlePlayer.PlayerNo &&
+            if (activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo != owner.BattlePlayer.PlayerNo &&
                 activeEffect.OriginAbility.AbilityClassesContains(AbilityClass.Affliction) &&
                 !activeEffect.CannotBeRemoved ) {
 
@@ -117,7 +116,7 @@ public class ActiveEffectController(
     {
         var currentActiveEffects = GetCurrentActiveEffectsSeparately();
         foreach (var activeEffect in currentActiveEffects) {
-            if (activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo != Owner.BattlePlayer.PlayerNo &&
+            if (activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo != owner.BattlePlayer.PlayerNo &&
                 activeEffect is { Harmful: true, CannotBeRemoved: false } ) {
 
                 RemoveActiveEffect(activeEffect);
@@ -129,15 +128,15 @@ public class ActiveEffectController(
     {
         for (var i = 1; i <= 2; i++) {
             for (var j = 0; j < 3; j++) {
-                if (Owner.BattleLogic.GetBattlePlayer(i).Champions[j].Alive 
-                    && Owner != Owner.BattleLogic.GetBattlePlayer(i).Champions[j]) {
-                    Owner.BattleLogic.GetBattlePlayer(i).Champions[j]
-                        .ActiveEffectController.RemoveChampionsActiveEffectsOnStun(Owner);
+                if (owner.BattleLogic.GetBattlePlayer(i).Champions[j].Alive 
+                    && owner != owner.BattleLogic.GetBattlePlayer(i).Champions[j]) {
+                    owner.BattleLogic.GetBattlePlayer(i).Champions[j]
+                        .ActiveEffectController.RemoveChampionsActiveEffectsOnStun(owner);
                 }
             }
         }
-        if (Owner.Alive) {
-            Owner.ActiveEffectController.RemoveChampionsActiveEffectsOnStun(Owner);
+        if (owner.Alive) {
+            owner.ActiveEffectController.RemoveChampionsActiveEffectsOnStun(owner);
         }
     }
 
@@ -145,9 +144,9 @@ public class ActiveEffectController(
     {
         for (var i = 1; i <= 2; i++) {
             for (var j = 0; j < 3; j++) {
-                if (Owner.BattleLogic.GetBattlePlayer(i).Champions[j].Alive) {
-                    Owner.BattleLogic.GetBattlePlayer(i).Champions[j]
-                        .ActiveEffectController.RemoveChampionsActiveEffectsOnDeath(Owner);
+                if (owner.BattleLogic.GetBattlePlayer(i).Champions[j].Alive) {
+                    owner.BattleLogic.GetBattlePlayer(i).Champions[j]
+                        .ActiveEffectController.RemoveChampionsActiveEffectsOnDeath(owner);
                 }
             }
         }
@@ -157,15 +156,15 @@ public class ActiveEffectController(
     {
         for (var i = 1; i <= 2; i++) {
             for (var j = 0; j < 3; j++) {
-                if (Owner.BattleLogic.GetBattlePlayer(i).Champions[j].Alive 
-                    && Owner != Owner.BattleLogic.GetBattlePlayer(i).Champions[j]) {
-                    Owner.BattleLogic.GetBattlePlayer(i).Champions[j]
-                        .ActiveEffectController.PauseChampionsActiveEffectsOnStun(Owner);
+                if (owner.BattleLogic.GetBattlePlayer(i).Champions[j].Alive 
+                    && owner != owner.BattleLogic.GetBattlePlayer(i).Champions[j]) {
+                    owner.BattleLogic.GetBattlePlayer(i).Champions[j]
+                        .ActiveEffectController.PauseChampionsActiveEffectsOnStun(owner);
                 }
             }
         }
-        if (Owner.Alive) {
-            Owner.ActiveEffectController.PauseChampionsActiveEffectsOnStun(Owner);
+        if (owner.Alive) {
+            owner.ActiveEffectController.PauseChampionsActiveEffectsOnStun(owner);
         }
     }
 
@@ -204,7 +203,7 @@ public class ActiveEffectController(
         var currentActiveEffects = GetCurrentActiveEffectsSeparately();
         foreach (var activeEffect in currentActiveEffects) {
             if (activeEffect is { EndsOnTargetInvulnerability: true, ChildrenLinks.Count: 0 } &&
-                Owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility) &&
+                owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility) &&
                 !activeEffect.Source) {
                 RemoveActiveEffect(activeEffect);
             }
@@ -213,10 +212,10 @@ public class ActiveEffectController(
 
     public void PauseActiveEffectsOnInvulnerability()
     {
-        foreach (var activeEffect in Owner.ActiveEffects)
+        foreach (var activeEffect in owner.ActiveEffects)
         {
             if (activeEffect is { PauseOnTargetInvulnerability: true, ChildrenLinks.Count: 0 } &&
-                Owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility) &&
+                owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility) &&
                 !activeEffect.Source) {
 				
                 PauseActiveEffect(activeEffect);
@@ -226,7 +225,7 @@ public class ActiveEffectController(
 
     public void PauseChampionsActiveEffectsOnStun(IChampion fromChampion)
     {
-        foreach (var activeEffect in Owner.ActiveEffects)
+        foreach (var activeEffect in owner.ActiveEffects)
         {
             if (activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo == fromChampion.BattlePlayer.PlayerNo && 
                 activeEffect.OriginAbility.Owner.ChampionNo == fromChampion.ChampionNo &&
@@ -252,8 +251,8 @@ public class ActiveEffectController(
             }
         }
 		
-        while (Owner.ActiveEffects.Count > 0) {
-            RemoveActiveEffect(Owner.ActiveEffects[0]);
+        while (owner.ActiveEffects.Count > 0) {
+            RemoveActiveEffect(owner.ActiveEffects[0]);
         }
     }
 
@@ -269,27 +268,27 @@ public class ActiveEffectController(
 
     public void AddActiveEffectModifiersOnAddNew(IActiveEffect activeEffect)
     {
-        Owner.ChampionController.AddActiveEffectModifiers(activeEffect);
+        owner.ChampionController.AddActiveEffectModifiers(activeEffect);
     }
 
     public void AddActiveEffectModifiersOnResume(IActiveEffect activeEffect)
     {
-        Owner.ChampionController.AddActiveEffectModifiers(activeEffect);
+        owner.ChampionController.AddActiveEffectModifiers(activeEffect);
     }
 
     public void RemoveActiveEffectModifiersOnRemovePresent(IActiveEffect activeEffect)
     {
-        Owner.ChampionController.RemoveActiveEffectModifiers(activeEffect);
+        owner.ChampionController.RemoveActiveEffectModifiers(activeEffect);
     }
 
     public void RemoveActiveEffectModifiersOnPausePresent(IActiveEffect activeEffect)
     {
-        Owner.ChampionController.RemoveActiveEffectModifiers(activeEffect);
+        owner.ChampionController.RemoveActiveEffectModifiers(activeEffect);
     }
 
     public IActiveEffect? GetActiveEffectByName(string activeEffectName, int championNo, int playerNo)
     {
-        return Owner.ActiveEffects.FirstOrDefault(
+        return owner.ActiveEffects.FirstOrDefault(
             activeEffect => activeEffect.Name.Equals(activeEffectName) 
                             && activeEffect.OriginAbility.Owner.ChampionNo == championNo 
                             && activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo == playerNo);
@@ -297,19 +296,19 @@ public class ActiveEffectController(
 
     public IActiveEffect? GetActiveEffectByName(string activeEffectName)
     {
-        return Owner.ActiveEffects.FirstOrDefault(activeEffect => activeEffect.Name.Equals(activeEffectName));
+        return owner.ActiveEffects.FirstOrDefault(activeEffect => activeEffect.Name.Equals(activeEffectName));
     }
 
     public IList<IActiveEffect> GetActiveEffectsByName(string activeEffectName)
     {
-        return Owner.ActiveEffects.Where(activeEffect => activeEffect.Name.Equals(activeEffectName)).ToList();
+        return owner.ActiveEffects.Where(activeEffect => activeEffect.Name.Equals(activeEffectName)).ToList();
     }
 
     public IActiveEffect? GetLastActiveEffectByName(string activeEffectName)
     {
         IActiveEffect? toReturn = null;
 
-        foreach (var activeEffect in Owner.ActiveEffects) {
+        foreach (var activeEffect in owner.ActiveEffects) {
             if (activeEffect.Name.Equals(activeEffectName)) {
                 toReturn = activeEffect;
             }
@@ -320,17 +319,17 @@ public class ActiveEffectController(
 
     public int GetActiveEffectCountByName(string activeEffectName)
     {
-        return Owner.ActiveEffects.Count(activeEffect => activeEffect.Name.Equals(activeEffectName));
+        return owner.ActiveEffects.Count(activeEffect => activeEffect.Name.Equals(activeEffectName));
     }
 
     public IList<IActiveEffect> GetCurrentActiveEffectsSeparately()
     {
-        return Owner.ActiveEffects.ToList();
+        return owner.ActiveEffects.ToList();
     }
 
     public void CheckResume()
     {
-        foreach (var activeEffect in Owner.ActiveEffects)
+        foreach (var activeEffect in owner.ActiveEffects)
         {
             if (!activeEffect.Paused) continue;
             if (activeEffect.CasterLink != null)
@@ -342,7 +341,7 @@ public class ActiveEffectController(
                     {
                         if (!activeEffect.CasterLink.OriginAbility.Owner
                                 .AbilityController.IsStunnedToUseAbility(activeEffect.OriginAbility) &&
-                            !Owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility)) {
+                            !owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility)) {
 
                             logger.LogDebug("Resumed 1");
                             activeEffect.Paused = false;
@@ -366,7 +365,7 @@ public class ActiveEffectController(
                     default:
                     {
                         if (activeEffect.PauseOnTargetInvulnerability) {
-                            if (!Owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility)) {
+                            if (!owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility)) {
 
                                 logger.LogDebug("Resumed 3");
                                 activeEffect.Paused = false;
@@ -379,7 +378,7 @@ public class ActiveEffectController(
                 }
             } else
             {
-                if (Owner.AbilityController.IsStunnedToUseAbility(activeEffect.OriginAbility)) continue;
+                if (owner.AbilityController.IsStunnedToUseAbility(activeEffect.OriginAbility)) continue;
                 activeEffect.Paused = false;
                 AddActiveEffectModifiersOnResume(activeEffect);
             }
@@ -392,7 +391,7 @@ public class ActiveEffectController(
             return false;
         }
 		
-        if(!Owner.Alive) {
+        if(!owner.Alive) {
             return false;
         }
 		
@@ -400,8 +399,8 @@ public class ActiveEffectController(
             return false;
         }
 		
-        if(activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo != Owner.BattlePlayer.PlayerNo) {
-            if(Owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility)) {
+        if(activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo != owner.BattlePlayer.PlayerNo) {
+            if(owner.ChampionController.IsInvulnerableTo(activeEffect.OriginAbility)) {
                 return false;
             }
         }
@@ -418,7 +417,7 @@ public class ActiveEffectController(
 
     private bool RemoveActiveEffectChecks(IActiveEffect? activeEffect)
     {
-        return activeEffect != null && Owner.ActiveEffects.Contains(activeEffect);
+        return activeEffect != null && owner.ActiveEffects.Contains(activeEffect);
     }
     
     private bool PauseActiveEffectChecks(IActiveEffect? activeEffect)
@@ -427,6 +426,6 @@ public class ActiveEffectController(
             return false;
         }
 		
-        return Owner.Alive && Owner.ActiveEffects.Contains(activeEffect);
+        return owner.Alive && owner.ActiveEffects.Contains(activeEffect);
     }
 }
