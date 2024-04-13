@@ -11,10 +11,11 @@ public class BattlePlayer : IBattlePlayer
 {
     public int PlayerNo { get; init; }
     public string PlayerName { get; init; }
-    public IBattleLogic BattleLogic { get; init; }
     public IChampion[] Champions { get; init; }
     public int[] Energy { get; init; } = [0,0,0,0];
     public bool AiOpponent { get; init; }
+    
+    private readonly IBattleLogic _battleLogic;
 
     public BattlePlayer(
         int playerNo,
@@ -28,7 +29,7 @@ public class BattlePlayer : IBattlePlayer
         PlayerName = playerName;
         AiOpponent = aiOpponent;
         Champions = teamFactory.CreateTeam(battleLogic, playersChampionsNames, this);
-        BattleLogic = battleLogic;
+        _battleLogic = battleLogic;
     }
     
     public bool IsDead()
@@ -189,12 +190,12 @@ public class BattlePlayer : IBattlePlayer
     //TODO what about invulnerability, what if the target is invulnerable, Seth ignores invul for now
     public IChampion GetRandomEnemyChampion()
     {
-        var alive = BattleLogic.GetOppositePlayer(PlayerNo).GetAliveChampions();
+        var alive = _battleLogic.GetOppositePlayer(PlayerNo).GetAliveChampions();
 
         switch (alive.Count)
         {
             case 0:
-                return BattleLogic.GetOppositePlayer(PlayerNo).Champions[0];
+                return _battleLogic.GetOppositePlayer(PlayerNo).Champions[0];
             case 1:
                 return alive[0];
         }
@@ -229,7 +230,7 @@ public class BattlePlayer : IBattlePlayer
         {
             MyTurn = whoseTurn == this,
             Energy = Energy,
-            TurnCount = BattleLogic.TurnCount,
+            TurnCount = _battleLogic.TurnCount,
             EnergyExchangeRatio = Math.Max(1, GetAliveChampions().Count),
             AbilityHistoryUpdates = GetAbilityHistoryUpdates()
         };
@@ -237,7 +238,7 @@ public class BattlePlayer : IBattlePlayer
 		for (var i = 0; i < Champions.Length; i++)
         {
             playerUpdate.MyChampions[i] = Champions[i].Name;
-            playerUpdate.OpponentChampions[i] = BattleLogic.GetOppositePlayer(PlayerNo).Champions[i].Name;
+            playerUpdate.OpponentChampions[i] = _battleLogic.GetOppositePlayer(PlayerNo).Champions[i].Name;
 		}
         
 		for (var i = 0; i < 3; i++) {
@@ -264,7 +265,7 @@ public class BattlePlayer : IBattlePlayer
 		
         var opponentChampionsUpdate = new OpponentChampionUpdate();
 		for (var i = 0; i < 3; i++) {
-			var champion = BattleLogic.GetOppositePlayer(PlayerNo).Champions[i];
+			var champion = _battleLogic.GetOppositePlayer(PlayerNo).Champions[i];
 			
 			opponentChampionsUpdate.Health = champion.Health;
 
@@ -308,14 +309,14 @@ public class BattlePlayer : IBattlePlayer
 
     private List<AbilityHistoryUpdate> GetAbilityHistoryUpdates()
     {
-        return (from abilityHistoryRecord in BattleLogic.BattleHistoryRecorder.AbilityHistoryRecords 
+        return (from abilityHistoryRecord in _battleLogic.BattleHistoryRecorder.AbilityHistoryRecords 
             where abilityHistoryRecord.PlayerNo == PlayerNo 
                   || !abilityHistoryRecord.Invisible select abilityHistoryRecord.GetAbilityHistoryUpdate()).ToList();
     }
 
     public IBattlePlayer GetEnemyPlayer()
     {
-        return BattleLogic.GetOppositePlayer(PlayerNo);
+        return _battleLogic.GetOppositePlayer(PlayerNo);
     }
 
     public int GetTotalEnergy()
