@@ -6,5 +6,5 @@ public interface IAiController
 {
     IBattleLogic BattleLogic { get; init; }
     void EndBattleTurn();
-    void EndMatchOnAiError();
+    void EndMatchOnAiError(string errorMessage);
 }
