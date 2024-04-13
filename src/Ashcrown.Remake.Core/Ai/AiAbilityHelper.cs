@@ -2,31 +2,28 @@
 using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Ai.Models;
-using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Ai;
 
 public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
 {
-    private readonly IAbility _ability = ability;
-
     public AiMaximizedAbility StandardSelfInvulnerabilityMaximizer<T>() where T : IAiPointsCalculator
     {
-        var totalPoints = T.GetInvulnerabilityPoints(_ability.Duration1, _ability, _ability.Owner);
-        totalPoints = T.ApplyPenalties(totalPoints, _ability, _ability.Owner);
+        var totalPoints = T.GetInvulnerabilityPoints(ability.Duration1, ability, ability.Owner);
+        totalPoints = T.ApplyPenalties(totalPoints, ability, ability.Owner);
 
         var targets = CreateEmptyTargets();
-        targets[_ability.Owner.GetTargetNo(_ability.Owner)] = 1;
+        targets[ability.Owner.GetTargetNo(ability.Owner)] = 1;
         return new AiMaximizedAbility(totalPoints, targets);
     }
 
     public AiMaximizedAbility SelfTargetAbilityMaximizer<T>() where T : IAiPointsCalculator
     {
-        var totalPoints = _ability.CalculateTotalPointsForTarget(_ability.Owner);
-        totalPoints = T.ApplyPenalties(totalPoints, _ability, _ability.Owner);
+        var totalPoints = ability.CalculateTotalPointsForTarget(ability.Owner);
+        totalPoints = T.ApplyPenalties(totalPoints, ability, ability.Owner);
 
         var targets = CreateEmptyTargets();
-        targets[_ability.Owner.GetTargetNo(_ability.Owner)] = 1;
+        targets[ability.Owner.GetTargetNo(ability.Owner)] = 1;
 
         return new AiMaximizedAbility(totalPoints, targets);
     }
@@ -159,10 +156,10 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
     
     private List<int[]> GetTargetsPermutations()
     {
-        var possibleTargets = _ability.GetPossibleTargets();
+        var possibleTargets = ability.GetPossibleTargets();
         var targetsPermutations = new List<int[]>();
 
-        switch (_ability.Target) {
+        switch (ability.Target) {
             case AbilityTarget.Self:
             case AbilityTarget.All:
             case AbilityTarget.Enemies:
