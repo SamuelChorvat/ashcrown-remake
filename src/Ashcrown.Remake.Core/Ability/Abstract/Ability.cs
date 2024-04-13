@@ -305,21 +305,21 @@ public abstract class Ability(
     {
     }
 
-    public AiMaximizedAbility AiMaximizeAbility()
+    public AiMaximizedAbility AiMaximizeAbility<T>() where T : IAiPointsCalculator
     {
         if (AiStandardSelfInvulnerability) {
-            return AiAbilityHelper.StandardSelfInvulnerabilityMaximizer<AiPointsCalculator>();
+            return AiAbilityHelper.StandardSelfInvulnerabilityMaximizer<T>();
         }
 
         return Target switch
         {
-            AbilityTarget.Self => AiAbilityHelper.SelfTargetAbilityMaximizer<AiPointsCalculator>(),
-            AbilityTarget.Ally => AiAbilityHelper.AllyTargetAbilityMaximizer<AiPointsCalculator>(),
-            AbilityTarget.Allies => AiAbilityHelper.AlliesTargetAbilityMaximizer<AiPointsCalculator>(),
-            AbilityTarget.Enemy => AiAbilityHelper.EnemyTargetAbilityMaximizer<AiPointsCalculator>(),
-            AbilityTarget.Enemies => AiAbilityHelper.EnemiesTargetAbilityMaximizer<AiPointsCalculator>(),
-            AbilityTarget.AllyOrEnemy => AiAbilityHelper.AllyOrEnemyTargetAbilityMaximizer<AiPointsCalculator>(),
-            AbilityTarget.All => AiAbilityHelper.AllTargetAbilityMaximizer<AiPointsCalculator>(),
+            AbilityTarget.Self => AiAbilityHelper.SelfTargetAbilityMaximizer<T>(),
+            AbilityTarget.Ally => AiAbilityHelper.AllyTargetAbilityMaximizer<T>(),
+            AbilityTarget.Allies => AiAbilityHelper.AlliesTargetAbilityMaximizer<T>(),
+            AbilityTarget.Enemy => AiAbilityHelper.EnemyTargetAbilityMaximizer<T>(),
+            AbilityTarget.Enemies => AiAbilityHelper.EnemiesTargetAbilityMaximizer<T>(),
+            AbilityTarget.AllyOrEnemy => AiAbilityHelper.AllyOrEnemyTargetAbilityMaximizer<T>(),
+            AbilityTarget.All => AiAbilityHelper.AllTargetAbilityMaximizer<T>(),
             _ => throw new ArgumentOutOfRangeException()
         };
     }

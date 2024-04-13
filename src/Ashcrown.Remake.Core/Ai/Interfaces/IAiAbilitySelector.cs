@@ -4,5 +4,6 @@ namespace Ashcrown.Remake.Core.Ai.Interfaces;
 
 public interface IAiAbilitySelector
 {
-    IList<AiMaximizedAbility> SelectAbilities();
+    IList<AiMaximizedAbility> SelectAbilities<TAiUtils, TAiPointsCalculator>() where TAiUtils : IAiUtils
+        where TAiPointsCalculator : IAiPointsCalculator;
 }

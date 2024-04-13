@@ -21,5 +21,6 @@ public interface IAbilityController
     int[] GetPossibleTargetsForAbility(int abilityNo);
     int[] GetUsableAbilities(int[] currentEnergy, int toSubtract);
     void SetAiActiveAbilities(int[] currentResources, int toSubtract); //TODO Move to AI?
-    AiMaximizedAbility? GetBestMaximizedAbility<T>() where T : IAiUtils; //TODO Move to AI?
+    AiMaximizedAbility? GetBestMaximizedAbility<TAiUtils,TAiPointsCalculator>() where TAiUtils : IAiUtils 
+        where TAiPointsCalculator : IAiPointsCalculator; //TODO Move to AI?
 }

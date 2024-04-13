@@ -7,7 +7,9 @@ namespace Ashcrown.Remake.Core.Ai;
 
 public class AiAbilitySelector(IAiController aiController) : IAiAbilitySelector
 {
-    public IList<AiMaximizedAbility> SelectAbilities()
+    public IList<AiMaximizedAbility> SelectAbilities<TAiUtils,TAiPointsCalculator>() 
+        where TAiUtils : IAiUtils 
+        where TAiPointsCalculator : IAiPointsCalculator
     {
         ResetAiActive();
         ResetAiAbilitySelected();
@@ -18,7 +20,7 @@ public class AiAbilitySelector(IAiController aiController) : IAiAbilitySelector
         
         var toReturn = new List<AiMaximizedAbility>();
         for (var i = 0; i < aiController.BattleLogic.GetAiOpponentBattlePlayer().Champions.Length; i++) {
-            var maximizedAbility = GetMaximizedAbility();
+            var maximizedAbility = GetMaximizedAbility<TAiUtils, TAiPointsCalculator>();
             if (maximizedAbility is {Points: > 0}) {
                 toReturn.Add(maximizedAbility);
                 var aiEnergyLeft = GetEnergyLeft(toReturn);
@@ -85,19 +87,21 @@ public class AiAbilitySelector(IAiController aiController) : IAiAbilitySelector
             .Sum(activeEffect => activeEffect.DestructibleDefense);
     }
     
-    private AiMaximizedAbility? GetMaximizedAbility()
+    private AiMaximizedAbility? GetMaximizedAbility<TAiUtils,TAiPointsCalculator>() 
+        where TAiUtils : IAiUtils 
+        where TAiPointsCalculator : IAiPointsCalculator
     {
         var maximizedAbilities = 
             (from champion in aiController.BattleLogic.GetAiOpponentBattlePlayer().Champions 
                 where !champion.AbilityController.AiAbilitySelected 
-                select champion.AbilityController.GetBestMaximizedAbility<AiUtils>())
+                select champion.AbilityController.GetBestMaximizedAbility<TAiUtils, TAiPointsCalculator>())
             .ToList();
 
         if (IsAllNull(maximizedAbilities)) {
             return null;
         }
 
-        var toReturn = PickMaximizedAbilityHelper<AiUtils>(maximizedAbilities);
+        var toReturn = PickMaximizedAbilityHelper<TAiUtils>(maximizedAbilities);
         toReturn.Champion!.AbilityController.AiAbilitySelected = true;
 
         return toReturn;

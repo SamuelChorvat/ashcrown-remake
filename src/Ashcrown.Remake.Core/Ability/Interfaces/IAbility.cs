@@ -1,4 +1,5 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
+using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Ai.Models;
 using Ashcrown.Remake.Core.Battle.Models;
 using Ashcrown.Remake.Core.Champion.Interfaces;
@@ -113,7 +114,7 @@ public interface IAbility
 	void StartTurnChecks();
 	void EndTurnChecks();
 	void OnUse();
-	AiMaximizedAbility AiMaximizeAbility();
+	AiMaximizedAbility AiMaximizeAbility<T>() where T : IAiPointsCalculator;
 	int[] GetPossibleTargets(); // TODO Was List && int[] emptyTargets not needed as input param
 	int CalculateTotalPointsForTarget(IChampion target);
 	int CalculateSingletonSelfEffectTotalPoints();

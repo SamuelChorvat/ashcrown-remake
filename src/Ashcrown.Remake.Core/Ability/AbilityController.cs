@@ -865,7 +865,9 @@ public class AbilityController(
         }
     }
 
-    public AiMaximizedAbility? GetBestMaximizedAbility<T>() where T : IAiUtils
+    public AiMaximizedAbility? GetBestMaximizedAbility<TAiUtils,TAiPointsCalculator>() 
+        where TAiUtils : IAiUtils 
+        where TAiPointsCalculator : IAiPointsCalculator
     {
         AiMaximizedAbility? toReturn = null;
 
@@ -874,14 +876,14 @@ public class AbilityController(
                 continue;
             }
 
-            var maximizedAbility = GetCurrentAbility(i).AiMaximizeAbility();
+            var maximizedAbility = GetCurrentAbility(i).AiMaximizeAbility<TAiPointsCalculator>();
             
             maximizedAbility.Ability = GetCurrentAbility(i);
             maximizedAbility.AbilityNo = i;
             maximizedAbility.Champion = Owner;
             maximizedAbility.CasterNo = Owner.ChampionNo;
 
-            toReturn = T.GetHigherPointsAbility(toReturn, maximizedAbility);
+            toReturn = TAiUtils.GetHigherPointsAbility(toReturn, maximizedAbility);
         }
 
         return toReturn;
