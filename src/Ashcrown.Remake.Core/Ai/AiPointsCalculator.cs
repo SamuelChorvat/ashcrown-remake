@@ -8,7 +8,6 @@ using Ashcrown.Remake.Core.Champions.Luther.ActiveEffects;
 
 namespace Ashcrown.Remake.Core.Ai;
 
-// TODO AI Tests with random champions where player just passes until loss
 public abstract class AiPointsCalculator : IAiPointsCalculator
 {
     public static int GetInvulnerabilityPoints(int numberOfTurns, IAbility ability, IChampion target)
