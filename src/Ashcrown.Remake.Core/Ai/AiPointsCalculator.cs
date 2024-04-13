@@ -210,7 +210,7 @@ public class AiPointsCalculator : IAiPointsCalculator
             adjustedDuration = Math.Max(adjustedDuration - caster.ActiveEffectController.GetActiveEffectCountByName(JaneNames.CounterShotActiveEffect) * 2, 0);
         }
 
-        return (int) (Math.Round(AiCalculatorConstants.StunPoints * ((double) GetNumberOfStunnedAbilities(adjustedDuration, ability.StunType!, target)/4) * CalculateNumberOfTurnsMultiplier(adjustedDuration))
+        return (int) (Math.Round(AiCalculatorConstants.StunPoints * ((double) GetNumberOfStunnedAbilities(adjustedDuration, ability.StunType!, target)/ChampionConstants.MaxNumberOfCurrentAbilities) * CalculateNumberOfTurnsMultiplier(adjustedDuration))
                       + GetNumberOfStunnableActions(target, ability.StunType!) * AiCalculatorConstants.PointsPerStunnedAction
                       + GetNumberOfStunnableControls(target, ability.StunType!) * AiCalculatorConstants.PointsPerStunnedControl);
     }
@@ -261,82 +261,151 @@ public class AiPointsCalculator : IAiPointsCalculator
 
     public static int GetDisableInvulnerabilityAndDamageReductionPoints(int numberOfTurns, IChampion target)
     {
-        throw new NotImplementedException();
+        if (!IsDisableInvulnerabilityAndDamageReductionEffective(numberOfTurns,target)) {
+            return 0;
+        }
+
+        return (int) Math.Round(AiCalculatorConstants.DisableInvulnerabilityAndDamageReductionPoints * CalculateNumberOfTurnsMultiplier(numberOfTurns)
+                                + ((double)ChampionConstants.ChampionMaxHealth - target.Health)/2);
     }
 
     public static int GetIgnoreHarmfulPoints(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        return (int) Math.Round(AiCalculatorConstants.IgnoreHarmfulPoints
+                                * GetMissingHealthMultiplier(target)
+                                * CalculateNumberOfTurnsMultiplier(numberOfTurns));
     }
 
     public static int GetRemoveAfflictionsPoints(IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        return AiCalculatorConstants.PointsPerRemovedAffliction * NumberOfRemovableAfflictions(ability.Owner, target);
     }
 
     public static int GetRemoveHarmfulPoints(IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        return AiCalculatorConstants.PointsPerRemovedHarmful * NumberOfRemovableHarmful(ability.Owner, target);
     }
 
     public static int GetCostIncreasePoints(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        return (int) Math.Round(AiCalculatorConstants.CostIncreasePoints
+                                * ((double) GetNumberOfAbilitiesContainingClasses(numberOfTurns, ability.CostIncreaseClasses!, target)/ChampionConstants.MaxNumberOfCurrentAbilities)
+                                * CalculateNumberOfTurnsMultiplier(numberOfTurns));
     }
 
     public static int GetCostDecreasePoints(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        return (int) Math.Round(AiCalculatorConstants.CostDecreasePoints
+                                * ((double) GetNumberOfCostDecreasedAbilities(numberOfTurns, ability.CostDecreaseClasses!, target)/ChampionConstants.MaxNumberOfCurrentAbilities)
+                                * CalculateNumberOfTurnsMultiplier(numberOfTurns));
     }
 
     public static int GetCooldownDecreasePoints(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        return (int) Math.Round(AiCalculatorConstants.CooldownDecreasePoints
+                                * ((double) GetNumberOfCooldownDecreasedAbilities(numberOfTurns, ability.CooldownDecreaseClasses!, target)/ChampionConstants.MaxNumberOfCurrentAbilities)
+                                * CalculateNumberOfTurnsMultiplier(numberOfTurns));
     }
 
     public static int GetCounterHarmfulPointsTargetAlly(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        var numberOfChampionsCounterable = 0;
+        var numberOfChampionsAlive = 0;
+        var opponentChampions = target.BattlePlayer.GetEnemyPlayer().Champions;
+        foreach (var opponentChampion in opponentChampions) {
+            if (!opponentChampion.Alive) {
+                continue;
+            }
+
+            if (GetNumberOfHarmfulAbilitiesCounterable(target, opponentChampion) > 0) {
+                numberOfChampionsCounterable += 1;
+            }
+            numberOfChampionsAlive += 1;
+        }
+
+        return (int) Math.Round(AiCalculatorConstants.CounterHarmfulPoints
+                                * GetMissingHealthMultiplier(target)
+                                * CalculateNumberOfTurnsMultiplier(numberOfTurns)
+                                * ((double) numberOfChampionsCounterable/numberOfChampionsAlive));
     }
 
     public static int GetReflectHarmfulPointsTargetAlly(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        var numberOfChampionsReflectable = 0;
+        var numberOfChampionsAlive = 0;
+        var opponentChampions = target.BattlePlayer.GetEnemyPlayer().Champions;
+        foreach (var opponentChampion in opponentChampions) {
+            if (!opponentChampion.Alive) {
+                continue;
+            }
+
+            if (GetNumberOfHarmfulAbilitiesReflectable(target, opponentChampion) > 0) {
+                numberOfChampionsReflectable += 1;
+            }
+            numberOfChampionsAlive += 1;
+        }
+
+        return (int) Math.Round(AiCalculatorConstants.ReflectHarmfulPoints
+                                * GetMissingHealthMultiplier(target)
+                                * CalculateNumberOfTurnsMultiplier(numberOfTurns)
+                                * ((double) numberOfChampionsReflectable/numberOfChampionsAlive));
     }
 
     public static int GetCounterHarmfulPointsTargetEnemies(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        return (int) Math.Round(AiCalculatorConstants.CounterHarmfulPoints
+                                * CalculateNumberOfTurnsMultiplier(numberOfTurns)
+                                * ((double) GetNumberOfHarmfulAbilitiesCounterableEnemyTarget(ability.Owner, target)/ChampionConstants.MaxNumberOfCurrentAbilities));
     }
-
+    
     public static int GetCounterPointsTargetEnemy(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        return (int) Math.Round(AiCalculatorConstants.CounterHarmfulPoints
+                                * CalculateNumberOfTurnsMultiplier(numberOfTurns)
+                                * ((double) GetNumberOfHarmfulAbilitiesCounterableOnEnemy(ability, target)/ChampionConstants.MaxNumberOfCurrentAbilities));
     }
 
     public static int GetReduceStunDurationPoints(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        if (ChampionHasStunAbility(target)) {
+            return (int) Math.Round(AiCalculatorConstants.ReduceStunDurationPoints * CalculateNumberOfTurnsMultiplier(numberOfTurns));
+        }
+
+        return 0;
     }
 
     public static int GetReduceEnergyStealRemovePoints(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
-    }
+        if (ChampionHasEnergyStealRemoveAbility(target)) {
+            return (int) Math.Round(AiCalculatorConstants.ReduceEnergyStealRemovePoints 
+                                    * CalculateNumberOfTurnsMultiplier(numberOfTurns));
+        }
 
+        return 0;
+    }
+    
     public static int GetHealingReductionPoints(int numberOfTurns, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        if (ChampionHasHealingAbilities(numberOfTurns, target)) {
+            return (int) Math.Round(AiCalculatorConstants.HealingReductionPoints * CalculateNumberOfTurnsMultiplier(numberOfTurns));
+        }
+
+        return 0;
     }
 
     public static int ApplyPenalties(int abilityPoints, IAbility ability, IChampion target)
     {
-        throw new NotImplementedException();
+        var penalizedAbilityPoints = ApplyCounterAndReflectPenalty(abilityPoints, ability, target);
+        penalizedAbilityPoints = ApplyAbilityCostPenalty(penalizedAbilityPoints, ability);
+        if (target.BattlePlayer.PlayerNo != ability.Owner.BattlePlayer.PlayerNo) {
+            penalizedAbilityPoints = target.AiApplyChampionSpecificPenalty(penalizedAbilityPoints, ability);
+        }
+        return Math.Max(penalizedAbilityPoints, 0);
     }
 
     public static int GetTotalDestructible(IChampion target)
     {
-        throw new NotImplementedException();
+        return target.ActiveEffects.Sum(t => t.DestructibleDefense);
     }
     
     private static double CalculateNumberOfTurnsMultiplier(int numberOfTurns)
@@ -369,7 +438,7 @@ public class AiPointsCalculator : IAiPointsCalculator
         }
 
         var invulnerableAbilityCount = 0;
-        for (var i = 1; i <= 4; i++) {
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
             if (!attacker.AbilityController.GetCurrentAbility(i).Active
                 && attacker.AbilityController.GetCurrentAbility(i).ToReady > 1) {
                 continue;
@@ -414,7 +483,7 @@ public class AiPointsCalculator : IAiPointsCalculator
     private static int GetNumberOfAbilitiesContainingClasses(int adjustedDuration, AbilityClass[] abilityStunType, IChampion target)
     {
         var abilityCount = 0;
-        for (var i = 1; i <= 4; i++)
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++)
         {
             if (!target.AbilityController.GetCurrentAbility(i).Active && target.AbilityController.GetCurrentAbility(i).ToReady > adjustedDuration) {
                 continue;
@@ -445,12 +514,248 @@ public class AiPointsCalculator : IAiPointsCalculator
             return false;
         }
 
-        for (var i = 1; i <=4; i++) {
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
             if (champion.AbilityController.GetCurrentAbility(i).Stun
                 && GetNumberOfStunnedAbilities(1, champion.AbilityController.GetCurrentAbility(i).StunType!, target) > 0) {
                 return true;
             }
         }
         return false;
+    }
+    
+    private static bool IsDisableInvulnerabilityAndDamageReductionEffective(int numberOfTurns, IChampion target)
+    {
+        if (target.ChampionController.IsInvulnerabilityDisabled()
+            || target.ChampionController.IsIgnoringReceivedDamageReduction()
+            || target.ChampionController.IsIgnoringHarmful()) {
+            return false;
+        }
+
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
+            var ability = target.AbilityController.GetCurrentAbility(i);
+            if (ability.Invulnerability && (ability.Active || ability.ToReady < numberOfTurns)) {
+                return  true;
+            }
+
+            if ((ability.ReceiveDamageReductionPoint1 > 0 || ability.ReceiveDamageReductionPercent1 > 0 ) 
+                && (ability.Active || ability.ToReady < numberOfTurns)) {
+                return  true;
+            }
+        }
+
+        return target.ChampionController.TotalAllDamageReceiveReduce.Points > 0
+               || target.ChampionController.TotalAllDamageReceiveReduce.Percentage > 0
+               || target.ChampionController.TotalPhysicalDamageReceiveReduce.Points > 0
+               || target.ChampionController.TotalPhysicalDamageReceiveReduce.Percentage > 0
+               || target.ChampionController.TotalMagicDamageReceiveReduce.Points > 0
+               || target.ChampionController.TotalMagicDamageReceiveReduce.Percentage > 0;
+    }
+    
+    private static int NumberOfRemovableAfflictions(IChampion caster, IChampion target)
+    {
+        return target.ActiveEffects.Count(activeEffect => 
+            activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo != caster.BattlePlayer.PlayerNo 
+            && activeEffect.OriginAbility.AbilityClassesContains(AbilityClass.Affliction) 
+            && !activeEffect.CannotBeRemoved);
+    }
+    
+    private static int NumberOfRemovableHarmful(IChampion caster, IChampion target)
+    {
+        return target.ActiveEffects.Count(activeEffect => 
+            activeEffect.OriginAbility.Owner.BattlePlayer.PlayerNo != caster.BattlePlayer.PlayerNo 
+            && activeEffect is {Harmful: true, CannotBeRemoved: false});
+    }
+    
+    private static int GetNumberOfCostDecreasedAbilities(int numberOfTurns, AbilityClass[] abilityCostDecreaseClasses, IChampion target)
+    {
+        var abilityCount = 0;
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
+            if (!target.AbilityController.GetCurrentAbility(i).Active && target.AbilityController.GetCurrentAbility(i).ToReady > numberOfTurns) {
+                continue;
+            }
+
+            if (target.AbilityController.GetCurrentAbility(i).GetCurrentCost()[4] <= 0) {
+                continue;
+            }
+
+            if (abilityCostDecreaseClasses.Any(increaseClass => 
+                    increaseClass == AbilityClass.All 
+                    || target.AbilityController.GetCurrentAbility(i).AbilityClassesContains(increaseClass)))
+            {
+                abilityCount += 1;
+            }
+        }
+        return abilityCount;
+    }
+    
+    private static int GetNumberOfCooldownDecreasedAbilities(int numberOfTurns, AbilityClass[] abilityCooldownDecreaseClasses, IChampion target)
+    {
+        var abilityCount = 0;
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
+            if (!target.AbilityController.GetCurrentAbility(i).Active && target.AbilityController.GetCurrentAbility(i).ToReady > numberOfTurns) {
+                continue;
+            }
+
+            if (target.AbilityController.GetCurrentAbility(i).GetCurrentCooldown() <= 0) {
+                continue;
+            }
+
+            if (abilityCooldownDecreaseClasses.Any(increaseClass => 
+                    increaseClass == AbilityClass.All 
+                    || target.AbilityController.GetCurrentAbility(i).AbilityClassesContains(increaseClass)))
+            {
+                abilityCount += 1;
+            }
+        }
+        return abilityCount;
+    }
+    
+    private static int GetNumberOfHarmfulAbilitiesCounterable(IChampion caster, IChampion opponentChampion)
+    {
+        if (caster.ChampionController.IsIgnoringHarmful()) {
+            return 0;
+        }
+
+        var counterableAbilityCount = 0;
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
+            if (!opponentChampion.AbilityController.GetCurrentAbility(i).Active
+                && opponentChampion.AbilityController.GetCurrentAbility(i).ToReady > 1) {
+                continue;
+            }
+
+            if (opponentChampion.AbilityController.GetCurrentAbility(i).Harmful 
+                && opponentChampion.AbilityController.GetCurrentAbility(i).Counterable) {
+                counterableAbilityCount += 1;
+            }
+        }
+        return counterableAbilityCount;
+    }
+    
+    private static int GetNumberOfHarmfulAbilitiesReflectable(IChampion caster, IChampion opponentChampion)
+    {
+        if (caster.ChampionController.IsIgnoringHarmful()) {
+            return 0;
+        }
+
+        var reflectableAbilityCount = 0;
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
+            if (!opponentChampion.AbilityController.GetCurrentAbility(i).Active
+                && opponentChampion.AbilityController.GetCurrentAbility(i).ToReady > 1) {
+                continue;
+            }
+
+            if (opponentChampion.AbilityController.GetCurrentAbility(i).Harmful 
+                && opponentChampion.AbilityController.GetCurrentAbility(i).Reflectable) {
+                reflectableAbilityCount += 1;
+            }
+        }
+        return reflectableAbilityCount;
+    }
+    
+    private static int GetNumberOfHarmfulAbilitiesCounterableEnemyTarget(IChampion abilityOwner, IChampion target)
+    {
+        var counterableAbilityCount = 0;
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
+            if (!target.AbilityController.GetCurrentAbility(i).Active
+                && target.AbilityController.GetCurrentAbility(i).ToReady > 1) {
+                continue;
+            }
+
+            if (target.AbilityController.GetCurrentAbility(i).Harmful 
+                && target.AbilityController.GetCurrentAbility(i).Counterable) {
+                counterableAbilityCount += 1;
+            }
+        }
+        return counterableAbilityCount;
+    }
+    
+    private static int GetNumberOfHarmfulAbilitiesCounterableOnEnemy(IAbility ability, IChampion targetToCounter)
+    {
+        var counterableAbilityCount = 0;
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++)
+        {
+            if (!targetToCounter.AbilityController.GetCurrentAbility(i).Active
+                && targetToCounter.AbilityController.GetCurrentAbility(i).ToReady > 1
+                && !targetToCounter.AbilityController.GetCurrentAbility(i).Counterable) {
+                continue;
+            }
+
+            counterableAbilityCount += ability.CounterClasses!.Count(abilityClass => 
+                abilityClass == AbilityClass.All 
+                || targetToCounter.AbilityController.GetCurrentAbility(i).AbilityClassesContains(abilityClass));
+        }
+        return counterableAbilityCount;
+    }
+    
+    private static bool ChampionHasStunAbility(IChampion champion)
+    {
+        if (!champion.Alive || champion.ChampionController.IsIgnoringHarmful()) {
+            return false;
+        }
+
+        for (var i = 1; i <= 4; i++) {
+            if (champion.AbilityController.GetCurrentAbility(i).Stun) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private static bool ChampionHasEnergyStealRemoveAbility(IChampion champion)
+    {
+        if (!champion.Alive || champion.ChampionController.IsIgnoringHarmful()) {
+            return false;
+        }
+
+        for (var i = 1; i <=4; i++) {
+            var ability = champion.AbilityController.GetCurrentAbility(i);
+            if ((ability.EnergyRemove || ability.EnergySteal) && ability is {JustUsed: false, ToReady: <= 1}) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private static bool ChampionHasHealingAbilities(int numberOfTurns, IChampion target)
+    {
+        for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
+            if (!target.AbilityController.GetCurrentAbility(i).Active 
+                && target.AbilityController.GetCurrentAbility(i).ToReady > numberOfTurns) {
+                continue;
+            }
+
+            if (target.AbilityController.GetCurrentAbility(i).Healing 
+                || target.AbilityController.GetCurrentAbility(i).Heal1 > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private static int ApplyCounterAndReflectPenalty(int abilityPoints, IAbility ability, IChampion target)
+    {
+        var totalPenalty = 0d;
+
+        if (ability.Counterable) {
+            if (target.AiCanCounterAbilitySelf(ability)
+                || ability.Owner.BattlePlayer.GetEnemyPlayer().AiCanAnyoneTargetCounterAbility(ability)) {
+                totalPenalty += AiCalculatorConstants.CounterPenalty;
+            }
+        }
+
+        if (ability.Reflectable) {
+            if (target.AiCanReflectAbilitySelf(ability)
+                || ability.Owner.BattlePlayer.GetEnemyPlayer().AiCanAnyoneTargetReflectAbility(ability)) {
+                totalPenalty += AiCalculatorConstants.ReflectPenalty;
+            }
+        }
+
+        return (int) Math.Round(abilityPoints * (1d - totalPenalty));
+    }
+    
+    private static int ApplyAbilityCostPenalty(int abilityPoints, IAbility ability)
+    {
+        var totalAbilityCost = ability.GetCurrentCost().Sum();
+        return Math.Max(abilityPoints - AiCalculatorConstants.PenaltyPerEnergy * totalAbilityCost, 0);
     }
 }
