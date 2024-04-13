@@ -355,7 +355,7 @@ public class AiPointsCalculator : IAiPointsCalculator
     {
         return (int) Math.Round(AiCalculatorConstants.CounterHarmfulPoints
                                 * CalculateNumberOfTurnsMultiplier(numberOfTurns)
-                                * ((double) GetNumberOfHarmfulAbilitiesCounterableEnemyTarget(ability.Owner, target)/ChampionConstants.MaxNumberOfCurrentAbilities));
+                                * ((double) GetNumberOfHarmfulAbilitiesCounterableEnemyTarget(target)/ChampionConstants.MaxNumberOfCurrentAbilities));
     }
     
     public static int GetCounterPointsTargetEnemy(int numberOfTurns, IAbility ability, IChampion target)
@@ -652,7 +652,7 @@ public class AiPointsCalculator : IAiPointsCalculator
         return reflectableAbilityCount;
     }
     
-    private static int GetNumberOfHarmfulAbilitiesCounterableEnemyTarget(IChampion abilityOwner, IChampion target)
+    private static int GetNumberOfHarmfulAbilitiesCounterableEnemyTarget(IChampion target)
     {
         var counterableAbilityCount = 0;
         for (var i = 1; i <= ChampionConstants.MaxNumberOfCurrentAbilities; i++) {
