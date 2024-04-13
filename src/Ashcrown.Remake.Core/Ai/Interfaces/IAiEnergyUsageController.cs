@@ -6,7 +6,7 @@ namespace Ashcrown.Remake.Core.Ai.Interfaces;
 
 public interface IAiEnergyUsageController
 {
-    IList<AiEnergyUsage> EnergyUsages { get; init; }
+    IList<AiEnergyUsage> EnergyUsages { get; }
     void Reset();
     void IncrementEnergyUsage(EnergyType energyType, int incrementBy);
     void CalculateEnergyUsage(IChampion[] champions);
