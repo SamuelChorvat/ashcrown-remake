@@ -3,18 +3,13 @@ using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Ai.Models;
 
-public class AiMaximizedAbility
+public class AiMaximizedAbility(int points, int[] targets)
 {
-    private readonly int _points;
-    
     public int CasterNo { get; set; }
     public int AbilityNo  { get; set; }
-    public int Points 
-    { 
-        get => _points; 
-        init => _points = Math.Max(value, 0);
-    }
-    public required int[] Targets { get; init; }
+    public int Points { get; } = Math.Max(points, 0);
+
+    public int[] Targets { get; init; } = targets;
     public IAbility? Ability { get; set; }
     public IChampion? Champion { get; set; }
 }

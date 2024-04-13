@@ -5,17 +5,12 @@ namespace Ashcrown.Remake.Core.Ai.Interfaces;
 
 public interface IAiAbilityHelper
 {
-    IAbility Ability { get; init; }
-    int[] CreateEmptyTargets();
-    AiMaximizedAbility StandardSelfInvulnerabilityMaximizer();
-    IList<int[]> GetTargetsPermutations();
-    AiMaximizedAbility GetHighestPointsTargetsPermutation(IList<int[]> targetsPermutations,
-        IList<int> targetsPermutationsPoints);
-    AiMaximizedAbility SelfTargetAbilityMaximizer(); //TODO Could these methods be converted to extensions?
-    AiMaximizedAbility EnemyTargetAbilityMaximizer();
-    AiMaximizedAbility EnemiesTargetAbilityMaximizer();
-    AiMaximizedAbility AllyTargetAbilityMaximizer();
-    AiMaximizedAbility AlliesTargetAbilityMaximizer();
-    AiMaximizedAbility AllTargetAbilityMaximizer();
-    AiMaximizedAbility AllyOrEnemyTargetAbilityMaximizer();
+    AiMaximizedAbility StandardSelfInvulnerabilityMaximizer<T>() where T : IAiPointsCalculator;
+    AiMaximizedAbility SelfTargetAbilityMaximizer<T>() where T : IAiPointsCalculator;
+    AiMaximizedAbility EnemyTargetAbilityMaximizer<T>() where T : IAiPointsCalculator;
+    AiMaximizedAbility EnemiesTargetAbilityMaximizer<T>() where T : IAiPointsCalculator;
+    AiMaximizedAbility AllyTargetAbilityMaximizer<T>() where T : IAiPointsCalculator;
+    AiMaximizedAbility AlliesTargetAbilityMaximizer<T>() where T : IAiPointsCalculator;
+    AiMaximizedAbility AllTargetAbilityMaximizer<T>() where T : IAiPointsCalculator;
+    AiMaximizedAbility AllyOrEnemyTargetAbilityMaximizer<T>() where T : IAiPointsCalculator;
 }
