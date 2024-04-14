@@ -19,7 +19,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
 
     public AiMaximizedAbility SelfTargetAbilityMaximizer<T>() where T : IAiPointsCalculator
     {
-        var totalPoints = ability.CalculateTotalPointsForTarget(ability.Owner);
+        var totalPoints = ability.CalculateTotalPointsForTarget<T>(ability.Owner);
         totalPoints = T.ApplyPenalties(totalPoints, ability, ability.Owner);
 
         var targets = CreateEmptyTargets();
@@ -39,7 +39,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
             {
                 if (targetsPermutation[i] != 1) continue;
                 var target = ability.Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
-                totalPoints = ability.CalculateTotalPointsForTarget(target);
+                totalPoints = ability.CalculateTotalPointsForTarget<T>(target);
                 totalPoints = T.ApplyPenalties(totalPoints, ability, target);
                 break;
             }
@@ -59,7 +59,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
         {
             if (targetsPermutation[i] != 1) continue;
             var target = ability.Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3];
-            var currentTargetPoints = ability.CalculateTotalPointsForTarget(target);
+            var currentTargetPoints = ability.CalculateTotalPointsForTarget<T>(target);
             currentTargetPoints = T.ApplyPenalties(currentTargetPoints, ability, target);
             totalPoints += currentTargetPoints;
         }
@@ -78,7 +78,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
             {
                 if (targetsPermutation[i] != 1) continue;
                 var target = ability.Owner.BattlePlayer.Champions[i];
-                totalPoints = ability.CalculateTotalPointsForTarget(target);
+                totalPoints = ability.CalculateTotalPointsForTarget<T>(target);
                 totalPoints = T.ApplyPenalties(totalPoints, ability, target);
                 break;
             }
@@ -98,7 +98,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
         {
             if (targetsPermutation[i] != 1) continue;
             var target = ability.Owner.BattlePlayer.Champions[i];
-            var currentTargetPoints = ability.CalculateTotalPointsForTarget(target);
+            var currentTargetPoints = ability.CalculateTotalPointsForTarget<T>(target);
             currentTargetPoints = T.ApplyPenalties(currentTargetPoints, ability, target);
             totalPoints += currentTargetPoints;
         }
@@ -118,7 +118,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
             var target = i >= 3 ? 
                 ability.Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3] 
                 : ability.Owner.BattlePlayer.Champions[i];
-            var currentTargetPoints = ability.CalculateTotalPointsForTarget(target);
+            var currentTargetPoints = ability.CalculateTotalPointsForTarget<T>(target);
             currentTargetPoints = T.ApplyPenalties(currentTargetPoints, ability, target);
             totalPoints += currentTargetPoints;
         }
@@ -139,7 +139,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
                 var target = i >= 3 ? ability.Owner.BattlePlayer.GetEnemyPlayer().Champions[i - 3] 
                     : ability.Owner.BattlePlayer.Champions[i];
 
-                totalPoints = ability.CalculateTotalPointsForTarget(target);
+                totalPoints = ability.CalculateTotalPointsForTarget<T>(target);
                 totalPoints = T.ApplyPenalties(totalPoints, ability, target);
                 break;
             }

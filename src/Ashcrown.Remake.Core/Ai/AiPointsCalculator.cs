@@ -206,7 +206,7 @@ public abstract class AiPointsCalculator : IAiPointsCalculator
         var caster = ability.Owner;
         var adjustedDuration = stunDuration;
         if (!caster.ChampionController.IsIgnoringHarmful()) {
-            adjustedDuration = Math.Max(adjustedDuration - caster.ActiveEffectController.GetActiveEffectCountByName(JaneNames.CounterShotActiveEffect) * 2, 0);
+            adjustedDuration = Math.Max(adjustedDuration - caster.ActiveEffectController.GetActiveEffectCountByName(JaneConstants.CounterShotActiveEffect) * 2, 0);
         }
 
         return (int) (Math.Round(AiCalculatorConstants.StunPoints * ((double) GetNumberOfStunnedAbilities(adjustedDuration, ability.StunType!, target)/ChampionConstants.MaxNumberOfCurrentAbilities) * CalculateNumberOfTurnsMultiplier(adjustedDuration))

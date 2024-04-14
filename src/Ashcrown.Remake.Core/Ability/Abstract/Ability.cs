@@ -9,16 +9,7 @@ using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Ability.Abstract;
 
-public abstract class Ability(
-    IChampion champion,
-    string abilityName,
-    string description,
-    int originalCooldown,
-    int[] originalCost,
-    AbilityClass[] abilityClasses,
-    AbilityTarget abilityTarget,
-    AbilityType abilityType,
-    IAiAbilityHelper aiAbilityHelper) : IAbility
+public abstract class Ability : IAbility
 {
     private const int MaxTotalAbilityCost = 5;
     
@@ -27,16 +18,35 @@ public abstract class Ability(
     private int _randomCostModifier;
     private bool _costChanged;
     private bool _aiActive = true;
-    
-    public required IChampion Owner { get; set; } = champion;
-    public required string Name { get; set; } = abilityName;
-    public required string Description { get; set; } = description;
-    public required int OriginalCooldown { get; set; } = originalCooldown;
-    public required int[] OriginalCost { get; set; } = originalCost;
-    public required AbilityClass[] AbilityClasses { get; set; } = abilityClasses;
-    public required AbilityTarget Target { get; set; } = abilityTarget;
-    public required AbilityType AbilityType { get; set; } = abilityType;
-    public required IAiAbilityHelper AiAbilityHelper { get; init; } = aiAbilityHelper;
+
+    private readonly IAiAbilityHelper _aiAbilityHelper;
+
+    protected Ability(IChampion champion,
+        string abilityName,
+        int originalCooldown,
+        int[] originalCost,
+        AbilityClass[] abilityClasses,
+        AbilityTarget abilityTarget,
+        AbilityType abilityType)
+    {
+        Owner = champion;
+        Name = abilityName;
+        OriginalCooldown = originalCooldown;
+        OriginalCost = originalCost;
+        AbilityClasses = abilityClasses;
+        Target = abilityTarget;
+        AbilityType = abilityType;
+        _aiAbilityHelper = new AiAbilityHelper(this);
+    }
+
+    public IChampion Owner { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; } = string.Empty;
+    public int OriginalCooldown { get; set; }
+    public int[] OriginalCost { get; set; }
+    public AbilityClass[] AbilityClasses { get; set; }
+    public AbilityTarget Target { get; set; }
+    public AbilityType AbilityType { get; set; }
     public bool Active { get; set; } = true;
     public bool IgnoreInvulnerability { get; set; }
     public bool Counterable { get; set; } = true;
@@ -308,18 +318,18 @@ public abstract class Ability(
     public AiMaximizedAbility AiMaximizeAbility<T>() where T : IAiPointsCalculator
     {
         if (AiStandardSelfInvulnerability) {
-            return AiAbilityHelper.StandardSelfInvulnerabilityMaximizer<T>();
+            return _aiAbilityHelper.StandardSelfInvulnerabilityMaximizer<T>();
         }
 
         return Target switch
         {
-            AbilityTarget.Self => AiAbilityHelper.SelfTargetAbilityMaximizer<T>(),
-            AbilityTarget.Ally => AiAbilityHelper.AllyTargetAbilityMaximizer<T>(),
-            AbilityTarget.Allies => AiAbilityHelper.AlliesTargetAbilityMaximizer<T>(),
-            AbilityTarget.Enemy => AiAbilityHelper.EnemyTargetAbilityMaximizer<T>(),
-            AbilityTarget.Enemies => AiAbilityHelper.EnemiesTargetAbilityMaximizer<T>(),
-            AbilityTarget.AllyOrEnemy => AiAbilityHelper.AllyOrEnemyTargetAbilityMaximizer<T>(),
-            AbilityTarget.All => AiAbilityHelper.AllTargetAbilityMaximizer<T>(),
+            AbilityTarget.Self => _aiAbilityHelper.SelfTargetAbilityMaximizer<T>(),
+            AbilityTarget.Ally => _aiAbilityHelper.AllyTargetAbilityMaximizer<T>(),
+            AbilityTarget.Allies => _aiAbilityHelper.AlliesTargetAbilityMaximizer<T>(),
+            AbilityTarget.Enemy => _aiAbilityHelper.EnemyTargetAbilityMaximizer<T>(),
+            AbilityTarget.Enemies => _aiAbilityHelper.EnemiesTargetAbilityMaximizer<T>(),
+            AbilityTarget.AllyOrEnemy => _aiAbilityHelper.AllyOrEnemyTargetAbilityMaximizer<T>(),
+            AbilityTarget.All => _aiAbilityHelper.AllTargetAbilityMaximizer<T>(),
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -399,7 +409,7 @@ public abstract class Ability(
         return targetsToReturn;
     }
 
-    public virtual int CalculateTotalPointsForTarget(IChampion target)
+    public virtual int CalculateTotalPointsForTarget<T>(IChampion target) where T : IAiPointsCalculator
     {
         if (Owner.AiReady) throw new NotImplementedException();
         return 0;

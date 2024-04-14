@@ -10,19 +10,16 @@ using Ashcrown.Remake.Core.Champions.Sanguimon.Champion;
 namespace Ashcrown.Remake.Core.ActiveEffect.Abstract;
 
 public abstract class ActiveEffect(
-    IAbility originAbility,
     string activeEffectName,
-    IChampion championTarget,
-    int duration,
-    int timeLeft,
-    string description) : IActiveEffect
+    IAbility originAbility,
+    IChampion championTarget) : IActiveEffect
 {
     public required IAbility OriginAbility { get; set; } = originAbility;
     public required IChampion Target { get; set; } = championTarget;
     public required string Name { get; set; } = activeEffectName;
-    public required string Description { get; set; } = description;
-    public required int Duration { get; set; } = duration;
-    public required int TimeLeft { get; set; } = timeLeft;
+    public string Description { get; set; } = string.Empty;
+    public int Duration { get; set; }
+    public int TimeLeft { get; set; }
     public AbilityClass[]? ActiveEffectClasses { get; set; }
     public int DestructibleDefense { get; set; }
     public bool Hidden { get; set; }
@@ -364,8 +361,8 @@ public abstract class ActiveEffect(
         return new ActiveEffectUpdate
         {
             // TODO Refactor this to override in the AE
-            OriginAbilityName = Name.Equals(SanguimonNames.HuntActiveEffect)
-                ? SanguimonNames.Hunt
+            OriginAbilityName = Name.Equals(SanguimonConstants.HuntActiveEffect)
+                ? SanguimonConstants.Hunt
                 : GetAbilityName(),
             Description = GetDescriptionWithTimeLeftAffix(playerNo),
             Stacks = Stacks,

@@ -133,7 +133,7 @@ public class ChampionController(
         target.ChampionController.ReceiveAbilityDamage(newAmount, ability, secondary, appliedAdditionalLogic);
 
         if (ability is {EnergyRemove: false, EnergySteal: false}) return;
-        if (ability.Name.Equals(JafaliNames.Pride)) {
+        if (ability.Name.Equals(JafaliConstants.Pride)) {
             ability.EnergyAmount = Pride.GetEnergyAmount(target);
         }
 

@@ -22,8 +22,8 @@ public interface IChampion
     int AiTotalDestructibleDefenseLeft { get; set; }
     int AiTotalDamageToReceiveAfterDestructible { get; set; }
     int AiTotalHealingToReceive { get; set; }
-    IAbility[] CurrentAbilities { get; init; }
-    IList<IAbility>[] Abilities { get; init; } 
+    IAbility[] CurrentAbilities { get; set; }
+    IList<IAbility>[] Abilities { get; set; } 
     IList<IActiveEffect> ActiveEffects { get; init; }
     IAbilityController AbilityController { get; init; }
     IActiveEffectController ActiveEffectController { get; init; }
@@ -38,4 +38,5 @@ public interface IChampion
     int GetTargetNo(IChampion championTargeting);
     int AiApplyChampionSpecificPenalty(int totalPoints, IAbility ability);
     bool ReceivedReflectStun();
+    void SetStartAbilities(IAbility startAbility1, IAbility startAbility2, IAbility startAbility3, IAbility startAbility4);
 }

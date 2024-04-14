@@ -9,11 +9,7 @@ public abstract class Champion(
     IBattleLogic battleLogic,
     IBattlePlayer battlePlayer,
     int championNo,
-    string championName,
-    IAbility startAbility1,
-    IAbility startAbility2,
-    IAbility startAbility3,
-    IAbility startAbility4) : IChampion
+    string championName) : IChampion
 {
     private bool[]? _energyUsage;
     
@@ -47,15 +43,8 @@ public abstract class Champion(
     public int AiTotalDestructibleDefenseLeft { get; set; }
     public int AiTotalDamageToReceiveAfterDestructible { get; set; }
     public int AiTotalHealingToReceive { get; set; }
-    public required IAbility[] CurrentAbilities { get; init; } = 
-        [startAbility1, startAbility2, startAbility3, startAbility4];
-    public required IList<IAbility>[] Abilities { get; init; } =
-    [
-        new List<IAbility> { startAbility1 },
-        new List<IAbility> { startAbility2 },
-        new List<IAbility> { startAbility3 },
-        new List<IAbility> { startAbility4 }
-    ];
+    public IAbility[] CurrentAbilities { get; set; } = [];
+    public IList<IAbility>[] Abilities { get; set; } = [];
     public required IList<IActiveEffect> ActiveEffects { get; init; } = new List<IActiveEffect>();
     public required IAbilityController AbilityController { get; init; } //TODO
     public required IActiveEffectController ActiveEffectController { get; init; } //TODO
@@ -115,6 +104,18 @@ public abstract class Champion(
     public bool ReceivedReflectStun()
     {
         return ReceivedReflectedAbilities.Any(ability => ability.Stun);
+    }
+
+    public void SetStartAbilities(IAbility startAbility1, IAbility startAbility2, IAbility startAbility3, IAbility startAbility4)
+    {
+        CurrentAbilities = [startAbility1, startAbility2, startAbility3, startAbility4];
+        Abilities =
+        [
+            new List<IAbility> { startAbility1 },
+            new List<IAbility> { startAbility2 },
+            new List<IAbility> { startAbility3 },
+            new List<IAbility> { startAbility4 }
+        ];
     }
     
     private void GetEnergyUsageHelper(IEnumerable<IAbility> abilities) {
