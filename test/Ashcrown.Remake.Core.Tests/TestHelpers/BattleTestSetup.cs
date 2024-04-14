@@ -1,0 +1,36 @@
+﻿using Ashcrown.Remake.Core.Ability.Enums;
+using Ashcrown.Remake.Core.Battle;
+using Ashcrown.Remake.Core.Battle.Interfaces;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound.Validators;
+using Microsoft.Extensions.Logging;
+
+namespace Ashcrown.Remake.Core.Tests.TestHelpers;
+
+public static class BattleTestSetup
+{
+    public static IBattleLogic StandardMockedSetupWithSingleChampion(string championName)
+    {
+        var battleLogic = new BattleLogic(false,
+            new TeamFactory(),
+            new EndTurnValidator(),
+            LoggerFactory.Create(builder =>
+            {
+                builder
+                    .AddDebug()
+                    .AddConsole()
+                    .SetMinimumLevel(LogLevel.Trace);
+            }));
+        
+        battleLogic.SetBattlePlayer(1, "Player1", 
+            [championName, championName, championName], false);
+        battleLogic.SetBattlePlayer(2, "Player2", 
+            [championName, championName, championName], false);
+
+        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Blue] = 99;
+        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Red] = 99;
+        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Green] = 99;
+        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Purple] = 99;
+
+        return battleLogic;
+    }
+}

@@ -10,27 +10,41 @@ using Microsoft.Extensions.Logging;
 
 namespace Ashcrown.Remake.Core.Battle;
 
-public class BattleLogic(
-    bool aiBattle,
-    ITeamFactory teamFactory,
-    IBattleHistoryRecorder battleHistoryRecorder,
-    IValidator<EndTurn> endTurnValidator,
-    ILogger<BattleLogic> logger) : IBattleLogic
+public class BattleLogic : IBattleLogic
 {
+    private readonly ILogger<BattleLogic> _logger;
+    private readonly ITeamFactory _teamFactory;
+    private readonly IValidator<EndTurn> _endTurnValidator;
+    private readonly ILoggerFactory _loggerFactory;
+
+    public BattleLogic(bool aiBattle,
+        ITeamFactory teamFactory,
+        IValidator<EndTurn> endTurnValidator,
+        ILoggerFactory loggerFactory)
+    {
+        _teamFactory = teamFactory;
+        _endTurnValidator = endTurnValidator;
+        _loggerFactory = loggerFactory;
+        _logger = loggerFactory.CreateLogger<BattleLogic>();
+        BattleHistoryRecorder = new BattleHistoryRecorder(this);
+        AiBattle = aiBattle;
+    }
+
     public event EventHandler<PlayerUpdate>? TurnChanged;
     public event EventHandler<BattleEndedUpdate>? BattleEnded;
-    public IBattleHistoryRecorder BattleHistoryRecorder { get; init; } = battleHistoryRecorder;
+    public IBattleHistoryRecorder BattleHistoryRecorder { get; init; }
     public IList<IChampion> DiedChampions { get; init; } = new List<IChampion>();
     public DateTime StartTime { get; init; } = DateTime.UtcNow;
     public DateTime EndTime { get; private set; }
     public int TurnCount { get; private set; }
-    public bool AiBattle { get; init; } = aiBattle;
+    public bool AiBattle { get; init; }
     public IBattlePlayer[] BattlePlayers { get; init; } = new IBattlePlayer[2];
     public IBattlePlayer WhoseTurn { get; private set; } = null!;
 
     public void SetBattlePlayer(int playerNo, string playerName, string[] championNames, bool aiOpponent)
     {
-        BattlePlayers[playerNo - 1] = new BattlePlayer(playerNo, playerName, aiOpponent, championNames, this, teamFactory);
+        BattlePlayers[playerNo - 1] = new BattlePlayer(playerNo, playerName, aiOpponent, championNames, 
+            this, _teamFactory, _loggerFactory);
         WhoseTurn = BattlePlayers[0];
     }
 
@@ -76,11 +90,11 @@ public class BattleLogic(
 
     public bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentEnergy)
     {
-        var validationResults = endTurnValidator.Validate(endTurn);
+        var validationResults = _endTurnValidator.Validate(endTurn);
 
         if (!validationResults.IsValid)
         {
-            logger.LogError("Validation failed -> {validationResults}",validationResults.ToString());
+            _logger.LogError("Validation failed -> {validationResults}",validationResults.ToString());
             return false;
         }
 
@@ -98,13 +112,13 @@ public class BattleLogic(
 
         if (!IsCostValid(playerNo, spentEnergy, usedAbilities))
         {
-            logger.LogError("Invalid cost");
+            _logger.LogError("Invalid cost");
             return false;
         }
 
         if (!AreTargetsValid(playerNo, usedAbilities))
         {
-            logger.LogError("Invalid targets problem");
+            _logger.LogError("Invalid targets problem");
             return false;
         }
         
@@ -114,12 +128,12 @@ public class BattleLogic(
         {
             if (usedAbility == null) continue;
             if (!GetBattlePlayer(playerNo).ChampionUseAbility(usedAbility.ChampionNo, usedAbility.AbilityNo, usedAbility.Targets)) {
-                logger.LogError("Use ability problem champNo = {ChampionNo} ({ChampionName}), abilityNo = {AbilityNo} ({AbilityName})", 
+                _logger.LogError("Use ability problem champNo = {ChampionNo} ({ChampionName}), abilityNo = {AbilityNo} ({AbilityName})", 
                     usedAbility.ChampionNo,
                     GetBattlePlayer(playerNo).Champions[usedAbility.ChampionNo - 1].Name, 
                     usedAbility.AbilityNo, 
                     GetBattlePlayer(playerNo).Champions[usedAbility.ChampionNo - 1].AbilityController.GetCurrentAbility(usedAbility.AbilityNo).Name);
-                logger.LogError("{AbilityHistoryString}",BattleHistoryRecorder.GetAbilityHistoryString());
+                _logger.LogError("{AbilityHistoryString}",BattleHistoryRecorder.GetAbilityHistoryString());
                 return false;
             }
             ProcessDeaths();
@@ -156,7 +170,7 @@ public class BattleLogic(
 
     public void EndBattleOnAiError(string errorMessage)
     {
-        logger.LogError("Ending battle due to AI error -> {ErrorMessage}", errorMessage);
+        _logger.LogError("Ending battle due to AI error -> {ErrorMessage}", errorMessage);
         OnBattleEnded(GetHumanBattlePlayer());
     }
 
@@ -200,7 +214,7 @@ public class BattleLogic(
             toSubtract += abilityCost[^1];
             for (var j = 0; j < abilityCost.Length - 1; j++) {
                 if (tempToSpend[j] < abilityCost[j]) {
-                    logger.LogError("Cost problem 1");
+                    _logger.LogError("Cost problem 1");
                     return false;
                 }
                 tempToSpend[j] -= abilityCost[j];
@@ -211,14 +225,14 @@ public class BattleLogic(
         foreach (var energyQuantity in tempToSpend)
         {
             if (energyQuantity < 0) {
-                logger.LogError("Cost problem 2");
+                _logger.LogError("Cost problem 2");
                 return false;
             }
             totalTempToSpend += energyQuantity;
         }
 
         if (totalTempToSpend < toSubtract ) {
-            logger.LogError("Cost problem 3");
+            _logger.LogError("Cost problem 3");
             return false;
         }
 
@@ -243,12 +257,12 @@ public class BattleLogic(
 
         if (targets.Where((t, i) => t == 1 && validTargets[i] != 1).Any())
         {
-            logger.LogError("Invalid targets problem 1");
+            _logger.LogError("Invalid targets problem 1");
             return false;
         }
 
         if (GetTotalNumberOfTargets(targets) <= 0) {
-            logger.LogError("Invalid targets problem 2");
+            _logger.LogError("Invalid targets problem 2");
             return false;
         }
 
@@ -258,7 +272,7 @@ public class BattleLogic(
             case AbilityTarget.Enemy:
             case AbilityTarget.AllyOrEnemy:
                 if (GetTotalNumberOfTargets(targets) != 1) {
-                    logger.LogError("Invalid targets problem 3");
+                    _logger.LogError("Invalid targets problem 3");
                     return false;
                 }
                 break;

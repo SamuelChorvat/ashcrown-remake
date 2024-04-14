@@ -11,6 +11,6 @@ public class EndTurnAbilityValidator : AbstractValidator<EndTurnAbility>
         RuleFor(x => x.AbilityNo).InclusiveBetween(1, 4);
         RuleFor(x => x.Targets).NotNull();
         RuleFor(x => x.Targets!.Length).Equal(6);
-        RuleForEach(x => x.Targets).ExclusiveBetween(-1, 1);
+        RuleForEach(x => x.Targets).InclusiveBetween(-1, 1);
     }
 }

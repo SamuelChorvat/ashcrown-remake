@@ -22,25 +22,25 @@ public class ChampionController(
     IChampion owner,
     IActiveEffectFactory activeEffectFactory) : IChampionController
 {
-    public required PointsPercentageModifier TotalAllDamageDealReduce { get; set; } = new();
-    public required PointsPercentageModifier TotalAllDamageDealIncrease { get; set; } = new();
-    public required PointsPercentageModifier TotalAllDamageReceiveReduce { get; set; } = new();
-    public required PointsPercentageModifier TotalAllDamageReceiveIncrease { get; set; } = new();
+    public PointsPercentageModifier TotalAllDamageDealReduce { get; set; } = new();
+    public PointsPercentageModifier TotalAllDamageDealIncrease { get; set; } = new();
+    public PointsPercentageModifier TotalAllDamageReceiveReduce { get; set; } = new();
+    public PointsPercentageModifier TotalAllDamageReceiveIncrease { get; set; } = new();
     
-    public required PointsPercentageModifier TotalPhysicalDamageDealReduce { get; set; } = new();
-    public required PointsPercentageModifier TotalPhysicalDamageDealIncrease { get; set; } = new();
-    public required PointsPercentageModifier TotalPhysicalDamageReceiveReduce { get; set; } = new();
-    public required PointsPercentageModifier TotalPhysicalDamageReceiveIncrease { get; set; } = new();
+    public PointsPercentageModifier TotalPhysicalDamageDealReduce { get; set; } = new();
+    public PointsPercentageModifier TotalPhysicalDamageDealIncrease { get; set; } = new();
+    public PointsPercentageModifier TotalPhysicalDamageReceiveReduce { get; set; } = new();
+    public PointsPercentageModifier TotalPhysicalDamageReceiveIncrease { get; set; } = new();
     
-    public required PointsPercentageModifier TotalMagicDamageDealReduce { get; set; } = new();
-    public required PointsPercentageModifier TotalMagicDamageDealIncrease { get; set; } = new();
-    public required PointsPercentageModifier TotalMagicDamageReceiveReduce { get; set; } = new();
-    public required PointsPercentageModifier TotalMagicDamageReceiveIncrease { get; set; } = new();
+    public PointsPercentageModifier TotalMagicDamageDealReduce { get; set; } = new();
+    public PointsPercentageModifier TotalMagicDamageDealIncrease { get; set; } = new();
+    public PointsPercentageModifier TotalMagicDamageReceiveReduce { get; set; } = new();
+    public PointsPercentageModifier TotalMagicDamageReceiveIncrease { get; set; } = new();
     
-    public required PointsPercentageModifier TotalHealingDealReduce { get; set; } = new();
-    public required PointsPercentageModifier TotalHealingDealIncrease { get; set; } = new();
-    public required PointsPercentageModifier TotalHealingReceiveReduce { get; set; } = new();
-    public required PointsPercentageModifier TotalHealingReceiveIncrease { get; set; } = new();
+    public PointsPercentageModifier TotalHealingDealReduce { get; set; } = new();
+    public PointsPercentageModifier TotalHealingDealIncrease { get; set; } = new();
+    public PointsPercentageModifier TotalHealingReceiveReduce { get; set; } = new();
+    public PointsPercentageModifier TotalHealingReceiveIncrease { get; set; } = new();
     
     public void TargetedByAbility(IAbility ability)
     {

@@ -1,22 +1,38 @@
+using Ashcrown.Remake.Core.Ability;
 using Ashcrown.Remake.Core.Ability.Interfaces;
+using Ashcrown.Remake.Core.ActiveEffect;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Champion.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Ashcrown.Remake.Core.Champion.Abstract;
 
-public abstract class Champion(
-    IBattleLogic battleLogic,
-    IBattlePlayer battlePlayer,
-    int championNo,
-    string championName) : IChampion
+public abstract class Champion : IChampion
 {
     private bool[]? _energyUsage;
-    
-    public required IBattleLogic BattleLogic { get; init; } = battleLogic;
-    public required IBattlePlayer BattlePlayer { get; init; } = battlePlayer;
-    public required int ChampionNo { get; init; } = championNo;
-    public required string Name { get; set; } = championName;
+
+    protected Champion(IBattleLogic battleLogic,
+        IBattlePlayer battlePlayer,
+        int championNo,
+        string championName,
+        ILoggerFactory loggerFactory)
+    {
+        BattleLogic = battleLogic;
+        BattlePlayer = battlePlayer;
+        ChampionNo = championNo;
+        Name = championName;
+        ActiveEffects = new List<IActiveEffect>();
+        AbilityController = new AbilityController(this, new ActiveEffectFactory());
+        ActiveEffectController = new ActiveEffectController(this, loggerFactory.CreateLogger<ActiveEffectController>());
+        ChampionController = new ChampionController(this, new ActiveEffectFactory());
+        ChampionSpecificsController = new ChampionSpecificsController(this);
+    }
+
+    public required IBattleLogic BattleLogic { get; init; }
+    public required IBattlePlayer BattlePlayer { get; init; }
+    public required int ChampionNo { get; init; }
+    public required string Name { get; set; }
     public int Health { get; set; } = ChampionConstants.ChampionMaxHealth;
     public bool Alive { get; set; } = true;
     public bool Died { get; set; }
@@ -45,11 +61,11 @@ public abstract class Champion(
     public int AiTotalHealingToReceive { get; set; }
     public IAbility[] CurrentAbilities { get; set; } = [];
     public IList<IAbility>[] Abilities { get; set; } = [];
-    public required IList<IActiveEffect> ActiveEffects { get; init; } = new List<IActiveEffect>();
-    public required IAbilityController AbilityController { get; init; } //TODO
-    public required IActiveEffectController ActiveEffectController { get; init; } //TODO
-    public required IChampionController ChampionController { get; init; } //TODO
-    public required IChampionSpecificsController ChampionSpecificsController { get; init; } //TODO
+    public IList<IActiveEffect> ActiveEffects { get; init; }
+    public IAbilityController AbilityController { get; init; }
+    public IActiveEffectController ActiveEffectController { get; init; }
+    public IChampionController ChampionController { get; init; }
+    public IChampionSpecificsController ChampionSpecificsController { get; init; }
     public void StartTurnMethods()
     {
         ReceivedReflectedAbilities.Clear();

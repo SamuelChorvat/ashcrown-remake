@@ -4,6 +4,7 @@ using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 using Ashcrown.Remake.Core.Champion.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Ashcrown.Remake.Core.Battle;
 
@@ -23,12 +24,13 @@ public class BattlePlayer : IBattlePlayer
         bool aiOpponent,
         string[] playersChampionsNames,
         IBattleLogic battleLogic,
-        ITeamFactory teamFactory)
+        ITeamFactory teamFactory,
+        ILoggerFactory loggerFactory)
     {
         PlayerNo = playerNo;
         PlayerName = playerName;
         AiOpponent = aiOpponent;
-        Champions = teamFactory.CreateTeam(battleLogic, playersChampionsNames, this);
+        Champions = teamFactory.CreateTeam(battleLogic, playersChampionsNames, this, loggerFactory);
         _battleLogic = battleLogic;
     }
     
