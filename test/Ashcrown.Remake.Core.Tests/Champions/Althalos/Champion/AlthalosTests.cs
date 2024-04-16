@@ -10,20 +10,20 @@ public class AlthalosTests
     [Fact]
     public void AlthalosHasCorrectName()
     {
-        //Arrange & Act
+        // Arrange & Act
         var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
         
-        //Assert
+        // Assert
         battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(AlthalosConstants.Althalos);
     }
     
     [Fact]
     public void AlthalosHasCorrectAbilities()
     {
-        //Arrange & Act
+        // Arrange & Act
         var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
         
-        //Assert
+        // Assert
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[0].Name.Should().Be(AlthalosConstants.HammerOfJustice);
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[1].Name.Should().Be(AlthalosConstants.HolyLight);
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[2].Name.Should().Be(AlthalosConstants.CrusaderOfLight);

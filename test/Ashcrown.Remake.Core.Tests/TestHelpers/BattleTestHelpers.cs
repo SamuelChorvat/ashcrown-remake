@@ -22,7 +22,7 @@ public static class BattleTestHelpers
         return endTurn;
     }
 
-    public static void PassNumberOfTurn(int currentTurnPlayerNo, IBattleLogic battleLogic, int numberOfTurnsToPass)
+    public static void PassNumberOfTurns(int currentTurnPlayerNo, IBattleLogic battleLogic, int numberOfTurnsToPass)
     {
         while (numberOfTurnsToPass > 0) {
             if (currentTurnPlayerNo == 1) {
