@@ -1,6 +1,7 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Champions.Althalos.Champion;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
+using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;
 using Xunit;
@@ -12,6 +13,7 @@ public class StandardInvulnerabiltyTests
     [Theory]
     [InlineData(AlthalosConstants.Althalos, AlthalosConstants.DivineShieldActiveEffect)]
     [InlineData(EluardConstants.Eluard, EluardConstants.EvadeActiveEffect)]
+    [InlineData(SarfuConstants.Sarfu, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldCorrectlyApplyActiveEffects(string championName, string activeEffectName)
     {
         // Arrange
@@ -36,6 +38,7 @@ public class StandardInvulnerabiltyTests
     [Theory]
     [InlineData(AlthalosConstants.Althalos, AlthalosConstants.DivineShieldActiveEffect)]
     [InlineData(EluardConstants.Eluard, EluardConstants.EvadeActiveEffect)]
+    [InlineData(SarfuConstants.Sarfu, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldBeInvulnerability(string championName, string activeEffectName)
     {
         // Arrange

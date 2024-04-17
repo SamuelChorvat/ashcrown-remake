@@ -26,4 +26,9 @@ public static class AbilityDescriptionExtensions
     {
         return $"<color=#1AB000>{input}</color>";
     }
+    
+    public static string HighlightInBold(this string input)
+    {
+        return $"<b>{input}</b>";
+    }
 }
