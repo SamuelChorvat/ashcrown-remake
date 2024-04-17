@@ -5,7 +5,7 @@ using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;
 using Xunit;
 
-namespace Ashcrown.Remake.Core.Tests.Champions.Common;
+namespace Ashcrown.Remake.Core.Tests.Ability;
 
 public class StandardInvulnerabiltyTests
 {
