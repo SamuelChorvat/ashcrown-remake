@@ -13,7 +13,7 @@ public class HammerOfJusticeActiveEffect : ActiveEffect.Abstract.ActiveEffect
             championTarget)
     {
         Duration1 = originAbility.Duration1 + 1;
-        Description = $"- This character's Physical and Strategic abilities are {"stunned".HighlightInPurple()}";
+        Description = $"- This champion's Physical and Strategic abilities are {"stunned".HighlightInPurple()}";
         Duration = Duration1;
         TimeLeft = Duration1;
         Stun = originAbility.Stun;
