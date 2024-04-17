@@ -46,7 +46,7 @@ public class CrusaderOfLightTests
         BattleTestHelpers.PassNumberOfTurns(2, battleLogic, 1);
 
         // Assert
-        battleLogic.GetBattlePlayer(1).Champions[0].Health.Should().Be(ChampionConstants.ChampionMaxHealth - 20 + 10);
+        battleLogic.GetBattlePlayer(1).Champions[0].Health.Should().Be(90);
     }
 
     [Fact]
