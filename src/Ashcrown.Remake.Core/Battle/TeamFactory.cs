@@ -23,12 +23,12 @@ public class TeamFactory : ITeamFactory
         var className = $"Ashcrown.Remake.Core.Champions.{formattedChampionName}.Champion.{formattedChampionName}";
         var type = Type.GetType(className);
 
-        if (type == null) throw new Exception($"Champion class not found {championName}");
+        if (type == null) throw new Exception($"Champion class not found {championName}, {className}");
         
         object[] constructorArgs = [battleLogic, battlePlayer, championNo, loggerFactory];
         var instance = Activator.CreateInstance(type, constructorArgs);
 
-        if (instance == null) throw new Exception($"Champion instance creation failed {championName}");
+        if (instance == null) throw new Exception($"Champion instance creation failed {championName}, {className}");
         return (IChampion) instance;
     }
 }

@@ -15,12 +15,12 @@ public class AbilityFactory : IAbilityFactory
         var className = $"Ashcrown.Remake.Core.Champions.{formattedChampionName}.Abilities.{formattedAbilityName}";
         var type = Type.GetType(className);
 
-        if (type == null) throw new Exception($"Ability class not found {championName}.{abilityName}");
+        if (type == null) throw new Exception($"Ability class not found {championName}.{abilityName}, {className}");
         
         object[] constructorArgs = [target];
         var instance = Activator.CreateInstance(type, constructorArgs);
 
-        if (instance == null) throw new Exception($"Ability instance creation failed {championName}.{abilityName}");
+        if (instance == null) throw new Exception($"Ability instance creation failed {championName}.{abilityName}, {className}");
         return (IAbility) instance;
     }
 }
