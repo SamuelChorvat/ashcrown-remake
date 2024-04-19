@@ -14,9 +14,9 @@ public abstract class ActiveEffect(
     IAbility originAbility,
     IChampion championTarget) : IActiveEffect
 {
-    public required IAbility OriginAbility { get; set; } = originAbility;
-    public required IChampion Target { get; set; } = championTarget;
-    public required string Name { get; set; } = activeEffectName;
+    public IAbility OriginAbility { get; set; } = originAbility;
+    public IChampion Target { get; set; } = championTarget;
+    public string Name { get; set; } = activeEffectName;
     public string Description { get; set; } = string.Empty;
     public int Duration { get; set; }
     public int TimeLeft { get; set; }
@@ -26,7 +26,7 @@ public abstract class ActiveEffect(
     public int Stacks { get; set; }
     public bool Infinite { get; set; }
     public IActiveEffect? CasterLink { get; set; }
-    public required IList<IActiveEffect> ChildrenLinks { get; set; } = new List<IActiveEffect>();
+    public IList<IActiveEffect> ChildrenLinks { get; set; } = new List<IActiveEffect>();
     public bool Fresh { get; set; } = true;
     public bool Paused { get; set; }
     public bool Source { get; set; }
