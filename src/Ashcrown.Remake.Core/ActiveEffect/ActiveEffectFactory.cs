@@ -12,12 +12,12 @@ public class ActiveEffectFactory : IActiveEffectFactory
         var className = $"Ashcrown.Remake.Core.Champions.{formattedChampionName}.ActiveEffects.{activeEffectName}";
         var type = Type.GetType(className);
 
-        if (type == null) throw new Exception("ActiveEffect class not found");
+        if (type == null) throw new Exception($"ActiveEffect class not found {activeEffectOwner}.{activeEffectName}");
         
         object[] constructorArgs = [ability, target];
         var instance = Activator.CreateInstance(type, constructorArgs);
 
-        if (instance == null) throw new Exception("ActiveEffect instance creation failed");
+        if (instance == null) throw new Exception($"ActiveEffect instance creation failed {activeEffectOwner}.{activeEffectName}");
         return (IActiveEffect) instance;
     }
 }
