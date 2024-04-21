@@ -1,5 +1,7 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Models;
+using Ashcrown.Remake.Core.Ai;
+using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Battle.Enums;
 using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound;
@@ -16,6 +18,7 @@ public class BattleLogic : IBattleLogic
     private readonly ITeamFactory _teamFactory;
     private readonly IValidator<EndTurn> _endTurnValidator;
     private readonly ILoggerFactory _loggerFactory;
+    private readonly IAiController _aiController;
 
     public BattleLogic(bool aiBattle,
         ITeamFactory teamFactory,
@@ -28,6 +31,10 @@ public class BattleLogic : IBattleLogic
         _logger = loggerFactory.CreateLogger<BattleLogic>();
         BattleHistoryRecorder = new BattleHistoryRecorder(this);
         AiBattle = aiBattle;
+        _aiController = new AiController(this, 
+            new AiAbilitySelector(this),
+            new AiEnergySelector(this, new AiEnergyUsageController()), 
+            _loggerFactory.CreateLogger<AiController>());
     }
 
     public event EventHandler<PlayerUpdate>? TurnChanged;
@@ -35,7 +42,7 @@ public class BattleLogic : IBattleLogic
     public IBattleHistoryRecorder BattleHistoryRecorder { get; init; }
     public IList<IChampion> DiedChampions { get; init; } = new List<IChampion>();
     public DateTime StartTime { get; init; } = DateTime.UtcNow;
-    public DateTime EndTime { get; private set; }
+    public DateTime? EndTime { get; private set; }
     public int TurnCount { get; private set; }
     public bool AiBattle { get; init; }
     public IBattlePlayer[] BattlePlayers { get; init; } = new IBattlePlayer[2];
@@ -90,6 +97,11 @@ public class BattleLogic : IBattleLogic
 
     public bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentEnergy)
     {
+        if (EndTime is not null)
+        {
+            throw new Exception($"{nameof(AbilitiesUsed)} can't be called as the battle ended");
+        }
+        
         var validationResults = _endTurnValidator.Validate(endTurn);
 
         if (!validationResults.IsValid)
@@ -149,6 +161,11 @@ public class BattleLogic : IBattleLogic
 
     public void EndTurnProcesses(int playerNo)
     {
+        if (EndTime is not null)
+        {
+            throw new Exception($"{nameof(EndTurnProcesses)} can't be called as the battle ended");
+        }
+        
         GetBattlePlayer(playerNo).TriggerEndTurnMethods();
         ProcessDeaths();
         GetOppositePlayer(playerNo).TriggerStartTurnMethods();
@@ -174,10 +191,66 @@ public class BattleLogic : IBattleLogic
         OnBattleEnded(GetHumanBattlePlayer());
     }
 
+    public void EndPlayerTurn(EndTurn endTurn)
+    {
+        if (EndTime is not null)
+        {
+            throw new Exception($"{nameof(EndPlayerTurn)} can't be called as the battle ended");
+        }
+        
+        if (WhoseTurn.PlayerNo != GetHumanBattlePlayer().PlayerNo)
+        {
+            _logger.LogError("Can't end turn during AI turn");
+            return;
+        }
+        
+        var validationResults = _endTurnValidator.Validate(endTurn);
+
+        if (!validationResults.IsValid)
+        {
+            _logger.LogError("Validation failed -> {validationResults}",validationResults.ToString());
+            return;
+        }
+        
+        GetHumanBattlePlayer().SpendEnergy(endTurn.SpentEnergy!);
+        AbilitiesUsed(GetHumanBattlePlayer().PlayerNo, endTurn, endTurn.SpentEnergy!);
+        EndTurnProcesses(GetHumanBattlePlayer().PlayerNo);
+    }
+
+    public void EndAiTurn()
+    {
+        if (EndTime is not null)
+        {
+            throw new Exception($"{nameof(EndAiTurn)} can't be called as the battle ended");
+        }
+        
+        _aiController.EndBattleTurn();
+    }
+
     private void OnTurnChanged()
     {
         ChangeWhoseTurn();
         TurnChanged?.Invoke(this, GetHumanBattlePlayer().GetPlayerUpdate(WhoseTurn));
+    }
+
+    public void Surrender()
+    {
+        OnBattleEnded(GetAiOpponentBattlePlayer());
+    }
+    
+    public void GetTargets()
+    {
+        throw new NotImplementedException();
+    }
+    
+    public void GetUsableAbilities()
+    {
+        throw new NotImplementedException();
+    }
+    
+    public void ExchangeEnergy()
+    {
+        throw new NotImplementedException();
     }
     
     private void OnBattleEnded(IBattlePlayer? winner = null)

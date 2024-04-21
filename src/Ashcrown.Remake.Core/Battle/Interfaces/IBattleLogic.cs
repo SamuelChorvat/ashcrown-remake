@@ -11,7 +11,7 @@ public interface IBattleLogic
 	IBattleHistoryRecorder BattleHistoryRecorder { get; init; }
 	IList<IChampion> DiedChampions { get; init; }
 	DateTime StartTime { get; init; }
-	DateTime EndTime { get; }
+	DateTime? EndTime { get; }
 	int TurnCount { get; }
 	bool AiBattle { get; init; }
 	IBattlePlayer[] BattlePlayers { init; }
@@ -28,4 +28,10 @@ public interface IBattleLogic
 	public void InitializePlayers();
 	void EndTurnProcesses(int playerNo);
 	void EndBattleOnAiError(string errorMessage);
+	void EndPlayerTurn(EndTurn endTurn);
+	void EndAiTurn();
+	void Surrender();
+	void GetTargets();
+	void GetUsableAbilities();
+	void ExchangeEnergy();
 }
