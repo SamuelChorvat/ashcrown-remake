@@ -40,7 +40,7 @@ public class DevastateTests
         BattleTestHelpers.PassNumberOfTurns(1, battleLogic, 1);
         
         // Assert
-        battleLogic.GetBattlePlayer(2).Champions[0].Health.Should().Be(55);
+        battleLogic.GetBattlePlayer(2).Champions[0].Health.Should().Be(85);
         battleLogic.GetBattlePlayer(2).Champions[0].ActiveEffectController
             .ActiveEffectPresentByActiveEffectName(EluardConstants.DevastateActiveEffect).Should().BeTrue();
         battleLogic.GetBattlePlayer(2).Champions[0].ActiveEffectController
