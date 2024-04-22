@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-
+    name: Run Tests
     runs-on: windows-latest
 
     steps:
