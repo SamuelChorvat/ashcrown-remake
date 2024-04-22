@@ -55,7 +55,7 @@ public class BattleLogic : IBattleLogic
     {
         BattlePlayers[playerNo - 1] = new BattlePlayer(playerNo, playerName, aiOpponent, championNames, 
             this, _teamFactory, _loggerFactory);
-        WhoseTurn = BattlePlayers[0];
+        if(playerNo == 1) WhoseTurn = BattlePlayers[0];
     }
 
     public IBattlePlayer GetBattlePlayer(int playerNo)
