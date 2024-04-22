@@ -1,0 +1,26 @@
+name: Run Tests
+
+on:
+  workflow_dispatch: {}
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Execute unit tests
+      run: dotnet test
