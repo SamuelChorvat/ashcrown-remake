@@ -16,12 +16,14 @@ public abstract class Champion : IChampion
         IBattlePlayer battlePlayer,
         int championNo,
         string championName,
+        string championTitle,
         ILoggerFactory loggerFactory)
     {
         BattleLogic = battleLogic;
         BattlePlayer = battlePlayer;
         ChampionNo = championNo;
         Name = championName;
+        Title = championTitle;
         ActiveEffects = new List<IActiveEffect>();
         AbilityController = new AbilityController(this, new ActiveEffectFactory());
         ActiveEffectController = new ActiveEffectController(this, loggerFactory.CreateLogger<ActiveEffectController>());
@@ -33,6 +35,7 @@ public abstract class Champion : IChampion
     public required IBattlePlayer BattlePlayer { get; init; }
     public required int ChampionNo { get; init; }
     public required string Name { get; set; }
+    public required string Title { get; set; }
     public int Health { get; set; } = ChampionConstants.ChampionMaxHealth;
     public bool Alive { get; set; } = true;
     public bool Died { get; set; }

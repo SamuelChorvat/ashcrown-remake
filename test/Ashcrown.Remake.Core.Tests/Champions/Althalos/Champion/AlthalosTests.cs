@@ -15,6 +15,7 @@ public class AlthalosTests
         
         // Assert
         battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(AlthalosConstants.Althalos);
+        battleLogic.GetBattlePlayer(1).Champions[0].Title.Should().Be(AlthalosConstants.Title);
     }
     
     [Fact]
