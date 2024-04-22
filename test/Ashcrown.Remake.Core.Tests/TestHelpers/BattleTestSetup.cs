@@ -11,8 +11,6 @@ public static class BattleTestSetup
     public static IBattleLogic StandardMockedSetupWithSingleChampion(string championName)
     {
         var battleLogic = new BattleLogic(false,
-            new TeamFactory(),
-            new EndTurnValidator(),
             LoggerFactory.Create(builder =>
             {
                 builder
@@ -38,8 +36,6 @@ public static class BattleTestSetup
         string player2ChampionName)
     {
         var battleLogic = new BattleLogic(false,
-            new TeamFactory(),
-            new EndTurnValidator(),
             LoggerFactory.Create(builder =>
             {
                 builder

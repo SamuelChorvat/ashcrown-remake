@@ -31,7 +31,7 @@ public interface IBattleLogic
 	void EndPlayerTurn(EndTurn endTurn);
 	void EndAiTurn();
 	void Surrender();
-	void GetTargets();
-	void GetUsableAbilities();
-	void ExchangeEnergy();
+	TargetsUpdate GetTargets(GetTargets getTargets);
+	UsableAbilitiesUpdate GetUsableAbilities(GetUsableAbilities getUsableAbilities);
+	ExchangeEnergyUpdate ExchangeEnergy(ExchangeEnergy exchangeEnergy);
 }

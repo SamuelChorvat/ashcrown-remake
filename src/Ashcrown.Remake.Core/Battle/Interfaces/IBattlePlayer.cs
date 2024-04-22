@@ -33,7 +33,7 @@ public interface IBattlePlayer
 	IChampion[]? GetOtherChampions(IChampion champion);
 	PlayerUpdate GetPlayerUpdate(IBattlePlayer whoseTurn);
 	TargetsUpdate GetTargets(int championNo, int abilityNo);
-	UsableAbilitiesUpdate GetUsableAbilities(int[] currentResources, int energyToSubtract);
+	UsableAbilitiesUpdate GetUsableAbilities(int[] currentEnergy, int energyToSubtract);
 	IBattlePlayer GetEnemyPlayer();
 	int GetTotalEnergy();
 	bool AiCanAnyoneTargetCounterAbility(IAbility ability);

@@ -5,6 +5,7 @@ using Ashcrown.Remake.Core.Ai.Interfaces;
 using Ashcrown.Remake.Core.Battle.Enums;
 using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound.Validators;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using FluentValidation;
@@ -17,16 +18,18 @@ public class BattleLogic : IBattleLogic
     private readonly ILogger<BattleLogic> _logger;
     private readonly ITeamFactory _teamFactory;
     private readonly IValidator<EndTurn> _endTurnValidator;
+    private readonly IValidator<GetTargets> _getTargetsValidator;
+    private readonly IValidator<GetUsableAbilities> _getUsableAbilitiesValidator;
     private readonly ILoggerFactory _loggerFactory;
     private readonly IAiController _aiController;
 
     public BattleLogic(bool aiBattle,
-        ITeamFactory teamFactory,
-        IValidator<EndTurn> endTurnValidator,
         ILoggerFactory loggerFactory)
     {
-        _teamFactory = teamFactory;
-        _endTurnValidator = endTurnValidator;
+        _teamFactory = new TeamFactory();
+        _endTurnValidator = new EndTurnValidator();
+        _getTargetsValidator = new GetTargetsValidator();
+        _getUsableAbilitiesValidator = new GetUsableAbilitiesValidator();
         _loggerFactory = loggerFactory;
         _logger = loggerFactory.CreateLogger<BattleLogic>();
         BattleHistoryRecorder = new BattleHistoryRecorder(this);
@@ -106,7 +109,7 @@ public class BattleLogic : IBattleLogic
 
         if (!validationResults.IsValid)
         {
-            _logger.LogError("Validation failed -> {validationResults}",validationResults.ToString());
+            _logger.LogError("EndTurn validation failed -> {validationResults}",validationResults.ToString());
             return false;
         }
 
@@ -238,19 +241,70 @@ public class BattleLogic : IBattleLogic
         OnBattleEnded(GetAiOpponentBattlePlayer());
     }
     
-    public void GetTargets()
+    public TargetsUpdate GetTargets(GetTargets getTargets)
     {
-        throw new NotImplementedException();
+        if (WhoseTurn.PlayerNo != GetHumanBattlePlayer().PlayerNo)
+        {
+            throw new Exception("Can't GetTargets during AI turn");
+        }
+        
+        var validationResults = _getTargetsValidator.Validate(getTargets);
+
+        if (!validationResults.IsValid)
+        {
+            throw new Exception($"GetTargets validation failed -> {validationResults}");
+        }
+
+        return GetHumanBattlePlayer().GetTargets((int) getTargets.ChampionNo!, (int) getTargets.AbilityNo!);
     }
     
-    public void GetUsableAbilities()
+    public UsableAbilitiesUpdate GetUsableAbilities(GetUsableAbilities getUsableAbilities)
     {
-        throw new NotImplementedException();
+        if (WhoseTurn.PlayerNo != GetHumanBattlePlayer().PlayerNo)
+        {
+            throw new Exception("Can't GetUsableActivities during AI turn");
+        }
+        
+        var validationResults = _getUsableAbilitiesValidator.Validate(getUsableAbilities);
+
+        if (!validationResults.IsValid)
+        {
+            throw new Exception($"GetUsableAbilities validation failed -> {validationResults}");
+        }
+
+        return GetHumanBattlePlayer().GetUsableAbilities(getUsableAbilities.CurrentEnergy!, (int) getUsableAbilities.ToSubtract!);
     }
     
-    public void ExchangeEnergy()
+    public ExchangeEnergyUpdate ExchangeEnergy(ExchangeEnergy exchangeEnergy)
     {
-        throw new NotImplementedException();
+        if (WhoseTurn.PlayerNo != GetHumanBattlePlayer().PlayerNo)
+        {
+            throw new Exception("Can't ExchangeEnergy during AI turn");
+        }
+
+        var exchangeEnergyValidator = new ExchangeEnergyValidator(GetHumanBattlePlayer());
+        var validationResults =exchangeEnergyValidator.Validate(exchangeEnergy);
+
+        if (!validationResults.IsValid)
+        {
+            throw new Exception($"ExchangeEnergy validation failed -> {validationResults}");
+        }
+
+        if (!GetHumanBattlePlayer().SpendEnergy(exchangeEnergy.SpentEnergy!))
+        {
+            throw new Exception($"ExchangeEnergy failed spending energy");
+        }
+
+        for (var i = 0; i < 4; i++)
+        {
+            GetHumanBattlePlayer().Energy[i] += exchangeEnergy.WantedEnergy![i];
+        }
+
+        return new ExchangeEnergyUpdate
+        {
+            NewEnergy = GetHumanBattlePlayer().Energy,
+            UsableAbilitiesUpdate = GetHumanBattlePlayer().GetUsableAbilities(GetHumanBattlePlayer().Energy, 0)
+        };
     }
     
     private void OnBattleEnded(IBattlePlayer? winner = null)

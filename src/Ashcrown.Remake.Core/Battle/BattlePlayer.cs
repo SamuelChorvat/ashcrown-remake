@@ -296,14 +296,14 @@ public class BattlePlayer : IBattlePlayer
         };
     }
 
-    public UsableAbilitiesUpdate GetUsableAbilities(int[] currentResources, int energyToSubtract)
+    public UsableAbilitiesUpdate GetUsableAbilities(int[] currentEnergy, int energyToSubtract)
     {
         var usableAbilitiesUpdate = new UsableAbilitiesUpdate();
         
         for(var i = 0; i < Champions.Length; i++)
         {
             usableAbilitiesUpdate.UsableAbilities[i] = Champions[i].AbilityController
-                .GetUsableAbilities(currentResources, energyToSubtract);
+                .GetUsableAbilities(currentEnergy, energyToSubtract);
         }
 
         return usableAbilitiesUpdate;
