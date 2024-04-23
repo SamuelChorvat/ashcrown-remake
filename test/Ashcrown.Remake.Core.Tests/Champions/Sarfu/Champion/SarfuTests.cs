@@ -15,6 +15,7 @@ public class SarfuTests
         
         // Assert
         battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(SarfuConstants.Sarfu);
+        battleLogic.GetBattlePlayer(1).Champions[0].Title.Should().Be(SarfuConstants.Title);
     }
     
     [Fact]

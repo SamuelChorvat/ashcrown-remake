@@ -15,6 +15,7 @@ public class EluardTests
         
         // Assert
         battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(EluardConstants.Eluard);
+        battleLogic.GetBattlePlayer(1).Champions[0].Title.Should().Be(EluardConstants.Title);
     }
     
     [Fact]

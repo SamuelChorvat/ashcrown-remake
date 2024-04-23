@@ -10,6 +10,7 @@ public interface IChampion
     IBattlePlayer BattlePlayer { get; init; }
     int ChampionNo { get; init; }
     string Name { get; set; }
+    string Title { get; set; }
     int Health { get; set; }
     bool Alive { get; set; }
     bool Died { get; set; }
