@@ -1,0 +1,3 @@
+[submodule "src/Ashcrown.Remake.Client"]
+	path = src/Ashcrown.Remake.Client
+	url = https://github.com/SamuelChorvat/ashcrown-remake-client
