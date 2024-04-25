@@ -14,7 +14,8 @@ public class Overpower : Ability.Abstract.Ability
             [0,0,1,0,1],
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemyDamage)
+            AbilityType.EnemyDamage,
+            1)
     {
         Damage1 = 30;
         BonusDamage1 = 15;

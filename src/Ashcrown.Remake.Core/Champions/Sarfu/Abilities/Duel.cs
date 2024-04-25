@@ -14,7 +14,8 @@ public class Duel : Ability.Abstract.Ability
             [0,0,0,0,1],
             [AbilityClass.Strategic, AbilityClass.Instant], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemiesDebuff)
+            AbilityType.EnemiesDebuff,
+            3)
     {
         Duration1 = 4;
         ReceiveDamageReductionPoint1 = 10;

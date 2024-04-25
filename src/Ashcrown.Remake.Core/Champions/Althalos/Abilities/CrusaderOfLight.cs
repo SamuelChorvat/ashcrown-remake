@@ -13,7 +13,8 @@ public class CrusaderOfLight : Ability.Abstract.Ability
         [0,0,0,0,1], 
         [AbilityClass.Strategic, AbilityClass.Instant], 
         AbilityTarget.Self, 
-        AbilityType.AllyBuff)
+        AbilityType.AllyBuff,
+        3)
     {
         Duration1 = 4;
         BonusDamage1 = 10;

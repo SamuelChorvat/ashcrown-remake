@@ -14,7 +14,8 @@ public class Charge : Ability.Abstract.Ability
             [0,1,0,0,1],
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemyDamage)
+            AbilityType.EnemyDamage,
+            2)
     {
         Damage1 = 35;
         BonusDamage1 = 25;

@@ -14,7 +14,8 @@ public class SwordStrike : Ability.Abstract.Ability
             [0,0,1,0,0],
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemyDamage)
+            AbilityType.EnemyDamage,
+            1)
     {
         Damage1 = 20;
         BonusDamage1 = 10;

@@ -14,7 +14,8 @@ public class Devastate : Ability.Abstract.Ability
             [0,1,0,0,1],
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemyDamageAndDebuff)
+            AbilityType.EnemyDamageAndDebuff,
+            2)
     {
         Damage1 = 45;
         Duration1 = 1;

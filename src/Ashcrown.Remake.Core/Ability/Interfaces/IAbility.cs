@@ -15,6 +15,7 @@ public interface IAbility
 	int OriginalCooldown { get; set; }
 	int[] OriginalCost { get; set; }
 	AbilityClass[] AbilityClasses { get; set; }
+	int AbilitySlot { get; set; }
 	bool Active { get; set; }
 	bool IgnoreInvulnerability { get; set; }
 	bool Counterable { get; set; }

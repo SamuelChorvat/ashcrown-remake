@@ -14,7 +14,8 @@ public class HolyLight : Ability.Abstract.Ability
             [1,0,0,0,0],
             [AbilityClass.Strategic, AbilityClass.Instant], 
             AbilityTarget.Ally, 
-            AbilityType.AllyHeal)
+            AbilityType.AllyHeal,
+            2)
     {
         Heal1 = 25;
         Description = $"{AlthalosConstants.Name} channels the holy energy within him " +

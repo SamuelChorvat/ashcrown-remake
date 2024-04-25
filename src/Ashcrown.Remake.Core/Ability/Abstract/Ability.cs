@@ -27,7 +27,8 @@ public abstract class Ability : IAbility
         int[] originalCost,
         AbilityClass[] abilityClasses,
         AbilityTarget abilityTarget,
-        AbilityType abilityType)
+        AbilityType abilityType,
+        int abilitySlot)
     {
         Owner = champion;
         Name = abilityName;
@@ -36,6 +37,7 @@ public abstract class Ability : IAbility
         AbilityClasses = abilityClasses;
         Target = abilityTarget;
         AbilityType = abilityType;
+        AbilitySlot = abilitySlot;
         _aiAbilityHelper = new AiAbilityHelper(this);
     }
 
@@ -47,6 +49,7 @@ public abstract class Ability : IAbility
     public AbilityClass[] AbilityClasses { get; set; }
     public AbilityTarget Target { get; set; }
     public AbilityType AbilityType { get; set; }
+    public int AbilitySlot { get; set; }
     public bool Active { get; set; } = true;
     public bool IgnoreInvulnerability { get; set; }
     public bool Counterable { get; set; } = true;
