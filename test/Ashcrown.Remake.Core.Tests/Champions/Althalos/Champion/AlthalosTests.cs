@@ -11,10 +11,10 @@ public class AlthalosTests
     public void AlthalosHasCorrectName()
     {
         // Arrange & Act
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         
         // Assert
-        battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(AlthalosConstants.Althalos);
+        battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(AlthalosConstants.Name);
         battleLogic.GetBattlePlayer(1).Champions[0].Title.Should().Be(AlthalosConstants.Title);
     }
     
@@ -22,7 +22,7 @@ public class AlthalosTests
     public void AlthalosHasCorrectAbilities()
     {
         // Arrange & Act
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         
         // Assert
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[0].Name.Should().Be(AlthalosConstants.HammerOfJustice);

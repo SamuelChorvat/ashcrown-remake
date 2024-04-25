@@ -11,7 +11,7 @@ public class SwordStrikeTests
     public void SwordStrikeDealsCorrectDamage()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Eluard);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Name);
         var useSwordStrike = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 
             [0,0,0,1,0,0], [0,0,1,0]);
         
@@ -27,7 +27,7 @@ public class SwordStrikeTests
     public void SwordStrikeDealBonusDamageWhileUnyieldingWillIsActive()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Eluard);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Name);
         var useUnyieldingWill = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,3, 
             [1,0,0,0,0,0], [0,0,1,0]);
         var useSwordStrike = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 

@@ -5,6 +5,6 @@ using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 namespace Ashcrown.Remake.Core.Champions.Sarfu.Abilities;
 
 public class Deflect(IChampion champion) : StandardInvulnerability(champion,
-    SarfuConstants.Sarfu,
+    SarfuConstants.Name,
     SarfuConstants.Deflect,
     SarfuConstants.DeflectActiveEffect);

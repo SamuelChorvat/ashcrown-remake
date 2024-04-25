@@ -12,7 +12,7 @@ public class CrusaderOfLightTests
     public void CrusaderOfLightShouldApplyCorrectActiveEffect()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var endTurn = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1, 3, 
             [1, 0, 0, 0, 0, 0], [1,0,0,0]);
         
@@ -33,7 +33,7 @@ public class CrusaderOfLightTests
     public void CrusaderOfLightShouldCorrectlyReduceDamage()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var useCrusaderOfLight = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,3,
             [1,0,0,0,0,0], [1,0,0,0]);
         var useHammerOfJustice = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 
@@ -53,7 +53,7 @@ public class CrusaderOfLightTests
     public void CrusaderOfLightShouldIgnoreStuns()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var useCrusaderOfLight = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,3,
             [1,0,0,0,0,0], [1,0,0,0]);
         var useHammerOfJustice = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 

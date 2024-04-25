@@ -11,10 +11,10 @@ public class SarfuTests
     public void EluardHasCorrectName()
     {
         // Arrange & Act
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Sarfu);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Name);
         
         // Assert
-        battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(SarfuConstants.Sarfu);
+        battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(SarfuConstants.Name);
         battleLogic.GetBattlePlayer(1).Champions[0].Title.Should().Be(SarfuConstants.Title);
     }
     
@@ -22,7 +22,7 @@ public class SarfuTests
     public void EluardHasCorrectAbilities()
     {
         // Arrange & Act
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Sarfu);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Name);
         
         // Assert
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[0].Name.Should().Be(SarfuConstants.Overpower);

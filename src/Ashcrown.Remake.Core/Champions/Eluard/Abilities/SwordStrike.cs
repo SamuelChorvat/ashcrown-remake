@@ -19,7 +19,7 @@ public class SwordStrike : Ability.Abstract.Ability
         Damage1 = 20;
         BonusDamage1 = 10;
         Description =
-            $"{EluardConstants.Eluard} strikes one enemy, dealing {$"{Damage1} physical damage".HighlightInOrange()} to them. " +
+            $"{EluardConstants.Name} strikes one enemy, dealing {$"{Damage1} physical damage".HighlightInOrange()} to them. " +
             $"While {EluardConstants.UnyieldingWill.HighlightInGold()} is active this ability " +
             $"will deal an additional {$"{BonusDamage1} physical damage".HighlightInOrange()}.";
         Harmful = true;

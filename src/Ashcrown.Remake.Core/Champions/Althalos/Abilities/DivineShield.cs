@@ -5,6 +5,6 @@ using Ashcrown.Remake.Core.Champions.Althalos.Champion;
 namespace Ashcrown.Remake.Core.Champions.Althalos.Abilities;
 
 public class DivineShield(IChampion champion) : StandardInvulnerability(champion,
-    AlthalosConstants.Althalos,
+    AlthalosConstants.Name,
     AlthalosConstants.DivineShield,
     AlthalosConstants.DivineShieldActiveEffect);

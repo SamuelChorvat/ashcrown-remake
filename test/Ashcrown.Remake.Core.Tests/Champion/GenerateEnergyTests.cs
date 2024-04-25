@@ -12,7 +12,7 @@ public class GenerateEnergyTests
     public void GenerateEnergyIsAbleToGenerateAllEnergiesAtLeastOnceIn1000()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var energyGenerated = new[] {false, false, false, false};
         
         // Act
@@ -45,7 +45,7 @@ public class GenerateEnergyTests
     public void GenerateEnergyIsAbleToGenerateAllEnergiesTwiceIn10000()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var energyGenerated = new[] {false, false, false, false};
         
         // Act
@@ -78,7 +78,7 @@ public class GenerateEnergyTests
     public void GenerateEnergyNeverGeneratesMoreThan2OfSameEnergiesIn10_000()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         
         // Act && Assert
         for (var i = 0; i < 1000; i++)
@@ -105,7 +105,7 @@ public class GenerateEnergyTests
     public void GenerateEnergyIsAbleToGenerate3UniqueEnergy(EnergyType energyType1, EnergyType energyType2, EnergyType energyType3)
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var threeUniqueGenerated = false;
         
         // Act
@@ -134,7 +134,7 @@ public class GenerateEnergyTests
     public void GenerateEnergyGeneratesCorrectAmountWhenOneChampionIsDead()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         battleLogic.GetBattlePlayer(1).Champions[0].Alive = false;
         var energyGenerated = new[] {false, false, false, false};
         
@@ -168,7 +168,7 @@ public class GenerateEnergyTests
     public void GenerateEnergyGeneratesCorrectAmountWhenTwoChampionsAreDead()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         battleLogic.GetBattlePlayer(1).Champions[0].Alive = false;
         battleLogic.GetBattlePlayer(1).Champions[1].Alive = false;
         var energyGenerated = new[] {false, false, false, false};

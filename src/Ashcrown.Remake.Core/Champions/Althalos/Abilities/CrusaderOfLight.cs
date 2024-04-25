@@ -19,8 +19,8 @@ public class CrusaderOfLight : Ability.Abstract.Ability
         BonusDamage1 = 10;
         ReceiveDamageReductionPoint1 = 10;
         Description =
-            $"{AlthalosConstants.Althalos} empowers himself with holy energy. " +
-            $"For {Duration1} turns, {AlthalosConstants.Althalos} will gain " +
+            $"{AlthalosConstants.Name} empowers himself with holy energy. " +
+            $"For {Duration1} turns, {AlthalosConstants.Name} will gain " +
             $"{$"{ReceiveDamageReductionPoint1} points of damage reduction".HighlightInYellow()} " +
             $"and will {"ignore".HighlightInPurple()} all stun effects. " +
             $"During this time {AlthalosConstants.HammerOfJustice.HighlightInGold()} " +
@@ -29,7 +29,7 @@ public class CrusaderOfLight : Ability.Abstract.Ability
         IgnoreStuns = true;
         Helpful = true;
         Buff = true;
-        ActiveEffectOwner = AlthalosConstants.Althalos;
+        ActiveEffectOwner = AlthalosConstants.Name;
         ActiveEffectName = AlthalosConstants.CrusaderOfLightActiveEffect;
     }
 

@@ -18,7 +18,7 @@ public class Overpower : Ability.Abstract.Ability
     {
         Damage1 = 30;
         BonusDamage1 = 15;
-        Description = $"{SarfuConstants.Sarfu} slashes one enemy with his axe, dealing {$"{Damage1} physical damage".HighlightInOrange()}. " +
+        Description = $"{SarfuConstants.Name} slashes one enemy with his axe, dealing {$"{Damage1} physical damage".HighlightInOrange()}. " +
                       $"This ability will deal an additional {$"{BonusDamage1} physical damage".HighlightInOrange()} to an enemy affected by {SarfuConstants.Duel.HighlightInGold()}.";
         PhysicalDamage = true;
         Harmful = true;

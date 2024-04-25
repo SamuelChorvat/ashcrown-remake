@@ -19,7 +19,7 @@ public class HammerOfJustice : Ability.Abstract.Ability
         Damage1 = 20;
         BonusDamage1 = 10;
         Duration1 = 1;
-        Description = $"{AlthalosConstants.Althalos} hits one enemy with his hammer dealing {$"{Damage1} physical damage".HighlightInOrange()} to them " +
+        Description = $"{AlthalosConstants.Name} hits one enemy with his hammer dealing {$"{Damage1} physical damage".HighlightInOrange()} to them " +
                       $"and {"stunning".HighlightInPurple()} their Physical and Strategic abilities for {Duration1} turn. " +
                       $"While {AlthalosConstants.CrusaderOfLight.HighlightInGold()} is active " +
                       $"this will deal an additional {$"{BonusDamage1} physical damage".HighlightInOrange()}.";
@@ -29,7 +29,7 @@ public class HammerOfJustice : Ability.Abstract.Ability
         Debuff = true;
         PhysicalDamage = true;
         Damaging = true;
-        ActiveEffectOwner = AlthalosConstants.Althalos;
+        ActiveEffectOwner = AlthalosConstants.Name;
         ActiveEffectName = AlthalosConstants.HammerOfJusticeActiveEffect;
     }
 

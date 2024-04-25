@@ -18,7 +18,7 @@ public class Charge : Ability.Abstract.Ability
     {
         Damage1 = 35;
         BonusDamage1 = 25;
-        Description = $"{SarfuConstants.Sarfu} stabs one enemy with his sword, dealing {$"{Damage1} {"piercing".HighlightInBold()} physical damage".HighlightInOrange()}. " +
+        Description = $"{SarfuConstants.Name} stabs one enemy with his sword, dealing {$"{Damage1} {"piercing".HighlightInBold()} physical damage".HighlightInOrange()}. " +
                       $"This ability will deal an additional {$"{BonusDamage1} {"piercing".HighlightInBold()} physical damage".HighlightInOrange()} to an enemy affected by {SarfuConstants.Duel.HighlightInGold()}.";
         Harmful = true;
         Damaging = true;

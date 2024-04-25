@@ -11,9 +11,9 @@ namespace Ashcrown.Remake.Core.Tests.Ability;
 public class StandardInvulnerabiltyTests
 {
     [Theory]
-    [InlineData(AlthalosConstants.Althalos, AlthalosConstants.DivineShieldActiveEffect)]
-    [InlineData(EluardConstants.Eluard, EluardConstants.EvadeActiveEffect)]
-    [InlineData(SarfuConstants.Sarfu, SarfuConstants.DeflectActiveEffect)]
+    [InlineData(AlthalosConstants.TestName, AlthalosConstants.DivineShieldActiveEffect)]
+    [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
+    [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldCorrectlyApplyActiveEffects(string championName, string activeEffectName)
     {
         // Arrange
@@ -36,14 +36,14 @@ public class StandardInvulnerabiltyTests
     }
 
     [Theory]
-    [InlineData(AlthalosConstants.Althalos, AlthalosConstants.DivineShieldActiveEffect)]
-    [InlineData(EluardConstants.Eluard, EluardConstants.EvadeActiveEffect)]
-    [InlineData(SarfuConstants.Sarfu, SarfuConstants.DeflectActiveEffect)]
+    [InlineData(AlthalosConstants.TestName, AlthalosConstants.DivineShieldActiveEffect)]
+    [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
+    [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldBeInvulnerability(string championName, string activeEffectName)
     {
         // Arrange
         var battleLogic = BattleTestSetup.StandardMockedSetupWithTwoDifferentChampions(championName, 
-            AlthalosConstants.Althalos);
+            AlthalosConstants.TestName);
         var useInvulnerability = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,4, 
             [1,0,0,0,0,0], [0,1,0,0]);
         var useDamage = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 

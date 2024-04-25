@@ -19,13 +19,13 @@ public class UnyieldingWill : Ability.Abstract.Ability
         ReceiveDamageReductionPoint1 = 15;
         Duration1 = 4;
         BonusDamage1 = 10;
-        Description = $"{EluardConstants.Eluard} gains {$"{ReceiveDamageReductionPoint1} points of damage reduction".HighlightInYellow()} for {Duration1} turns. " +
+        Description = $"{EluardConstants.Name} gains {$"{ReceiveDamageReductionPoint1} points of damage reduction".HighlightInYellow()} for {Duration1} turns. " +
                       $"During this time {EluardConstants.SwordStrike.HighlightInGold()} will deal an additional {$"{BonusDamage1} physical damage".HighlightInOrange()} " +
                       $"and {EluardConstants.Devastate.HighlightInGold()} can be used.";
         Helpful = true;
         Buff = true;
         SelfCast = true;
-        ActiveEffectOwner = EluardConstants.Eluard;
+        ActiveEffectOwner = EluardConstants.Name;
         ActiveEffectName = EluardConstants.UnyieldingWillActiveEffect;
     }
 

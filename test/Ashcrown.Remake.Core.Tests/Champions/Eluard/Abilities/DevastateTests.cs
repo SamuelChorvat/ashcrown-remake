@@ -12,7 +12,7 @@ public class DevastateTests
     public void DevastateShouldNotBeUsableWithoutUnyieldingWill()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Eluard);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Name);
         var useDevastate = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,2, 
             [0,0,0,1,0,0], [0,1,1,0]);
         
@@ -27,7 +27,7 @@ public class DevastateTests
     public void DevastateDealsCorrectDamageAndAppliesActiveEffect()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Eluard);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Name);
         var useUnyieldingWill = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,3, 
             [1,0,0,0,0,0], [0,0,1,0]);
         var useDevastate = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,2, 

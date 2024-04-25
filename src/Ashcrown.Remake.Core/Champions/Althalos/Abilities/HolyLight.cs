@@ -17,7 +17,7 @@ public class HolyLight : Ability.Abstract.Ability
             AbilityType.AllyHeal)
     {
         Heal1 = 25;
-        Description = $"{AlthalosConstants.Althalos} channels the holy energy within him " +
+        Description = $"{AlthalosConstants.Name} channels the holy energy within him " +
                       $"and heals himself or one ally for {$"{Heal1} health".HighlightInGreen()}.";
         Helpful = true;
         SelfCast = true;

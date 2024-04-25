@@ -18,7 +18,7 @@ public class Devastate : Ability.Abstract.Ability
     {
         Damage1 = 45;
         Duration1 = 1;
-        Description = $"{EluardConstants.Eluard} hits one enemy using all his strength dealing {$"{Damage1} physical damage".HighlightInOrange()} " +
+        Description = $"{EluardConstants.Name} hits one enemy using all his strength dealing {$"{Damage1} physical damage".HighlightInOrange()} " +
                       $"to them and {"stunning".HighlightInPurple()} all their abilities for {Duration1} turn. " +
                       $"This ability requires {EluardConstants.UnyieldingWill.HighlightInGold()}.";
         Stun = true;
@@ -28,7 +28,7 @@ public class Devastate : Ability.Abstract.Ability
         PhysicalDamage = true;
         Damaging = true;
         Active = false;
-        ActiveEffectOwner = EluardConstants.Eluard;
+        ActiveEffectOwner = EluardConstants.Name;
         ActiveEffectName = EluardConstants.DevastateActiveEffect;
     }
 

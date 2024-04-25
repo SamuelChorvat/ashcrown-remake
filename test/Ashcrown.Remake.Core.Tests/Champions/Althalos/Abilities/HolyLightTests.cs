@@ -11,7 +11,7 @@ public class HolyLightTests
     public void HolyLightShouldHealTheCorrectAmount()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var useHolyLight = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,2, 
             [1,0,0,0,0,0], [1,0,0,0]);
         battleLogic.GetBattlePlayer(1).Champions[0].Health = 50;

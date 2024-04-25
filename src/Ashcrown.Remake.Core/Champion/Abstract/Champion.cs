@@ -8,22 +8,23 @@ using Microsoft.Extensions.Logging;
 
 namespace Ashcrown.Remake.Core.Champion.Abstract;
 
-public abstract class Champion : IChampion
+public abstract class Champion<T> : IChampion where T : IChampionConstants
 {
     private bool[]? _energyUsage;
 
     protected Champion(IBattleLogic battleLogic,
         IBattlePlayer battlePlayer,
         int championNo,
-        string championName,
-        string championTitle,
         ILoggerFactory loggerFactory)
     {
         BattleLogic = battleLogic;
         BattlePlayer = battlePlayer;
         ChampionNo = championNo;
-        Name = championName;
-        Title = championTitle;
+        Name = T.Name;
+        Title = T.Title;
+        Bio = T.Bio;
+        Attributes = T.Attributes;
+        Artist = T.Artist;
         ActiveEffects = new List<IActiveEffect>();
         AbilityController = new AbilityController(this, new ActiveEffectFactory());
         ActiveEffectController = new ActiveEffectController(this, loggerFactory.CreateLogger<ActiveEffectController>());
@@ -36,6 +37,9 @@ public abstract class Champion : IChampion
     public required int ChampionNo { get; init; }
     public required string Name { get; set; }
     public required string Title { get; set; }
+    public required string Bio { get; set; }
+    public required int[] Attributes { get; set; }
+    public required string Artist{ get; set; }
     public int Health { get; set; } = ChampionConstants.ChampionMaxHealth;
     public bool Alive { get; set; } = true;
     public bool Died { get; set; }
