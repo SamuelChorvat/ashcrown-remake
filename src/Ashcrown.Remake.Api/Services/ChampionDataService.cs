@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Ashcrown.Remake.Api.Services;
 
-public class ChampionsDataService(IChampionFactory championFactory) : IChampionDataService
+public class ChampionDataService(IChampionFactory championFactory) : IChampionDataService
 {
     private static List<ChampionData>? _cachedChampionsData;
 

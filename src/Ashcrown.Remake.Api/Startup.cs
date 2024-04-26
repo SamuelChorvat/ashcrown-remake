@@ -14,7 +14,7 @@ public class Startup
         services.AddSwaggerGen();
 
         services.AddSingleton<IChampionFactory, ChampionFactory>();
-        services.AddSingleton<IChampionDataService, ChampionsDataService>();
+        services.AddSingleton<IChampionDataService, ChampionDataService>();
     }
 
     public void Configure(WebApplication app, IWebHostEnvironment env)
