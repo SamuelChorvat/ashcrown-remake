@@ -17,6 +17,7 @@ public class ChampionsDataService(IChampionFactory championFactory) : IChampionD
     public Task<List<ChampionData>> GetChampionsData()
     {
         if (_cachedChampionsData is not null) return Task.FromResult(_cachedChampionsData);
+        
         var championsData = new List<ChampionData>();
         foreach (var championsName in ChampionConstants.AllChampionsNames)
         {
