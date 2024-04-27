@@ -7,7 +7,7 @@ public static class AshcrownApiConstants
     
     public static readonly string[] IconNames =
     [
-        "AshcrownNET", "Bat", "Bull", "Crow", "Frog", "Jellyfish", "Lynx", "Mosquito", "Spider", "Squid", "Swordfish", "Wolf", "Crab",
+        "Bat", "Bull", "Crow", "Frog", "Jellyfish", "Lynx", "Mosquito", "Spider", "Squid", "Swordfish", "Wolf", "Crab",
         "Founder", "Gold Founder", "Gold Mine", "Hot Streak", "Robot Graveyard", "Broken Mirror", "AshcrownNET V2", "Bug",
         "Time Portal", "Dream", "Bronze Dragon", "Iced", "Ancient", "Eye", "Piggy Bank", "Dummy", "Skulls", "Shade", 
         "Pirate", "Smiley", "Fluffy", "Bait", "Anchor", "Blue Spark", "Cursed Gold", "Fallen", "Fire Starter", "Frosty",
