@@ -32,7 +32,6 @@ public class LoginController(IPlayerSessionService playerSessionService) : Contr
         }
 
         return StatusCode(500, "Something went wrong!");
-
     }
     
     [HttpGet("session/list", Name = nameof(ListCurrentSessionNames))]
