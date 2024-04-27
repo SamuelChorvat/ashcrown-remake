@@ -12,7 +12,7 @@ namespace Ashcrown.Remake.Api.Services;
 
 public class ChampionDataService(IChampionFactory championFactory) : IChampionDataService
 {
-    private static List<ChampionData>? _cachedChampionsData;
+    private List<ChampionData>? _cachedChampionsData;
 
     public Task<List<ChampionData>> GetChampionsData()
     {

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ashcrown.Remake.Core.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ashcrown.Remake.Api", "src\Ashcrown.Remake.Api\Ashcrown.Remake.Api.csproj", "{DCB75D8D-68C6-407A-806F-C59CDC57FB93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ashcrown.Remake.Api.Tests", "test\Ashcrown.Remake.Api.Tests\Ashcrown.Remake.Api.Tests.csproj", "{EC5E4C80-CED5-462C-B47D-9CBFD35105C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,7 @@ Global
 		{B4BC104E-0AB9-4938-B663-4EA579F44189} = {1D24B05F-A2CA-419F-A79F-34868C427794}
 		{A691F68D-2EC0-447E-B0CB-26C8C78C74B8} = {072AD334-82D3-4B3A-83E7-53C006B2D10A}
 		{DCB75D8D-68C6-407A-806F-C59CDC57FB93} = {1D24B05F-A2CA-419F-A79F-34868C427794}
+		{EC5E4C80-CED5-462C-B47D-9CBFD35105C4} = {072AD334-82D3-4B3A-83E7-53C006B2D10A}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B4BC104E-0AB9-4938-B663-4EA579F44189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -40,5 +43,9 @@ Global
 		{DCB75D8D-68C6-407A-806F-C59CDC57FB93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB75D8D-68C6-407A-806F-C59CDC57FB93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB75D8D-68C6-407A-806F-C59CDC57FB93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC5E4C80-CED5-462C-B47D-9CBFD35105C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC5E4C80-CED5-462C-B47D-9CBFD35105C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC5E4C80-CED5-462C-B47D-9CBFD35105C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC5E4C80-CED5-462C-B47D-9CBFD35105C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

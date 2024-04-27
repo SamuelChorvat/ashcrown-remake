@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+
 namespace Ashcrown.Remake.Api;
 
 public static class Program
