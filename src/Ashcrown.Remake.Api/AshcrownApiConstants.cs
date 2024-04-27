@@ -17,6 +17,4 @@ public static class AshcrownApiConstants
 
     public static readonly string[] CrownNames = ["Wood", "Stone", "Iron", "Bronze", "Silver", "Gold", 
         "Diamond", "Mithril", "Adamantine", "Darksteel", "Ashcrown"];
-
-
 }
