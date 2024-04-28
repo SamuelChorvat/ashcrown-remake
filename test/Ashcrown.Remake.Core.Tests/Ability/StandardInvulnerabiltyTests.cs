@@ -1,4 +1,5 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
+using Ashcrown.Remake.Core.Champions.Akio.Champion;
 using Ashcrown.Remake.Core.Champions.Althalos.Champion;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
@@ -11,6 +12,7 @@ namespace Ashcrown.Remake.Core.Tests.Ability;
 public class StandardInvulnerabiltyTests
 {
     [Theory]
+    [InlineData(AkioConstants.TestName, AkioConstants.FlowDisruptionActiveEffect)]
     [InlineData(AlthalosConstants.TestName, AlthalosConstants.DivineShieldActiveEffect)]
     [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
@@ -36,6 +38,7 @@ public class StandardInvulnerabiltyTests
     }
 
     [Theory]
+    [InlineData(AkioConstants.TestName, AkioConstants.FlowDisruptionActiveEffect)]
     [InlineData(AlthalosConstants.TestName, AlthalosConstants.DivineShieldActiveEffect)]
     [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
