@@ -25,6 +25,11 @@ public class PlayerSession
     public string CrownName { get; set; } = AshcrownApiConstants.CrownNames.OrderBy(x => Guid.NewGuid()).First();
     public string[] BlindChampions { get; set; } = 
         [AlthalosConstants.Name, EluardConstants.Name, SarfuConstants.Name];
+   
+    public int DraftWins { get; set; }
+    public int DraftLosses { get; set; }
+    public int BlindWins { get; set; }
+    public int BlindLosses { get; set; }
 
     public bool ValidateSecret(string secret)
     {
