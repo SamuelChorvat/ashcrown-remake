@@ -1,4 +1,5 @@
-﻿using Ashcrown.Remake.Api.Models;
+﻿using Ashcrown.Remake.Api.Dtos.Inbound;
+using Ashcrown.Remake.Api.Models;
 using Ashcrown.Remake.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,18 +13,16 @@ public class SessionController(IPlayerSessionService playerSessionService) : Con
     [HttpPost("create")]
     [ProducesResponseType(typeof(PlayerSession), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
-    public async Task<ActionResult<PlayerSession>> CreatePlayerSession([FromBody] string playerName)
+    public async Task<ActionResult<PlayerSession>> CreatePlayerSession([FromBody] PlayerRequest playerRequest)
     {
-        if (!await playerSessionService.CreateSession(playerName))
-            return Conflict($"The playerName '{playerName}' is currently taken.");
-        
-        var playerSession = await playerSessionService.GetSession(playerName);
-        if (playerSession != null)
+        var session = await playerSessionService.CreateSession(playerRequest.Name);
+
+        if (session == null)
         {
-            return playerSession;
+            return Conflict($"The playerName '{playerRequest.Name}' is currently taken");
         }
 
-        return StatusCode(500, "Something went wrong!");
+        return Ok(session);
     }
     
     [HttpGet("list/players", Name = nameof(ListCurrentSessionNames))]
@@ -33,12 +32,23 @@ public class SessionController(IPlayerSessionService playerSessionService) : Con
         return playerSessionService.GetCurrentInUsePlayerNames();
     }
     
-    [HttpGet("refresh/{playerName}", Name = nameof(RefreshSession))]
+    [HttpPost("refresh", Name = nameof(RefreshSession))]
     [ProducesResponseType(typeof(ActionResult<PlayerSession>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<PlayerSession>> RefreshSession(string playerName)
+    public async Task<ActionResult<PlayerSession>> RefreshSession([FromBody] PlayerRequest playerRequest)
     {
-        await playerSessionService.UpdateSession(playerName, session => session.LastRequestDateTime = DateTime.UtcNow);
-        var playerSession = await playerSessionService.GetSession(playerName);
+        await playerSessionService.UpdateSession(playerRequest.Name, playerRequest.Secret, session => session.LastRequestDateTime = DateTime.UtcNow);
+        var playerSession = await playerSessionService.GetSession(playerRequest.Name);
         return Ok(playerSession);
+    }
+    
+    [HttpDelete("delete")]
+    [ProducesResponseType(typeof(PlayerSession), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult> DeletePlayerSession([FromBody] PlayerRequest playerRequest)
+    {
+        if (!await playerSessionService.RemoveSession(playerRequest.Name, playerRequest.Secret))
+            return NotFound($"No session for '{playerRequest.Name}' exists");
+
+        return Ok($"Deleted session for '{playerRequest.Name}'");
     }
 }

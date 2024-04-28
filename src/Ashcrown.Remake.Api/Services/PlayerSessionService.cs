@@ -8,13 +8,16 @@ public class PlayerSessionService : IPlayerSessionService
 {
     private readonly ConcurrentDictionary<string, PlayerSession?> _sessions = new();
 
-    public Task<bool> CreateSession(string playerName)
+    public Task<PlayerSession?> CreateSession(string playerName)
     {
-        return Task.FromResult(_sessions.TryAdd(playerName, new PlayerSession()));
+        _sessions.TryAdd(playerName, new PlayerSession());
+        _sessions.TryGetValue(playerName, out var session);
+        return Task.FromResult(session);
     }
 
-    public Task<bool> RemoveSession(string playerName)
+    public Task<bool> RemoveSession(string playerName, string secret)
     {
+        ValidateProvidedSecret(playerName, secret);
         return Task.FromResult(_sessions.TryRemove(playerName, out _));
     }
 
@@ -24,8 +27,9 @@ public class PlayerSessionService : IPlayerSessionService
         return Task.FromResult(playerSession);
     }
 
-    public Task UpdateSession(string playerName, Action<PlayerSession> updateAction)
+    public Task UpdateSession(string playerName, string secret, Action<PlayerSession> updateAction)
     {
+        ValidateProvidedSecret(playerName, secret);
         _sessions.AddOrUpdate(playerName,
             key => throw new KeyNotFoundException($"No session found for player {key}"), 
             (_, existingSession) =>
@@ -52,5 +56,14 @@ public class PlayerSessionService : IPlayerSessionService
         var sessionsRemoved = keysToRemove.Count(key => _sessions.TryRemove(key, out _));
 
         return Task.FromResult(sessionsRemoved);
+    }
+
+    private void ValidateProvidedSecret(string playerName, string secret)
+    {
+        _sessions.TryGetValue(playerName, out var session);
+        if (session != null && !session.ValidateSecret(secret))
+        {
+            throw new Exception("Invalid secret provided!");
+        }
     }
 }

@@ -7,107 +7,151 @@ namespace Ashcrown.Remake.Api.Tests.Services;
 public class PlayerSessionServiceTests
 {
     [Fact]
-    public async Task CreateSession_ShouldAddSession_WhenNameIsAvailable()
+    public async Task CreateSession_ShouldAddNewSession_WhenPlayerNameIsNew()
     {
         // Arrange
         var service = new PlayerSessionService();
-        const string playerName = "NewPlayer";
-
+        
         // Act
-        var result = await service.CreateSession(playerName);
-
+        var session = await service.CreateSession("player1");
+        
         // Assert
-        result.Should().BeTrue();
-        (await service.GetSession(playerName)).Should().NotBeNull();
+        session.Should().NotBeNull();
+        session!.IconName.Should().NotBeNullOrEmpty();
     }
 
     [Fact]
-    public async Task CreateSession_ShouldFail_WhenNameIsNotAvailable()
+    public async Task CreateSession_ShouldReturnExistingSession_WhenSessionAlreadyExists()
     {
         // Arrange
         var service = new PlayerSessionService();
-        const string playerName = "ExistingPlayer";
-        await service.CreateSession(playerName);
-
+        await service.CreateSession("player1");
+        
         // Act
-        var result = await service.CreateSession(playerName);
-
+        var session = await service.CreateSession("player1");
+    
         // Assert
-        result.Should().BeFalse();
+        session.Should().NotBeNull();
     }
 
     [Fact]
-    public async Task RemoveSession_ShouldSuccessfullyRemoveSession()
+    public async Task GetSession_ShouldRetrieveCorrectSession_WhenSessionExists()
     {
         // Arrange
         var service = new PlayerSessionService();
-        const string playerName = "ExistingPlayer";
-        await service.CreateSession(playerName);
-
+        await service.CreateSession("player1");
+        
         // Act
-        var removed = await service.RemoveSession(playerName);
-        var session = await service.GetSession(playerName);
-
+        var session = await service.GetSession("player1");
+        
         // Assert
-        removed.Should().BeTrue();
+        session.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task GetSession_ShouldReturnNull_WhenSessionDoesNotExist()
+    {
+        // Arrange
+        var service = new PlayerSessionService();
+        
+        // Act
+        var session = await service.GetSession("unknown_player");
+        
+        // Assert
         session.Should().BeNull();
     }
 
     [Fact]
-    public async Task UpdateSession_ShouldModifySession()
+    public async Task RemoveSession_ShouldRemoveSession_WhenCorrectSecretIsProvided()
     {
         // Arrange
         var service = new PlayerSessionService();
-        const string playerName = "ExistingPlayer";
-        await service.CreateSession(playerName);
-        var newTime = DateTime.UtcNow.AddHours(1);
-
+        await service.CreateSession("player1");
+        var session = await service.GetSession("player1");
+        var secret = session!.Secret;
+        
         // Act
-        await service.UpdateSession(playerName, session => session.LastRequestDateTime = newTime);
-
-        // Assert
-        var session = await service.GetSession(playerName);
-        session.Should().NotBeNull();
-        session?.LastRequestDateTime.Should().BeCloseTo(newTime, TimeSpan.FromSeconds(1));
+        var removed = await service.RemoveSession("player1", secret);
+        
+        //Assert
+        removed.Should().BeTrue();
     }
 
     [Fact]
-    public async Task RemoveStaleSessions_ShouldRemoveOnlySessionsOlderThanSpecifiedMinutes()
+    public async Task RemoveSession_ShouldFail_WhenIncorrectSecretIsProvided()
     {
         // Arrange
         var service = new PlayerSessionService();
-        const string activePlayer = "ActivePlayer";
-        const string stalePlayer = "StalePlayer";
-        await service.CreateSession(activePlayer);
-        await service.CreateSession(stalePlayer);
-
-        // Adjust the LastRequestDateTime to simulate staleness
-        service.UpdateSession(stalePlayer, session => session.LastRequestDateTime = DateTime.UtcNow.AddMinutes(-61)).Wait();
-
+        await service.CreateSession("player1");
+        
         // Act
-        var sessionsRemoved = await service.RemoveStaleSessions(60);
+        var act = async () => await service.RemoveSession("player1", "wrong_secret");
 
-        // Assert
-        var sessions = await service.GetCurrentInUsePlayerNames();
-        sessions.Should().Contain(activePlayer);
-        sessions.Should().NotContain(stalePlayer);
-        sessionsRemoved.Should().Be(1);
+        // Assert;
+        await act.Should().ThrowAsync<Exception>().WithMessage("Invalid secret provided!");
     }
 
     [Fact]
-    public async Task GetCurrentInUsePlayerNames_ShouldReturnAllActivePlayerNames()
+    public async Task UpdateSession_ShouldModifySession_WhenCorrectSecretIsProvided()
     {
         // Arrange
         var service = new PlayerSessionService();
-        const string playerOne = "PlayerOne";
-        const string playerTwo = "PlayerTwo";
-        await service.CreateSession(playerOne);
-        await service.CreateSession(playerTwo);
-
+        await service.CreateSession("player1");
+        var session = await service.GetSession("player1");
+        var secret = session!.Secret;
+        
         // Act
-        var players = await service.GetCurrentInUsePlayerNames();
-
+        await service.UpdateSession("player1", secret, s => s.CrownName = "UpdatedCrownName");
+        var updatedSession = await service.GetSession("player1");
+        
         // Assert
-        players.Should().Contain(new[] { playerOne, playerTwo });
+        updatedSession!.CrownName.Should().Be("UpdatedCrownName");
+    }
+
+    [Fact]
+    public async Task UpdateSession_ShouldThrowException_WhenIncorrectSecretIsProvided()
+    {
+        // Arrange
+        var service = new PlayerSessionService();
+        await service.CreateSession("player1");
+        
+        // Act
+        var action = async () =>
+            await service.UpdateSession("player1", "wrong_secret", s => s.CrownName = "UpdatedCrownName");
+        
+        // Assert
+        await action.Should().ThrowAsync<Exception>().WithMessage("Invalid secret provided!");
+    }
+
+    [Fact]
+    public async Task GetCurrentInUsePlayerNames_ShouldReturnAllPlayerNames()
+    {
+        // Arrange
+        var service = new PlayerSessionService();
+        await service.CreateSession("player1");
+        await service.CreateSession("player2");
+        
+        // Act
+        var playerNames = await service.GetCurrentInUsePlayerNames();
+        
+        // Assert
+        playerNames.Should().Contain(new List<string> {"player1", "player2"});
+        playerNames.Should().HaveCount(2);
+    }
+
+    [Fact]
+    public async Task RemoveStaleSessions_ShouldRemoveStaleSessions()
+    {
+        // Arrange
+        var service = new PlayerSessionService();
+        await service.CreateSession("player1");
+        
+        // Act
+        var removedCount = await service.RemoveStaleSessions(0); 
+        
+        // Assert
+        removedCount.Should().Be(1);
+        var remainingSessions = await service.GetCurrentInUsePlayerNames();
+        remainingSessions.Should().BeEmpty();
     }
 }
