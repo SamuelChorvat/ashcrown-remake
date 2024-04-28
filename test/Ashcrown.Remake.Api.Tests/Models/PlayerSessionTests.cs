@@ -10,7 +10,10 @@ public class PlayerSessionTests
     public void Secret_ShouldBeReturnedOnlyOnce()
     {
         // Arrange
-        var session = new PlayerSession();
+        var session = new PlayerSession()
+        {
+            PlayerName = "PlayerName"
+        };
 
         // Act
         var firstSecret = session.Secret;
@@ -25,7 +28,10 @@ public class PlayerSessionTests
     public void Secret_ShouldBeValid_WhenCorrectlyProvided()
     {
         // Arrange
-        var session = new PlayerSession();
+        var session = new PlayerSession()
+        {
+            PlayerName = "PlayerName"
+        };
         var secret = session.Secret;
 
         // Act
@@ -39,7 +45,10 @@ public class PlayerSessionTests
     public void Secret_ShouldBeInvalid_AfterItHasBeenReturned()
     {
         // Arrange
-        var session = new PlayerSession();
+        var session = new PlayerSession()
+        {
+            PlayerName = "PlayerName"
+        };
 
         // Act
         var firstValidation = session.ValidateSecret(session.Secret);
@@ -54,7 +63,10 @@ public class PlayerSessionTests
     public void Secret_ShouldBeInvalid_WhenIncorrectSecretProvided()
     {
         // Arrange
-        var session = new PlayerSession();
+        var session = new PlayerSession()
+        {
+            PlayerName = "PlayerName"
+        };
 
         // Act
         var isValid = session.ValidateSecret("incorrect_secret");
@@ -67,7 +79,10 @@ public class PlayerSessionTests
     public void ValidateSecret_ShouldBeCaseSensitive()
     {
         // Arrange
-        var session = new PlayerSession();
+        var session = new PlayerSession()
+        {
+            PlayerName = "PlayerName"
+        };
         var secret = session.Secret.ToUpper();
 
         // Act

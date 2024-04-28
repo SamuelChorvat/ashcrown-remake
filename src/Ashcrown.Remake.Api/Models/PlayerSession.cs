@@ -19,6 +19,7 @@ public class PlayerSession
         }
     }
     
+    public required string PlayerName { get; init; }
     public DateTime LastRequestDateTime { get; set; } = DateTime.UtcNow;
     public string IconName { get; set; } = AshcrownApiConstants.IconNames.OrderBy(x => Guid.NewGuid()).First();
     public string CrownName { get; set; } = AshcrownApiConstants.CrownNames.OrderBy(x => Guid.NewGuid()).First();

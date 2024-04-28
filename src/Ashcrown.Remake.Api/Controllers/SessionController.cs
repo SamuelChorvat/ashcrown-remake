@@ -51,4 +51,17 @@ public class SessionController(IPlayerSessionService playerSessionService) : Con
 
         return Ok($"Deleted session for '{playerRequest.Name}'");
     }
+    
+    [HttpGet("{playerName}", Name = nameof(GetPlayerSession))]
+    [ProducesResponseType(typeof(PlayerSession), StatusCodes.Status200OK)]
+    [ProducesResponseType( StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<PlayerSession>> GetPlayerSession(string playerName)
+    {
+        var session = await playerSessionService.GetSession(playerName);
+        if (session != null)
+        {
+            return Ok(session);
+        } 
+        return NotFound($"No session for '{playerName}' exists");;
+    }
 }
