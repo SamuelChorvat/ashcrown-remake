@@ -6,5 +6,5 @@ public class VersionInfo
 {
     public string ServerVersion { get; init; } = AshcrownApiConstants.ServerVersion;
     public string MinimumClientVersion { get; init; } = AshcrownApiConstants.MinimumClientVersion;
-    public string[] PlayableChampions { get; init; } = ChampionConstants.AllChampionsNames;
+    public required List<ChampionData> PlayableChampions { get; init; }
 }
