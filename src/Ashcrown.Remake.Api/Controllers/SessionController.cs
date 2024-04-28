@@ -32,7 +32,7 @@ public class SessionController(IPlayerSessionService playerSessionService) : Con
         return playerSessionService.GetCurrentInUsePlayerNames();
     }
     
-    [HttpPost("refresh", Name = nameof(RefreshSession))]
+    [HttpPut("refresh", Name = nameof(RefreshSession))]
     [ProducesResponseType(typeof(ActionResult<PlayerSession>), StatusCodes.Status200OK)]
     public async Task<ActionResult<PlayerSession>> RefreshSession([FromBody] PlayerRequest playerRequest)
     {
