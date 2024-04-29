@@ -781,20 +781,9 @@ public class AbilityController(
                        Any(abilityClass => owner.ActiveEffects[i].StunnedContains(abilityClass))).Any();
     }
 
-    public IAbility GetMyAbilityByName(string abilityName)
+    public IAbility? GetMyAbilityByName(string abilityName)
     {
-        foreach (var slotAbilities in owner.Abilities)
-        {
-            foreach (var ability in slotAbilities)
-            {
-                if (ability.Name.Equals(abilityName))
-                {
-                    return ability;
-                }
-            }
-        }
-
-        throw new Exception($"Ability {abilityName} doesn't exist");
+        return owner.Abilities.SelectMany(slotAbilities => slotAbilities).FirstOrDefault(ability => ability.Name.Equals(abilityName));
     }
 
     public IAbility GetCurrentAbility(int abilityNo)

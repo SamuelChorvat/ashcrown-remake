@@ -11,7 +11,7 @@ public interface IAbilityController
     bool UseAbility(IAbility ability, int[] targets);
     bool ClientCanUseAbilityChecks(IAbility ability);
     bool IsStunnedToUseAbility(IAbility ability);
-    IAbility GetMyAbilityByName(string abilityName);
+    IAbility? GetMyAbilityByName(string abilityName);
     IAbility GetCurrentAbility(int abilityNo);
     void StartTurnFieldsReset();
     void TickDownAbilitiesCooldowns();
