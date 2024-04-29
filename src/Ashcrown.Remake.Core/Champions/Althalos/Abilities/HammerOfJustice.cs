@@ -1,11 +1,12 @@
-﻿using Ashcrown.Remake.Core.Ability.Enums;
+﻿using Ashcrown.Remake.Core.Ability.Base;
+using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Althalos.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Althalos.Abilities;
 
-public class HammerOfJustice : Ability.Abstract.Ability
+public class HammerOfJustice : AbilityBase
 {
     public HammerOfJustice(IChampion champion) 
         : base(champion, 

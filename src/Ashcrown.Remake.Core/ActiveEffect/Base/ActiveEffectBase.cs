@@ -9,7 +9,7 @@ using Ashcrown.Remake.Core.Champions.Sanguimon.Champion;
 
 namespace Ashcrown.Remake.Core.ActiveEffect.Abstract;
 
-public abstract class ActiveEffect(
+public abstract class ActiveEffectBase(
     string activeEffectName,
     IAbility originAbility,
     IChampion championTarget) : IActiveEffect

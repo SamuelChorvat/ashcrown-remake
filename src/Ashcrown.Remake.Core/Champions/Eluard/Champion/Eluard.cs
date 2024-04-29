@@ -1,10 +1,11 @@
 using Ashcrown.Remake.Core.Battle.Interfaces;
+using Ashcrown.Remake.Core.Champion.Base;
 using Ashcrown.Remake.Core.Champions.Eluard.Abilities;
 using Microsoft.Extensions.Logging;
 
 namespace Ashcrown.Remake.Core.Champions.Eluard.Champion;
 
-public class Eluard : Core.Champion.Abstract.Champion<EluardConstants>
+public class Eluard : ChampionBase<EluardConstants>
 {
     public Eluard(IBattleLogic battleLogic, IBattlePlayer battlePlayer, int championNo, ILoggerFactory loggerFactory) 
         : base(battleLogic, battlePlayer, championNo, loggerFactory)

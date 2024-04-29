@@ -6,13 +6,13 @@ using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace Ashcrown.Remake.Core.Champion.Abstract;
+namespace Ashcrown.Remake.Core.Champion.Base;
 
-public abstract class Champion<T> : IChampion where T : IChampionConstants
+public abstract class ChampionBase<T> : IChampion where T : IChampionConstants
 {
     private bool[]? _energyUsage;
 
-    protected Champion(IBattleLogic battleLogic,
+    protected ChampionBase(IBattleLogic battleLogic,
         IBattlePlayer battlePlayer,
         int championNo,
         ILoggerFactory loggerFactory)

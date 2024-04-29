@@ -1,11 +1,12 @@
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Ability.Interfaces;
+using Ashcrown.Remake.Core.ActiveEffect.Abstract;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Eluard.ActiveEffects;
 
-public class DevastateActiveEffect : ActiveEffect.Abstract.ActiveEffect
+public class DevastateActiveEffect : ActiveEffectBase
 {
     public DevastateActiveEffect(IAbility originAbility, IChampion championTarget) 
         : base(EluardConstants.DevastateActiveEffect, 

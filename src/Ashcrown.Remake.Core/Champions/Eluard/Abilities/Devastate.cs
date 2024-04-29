@@ -1,3 +1,4 @@
+using Ashcrown.Remake.Core.Ability.Base;
 using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
@@ -5,7 +6,7 @@ using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Eluard.Abilities;
 
-public class Devastate : Ability.Abstract.Ability
+public class Devastate : AbilityBase
 {
     public Devastate(IChampion champion) 
         : base(champion, 

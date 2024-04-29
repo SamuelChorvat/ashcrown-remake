@@ -1,5 +1,4 @@
-﻿using Ashcrown.Remake.Core.Champion;
-using Ashcrown.Remake.Core.Champions.Althalos.Champion;
+﻿using Ashcrown.Remake.Core.Champions.Althalos.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;
 using Xunit;

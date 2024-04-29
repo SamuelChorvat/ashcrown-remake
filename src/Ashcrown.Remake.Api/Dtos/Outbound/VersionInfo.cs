@@ -1,6 +1,4 @@
-﻿using Ashcrown.Remake.Core.Champion;
-
-namespace Ashcrown.Remake.Api.Dtos.Outbound;
+﻿namespace Ashcrown.Remake.Api.Dtos.Outbound;
 
 public class VersionInfo
 {

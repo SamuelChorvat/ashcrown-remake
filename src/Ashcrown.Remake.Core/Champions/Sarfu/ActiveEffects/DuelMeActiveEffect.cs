@@ -1,12 +1,13 @@
 ﻿using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.Ability.Models;
+using Ashcrown.Remake.Core.ActiveEffect.Abstract;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Sarfu.ActiveEffects;
 
-public class DuelMeActiveEffect : ActiveEffect.Abstract.ActiveEffect
+public class DuelMeActiveEffect : ActiveEffectBase
 {
     public DuelMeActiveEffect(IAbility originAbility, IChampion championTarget) 
         : base(SarfuConstants.DuelMeActiveEffect, originAbility, championTarget)

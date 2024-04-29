@@ -7,9 +7,9 @@ using Ashcrown.Remake.Core.Battle.Models;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
-namespace Ashcrown.Remake.Core.Ability.Abstract;
+namespace Ashcrown.Remake.Core.Ability.Base;
 
-public abstract class Ability : IAbility
+public abstract class AbilityBase : IAbility
 {
     private const int MaxTotalAbilityCost = 5;
     
@@ -21,7 +21,7 @@ public abstract class Ability : IAbility
 
     private readonly IAiAbilityHelper _aiAbilityHelper;
 
-    protected Ability(IChampion champion,
+    protected AbilityBase(IChampion champion,
         string abilityName,
         int originalCooldown,
         int[] originalCost,

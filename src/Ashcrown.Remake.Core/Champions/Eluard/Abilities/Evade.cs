@@ -1,4 +1,4 @@
-using Ashcrown.Remake.Core.Ability.Abstract;
+using Ashcrown.Remake.Core.Ability.Base;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 

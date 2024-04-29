@@ -1,11 +1,12 @@
-﻿using Ashcrown.Remake.Core.Ability.Enums;
+﻿using Ashcrown.Remake.Core.Ability.Base;
+using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Sarfu.Abilities;
 
-public class Overpower : Ability.Abstract.Ability
+public class Overpower : AbilityBase
 {
     public Overpower(IChampion champion) 
         : base(champion, 

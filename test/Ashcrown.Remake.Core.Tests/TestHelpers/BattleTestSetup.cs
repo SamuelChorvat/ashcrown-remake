@@ -1,7 +1,6 @@
 ﻿using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Battle;
 using Ashcrown.Remake.Core.Battle.Interfaces;
-using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound.Validators;
 using Microsoft.Extensions.Logging;
 
 namespace Ashcrown.Remake.Core.Tests.TestHelpers;
