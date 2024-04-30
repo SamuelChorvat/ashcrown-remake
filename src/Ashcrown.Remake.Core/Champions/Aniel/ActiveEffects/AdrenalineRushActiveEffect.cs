@@ -8,4 +8,4 @@ namespace Ashcrown.Remake.Core.Champions.Aniel.ActiveEffects;
 public class AdrenalineRushActiveEffect(IAbility originAbility, IChampion championTarget)
     : StandardInvulnerabilityActiveEffect(originAbility,
         championTarget,
-        AnielConstants.AdrenalineRush);
+        AnielConstants.AdrenalineRushActiveEffect);

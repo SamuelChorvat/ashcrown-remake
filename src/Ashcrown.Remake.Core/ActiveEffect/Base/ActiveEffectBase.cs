@@ -71,7 +71,7 @@ public abstract class ActiveEffectBase(
     public int BonusDamage1 { get; set; }
     public int Heal1 { get; set; }
     public int ReceiveDamageReductionPoint1 { get; set; }
-    public int ReceiveDmgIncreasePoint1 { get; set; }
+    public int ReceiveDamageIncreasePoint1 { get; set; }
     public int ReceiveDamageReductionPercent1 { get; set; }
     public int DestructibleDefense1 { get; set; }
     public int DealDamageReductionPoint1 { get; set; }

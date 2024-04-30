@@ -66,7 +66,7 @@ public interface IActiveEffect
     int BonusDamage1 { get; set; }
     int Heal1 { get; set; }
     int ReceiveDamageReductionPoint1 { get; set; }
-    int ReceiveDmgIncreasePoint1 { get; set; }
+    int ReceiveDamageIncreasePoint1 { get; set; }
     int ReceiveDamageReductionPercent1 { get; set; }
     int DestructibleDefense1 { get; set; }
     int DealDamageReductionPoint1 { get; set; }
