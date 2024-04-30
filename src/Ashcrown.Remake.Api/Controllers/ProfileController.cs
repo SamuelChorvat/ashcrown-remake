@@ -18,4 +18,13 @@ public class ProfileController(IPlayerSessionService playerSessionService) : Con
         var playerSession = await playerSessionService.GetSession(playerRequest.Name);
         return Ok(playerSession);
     }
+    
+    [HttpPut("update/champions/blind", Name = nameof(UpdateBlindChampions))]
+    [ProducesResponseType(typeof(ActionResult<PlayerSession>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PlayerSession>> UpdateBlindChampions([FromBody] PlayerRequestSelectBlindChampions playerRequest)
+    {
+        await playerSessionService.UpdateSession(playerRequest.Name, playerRequest.Secret, session => session.BlindChampions = playerRequest.BlindChampions);
+        var playerSession = await playerSessionService.GetSession(playerRequest.Name);
+        return Ok(playerSession);
+    }
 }
