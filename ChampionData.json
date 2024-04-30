@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Aniel",
-			"title": "The Slayer",
-			"bio":  "Ever since she could remember, Aniel knew that there was something strange about her father. One day she found her mother dead, blood dripping from the two holes in her neck, and her father nowhere to be found. On that day, Aniel swore an oath of vengeance and left her home that very night. In her travels around Coela in search of her mother’s killer, she discovered the truth about the scourge of vampirism that plagued her country. Sickened with the knowledge that the cold blood of the creatures she hated the most ran through her veins, Aniel has turned her anger and disgust on anyone foolish enough to bring up the plague of Coela in front of her.",
-			"attributes": [1,1,0,2],
-			"artist": "WolfsBane",
-			"abilities": [
-				{
-					"name": "Condemn",
-					"description": "Aniel deals <color=#FF5C04>15 physical damage</color> to one enemy. If used on the same enemy one turn after <color=#EAB65B>Blade of Gluttony</color> that enemy will receive an additional <color=#FF5C04>25 physical damage</color>. If used one turn after <color=#EAB65B>Enchanted Garlic Bomb</color>, Aniel will become <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 1
-				},
-				{
-					"name": "Enchanted Garlic Bomb",
-					"description": "One enemy cannot <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color> for 2 turns. If used on the same enemy one turn after <color=#EAB65B>Blade of Gluttony</color> that enemy will also be stunned for 1 turn. If used on the same enemy one turn after <color=#EAB65B>Condemn</color> that enemy will also receive <color=#00A3FB>10 magic damage</color>.",
-					"cooldown": 1,
-					"classes": [
-						"Magic", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 2
-				},
-				{
-					"name": "Blade of Gluttony",
-					"description": "Aniel <color=#FF00CD>removes</color> <sprite=4> from one enemy. If used on the same enemy one turn after <color=#EAB65B>Enchanted Garlic Bomb</color> that enemy will also take 15 more damage from <color=#FF5C04>physical damage</color> for 1 turn. If used on the same enemy one turn after <color=#EAB65B>Condemn</color> that enemy will also take 15 more damage from <color=#00A3FB>magic damage</color> for 1 turn.",
-					"cooldown": 2,
-					"classes": [
-						"Strategic", "Instant", "Melee"
-					],
-					"cost": [
-						0,0,0,1,0
-					],
-					"slot": 3
-				},
-				{
-					"name": "Adrenaline Rush",
-					"description": "This ability makes Aniel <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Arabela",
 			"title": "The Faithful Cleric",
 			"bio":  "Picked up as an orphan by the local parish, Arabela spent her youth piously learning the arts of prayer, worship and healing. Known for her near miraculous ability to heal the sick, the damned and the insane, she has travelled Coela helping anyone she can along the way. Believing that she could make more of a difference on the battlefield than in any rustic village, she now accompanies soldiers, mercenaries and paladins on their gruesome adventures throughout the country. Where better to find the damned than littered amongst the bloody sand of the battlefield?",

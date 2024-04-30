@@ -23,10 +23,15 @@ public static class BattleTestSetup
         battleLogic.SetBattlePlayer(2, "Player2", 
             [championName, championName, championName], false);
 
-        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Blue] = 99;
-        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Red] = 99;
-        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Green] = 99;
-        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Purple] = 99;
+        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Blue] = 10;
+        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Red] = 10;
+        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Green] = 10;
+        battleLogic.GetBattlePlayer(1).Energy[(int) EnergyType.Purple] = 10;
+        
+        battleLogic.GetBattlePlayer(2).Energy[(int) EnergyType.Blue] = 10;
+        battleLogic.GetBattlePlayer(2).Energy[(int) EnergyType.Red] = 10;
+        battleLogic.GetBattlePlayer(2).Energy[(int) EnergyType.Green] = 10;
+        battleLogic.GetBattlePlayer(2).Energy[(int) EnergyType.Purple] = 10;
 
         return battleLogic;
     }
