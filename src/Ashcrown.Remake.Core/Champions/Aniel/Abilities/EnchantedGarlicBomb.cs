@@ -22,7 +22,7 @@ public class EnchantedGarlicBomb : AbilityBase
         Duration1 = 2;
         Duration2 = 1;
         Description = $"One enemy cannot {"reduce damage".HighlightInPurple()} or become {"invulnerable".HighlightInPurple()} for {Duration1} turns. " +
-                      $"If used on the same enemy one turn after {AnielConstants.BladeOfGluttony.HighlightInGold()} that enemy will also be stunned for {Duration2} turn. " +
+                      $"If used on the same enemy one turn after {AnielConstants.BladeOfGluttony.HighlightInGold()} that enemy will also be {"stunned".HighlightInPurple()} for {Duration2} turn. " +
                       $"If used on the same enemy one turn after {AnielConstants.Condemn.HighlightInGold()} that enemy will also receive {$"{Damage1} magic damage".HighlightInBlue()}.";
         Harmful = true;
         Debuff = true;
