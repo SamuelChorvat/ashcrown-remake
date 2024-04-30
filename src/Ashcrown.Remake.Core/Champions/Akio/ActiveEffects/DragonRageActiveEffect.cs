@@ -1,6 +1,6 @@
 ﻿using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Ability.Interfaces;
-using Ashcrown.Remake.Core.ActiveEffect.Abstract;
+using Ashcrown.Remake.Core.ActiveEffect.Base;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Akio.Champion;
 

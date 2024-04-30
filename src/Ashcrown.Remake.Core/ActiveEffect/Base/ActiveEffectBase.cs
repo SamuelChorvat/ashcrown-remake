@@ -7,7 +7,7 @@ using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Sanguimon.Champion;
 
-namespace Ashcrown.Remake.Core.ActiveEffect.Abstract;
+namespace Ashcrown.Remake.Core.ActiveEffect.Base;
 
 public abstract class ActiveEffectBase(
     string activeEffectName,
@@ -23,7 +23,7 @@ public abstract class ActiveEffectBase(
     public AbilityClass[]? ActiveEffectClasses { get; set; }
     public int DestructibleDefense { get; set; }
     public bool Hidden { get; set; }
-    public int Stacks { get; set; }
+    public int Stacks { get; set; } = 1;
     public bool Infinite { get; set; }
     public IActiveEffect? CasterLink { get; set; }
     public IList<IActiveEffect> ChildrenLinks { get; set; } = new List<IActiveEffect>();
