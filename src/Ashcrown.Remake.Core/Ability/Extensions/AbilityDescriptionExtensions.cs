@@ -32,6 +32,11 @@ public static class AbilityDescriptionExtensions
         return $"<color=#00A3FB>{input}</color>";
     }
     
+    public static string HighlightInRed(this string input)
+    {
+        return $"<color=red>{input}</color>";
+    }
+    
     public static string HighlightInBold(this string input)
     {
         return $"<b>{input}</b>";

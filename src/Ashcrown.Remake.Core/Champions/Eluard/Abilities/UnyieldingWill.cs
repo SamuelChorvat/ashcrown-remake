@@ -12,8 +12,8 @@ public class UnyieldingWill : AbilityBase
         : base(champion, 
             EluardConstants.UnyieldingWill, 
             3,
-            [0,0,0,0,1], 
-            new AbilityClass[] {AbilityClass.Strategic, AbilityClass.Instant }, 
+            [0,0,0,0,1],
+            [AbilityClass.Strategic, AbilityClass.Instant], 
             AbilityTarget.Self, 
             AbilityType.AllyBuff,
             3)
