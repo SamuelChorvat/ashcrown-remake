@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Arabela",
-			"title": "The Faithful Cleric",
-			"bio":  "Picked up as an orphan by the local parish, Arabela spent her youth piously learning the arts of prayer, worship and healing. Known for her near miraculous ability to heal the sick, the damned and the insane, she has travelled Coela helping anyone she can along the way. Believing that she could make more of a difference on the battlefield than in any rustic village, she now accompanies soldiers, mercenaries and paladins on their gruesome adventures throughout the country. Where better to find the damned than littered amongst the bloody sand of the battlefield?",
-			"attributes": [1,1,3,1],
-			"artist": "WolfsBane",
-			"abilities": [
-				{
-					"name": "Divine Trap",
-					"description": "Arabela traps one enemy. For 1 turn, Arabela will gain <color=yellow>15 points of damage reduction</color>, and that enemy will take <color=#00A3FB>15 <b>piercing</b> magic damage</color> that <color=#FF00CD>ignores invulnerability</color> at the end of their turn. If that enemy uses a new ability, they will take another <color=#00A3FB>15 <b>piercing</b> magic damage</color>. This ability <color=#FF00CD>ignores invulnerability</color>. The target of this ability is <color=#FF00CD>invisible</color>.",
-					"cooldown": 1,
-					"classes": [
-						"Magic", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,0,1,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Flash Heal",
-					"description": "Arabela heals herself or one ally for <color=#1AB000>25 health</color> and <color=#FF00CD>removes</color> all enemy <color=red>afflictions</color> from them.",
-					"cooldown": 0,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						1,0,0,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Prayer of Healing",
-					"description": "Arabela prays for an ally. For 3 turns, that ally will heal <color=#1AB000>10 health</color> at the end of their turn. For 3 turns, any healing done by Arabela will be increased by <color=#1AB000>10 health</color>.",
-					"cooldown": 3,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,2
-					],
-					"slot": 3
-				},
-				{
-					"name": "Holy Shield",
-					"description": "This ability makes Arabela <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Ash",
 			"title": "The Pyromancer",
 			"bio":  "Expelled from her local guild of mages for burning down the library in a fit of uncontrollable rage, Ash has become a lone sorceress for hire. Unruly and completely without discipline, the soldiers put up with her thanks only to her ability to create utter carnage on the battlefield. The ones who dare to speak up against her attitude often find themselves walking away without any eyebrows; or not at all.",
