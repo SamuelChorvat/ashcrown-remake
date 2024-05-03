@@ -4,6 +4,8 @@ public static class AshcrownApiConstants
 {
     public const string ServerVersion = "0.0.0";
     public const string MinimumClientVersion = "2.0.0";
+
+    public const int TimeToAcceptMatchFoundSeconds = 10;
     
     public static readonly string[] IconNames =
     [

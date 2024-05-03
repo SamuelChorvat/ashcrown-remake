@@ -8,6 +8,7 @@ namespace Ashcrown.Remake.Api.Services;
 public class MatchmakerService : IMatchmakerService
 {
     private readonly ConcurrentDictionary<string, FindMatch> _findMatches = [];
+    private readonly ConcurrentDictionary<string, FindMatch> _acceptedMatches = []; //TODO
     
     public Task<bool> AddToMatchmaking(string playerName, FindMatchType matchType, string? opponentName)
     {
@@ -16,7 +17,8 @@ public class MatchmakerService : IMatchmakerService
         {
             return Task.FromResult(false);
         }
-        
+
+        _findMatches.TryRemove(playerName, out _);
         return Task.FromResult(_findMatches.TryAdd(playerName, new FindMatch
         {
             MatchType = matchType,
