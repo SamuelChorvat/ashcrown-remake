@@ -10,7 +10,7 @@ namespace Ashcrown.Remake.Api.Controllers;
 [Produces("application/json")]
 public class SessionController(IPlayerSessionService playerSessionService) : ControllerBase
 {
-    [HttpPost("create")]
+    [HttpPost("create", Name = nameof(CreatePlayerSession))]
     [ProducesResponseType(typeof(PlayerSession), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     public async Task<ActionResult<PlayerSession>> CreatePlayerSession([FromBody] PlayerRequest playerRequest)
@@ -41,13 +41,15 @@ public class SessionController(IPlayerSessionService playerSessionService) : Con
         return Ok(playerSession);
     }
     
-    [HttpDelete("delete")]
-    [ProducesResponseType(typeof(PlayerSession), StatusCodes.Status200OK)]
+    [HttpDelete("delete", Name = nameof(DeletePlayerSession))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult> DeletePlayerSession([FromBody] PlayerRequest playerRequest)
     {
         if (!await playerSessionService.RemoveSession(playerRequest.Name, playerRequest.Secret))
+        {
             return NotFound($"No session for '{playerRequest.Name}' exists");
+        }
 
         return Ok($"Deleted session for '{playerRequest.Name}'");
     }

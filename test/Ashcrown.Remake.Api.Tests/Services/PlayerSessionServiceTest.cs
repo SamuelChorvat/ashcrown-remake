@@ -154,4 +154,19 @@ public class PlayerSessionServiceTests
         var remainingSessions = await service.GetCurrentInUsePlayerNames();
         remainingSessions.Should().BeEmpty();
     }
+    
+    [Fact]
+    public async Task ValidateProvidedSecret_ShouldThrowException_WhenIncorrectSecretIsProvided()
+    {
+        // Arrange
+        var service = new PlayerSessionService();
+        await service.CreateSession("player1");
+        
+        // Act
+        var action = async () =>
+            await service.ValidateProvidedSecret("player1", "wrong_secret");
+        
+        // Assert
+        await action.Should().ThrowAsync<Exception>().WithMessage("Invalid secret provided!");
+    }
 }

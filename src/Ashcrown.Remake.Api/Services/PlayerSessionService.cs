@@ -6,7 +6,7 @@ namespace Ashcrown.Remake.Api.Services;
 
 public class PlayerSessionService : IPlayerSessionService
 {
-    private readonly ConcurrentDictionary<string, PlayerSession?> _sessions = new();
+    private readonly ConcurrentDictionary<string, PlayerSession> _sessions = [];
 
     public Task<PlayerSession?> CreateSession(string playerName)
     {
@@ -37,7 +37,7 @@ public class PlayerSessionService : IPlayerSessionService
             key => throw new KeyNotFoundException($"No session found for player {key}"), 
             (_, existingSession) =>
             {
-                updateAction(existingSession!);
+                updateAction(existingSession);
                 return existingSession; 
             });
 
@@ -52,7 +52,7 @@ public class PlayerSessionService : IPlayerSessionService
     public Task<int> RemoveStaleSessions(int staleSessionLimitInMinutes)
     {
         var cutoffTime = DateTime.UtcNow.AddMinutes(-staleSessionLimitInMinutes);
-        var keysToRemove = _sessions.Where(pair => pair.Value?.LastRequestDateTime < cutoffTime)
+        var keysToRemove = _sessions.Where(pair => pair.Value.LastRequestDateTime < cutoffTime)
             .Select(pair => pair.Key)
             .ToList();
 
@@ -61,12 +61,13 @@ public class PlayerSessionService : IPlayerSessionService
         return Task.FromResult(sessionsRemoved);
     }
 
-    private void ValidateProvidedSecret(string playerName, string secret)
+    public Task ValidateProvidedSecret(string playerName, string secret)
     {
         _sessions.TryGetValue(playerName, out var session);
         if (session != null && !session.ValidateSecret(secret))
         {
             throw new Exception("Invalid secret provided!");
         }
+        return Task.CompletedTask;
     }
 }
