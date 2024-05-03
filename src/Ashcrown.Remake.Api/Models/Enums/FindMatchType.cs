@@ -1,6 +1,6 @@
 namespace Ashcrown.Remake.Api.Models.Enums;
 
-public enum MatchType
+public enum FindMatchType
 {
     BlindAi,
     BlindPrivate,
