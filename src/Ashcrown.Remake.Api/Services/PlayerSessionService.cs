@@ -24,10 +24,16 @@ public class PlayerSessionService : IPlayerSessionService
         return Task.FromResult(_sessions.TryRemove(playerName, out _));
     }
 
-    public Task<PlayerSession?> GetSession(string playerName)
+    public Task<PlayerSession?> GetSessionAsync(string playerName)
     {
         _sessions.TryGetValue(playerName, out var playerSession);
         return Task.FromResult(playerSession);
+    }
+    
+    public PlayerSession? GetSession(string playerName)
+    {
+        _sessions.TryGetValue(playerName, out var playerSession);
+        return playerSession;
     }
 
     public Task UpdateSession(string playerName, string secret, Action<PlayerSession> updateAction)

@@ -1,5 +1,7 @@
 using Ashcrown.Remake.Api.Dtos.Inbound;
+using Ashcrown.Remake.Api.Dtos.Outbound;
 using Ashcrown.Remake.Api.Services.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashcrown.Remake.Api.Controllers;
@@ -38,5 +40,49 @@ public class MatchController(IPlayerSessionService playerSessionService,
         }
         
         return NotFound();
+    }
+    
+    [HttpPost("getMatched", Name = nameof(GetMatched))]
+    [ProducesResponseType(typeof(FoundMatchResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<FoundMatchResponse>> GetMatched([FromBody] PlayerRequest playerRequest)
+    {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        var foundMatchResponse = await matchmakerService.TryToMatchPlayer(playerRequest.Name);
+        if (foundMatchResponse != null)
+        {
+            return Ok(foundMatchResponse);
+        }
+
+        return NotFound();
+    }
+    
+    [HttpPost("accept", Name = nameof(AcceptMatch))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult> AcceptMatch([FromBody] PlayerRequestMatchId playerRequest)
+    {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        await matchmakerService.AcceptMatch(playerRequest.Name, playerRequest.MatchId);
+        return Ok();
+    }
+    
+    [HttpPost("decline", Name = nameof(DeclineMatch))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult> DeclineMatch([FromBody] PlayerRequestMatchId playerRequest)
+    {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        await matchmakerService.DeclineMatch(playerRequest.MatchId);
+        return Ok();
+    }
+    
+    [HttpPost("found", Name = nameof(GetFoundStatus))]
+    [ProducesResponseType(typeof(FoundMatchResponse), StatusCodes.Status200OK)]
+    public async Task<ActionResult<FoundMatchStatusUpdate>> GetFoundStatus([FromBody] PlayerRequestMatchId playerRequest)
+    {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        return new FoundMatchStatusUpdate
+        {
+            FoundMatchStatus = await matchmakerService.GetFoundMatchStatus(playerRequest.MatchId)
+        };
     }
 }

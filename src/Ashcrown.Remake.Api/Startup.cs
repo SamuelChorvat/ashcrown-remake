@@ -17,6 +17,7 @@ public class Startup
         services.AddRouting(options => options.LowercaseUrls = true);
 
         services.AddHostedService<PlayerSessionCleanupService>();
+        services.AddHostedService<MatchmakerCleanupService>();
 
         services.AddSingleton<IChampionFactory, ChampionFactory>();
         services.AddSingleton<IChampionDataService, ChampionDataService>();

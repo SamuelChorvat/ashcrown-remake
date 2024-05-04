@@ -14,4 +14,10 @@ public static class ChampionConstants
     public static readonly string[] AllChampionsNames = [AkioConstants.Name,
         AlthalosConstants.Name, AnielConstants.Name, ArabelaConstants.Name,
         EluardConstants.Name, SarfuConstants.Name];
+    
+    public static string[] GetRandomChampionNames(int count)
+    {
+        var random = new Random();
+        return AllChampionsNames.OrderBy(x => random.Next()).Take(count).ToArray();
+    }
 }

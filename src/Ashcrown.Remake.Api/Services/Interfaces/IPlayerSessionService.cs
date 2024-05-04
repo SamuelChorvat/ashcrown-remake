@@ -6,7 +6,8 @@ public interface IPlayerSessionService
 {
     Task<PlayerSession?> CreateSession(string playerName);
     Task<bool> RemoveSession(string playerName, string secret);
-    Task<PlayerSession?> GetSession(string playerName);
+    Task<PlayerSession?> GetSessionAsync(string playerName);
+    PlayerSession? GetSession(string playerName);
     Task UpdateSession(string playerName, string secret, Action<PlayerSession> updateAction);
     Task<IList<string>> GetCurrentInUsePlayerNames();
     Task<int> RemoveStaleSessions(int staleSessionLimitInMinutes);

@@ -15,7 +15,7 @@ public class ProfileController(IPlayerSessionService playerSessionService) : Con
     public async Task<ActionResult<PlayerSession>> UpdateIcon([FromBody] PlayerRequestSelectProfileIcon playerRequest)
     {
         await playerSessionService.UpdateSession(playerRequest.Name, playerRequest.Secret, session => session.IconName = playerRequest.IconName);
-        var playerSession = await playerSessionService.GetSession(playerRequest.Name);
+        var playerSession = await playerSessionService.GetSessionAsync(playerRequest.Name);
         return Ok(playerSession);
     }
     
@@ -24,7 +24,7 @@ public class ProfileController(IPlayerSessionService playerSessionService) : Con
     public async Task<ActionResult<PlayerSession>> UpdateBlindChampions([FromBody] PlayerRequestSelectBlindChampions playerRequest)
     {
         await playerSessionService.UpdateSession(playerRequest.Name, playerRequest.Secret, session => session.BlindChampions = playerRequest.BlindChampions);
-        var playerSession = await playerSessionService.GetSession(playerRequest.Name);
+        var playerSession = await playerSessionService.GetSessionAsync(playerRequest.Name);
         return Ok(playerSession);
     }
 }

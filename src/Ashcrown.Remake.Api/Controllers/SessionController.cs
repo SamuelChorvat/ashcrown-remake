@@ -37,7 +37,7 @@ public class SessionController(IPlayerSessionService playerSessionService) : Con
     public async Task<ActionResult<PlayerSession>> RefreshSession([FromBody] PlayerRequest playerRequest)
     {
         await playerSessionService.UpdateSession(playerRequest.Name, playerRequest.Secret, session => session.LastRequestDateTime = DateTime.UtcNow);
-        var playerSession = await playerSessionService.GetSession(playerRequest.Name);
+        var playerSession = await playerSessionService.GetSessionAsync(playerRequest.Name);
         return Ok(playerSession);
     }
     
@@ -59,7 +59,7 @@ public class SessionController(IPlayerSessionService playerSessionService) : Con
     [ProducesResponseType( StatusCodes.Status404NotFound)]
     public async Task<ActionResult<PlayerSession>> GetPlayerSession(string playerName)
     {
-        var session = await playerSessionService.GetSession(playerName);
+        var session = await playerSessionService.GetSessionAsync(playerName);
         if (session != null)
         {
             return Ok(session);

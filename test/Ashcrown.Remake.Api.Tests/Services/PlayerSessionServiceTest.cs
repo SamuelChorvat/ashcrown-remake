@@ -42,7 +42,7 @@ public class PlayerSessionServiceTests
         await service.CreateSession("player1");
         
         // Act
-        var session = await service.GetSession("player1");
+        var session = await service.GetSessionAsync("player1");
         
         // Assert
         session.Should().NotBeNull();
@@ -55,7 +55,7 @@ public class PlayerSessionServiceTests
         var service = new PlayerSessionService();
         
         // Act
-        var session = await service.GetSession("unknown_player");
+        var session = await service.GetSessionAsync("unknown_player");
         
         // Assert
         session.Should().BeNull();
@@ -67,7 +67,7 @@ public class PlayerSessionServiceTests
         // Arrange
         var service = new PlayerSessionService();
         await service.CreateSession("player1");
-        var session = await service.GetSession("player1");
+        var session = await service.GetSessionAsync("player1");
         var secret = session!.Secret;
         
         // Act
@@ -97,12 +97,12 @@ public class PlayerSessionServiceTests
         // Arrange
         var service = new PlayerSessionService();
         await service.CreateSession("player1");
-        var session = await service.GetSession("player1");
+        var session = await service.GetSessionAsync("player1");
         var secret = session!.Secret;
         
         // Act
         await service.UpdateSession("player1", secret, s => s.CrownName = "UpdatedCrownName");
-        var updatedSession = await service.GetSession("player1");
+        var updatedSession = await service.GetSessionAsync("player1");
         
         // Assert
         updatedSession!.CrownName.Should().Be("UpdatedCrownName");
