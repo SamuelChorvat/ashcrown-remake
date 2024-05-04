@@ -37,6 +37,7 @@ public class MatchmakerService(IPlayerSessionService playerSessionService) : IMa
     public Task<FoundMatchResponse?> TryToMatchPlayer(string playerName)
     {
         //TODO Write test for this
+        //TODO Handle FindMatches for player that went offline
         lock (this)
         {
             var existingFoundMatch = _foundMatches.FirstOrDefault(pair => 
