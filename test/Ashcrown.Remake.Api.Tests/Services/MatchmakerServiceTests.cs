@@ -134,7 +134,7 @@ public class MatchmakerServiceTests
         result?.MatchType.Should().Be(FindMatchType.BlindAi);
     }
     
-     [Fact]
+    [Fact]
     public async Task GetFoundMatchStatus_ShouldReturnConfirmed_WhenAcceptedByBattleService()
     {
         // Arrange
