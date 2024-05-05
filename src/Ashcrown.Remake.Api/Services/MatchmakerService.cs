@@ -1,5 +1,4 @@
 using System.Collections.Concurrent;
-using System.Diagnostics.CodeAnalysis;
 using Ashcrown.Remake.Api.Dtos.Outbound;
 using Ashcrown.Remake.Api.Models;
 using Ashcrown.Remake.Api.Models.Enums;
@@ -8,7 +7,7 @@ using Ashcrown.Remake.Core.Champion;
 
 namespace Ashcrown.Remake.Api.Services;
 
-public class MatchmakerService(IPlayerSessionService playerSessionService) : IMatchmakerService
+public class MatchmakerService(IPlayerSessionService playerSessionService, IBattleService battleService) : IMatchmakerService
 {
     private readonly ConcurrentDictionary<string, FindMatch> _findMatches = [];
     private readonly ConcurrentDictionary<Guid, FoundMatch> _foundMatches = [];
@@ -37,7 +36,6 @@ public class MatchmakerService(IPlayerSessionService playerSessionService) : IMa
     public Task<FoundMatchResponse?> TryToMatchPlayer(string playerName)
     {
         //TODO Write test for this
-        //TODO Handle FindMatches for player that went offline
         lock (this)
         {
             var existingFoundMatch = _foundMatches.FirstOrDefault(pair => 
@@ -92,47 +90,55 @@ public class MatchmakerService(IPlayerSessionService playerSessionService) : IMa
         }
     }
 
-    public Task AcceptMatch(string playerName, string matchId)
+    public Task AcceptMatch(string playerName, Guid matchId)
     {
-        UpdateFoundMatch(Guid.Parse(matchId),
+        UpdateFoundMatch(matchId,
             foundMatch => foundMatch.PlayerAccepted[foundMatch.PlayerNames[0].Equals(playerName) ? 0 : 1] = true);
             
         return Task.CompletedTask;
     }
 
-    public Task DeclineMatch(string matchId)
+    public Task DeclineMatch(Guid matchId)
     {
-        UpdateFoundMatch(Guid.Parse(matchId),
+        UpdateFoundMatch(matchId,
             foundMatch => foundMatch.MatchCancelled = true);
             
         return Task.CompletedTask;
     }
-
-    [SuppressMessage("ReSharper", "InconsistentlySynchronizedField")]
-    public Task<FoundMatchStatus> GetFoundMatchStatus(string matchId)
+    
+    public Task<FoundMatchStatus> GetFoundMatchStatus(Guid matchId)
     {
-        //TODO Check BattleService first to see if it has been moved already, return confirmed if yes
-        _foundMatches.TryGetValue(Guid.Parse(matchId), out var foundMatch);
-        if (foundMatch is null || foundMatch.MatchCancelled)
+        lock (this)
         {
-            _foundMatches.TryRemove(Guid.Parse(matchId), out _);
-            return Task.FromResult(FoundMatchStatus.Cancelled);
-        }
+            if (battleService.IsAcceptedMatch(matchId))
+            {
+                return Task.FromResult(FoundMatchStatus.Confirmed);
+            }
+            
+            _foundMatches.TryGetValue(matchId, out var foundMatch);
+            if (foundMatch is null || foundMatch.MatchCancelled)
+            {
+                _foundMatches.TryRemove(matchId, out _);
+                return Task.FromResult(FoundMatchStatus.Cancelled);
+            }
 
-        if (foundMatch.PlayerAccepted.Count(x => x) == 2)
-        {
-            //TODO Call BattleService and move the match there and remove it from here
-            return Task.FromResult(FoundMatchStatus.Confirmed);
-        }
+            if (foundMatch.PlayerAccepted.Count(x => x) == 2)
+            {
+                _foundMatches.TryRemove(matchId, out _);
+                return Task.FromResult(battleService.AddAcceptedMatch(matchId, foundMatch) 
+                    ? FoundMatchStatus.Confirmed 
+                    : FoundMatchStatus.Cancelled);
+            }
 
-        if (foundMatch.MatchFoundTime.AddSeconds(AshcrownApiConstants.TimeToAcceptMatchFoundSeconds + 1) <
-            DateTime.UtcNow)
-        {
-            _foundMatches.TryRemove(Guid.Parse(matchId), out _);
-            return Task.FromResult(FoundMatchStatus.Cancelled);
-        }
+            if (foundMatch.MatchFoundTime.AddSeconds(AshcrownApiConstants.TimeToAcceptMatchFoundSeconds + 1) <
+                DateTime.UtcNow)
+            {
+                _foundMatches.TryRemove(matchId, out _);
+                return Task.FromResult(FoundMatchStatus.Cancelled);
+            }
 
-        return Task.FromResult(FoundMatchStatus.Pending);
+            return Task.FromResult(FoundMatchStatus.Pending);
+        }
     }
 
     public Task<int> RemoveStaleFindMatches()

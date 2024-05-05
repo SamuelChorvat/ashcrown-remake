@@ -2,5 +2,5 @@
 
 public class PlayerRequestMatchId : PlayerRequest
 {
-    public required string MatchId { get; set; }
+    public required Guid MatchId { get; set; }
 }
