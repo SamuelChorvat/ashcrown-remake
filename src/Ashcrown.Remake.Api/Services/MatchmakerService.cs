@@ -67,6 +67,7 @@ public class MatchmakerService(IPlayerSessionService playerSessionService) : IMa
                 case FindMatchType.DraftPrivate:
                     var opponentFindMatchPairPrivate = _findMatches.FirstOrDefault(pair =>
                         pair.Value.MatchType == playerFindMatch.MatchType 
+                        && !pair.Key.Equals(playerName)
                         && pair.Value.PrivateOpponentName != null 
                         && pair.Value.PrivateOpponentName.Equals(playerName));
                     if (opponentFindMatchPairPrivate.Value is not null)
@@ -77,7 +78,7 @@ public class MatchmakerService(IPlayerSessionService playerSessionService) : IMa
                 case FindMatchType.BlindPublic:
                 case FindMatchType.DraftPublic:
                     var opponentFindMatchPairPublic = _findMatches.FirstOrDefault(pair => 
-                        pair.Value.MatchType == playerFindMatch.MatchType);
+                        pair.Value.MatchType == playerFindMatch.MatchType && !pair.Key.Equals(playerName));
                     if (opponentFindMatchPairPublic.Value is not null)
                     {
                         matchFound = NonAiFoundMatchHelper(playerName, playerFindMatch, playerSession, opponentFindMatchPairPublic);
