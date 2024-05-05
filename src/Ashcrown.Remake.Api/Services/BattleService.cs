@@ -16,7 +16,8 @@ public class BattleService : IBattleService
         {
             return _acceptedMatches.TryAdd(matchId, new AcceptedMatch
             {
-                FoundMatch = foundMatch
+                FoundMatch = foundMatch,
+                PlayerBattleStarted = [false, foundMatch.FindMatchType == FindMatchType.BlindAi]
             });
         }
     }
