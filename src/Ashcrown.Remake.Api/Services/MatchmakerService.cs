@@ -35,7 +35,6 @@ public class MatchmakerService(IPlayerSessionService playerSessionService, IBatt
 
     public Task<FoundMatchResponse?> TryToMatchPlayer(string playerName)
     {
-        //TODO Write test for this
         lock (this)
         {
             var existingFoundMatch = _foundMatches.FirstOrDefault(pair => 
@@ -225,5 +224,13 @@ public class MatchmakerService(IPlayerSessionService playerSessionService, IBatt
             OpponentCrown = foundMatch.PlayerCrowns[opponentIndex],
             OpponentChampions = foundMatch.PlayerBlindChampions[opponentIndex]
         };
+    }
+
+    public void AddFoundMatch(Guid matchId, FoundMatch foundMatch)
+    {
+        lock (this)
+        {
+            _foundMatches.TryAdd(matchId, foundMatch);
+        }
     }
 }
