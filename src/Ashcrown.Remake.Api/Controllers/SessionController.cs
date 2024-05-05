@@ -15,6 +15,11 @@ public class SessionController(IPlayerSessionService playerSessionService) : Con
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     public async Task<ActionResult<PlayerSession>> CreatePlayerSession([FromBody] PlayerRequest playerRequest)
     {
+        if (playerRequest.Name.ToLower().Equals("AshcrownNET".ToLower()))
+        {
+            return Conflict($"Name {playerRequest.Name} is reserved!");
+        }
+        
         var session = await playerSessionService.CreateSession(playerRequest.Name);
 
         if (session == null)

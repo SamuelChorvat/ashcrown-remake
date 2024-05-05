@@ -6,8 +6,6 @@ namespace Ashcrown.Remake.Core.Battle.Interfaces;
 
 public interface IBattleLogic
 {
-	event EventHandler<PlayerUpdate>? TurnChanged;
-	event EventHandler<BattleEndedUpdate>? BattleEnded;
 	IBattleHistoryRecorder BattleHistoryRecorder { get; init; }
 	IList<IChampion> DiedChampions { get; init; }
 	DateTime StartTime { get; init; }

@@ -39,9 +39,7 @@ public class BattleLogic : IBattleLogic
             new AiEnergySelector(this, new AiEnergyUsageController()), 
             _loggerFactory.CreateLogger<AiController>());
     }
-
-    public event EventHandler<PlayerUpdate>? TurnChanged;
-    public event EventHandler<BattleEndedUpdate>? BattleEnded;
+    
     public IBattleHistoryRecorder BattleHistoryRecorder { get; init; }
     public IList<IChampion> DiedChampions { get; init; } = new List<IChampion>();
     public DateTime StartTime { get; init; } = DateTime.UtcNow;
@@ -233,7 +231,7 @@ public class BattleLogic : IBattleLogic
     private void OnTurnChanged()
     {
         ChangeWhoseTurn();
-        TurnChanged?.Invoke(this, GetHumanBattlePlayer().GetPlayerUpdate(WhoseTurn));
+        //TurnChanged?.Invoke(this, GetHumanBattlePlayer().GetPlayerUpdate(WhoseTurn));
     }
 
     public void Surrender()
@@ -325,7 +323,7 @@ public class BattleLogic : IBattleLogic
             battleEndedUpdate.BattleEndedState = BattleEndedState.Victory;
         }
         
-        BattleEnded?.Invoke(this, battleEndedUpdate);
+        //BattleEnded?.Invoke(this, battleEndedUpdate);
     }
 
     private bool IsCostValid(int playerNo, IEnumerable<int> spentEnergy, IEnumerable<UsedAbility?> usedAbilities)
