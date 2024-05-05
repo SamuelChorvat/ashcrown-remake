@@ -13,7 +13,10 @@ public class MatchmakerCleanupService(IMatchmakerService matchmakerService, ILog
         {
             logger.LogInformation("Matchmaker cleanup started!");
             var foundMatches = await matchmakerService.RemoveStaleFoundMatches();
-            logger.LogInformation("Matchmaker cleanup finished! Removed {FoundMatched} found match(es)", foundMatches);
+            var findMatches = await matchmakerService.RemoveStaleFindMatches();
+            logger.LogInformation("Matchmaker cleanup finished! " +
+                                  "Removed {FindMatches} find match(es) and {FoundMatches} found match(es)", 
+                findMatches, foundMatches);
             await Task.Delay(_interval, stoppingToken);
         }
     }

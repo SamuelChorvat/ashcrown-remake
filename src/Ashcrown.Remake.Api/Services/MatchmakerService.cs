@@ -1,10 +1,10 @@
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using Ashcrown.Remake.Api.Dtos.Outbound;
 using Ashcrown.Remake.Api.Models;
 using Ashcrown.Remake.Api.Models.Enums;
 using Ashcrown.Remake.Api.Services.Interfaces;
 using Ashcrown.Remake.Core.Champion;
-// ReSharper disable InconsistentlySynchronizedField
 
 namespace Ashcrown.Remake.Api.Services;
 
@@ -107,10 +107,10 @@ public class MatchmakerService(IPlayerSessionService playerSessionService) : IMa
         return Task.CompletedTask;
     }
 
+    [SuppressMessage("ReSharper", "InconsistentlySynchronizedField")]
     public Task<FoundMatchStatus> GetFoundMatchStatus(string matchId)
     {
         //TODO Check BattleService first to see if it has been moved already, return confirmed if yes
-        
         _foundMatches.TryGetValue(Guid.Parse(matchId), out var foundMatch);
         if (foundMatch is null || foundMatch.MatchCancelled)
         {
@@ -134,6 +134,17 @@ public class MatchmakerService(IPlayerSessionService playerSessionService) : IMa
         return Task.FromResult(FoundMatchStatus.Pending);
     }
 
+    public Task<int> RemoveStaleFindMatches()
+    {
+        var keysToRemove = _findMatches.Where(pair => 
+                playerSessionService.GetSession(pair.Key) == null)
+            .Select(pair => pair.Key)
+            .ToList();
+        
+        var findMatchesRemoved = keysToRemove.Count(key => _findMatches.TryRemove(key, out _));
+        return Task.FromResult(findMatchesRemoved);
+    }
+
     public Task<int> RemoveStaleFoundMatches()
     {
         lock (this)
@@ -143,9 +154,9 @@ public class MatchmakerService(IPlayerSessionService playerSessionService) : IMa
                 .Select(pair => pair.Key)
                 .ToList();
 
-            var matchedFoundRemoved = keysToRemove.Count(key => _foundMatches.TryRemove(key, out _));
+            var foundMatchesRemoved = keysToRemove.Count(key => _foundMatches.TryRemove(key, out _));
 
-            return Task.FromResult(matchedFoundRemoved);
+            return Task.FromResult(foundMatchesRemoved);
         }
     }
 
@@ -163,11 +174,15 @@ public class MatchmakerService(IPlayerSessionService playerSessionService) : IMa
         }
     }
 
-    private FoundMatchResponse NonAiFoundMatchHelper(string playerName, FindMatch playerFindMatch, 
+    private FoundMatchResponse? NonAiFoundMatchHelper(string playerName, FindMatch playerFindMatch, 
         PlayerSession playerSession, KeyValuePair<string, FindMatch> opponentFindMatchPair)
     {
         var opponentSession = playerSessionService.GetSession(opponentFindMatchPair.Key);
-        ArgumentNullException.ThrowIfNull(opponentSession);
+        if (opponentSession is null)
+        {
+            _findMatches.TryRemove(opponentFindMatchPair.Key, out _);
+            return null;
+        }
                         
         var foundMatch = BuildFoundMatch(playerFindMatch.MatchType, playerSession, opponentSession);
         _findMatches.TryRemove(playerName, out _);

@@ -57,7 +57,7 @@ public class MatchController(IPlayerSessionService playerSessionService,
         return NotFound();
     }
     
-    [HttpPost("accept", Name = nameof(AcceptMatch))]
+    [HttpPut("accept", Name = nameof(AcceptMatch))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult> AcceptMatch([FromBody] PlayerRequestMatchId playerRequest)
     {
@@ -66,7 +66,7 @@ public class MatchController(IPlayerSessionService playerSessionService,
         return Ok();
     }
     
-    [HttpPost("decline", Name = nameof(DeclineMatch))]
+    [HttpDelete("decline", Name = nameof(DeclineMatch))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult> DeclineMatch([FromBody] PlayerRequestMatchId playerRequest)
     {
@@ -75,7 +75,7 @@ public class MatchController(IPlayerSessionService playerSessionService,
         return Ok();
     }
     
-    [HttpPost("found", Name = nameof(GetFoundStatus))]
+    [HttpPut("found", Name = nameof(GetFoundStatus))]
     [ProducesResponseType(typeof(FoundMatchResponse), StatusCodes.Status200OK)]
     public async Task<ActionResult<FoundMatchStatusUpdate>> GetFoundStatus([FromBody] PlayerRequestMatchId playerRequest)
     {

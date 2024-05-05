@@ -11,5 +11,6 @@ public interface IMatchmakerService
     Task AcceptMatch(string playerName, string matchId);
     Task DeclineMatch(string matchId);
     Task<FoundMatchStatus> GetFoundMatchStatus(string matchId);
+    Task<int> RemoveStaleFindMatches();
     Task<int> RemoveStaleFoundMatches();
 }
