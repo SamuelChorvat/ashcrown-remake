@@ -71,6 +71,8 @@ public class BattleController(IPlayerSessionService playerSessionService,
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult> EndTurnAi([FromBody] PlayerRequestMatchId playerRequest)
     {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        
         var startedMatch = await battleService.GetStartedMatch(playerRequest.MatchId);
         ArgumentNullException.ThrowIfNull(startedMatch);
         ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
@@ -79,6 +81,26 @@ public class BattleController(IPlayerSessionService playerSessionService,
         if (battleLogic is {AiBattle: true, WhoseTurn.AiOpponent: true})
         {
             battleLogic.EndAiTurn();
+        }
+
+        return Ok();
+    }
+
+    [HttpPost("endTurn/player", Name = nameof(EndTurnPlayer))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult> EndTurnPlayer([FromBody] PlayerRequestEndTurn playerRequest)
+    {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        
+        var startedMatch = await battleService.GetStartedMatch(playerRequest.MatchId);
+        ArgumentNullException.ThrowIfNull(startedMatch);
+        ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
+        var battleLogic = startedMatch.BattleLogic;
+        var playerNo = battleLogic.GetBattlePlayerNo(playerRequest.Name);
+
+        if (battleLogic.WhoseTurn.PlayerNo == playerNo)
+        {
+            battleLogic.EndPlayerTurn(playerNo, playerRequest.EndTurn);
         }
 
         return Ok();
