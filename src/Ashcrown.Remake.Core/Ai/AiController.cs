@@ -31,7 +31,7 @@ public class AiController(
                 logger.LogDebug("AI selected ability -> {AbilityName}", selectedAbility.Ability?.Name);
             }
 
-            var packedAbilities = AiUtils.PackSelectedAbilities(selectedAbilities);
+            var packedAbilities = AiUtils.PackSelectedAbilities(selectedAbilities, selectedEnergyToSpend);
             try {
                 if(!battleLogic.AbilitiesUsed(battleLogic.GetAiOpponentPlayerNo(), packedAbilities, 
                        selectedEnergyToSpend)) {

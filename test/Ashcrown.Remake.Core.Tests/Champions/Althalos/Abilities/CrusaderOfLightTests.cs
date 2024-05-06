@@ -22,6 +22,10 @@ public class CrusaderOfLightTests
         // Assert
         battleLogic.GetBattlePlayer(1).Champions[0].ActiveEffectController
             .ActiveEffectPresentByActiveEffectName(AlthalosConstants.CrusaderOfLightActiveEffect).Should().BeTrue();
+        battleLogic.GetBattlePlayer(1).Champions[1].ActiveEffectController
+            .ActiveEffectPresentByActiveEffectName(AlthalosConstants.CrusaderOfLightActiveEffect).Should().BeFalse();
+        battleLogic.GetBattlePlayer(1).Champions[2].ActiveEffectController
+            .ActiveEffectPresentByActiveEffectName(AlthalosConstants.CrusaderOfLightActiveEffect).Should().BeFalse();
         battleLogic.GetBattlePlayer(1).Champions[0].ActiveEffectController
             .GetActiveEffectByName(AlthalosConstants.CrusaderOfLightActiveEffect)!.IgnoreStuns.Should().BeTrue();
         battleLogic.GetBattlePlayer(1).Champions[0].ActiveEffectController

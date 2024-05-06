@@ -4,7 +4,7 @@ using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound;
 
 namespace Ashcrown.Remake.Core.Ai;
 
-public class AiUtils : IAiUtils
+public abstract class AiUtils : IAiUtils
 {
     public static AiMaximizedAbility GetHigherPointsAbility(AiMaximizedAbility? ability1, AiMaximizedAbility ability2)
     {
@@ -21,11 +21,12 @@ public class AiUtils : IAiUtils
         return random.Next(2) == 1 ? ability2 : ability1;
     }
 
-    public static EndTurn PackSelectedAbilities(IList<AiMaximizedAbility> selectedAbilities)
+    public static EndTurn PackSelectedAbilities(IList<AiMaximizedAbility> selectedAbilities, int[] selectedEnergy)
     {
         var endTurn = new EndTurn
         {
-            EndTurnAbilities = new List<EndTurnAbility>()
+            EndTurnAbilities = new List<EndTurnAbility>(),
+            SpentEnergy = selectedEnergy
         };
 
         for (var i = 0; i < selectedAbilities.Count; i++) {

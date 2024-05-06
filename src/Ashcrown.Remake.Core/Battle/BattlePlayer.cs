@@ -266,9 +266,9 @@ public class BattlePlayer : IBattlePlayer
 
             playerUpdate.MyChampionUpdates[i] = myChampionsUpdate;
         }
-		
-        var opponentChampionsUpdate = new OpponentChampionUpdate();
+        
 		for (var i = 0; i < 3; i++) {
+            var opponentChampionsUpdate = new OpponentChampionUpdate();
 			var champion = _battleLogic.GetOppositePlayer(PlayerNo).Champions[i];
 			
 			opponentChampionsUpdate.Health = champion.Health;
