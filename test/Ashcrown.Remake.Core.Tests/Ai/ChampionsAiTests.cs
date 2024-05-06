@@ -11,7 +11,7 @@ public class ChampionsAiTests
 {
     [Theory]
     [MemberData(nameof(UniqueTeamsData))]
-    public void AllAiTeamCombinations_ShouldWin_VersusInactivePlayer(string[] uniqueTeam)
+    public void AllAiTeamCombinations_ShouldAlwaysWin_VersusInactivePlayer(string[] uniqueTeam)
     {
         // Arrange
         var battleLogic = SetupAiBattle(uniqueTeam);
