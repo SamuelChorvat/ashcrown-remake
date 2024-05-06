@@ -1,10 +1,8 @@
 ﻿using Ashcrown.Remake.Api.Dtos.Inbound;
 using Ashcrown.Remake.Api.Dtos.Outbound;
-using Ashcrown.Remake.Api.Models.Enums;
 using Ashcrown.Remake.Api.Services.Interfaces;
 using Ashcrown.Remake.Core.Battle;
 using Ashcrown.Remake.Core.Battle.Enums;
-using Ashcrown.Remake.Core.Battle.Models.Dtos.Inbound;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashcrown.Remake.Api.Controllers;
@@ -40,6 +38,7 @@ public class BattleController(IPlayerSessionService playerSessionService,
     [ProducesResponseType(typeof(BattleStatusUpdate), StatusCodes.Status200OK)]
     public async Task<BattleStatusUpdate> BattleUpdate(string matchId, string playerName)
     {
+        // TODO End match if opponent went offline
         var startedMatch = await battleService.GetStartedMatch(Guid.Parse(matchId));
         ArgumentNullException.ThrowIfNull(startedMatch);
         ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
@@ -66,5 +65,22 @@ public class BattleController(IPlayerSessionService playerSessionService,
                 : BattleStatus.OpponentsTurn,
             PlayerUpdate = battleLogic.LatestPlayerUpdates[playerNo - 1]
         };
+    }
+
+    [HttpPost("endTurn/ai", Name = nameof(EndTurnAi))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult> EndTurnAi([FromBody] PlayerRequestMatchId playerRequest)
+    {
+        var startedMatch = await battleService.GetStartedMatch(playerRequest.MatchId);
+        ArgumentNullException.ThrowIfNull(startedMatch);
+        ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
+        var battleLogic = startedMatch.BattleLogic;
+        
+        if (battleLogic is {AiBattle: true, WhoseTurn.AiOpponent: true})
+        {
+            battleLogic.EndAiTurn();
+        }
+
+        return Ok();
     }
 }
