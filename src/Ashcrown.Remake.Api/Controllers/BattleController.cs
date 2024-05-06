@@ -3,6 +3,7 @@ using Ashcrown.Remake.Api.Dtos.Outbound;
 using Ashcrown.Remake.Api.Services.Interfaces;
 using Ashcrown.Remake.Core.Battle;
 using Ashcrown.Remake.Core.Battle.Enums;
+using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashcrown.Remake.Api.Controllers;
@@ -102,6 +103,86 @@ public class BattleController(IPlayerSessionService playerSessionService,
         {
             battleLogic.EndPlayerTurn(playerNo, playerRequest.EndTurn);
         }
+
+        return Ok();
+    }
+    
+    [HttpPost("targets", Name = nameof(Targets))]
+    [ProducesResponseType(typeof(TargetsUpdate), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<TargetsUpdate>> Targets([FromBody] PlayerRequestGetTargets playerRequest)
+    {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        
+        var startedMatch = await battleService.GetStartedMatch(playerRequest.MatchId);
+        ArgumentNullException.ThrowIfNull(startedMatch);
+        ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
+        var battleLogic = startedMatch.BattleLogic;
+        var playerNo = battleLogic.GetBattlePlayerNo(playerRequest.Name);
+
+        if (battleLogic.WhoseTurn.PlayerNo == playerNo)
+        {
+            return battleLogic.GetTargets(playerNo, playerRequest.GetTargets);
+        }
+
+        return BadRequest();
+    }
+    
+    [HttpPost("usable", Name = nameof(UsableAbilities))]
+    [ProducesResponseType(typeof(UsableAbilitiesUpdate), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<UsableAbilitiesUpdate>> UsableAbilities([FromBody] PlayerRequestGetUsableAbilities playerRequest)
+    {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        
+        var startedMatch = await battleService.GetStartedMatch(playerRequest.MatchId);
+        ArgumentNullException.ThrowIfNull(startedMatch);
+        ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
+        var battleLogic = startedMatch.BattleLogic;
+        var playerNo = battleLogic.GetBattlePlayerNo(playerRequest.Name);
+
+        if (battleLogic.WhoseTurn.PlayerNo == playerNo)
+        {
+            return battleLogic.GetUsableAbilities(playerNo, playerRequest.GetUsableAbilities);
+        }
+
+        return BadRequest();
+    }
+    
+    [HttpPost("exchange", Name = nameof(ExchangeEnergy))]
+    [ProducesResponseType(typeof(ExchangeEnergyUpdate), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ExchangeEnergyUpdate>> ExchangeEnergy([FromBody] PlayerRequestExchangeEnergy playerRequest)
+    {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        
+        var startedMatch = await battleService.GetStartedMatch(playerRequest.MatchId);
+        ArgumentNullException.ThrowIfNull(startedMatch);
+        ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
+        var battleLogic = startedMatch.BattleLogic;
+        var playerNo = battleLogic.GetBattlePlayerNo(playerRequest.Name);
+
+        if (battleLogic.WhoseTurn.PlayerNo == playerNo)
+        {
+            return battleLogic.ExchangeEnergy(playerNo, playerRequest.ExchangeEnergy);
+        }
+
+        return BadRequest();
+    }
+    
+    [HttpPost("surrender", Name = nameof(Surrender))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult> Surrender([FromBody] PlayerRequestMatchId playerRequest)
+    {
+        await playerSessionService.ValidateProvidedSecret(playerRequest.Name, playerRequest.Secret);
+        
+        var startedMatch = await battleService.GetStartedMatch(playerRequest.MatchId);
+        ArgumentNullException.ThrowIfNull(startedMatch);
+        ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
+        var battleLogic = startedMatch.BattleLogic;
+        var playerNo = battleLogic.GetBattlePlayerNo(playerRequest.Name);
+
+        battleLogic.Surrender(playerNo);
 
         return Ok();
     }
