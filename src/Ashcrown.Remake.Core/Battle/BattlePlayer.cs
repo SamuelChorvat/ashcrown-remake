@@ -300,13 +300,15 @@ public class BattlePlayer : IBattlePlayer
 
     public UsableAbilitiesUpdate GetUsableAbilities(int[] currentEnergy, int energyToSubtract)
     {
-        var usableAbilitiesUpdate = new UsableAbilitiesUpdate();
-        
-        for(var i = 0; i < Champions.Length; i++)
+        var usableAbilitiesUpdate = new UsableAbilitiesUpdate
         {
-            usableAbilitiesUpdate.UsableAbilities[i] = Champions[i].AbilityController
-                .GetUsableAbilities(currentEnergy, energyToSubtract);
-        }
+            UsableAbilitiesChampion1 = Champions[0].AbilityController
+                .GetUsableAbilities(currentEnergy, energyToSubtract),
+            UsableAbilitiesChampion2 = Champions[1].AbilityController
+                .GetUsableAbilities(currentEnergy, energyToSubtract),
+            UsableAbilitiesChampion3 = Champions[2].AbilityController
+                .GetUsableAbilities(currentEnergy, energyToSubtract)
+        };
 
         return usableAbilitiesUpdate;
     }
