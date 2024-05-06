@@ -69,7 +69,13 @@ public class BattleService : IBattleService
             return Task.FromResult(AcceptedMatchStatus.Pending);
         }
     }
-    
+
+    public Task<StartedMatch?> GetStartedMatch(Guid matchId)
+    {
+        _startedMatches.TryGetValue(matchId, out var startedMatch);
+        return Task.FromResult(startedMatch);
+    }
+
     private void UpdateAcceptedMatch(Guid matchId, Action<AcceptedMatch> updateAction)
     {
         lock (this)

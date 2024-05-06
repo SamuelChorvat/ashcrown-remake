@@ -231,6 +231,8 @@ public class BattlePlayer : IBattlePlayer
         var playerUpdate = new PlayerUpdate
         {
             MyTurn = whoseTurn == this,
+            TurnTime = BattleConstants.TurnTimeInSeconds,
+            TurnStart = _battleLogic.TurnStartTime,
             Energy = Energy,
             TurnCount = _battleLogic.TurnCount,
             EnergyExchangeRatio = Math.Max(1, GetAliveChampions().Count),

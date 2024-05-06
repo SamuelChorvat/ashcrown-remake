@@ -435,10 +435,10 @@ public abstract class AbilityBase : IAbility
             CanUse = Owner.AbilityController.ClientCanUseAbilityChecks(this)
                      && Owner.AbilityController.GetNumberOfTargets(
                          Owner.AbilityController.GetPossibleTargetsForAbility(abilityNo)) > 0,
-            Target = Target,
+            Target = Target.ToString(),
             SelfDisplay = SelfDisplay,
             SelfCast = SelfCast,
-            Classes = AbilityClasses
+            Classes = AbilityClasses.Select(x => x.ToString()).ToArray()
         };
     }
 }

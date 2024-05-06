@@ -9,4 +9,5 @@ public interface IBattleService
     bool IsAcceptedMatch(Guid matchId);
     Task StartAcceptedMatchBattle(Guid matchId, string playerName);
     Task<AcceptedMatchStatus> GetAcceptedMatchBattleStatus(Guid matchId);
+    Task<StartedMatch?> GetStartedMatch(Guid matchId);
 }
