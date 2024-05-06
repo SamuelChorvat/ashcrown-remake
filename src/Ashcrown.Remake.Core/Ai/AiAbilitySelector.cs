@@ -129,7 +129,7 @@ public class AiAbilitySelector(IBattleLogic battleLogic) : IAiAbilitySelector
 
     private AiEnergyLeft GetEnergyLeft(IEnumerable<AiMaximizedAbility?> aiMaximizedAbilities)
     {
-        var energyLeft = new AiEnergyLeft(battleLogic.GetAiOpponentBattlePlayer().Energy);
+        var energyLeft = new AiEnergyLeft(battleLogic.GetAiOpponentBattlePlayer().Energy.ToArray());
 
         foreach (var aiMaximizedAbility in aiMaximizedAbilities) {
             if (aiMaximizedAbility == null) {
