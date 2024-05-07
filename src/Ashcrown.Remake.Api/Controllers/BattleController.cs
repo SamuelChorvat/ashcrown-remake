@@ -191,4 +191,21 @@ public class BattleController(IPlayerSessionService playerSessionService,
 
         return Ok();
     }
+    
+    [HttpGet("timer/{matchId}", Name = nameof(BattleTimer))]
+    [ProducesResponseType(typeof(TimerUpdate), StatusCodes.Status200OK)]
+    public async Task<TimerUpdate> BattleTimer(string matchId)
+    {
+        var startedMatch = await battleService.GetStartedMatch(Guid.Parse(matchId));
+        ArgumentNullException.ThrowIfNull(startedMatch);
+        ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
+        var battleLogic = startedMatch.BattleLogic;
+
+        var timeDifference = DateTime.UtcNow - battleLogic.TurnStartTime;
+
+        return new TimerUpdate
+        {
+            UpdatedTimer = (int) (BattleConstants.TurnTimeInSeconds - timeDifference.TotalSeconds)
+        };
+    }
 }
