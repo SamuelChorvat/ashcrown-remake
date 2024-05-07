@@ -5,7 +5,7 @@ namespace Ashcrown.Remake.Api.BackgroundServices;
 public class PlayerSessionCleanupService(IPlayerSessionService playerSessionService, 
     ILogger<PlayerSessionCleanupService> logger) : BackgroundService
 {
-    private const int StaleSessionLimitInMinutes = 3;
+    private const int StaleSessionLimitInMinutes = 2;
     
     private readonly TimeSpan _interval = TimeSpan.FromMinutes(StaleSessionLimitInMinutes);
     

@@ -39,12 +39,17 @@ public class BattleController(IPlayerSessionService playerSessionService,
     [ProducesResponseType(typeof(BattleStatusUpdate), StatusCodes.Status200OK)]
     public async Task<BattleStatusUpdate> BattleUpdate(string matchId, string playerName)
     {
-        // TODO End match if opponent went offline
         var startedMatch = await battleService.GetStartedMatch(Guid.Parse(matchId));
         ArgumentNullException.ThrowIfNull(startedMatch);
         ArgumentNullException.ThrowIfNull(startedMatch.BattleLogic);
         var battleLogic = startedMatch.BattleLogic;
         var playerNo = battleLogic.GetBattlePlayerNo(playerName);
+        
+        if (!battleLogic.AiBattle
+            && await playerSessionService.GetSessionAsync(battleLogic.GetOppositePlayer(playerNo).PlayerName) == null)
+        {
+            battleLogic.Surrender(battleLogic.GetOppositePlayer(playerNo).PlayerNo);
+        }
         
         if (battleLogic.BattleEndedUpdates is not null)
         {
