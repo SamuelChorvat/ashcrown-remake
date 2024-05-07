@@ -1,5 +1,4 @@
-﻿using Ashcrown.Remake.Core.Champions.Ash.Champion;
-using Ashcrown.Remake.Core.Tests.TestHelpers;
+﻿using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;
 using Xunit;
 using AshConstants = Ashcrown.Remake.Core.Champions.Ash.Champion.AshConstants;
