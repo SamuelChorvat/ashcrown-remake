@@ -2,6 +2,7 @@ using Ashcrown.Remake.Core.Champions.Akio.Champion;
 using Ashcrown.Remake.Core.Champions.Althalos.Champion;
 using Ashcrown.Remake.Core.Champions.Aniel.Champion;
 using Ashcrown.Remake.Core.Champions.Arabela.Champion;
+using Ashcrown.Remake.Core.Champions.Ash.Champion;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 
@@ -13,7 +14,7 @@ public static class ChampionConstants
     public const int MaxNumberOfCurrentAbilities = 4;
     public static readonly string[] AllChampionsNames = [AkioConstants.Name,
         AlthalosConstants.Name, AnielConstants.Name, ArabelaConstants.Name,
-        EluardConstants.Name, SarfuConstants.Name];
+        AshConstants.Name, EluardConstants.Name, SarfuConstants.Name];
     
     public static string[] GetRandomChampionNames(int count)
     {

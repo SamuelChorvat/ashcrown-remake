@@ -1,4 +1,5 @@
-﻿using Ashcrown.Remake.Core.Battle.Interfaces;
+﻿using Ashcrown.Remake.Core.Ability.Interfaces;
+using Ashcrown.Remake.Core.Battle.Interfaces;
 using Ashcrown.Remake.Core.Champion.Base;
 using Ashcrown.Remake.Core.Champions.Akio.Abilities;
 using Microsoft.Extensions.Logging;
@@ -15,5 +16,17 @@ public class Akio : ChampionBase<AkioConstants>
             new DragonRage(this),
             new LightningSpeed(this),
             new FlowDisruption(this));
+    }
+
+    public override bool AiCanCounterAbilitySelf(IAbility ability)
+    {
+        if (!ability.Harmful
+            || ability.Owner.BattlePlayer.PlayerNo == BattlePlayer.PlayerNo
+            || AbilityController.IsStunnedToUseAbility(CurrentAbilities[2])) {
+            return false;
+        }
+
+        return CurrentAbilities[2].Active 
+               || CurrentAbilities[2].ToReady >= CurrentAbilities[2].GetCurrentCooldown();
     }
 }
