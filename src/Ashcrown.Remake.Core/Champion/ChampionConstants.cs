@@ -23,6 +23,6 @@ public static class ChampionConstants
     public static string[] GetRandomChampionNames(int count)
     {
         var random = new Random();
-        return AllChampionsNames.OrderBy(x => random.Next()).Take(count).ToArray();
+        return AllChampionsNames.OrderBy(_ => random.Next()).Take(count).ToArray();
     }
 }
