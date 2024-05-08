@@ -11,8 +11,8 @@ public class DarkSoul : AbilityBase
     public DarkSoul(IChampion champion) 
         : base(champion, 
             CedricConstants.DarkSoul,
-            1, 
-            new int[] {0,0,0,1,0}, 
+            1,
+            [0,0,0,1,0], 
             [AbilityClass.Magic, AbilityClass.Ranged,AbilityClass.Action], 
             AbilityTarget.Enemy, 
             AbilityType.EnemyActionControl, 

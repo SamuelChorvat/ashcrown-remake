@@ -12,8 +12,8 @@ public class MirrorImage : AbilityBase
     public MirrorImage(IChampion champion) 
         : base(champion, 
             CedricConstants.MirrorImage, 
-            1, 
-            new int[] {0,0,0,0,1}, 
+            1,
+            [0,0,0,0,1], 
             [AbilityClass.Strategic, AbilityClass.Instant], 
             AbilityTarget.Self, 
             AbilityType.AllyBuff, 
