@@ -23,7 +23,7 @@ public class RaiseTheFlagTargetActiveEffect : ActiveEffectBase
     public override void OnAdd()
     {
         for (var i = 0; i < 4; i++) {
-            for (var j = 0; j < Target.Abilities.Length; j++) {
+            for (var j = 0; j < Target.Abilities[i].Count; j++) {
                 if (Target.Abilities[i][j].AbilityClassesContains(AbilityClass.Physical) 
                     || Target.Abilities[i][j].AbilityClassesContains(AbilityClass.Strategic)) {
                     Target.Abilities[i][j].RandomCostModifier = 1;
@@ -35,7 +35,7 @@ public class RaiseTheFlagTargetActiveEffect : ActiveEffectBase
     public override void OnRemove()
     {
         for (var i = 0; i < 4; i++) {
-            for (var j = 0; j < Target.Abilities.Length; j++) {
+            for (var j = 0; j < Target.Abilities[i].Count; j++) {
                 if (Target.Abilities[i][j].AbilityClassesContains(AbilityClass.Physical) 
                     || Target.Abilities[i][j].AbilityClassesContains(AbilityClass.Strategic)) {
                     Target.Abilities[i][j].RandomCostModifier = -1;
