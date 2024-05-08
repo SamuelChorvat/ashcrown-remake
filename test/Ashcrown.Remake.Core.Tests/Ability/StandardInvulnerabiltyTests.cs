@@ -6,6 +6,7 @@ using Ashcrown.Remake.Core.Champions.Arabela.Champion;
 using Ashcrown.Remake.Core.Champions.Ash.Champion;
 using Ashcrown.Remake.Core.Champions.Azrael.Champion;
 using Ashcrown.Remake.Core.Champions.Branley.Champion;
+using Ashcrown.Remake.Core.Champions.Braya.Champion;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
@@ -24,6 +25,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(AshConstants.TestName, AshConstants.FireBlockActiveEffect)]
     [InlineData(AzraelConstants.TestName, AzraelConstants.DisappearActiveEffect)]
     [InlineData(BranleyConstants.TestName, BranleyConstants.DefensiveManeuverActiveEffect)]
+    [InlineData(BrayaConstants.TestName, BrayaConstants.DisengageActiveEffect)]
     [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldCorrectlyApplyActiveEffects(string championName, string activeEffectName)
@@ -55,6 +57,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(AshConstants.TestName, AshConstants.FireBlockActiveEffect)]
     [InlineData(AzraelConstants.TestName, AzraelConstants.DisappearActiveEffect)]
     [InlineData(BranleyConstants.TestName, BranleyConstants.DefensiveManeuverActiveEffect)]
+    [InlineData(BrayaConstants.TestName, BrayaConstants.DisengageActiveEffect)]
     [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldBeInvulnerability(string championName, string activeEffectName)

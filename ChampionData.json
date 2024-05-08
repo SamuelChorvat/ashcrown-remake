@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Braya",
-			"title": "The Hunter",
-			"bio":  "Shanks of venison, rumps of boar and bolts of bear furs are a necessity for many of the elite of Coela, and they have to come from somewhere. Light footed and keen eyed, Braya is one with the forest, the mountains and with land of Coela itself. Now the elites fiend for something a little more unsavoury than what is usually served at their typical banquet dinners. If the price is good enough, Braya doesn’t mind moving her hunting grounds onto the battlefield.",
-			"attributes": [2,2,0,0],
-			"artist": "WolfsBane",
-			"abilities": [
-				{
-					"name": "Hunter's Focus",
-					"description": "Braya focuses her mind and assesses the battlefield. Braya gains 4 <color=#EAB65B>Hunter's Focus</color> stacks. During this time, Braya can use <color=#EAB65B>Hunter's Focus</color> again to <color=#FF00CD>ignore</color> all harmful effects except energy cost changes for 1 turn while using up 1 <color=#EAB65B>Hunter's Focus</color> stack.",
-					"cooldown": 1,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Quick Shot",
-					"description": "Shooting off a lightning fast arrow, Braya deals <color=#FF5C04>20 <b>piercing</b> physical damage</color> to one enemy that <color=#FF00CD>ignores invulnerability</color>. For 1 turn, Braya will also become invulnerable to all non-Strategic abilities. This ability uses up 1 <color=#EAB65B>Hunter's Focus</color> stack.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Ranged"
-					],
-					"cost": [
-						0,1,0,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Kill Shot",
-					"description": "Braya gathers up her remaining <color=#EAB65B>Hunter's Focus</color> stacks, shooting off a powerful arrow that deals <color=#FF5C04>40 <b>piercing</b> physical damage</color> to one enemy. This ability <color=#FF00CD>ignores invulnerability</color> and it will deal and additional <color=#FF5C04>5 <b>piercing</b> physical damage</color> for each <color=#EAB65B>Hunter's Focus</color> stack remaining. This ability uses up all <color=#EAB65B>Hunter's Focus</color> stacks.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Ranged"
-					],
-					"cost": [
-						0,2,0,0,0
-					],
-					"slot": 3
-				},
-				{
-					"name": "Disengage",
-					"description": "This ability makes Braya <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Cedric",
 			"title": "The Black Mage",
 			"bio":  "One would think the practising of black magic would lead to one’s banishment from the mage’s guild, but Cedric is a more than esteemed member of the community. Who better to learn about the dark arts than a respected mage? Who better to practise it, deep into the night, than an upstanding citizen like Cedric? Why, who’s better at all?",
