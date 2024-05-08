@@ -2,64 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Cedric",
-			"title": "The Black Mage",
-			"bio":  "One would think the practising of black magic would lead to one’s banishment from the mage’s guild, but Cedric is a more than esteemed member of the community. Who better to learn about the dark arts than a respected mage? Who better to practise it, deep into the night, than an upstanding citizen like Cedric? Why, who’s better at all?",
-			"attributes": [1,2,1,0],
-			"artist": "Yann Trolong",
-			"abilities": [
-				{
-					"name": "Dark Soul",
-					"description": "Cedric deals <color=#00A3FB>15 magic damage</color> to one enemy for 2 turns. If that enemy dies while affected by this ability, Cedric will heal <color=#1AB000>30 health</color>, permanently gain <color=yellow>5 points of damage reduction</color> and will permanently deal an additional <color=#00A3FB>5 magic damage</color>.",
-					"cooldown": 1,
-					"classes": [
-						"Magic", "Ranged", "Action"
-					],
-					"cost": [
-						0,0,0,1,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Mirror Image",
-					"description": "Cedric creates a clone of himself. Each time this ability is used, he will gain <color=yellow>25 destructible defense</color> and all his abilities will last an additional turn. This effect stacks.",
-					"cooldown": 1,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 2
-				},
-				{
-					"name": "Time Warp",
-					"description": "For 2 turns, Cedric and his allies will have the cost of their abilities reduced by <sprite=4> and the cooldown of their abilities reduced by 1 turn.",
-					"cooldown": 2,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,2
-					],
-					"slot": 3
-				},
-				{
-					"name": "Nether Slip",
-					"description": "This ability makes Cedric <color=#FF00CD>invulnerable</color> for 1 turn. This ability is not affected by <color=#EAB65B>Mirror Image</color>.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4	
-				}
-
-			]
-		},
-		{
 			"name": "Cleo",
 			"title": "The Hive Empress",
 			"bio":  "Billions. The sheer number of her hive is unimaginable to the human mind. How many have entered through the mouth of the dark funnel that leads to her underground lair in search of her eggs, only to find it empty? It is not until the walls begin to shift around them, revealing the pulsating mass of brood that they have awoken. There are no walls here. Only the hive.",

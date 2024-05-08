@@ -38,7 +38,7 @@ public class RaiseTheFlagTargetActiveEffect : ActiveEffectBase
             for (var j = 0; j < Target.Abilities[i].Count; j++) {
                 if (Target.Abilities[i][j].AbilityClassesContains(AbilityClass.Physical) 
                     || Target.Abilities[i][j].AbilityClassesContains(AbilityClass.Strategic)) {
-                    Target.Abilities[i][j].RandomCostModifier = -1;
+                    Target.Abilities[i][j].RemoveCostModifier(-1);
                 }
             }
         }
