@@ -2,7 +2,7 @@ using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Champions.Ash.Champion;
 
-public class AshConstants : IChampionConstants
+public abstract class AshConstants : IChampionConstants
 {
     public static string Name => "Ash";
     public static string Title => "The Pyromancer";

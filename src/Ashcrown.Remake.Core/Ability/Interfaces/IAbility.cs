@@ -116,8 +116,8 @@ public interface IAbility
 	void EndTurnChecks();
 	void OnUse();
 	AiMaximizedAbility AiMaximizeAbility<T>() where T : IAiPointsCalculator;
-	int[] GetPossibleTargets(); // TODO Was List && int[] emptyTargets not needed as input param
+	int[] GetPossibleTargets();
 	int CalculateTotalPointsForTarget<T>(IChampion target) where T : IAiPointsCalculator;
-	int CalculateSingletonSelfEffectTotalPoints();
+	int CalculateSingletonSelfEffectTotalPoints<T>() where T : IAiPointsCalculator;
 	AbilityUpdate GetAbilityUpdate(int abilityNo);
 }

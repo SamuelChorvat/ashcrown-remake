@@ -2,7 +2,7 @@ using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Champions.Aniel.Champion;
 
-public class AnielConstants : IChampionConstants
+public abstract class AnielConstants : IChampionConstants
 {
     public static string Name => "Aniel";
     public static string Title => "The Slayer";

@@ -2,7 +2,7 @@
 
 namespace Ashcrown.Remake.Core.Champions.Azrael.Champion;
 
-public class AzraelConstants : IChampionConstants
+public abstract class AzraelConstants : IChampionConstants
 {
     public static string Name => "Azrael";
     public static string Title => "The Reaper";

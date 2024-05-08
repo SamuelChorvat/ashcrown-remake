@@ -418,7 +418,7 @@ public abstract class AbilityBase : IAbility
         return 0;
     }
 
-    public virtual int CalculateSingletonSelfEffectTotalPoints()
+    public virtual int CalculateSingletonSelfEffectTotalPoints<T>() where T : IAiPointsCalculator
     {
         return 0;
     }

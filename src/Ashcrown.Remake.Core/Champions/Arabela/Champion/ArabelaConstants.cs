@@ -2,7 +2,7 @@ using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Champions.Arabela.Champion;
 
-public class ArabelaConstants : IChampionConstants
+public abstract class ArabelaConstants : IChampionConstants
 {
     public static string Name => "Arabela";
     public static string Title => "The Faithful Cleric";

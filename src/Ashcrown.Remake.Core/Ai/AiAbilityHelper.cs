@@ -63,7 +63,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
             currentTargetPoints = T.ApplyPenalties(currentTargetPoints, ability, target);
             totalPoints += currentTargetPoints;
         }
-        totalPoints += ability.CalculateSingletonSelfEffectTotalPoints();
+        totalPoints += ability.CalculateSingletonSelfEffectTotalPoints<T>();
         return new AiMaximizedAbility(totalPoints, targetsPermutation);
     }
 
@@ -102,7 +102,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
             currentTargetPoints = T.ApplyPenalties(currentTargetPoints, ability, target);
             totalPoints += currentTargetPoints;
         }
-        totalPoints += ability.CalculateSingletonSelfEffectTotalPoints();
+        totalPoints += ability.CalculateSingletonSelfEffectTotalPoints<T>();
         return new AiMaximizedAbility(totalPoints, targetsPermutation);
     }
 
@@ -122,7 +122,7 @@ public class AiAbilityHelper(IAbility ability) : IAiAbilityHelper
             currentTargetPoints = T.ApplyPenalties(currentTargetPoints, ability, target);
             totalPoints += currentTargetPoints;
         }
-        totalPoints += ability.CalculateSingletonSelfEffectTotalPoints();
+        totalPoints += ability.CalculateSingletonSelfEffectTotalPoints<T>();
         return new AiMaximizedAbility(totalPoints, targetsPermutation);
     }
 
