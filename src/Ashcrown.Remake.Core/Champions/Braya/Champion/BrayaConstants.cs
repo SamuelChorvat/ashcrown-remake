@@ -2,7 +2,7 @@ using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Champions.Braya.Champion;
 
-public class BrayaConstants : IChampionConstants
+public abstract class BrayaConstants : IChampionConstants
 {
     public static string Name => "Braya";
     public static string Title => "The Hunter";
