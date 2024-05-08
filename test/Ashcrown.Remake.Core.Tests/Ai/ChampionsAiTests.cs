@@ -1,6 +1,9 @@
 ﻿using Ashcrown.Remake.Core.Battle;
 using Ashcrown.Remake.Core.Battle.Enums;
 using Ashcrown.Remake.Core.Champion;
+using Ashcrown.Remake.Core.Champions.Arabela.Champion;
+using Ashcrown.Remake.Core.Champions.Branley.Champion;
+using Ashcrown.Remake.Core.Champions.Cedric.Champion;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Xunit;
@@ -35,6 +38,34 @@ public class ChampionsAiTests
         // Assert
         battleLogic.BattleEndedUpdates.Should().NotBeNull();
         battleLogic.BattleEndedUpdates![0].Should().Be(BattleStatus.Victory);
+    }
+    
+    [Fact]
+    public void DebugProblematicTeam() //Used for team debugging if they fail the inactivity test
+    {
+        for (var i = 0; i < 100; i++)
+        {
+            // Arrange
+            var battleLogic = SetupAiBattle([ArabelaConstants.TestName, BranleyConstants.TestName, CedricConstants.Name]);
+        
+            // Act
+            while (battleLogic.TurnCount < BattleConstants.TurnLimit)
+            {
+                if (battleLogic.TurnCount > 90)
+                {
+                    //Something is likely going wrong
+                    var breakPoint = 1;
+                }
+            
+                if (battleLogic.BattleEndTime == null) battleLogic.EndAiTurn();
+                if (battleLogic.BattleEndTime == null) battleLogic.EndTurnProcesses(2);
+                if (battleLogic.BattleEndTime != null) break;
+            }
+        
+            // Assert
+            battleLogic.BattleEndedUpdates.Should().NotBeNull();
+            battleLogic.BattleEndedUpdates![0].Should().Be(BattleStatus.Victory);
+        }
     }
     
     private static BattleLogic SetupAiBattle(string[] championNames)
