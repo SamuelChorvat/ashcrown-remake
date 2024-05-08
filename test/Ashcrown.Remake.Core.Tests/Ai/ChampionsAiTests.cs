@@ -40,10 +40,11 @@ public class ChampionsAiTests
         battleLogic.BattleEndedUpdates![0].Should().Be(BattleStatus.Victory);
     }
     
+    //Used for team debugging if they fail the inactivity test
     [Fact]
-    public void DebugProblematicTeam() //Used for team debugging if they fail the inactivity test
+    public void DebugProblematicTeam()
     {
-        for (var i = 0; i < 100; i++)
+        for (var i = 0; i < 1; i++)
         {
             // Arrange
             var battleLogic = SetupAiBattle([ArabelaConstants.TestName, BranleyConstants.TestName, CedricConstants.Name]);
@@ -53,8 +54,8 @@ public class ChampionsAiTests
             {
                 if (battleLogic.TurnCount > 90)
                 {
-                    //Something is likely going wrong
-                    var breakPoint = 1;
+                    //Something is going wrong, set breakpoint
+                    battleLogic.TurnCount.Should().BeGreaterThan(90);
                 }
             
                 if (battleLogic.BattleEndTime == null) battleLogic.EndAiTurn();

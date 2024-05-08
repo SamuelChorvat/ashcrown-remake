@@ -21,7 +21,7 @@ public class RaiseTheFlag : AbilityBase
         Duration1 = 2;
         ReceiveDamageReductionPoint1 = 5;
         
-        Description = $"For {Duration1} turns, all enemies will have their Physical and Strategic abilities cost and additional <sprite=4>. " +
+        Description = $"For {Duration1} turns, all enemies will have their Physical and Strategic abilities cost an additional <sprite=4>. " +
                       $"During this time Branley will gain {$"{ReceiveDamageReductionPoint1} points of damage reduction".HighlightInYellow()} and {BranleyConstants.Plunder.HighlightInGold()} will " +
                       $"deal {$"45 {"piercing".HighlightInBold()} physical damage".HighlightInOrange()} that {"ignores invulnerability".HighlightInPurple()}. This ability {"ignores invulnerability".HighlightInPurple()}.";
         SelfDisplay = true;
