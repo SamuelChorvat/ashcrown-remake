@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Branley",
-			"title": "The Outlaw",
-			"bio":  "A former merchant sailor who found that bartering went a lot smoother when he was waving a loaded gun in the air, Branley has taken to a more aggressive branch of mercantilism. The inland sea of Axeina holds host to many a pirate who can lay claim to the tides, but Branley knows he need not boast. Only walking down the streets of Ingbridge is advertisement enough of his services to his less than savoury clientele, and a warning to any honest merchants who plan on making the crossing. Often paid by clients on the brink of bankruptcy to rob their ships to spur on dubious insurance claims, Branley seems to remain a necessary evil to many of the elite. Disappearing amongst the sail high waves when pursued by the King’s navy, he has avoided capture thus far through his cunning, charisma, and most importantly of all, his ruthlessness.",
-			"attributes": [2,1,0,2],
-			"artist": "Yann Trolong",
-			"abilities": [
-				{
-					"name": "Plunder",
-					"description": "Branley deals <color=#FF5C04>30 <b>piercing</b> physical damage</color> to one enemy. During <color=#EAB65B>Raise the Flag</color>, this ability will deal <color=#FF5C04>45 <b>piercing</b> physical damage</color> to one enemy and it will <color=#FF00CD>ignore invulnerability<color=#FF00CD>.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						0,1,0,0,1
-					],
-					"slot": 1
-				},
-				{
-					"name": "Fire the Cannons",
-					"description": "Branley fires at all enemies, dealing <color=#FF5C04>10 physical damage</color> to them and <color=#FF00CD>stunning</color> their Physical and Affliction abilities for 1 turn.",
-					"cooldown": 3,
-					"classes": [
-						"Physical", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,1,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Raise the Flag",
-					"description": "For 2 turns, all enemies will have their Physical and Strategic abilities cost and additional <sprite=4>. During this time Branley will gain <color=yellow>5 points of damage reduction</color> and <color=#EAB65B>Plunder</color> will deal <color=#FF5C04>45 <b>piercing</b> physical damage</color> that <color=#FF00CD>ignores invulnerability</color>. This ability <color=#FF00CD>ignores invulnerability</color>.",
-					"cooldown": 3,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 3
-				},
-				{
-					"name": "Defensive Maneuver",
-					"description": "This ability makes Branley <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Braya",
 			"title": "The Hunter",
 			"bio":  "Shanks of venison, rumps of boar and bolts of bear furs are a necessity for many of the elite of Coela, and they have to come from somewhere. Light footed and keen eyed, Braya is one with the forest, the mountains and with land of Coela itself. Now the elites fiend for something a little more unsavoury than what is usually served at their typical banquet dinners. If the price is good enough, Braya doesn’t mind moving her hunting grounds onto the battlefield.",
