@@ -61,7 +61,7 @@ public class ChampionController(
         var newAmount = ability.ReceiveAbilityDamageModifier(owner, amount);
 		
         newAmount = ApplyToReceiveDamageModifiers(newAmount, ability);
-        newAmount = EmpBurstActiveEffect.ApplyEmpBurstAfflictionDamageIncrease(owner, newAmount, ability);
+        newAmount = EMPBurstActiveEffect.ApplyEMPBurstAfflictionDamageIncrease(owner, newAmount, ability);
 
         SubtractHealth(newAmount, appliedAdditionalLogic, ability);
     }
@@ -73,7 +73,7 @@ public class ChampionController(
         newAmount = activeEffect.ReceiveActiveEffectDamageModifier(owner, newAmount);
 		
         newAmount = ApplyToReceiveDamageModifiers(newAmount, activeEffect:activeEffect);
-        newAmount = EmpBurstActiveEffect.ApplyEmpBurstAfflictionDamageIncrease(owner, newAmount, activeEffect:activeEffect);
+        newAmount = EMPBurstActiveEffect.ApplyEMPBurstAfflictionDamageIncrease(owner, newAmount, activeEffect:activeEffect);
 
         SubtractHealth(newAmount,appliedAdditionalLogic, activeEffect:activeEffect);
     }

@@ -8,7 +8,7 @@ namespace Ashcrown.Remake.Core.Tests.Champions.Cleo.Champion;
 public class CleoTests
 {
     [Fact]
-    public void CedricHasCorrectName()
+    public void CleoHasCorrectName()
     {
         // Arrange & Act
         var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(CleoConstants.Name);
@@ -19,7 +19,7 @@ public class CleoTests
     }
     
     [Fact]
-    public void CedricHasCorrectAbilities()
+    public void CleoHasCorrectAbilities()
     {
         // Arrange & Act
         var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(CleoConstants.Name);
