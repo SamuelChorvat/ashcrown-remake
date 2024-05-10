@@ -24,6 +24,7 @@ public class Startup
         services.AddSingleton<IPlayerSessionService, PlayerSessionService>();
         services.AddSingleton<IMatchmakerService, MatchmakerService>();
         services.AddSingleton<IBattleService, BattleService>();
+        services.AddSingleton<IDraftService, DraftService>();
     }
 
     public void Configure(WebApplication app, IWebHostEnvironment env)

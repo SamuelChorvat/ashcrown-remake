@@ -10,13 +10,14 @@ public class BattleService : IBattleService
     private readonly ConcurrentDictionary<Guid, AcceptedMatch> _acceptedMatches = [];
     private readonly ConcurrentDictionary<Guid, StartedMatch> _startedMatches = [];
     
-    public bool AddAcceptedMatch(Guid matchId, FoundMatch foundMatch)
+    public bool AddAcceptedMatch(Guid matchId, FoundMatch foundMatch, DraftMatch? draftMatch = null)
     {
         lock (this)
         {
             return _acceptedMatches.TryAdd(matchId, new AcceptedMatch
             {
                 FoundMatch = foundMatch,
+                DraftMatch = draftMatch,
                 PlayerBattleStarted = [false, foundMatch.FindMatchType == FindMatchType.BlindAi]
             });
         }

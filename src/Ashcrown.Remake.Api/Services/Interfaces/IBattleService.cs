@@ -5,7 +5,7 @@ namespace Ashcrown.Remake.Api.Services.Interfaces;
 
 public interface IBattleService
 {
-    bool AddAcceptedMatch(Guid matchId, FoundMatch foundMatch);
+    bool AddAcceptedMatch(Guid matchId, FoundMatch foundMatch, DraftMatch? draftMatch = null);
     bool IsAcceptedMatch(Guid matchId);
     Task StartAcceptedMatchBattle(Guid matchId, string playerName);
     Task<AcceptedMatchStatus> GetAcceptedMatchBattleStatus(Guid matchId);

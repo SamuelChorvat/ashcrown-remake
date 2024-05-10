@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using Ashcrown.Remake.Api.Dtos.Outbound;
+using Ashcrown.Remake.Api.Extensions;
 using Ashcrown.Remake.Api.Models;
 using Ashcrown.Remake.Api.Models.Enums;
 using Ashcrown.Remake.Api.Services.Interfaces;
@@ -7,7 +8,9 @@ using Ashcrown.Remake.Core.Champion;
 
 namespace Ashcrown.Remake.Api.Services;
 
-public class MatchmakerService(IPlayerSessionService playerSessionService, IBattleService battleService) : IMatchmakerService
+public class MatchmakerService(IPlayerSessionService playerSessionService, 
+    IBattleService battleService,
+    IDraftService draftService) : IMatchmakerService
 {
     private readonly ConcurrentDictionary<string, FindMatch> _findMatches = [];
     private readonly ConcurrentDictionary<Guid, FoundMatch> _foundMatches = [];
@@ -109,7 +112,7 @@ public class MatchmakerService(IPlayerSessionService playerSessionService, IBatt
     {
         lock (this)
         {
-            if (battleService.IsAcceptedMatch(matchId))
+            if (battleService.IsAcceptedMatch(matchId) || draftService.IsAcceptedMatch(matchId))
             {
                 return Task.FromResult(FoundMatchStatus.Confirmed);
             }
@@ -124,9 +127,17 @@ public class MatchmakerService(IPlayerSessionService playerSessionService, IBatt
             if (foundMatch.PlayerAccepted.Count(x => x) == 2)
             {
                 _foundMatches.TryRemove(matchId, out _);
+                if (foundMatch.FindMatchType.IsDraft())
+                {
+                    return Task.FromResult(draftService.AddAcceptedMatch(matchId, foundMatch) 
+                        ? FoundMatchStatus.Confirmed 
+                        : FoundMatchStatus.Cancelled);
+                }
+
                 return Task.FromResult(battleService.AddAcceptedMatch(matchId, foundMatch) 
                     ? FoundMatchStatus.Confirmed 
                     : FoundMatchStatus.Cancelled);
+
             }
 
             if (foundMatch.MatchFoundTime.AddSeconds(AshcrownApiConstants.TimeToAcceptMatchFoundSeconds + 1) <

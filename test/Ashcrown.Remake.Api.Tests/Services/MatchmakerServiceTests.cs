@@ -13,11 +13,12 @@ public class MatchmakerServiceTests
     private readonly MatchmakerService _matchmakerService;
     private readonly Mock<IPlayerSessionService> _mockPlayerSessionService = new();
     private readonly Mock<IBattleService> _mockBattleService = new();
+    private readonly Mock<IDraftService> _mockDraftService = new();
 
     public MatchmakerServiceTests()
     {
-        _mockBattleService.Setup(x => x.AddAcceptedMatch(It.IsAny<Guid>(), It.IsAny<FoundMatch>())).Returns(true);
-        _matchmakerService = new MatchmakerService(_mockPlayerSessionService.Object, _mockBattleService.Object);
+        _mockBattleService.Setup(x => x.AddAcceptedMatch(It.IsAny<Guid>(), It.IsAny<FoundMatch>(), It.IsAny<DraftMatch?>())).Returns(true);
+        _matchmakerService = new MatchmakerService(_mockPlayerSessionService.Object, _mockBattleService.Object, _mockDraftService.Object);
     }
     
     [Theory]
@@ -166,7 +167,7 @@ public class MatchmakerServiceTests
     {
         // Arrange
         var matchId = Guid.NewGuid();
-        _mockBattleService.Setup(x => x.AddAcceptedMatch(matchId, It.IsAny<FoundMatch>())).Returns(true);
+        _mockBattleService.Setup(x => x.AddAcceptedMatch(matchId, It.IsAny<FoundMatch>(), It.IsAny<DraftMatch?>())).Returns(true);
         var foundMatch = new FoundMatch
         {
             MatchFoundTime = DateTime.UtcNow.Subtract(TimeSpan.FromMinutes(1)),
