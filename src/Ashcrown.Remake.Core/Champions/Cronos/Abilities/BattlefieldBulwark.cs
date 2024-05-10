@@ -21,7 +21,7 @@ public class BattlefieldBulwark : AbilityBase
         Duration1 = 2;
         
         Description = $"For {Duration1} turns, all enemies will be unable to {"reduce damage".HighlightInPurple()} or " +
-                      $"become {"invulnerable".HighlightInPurple()}. During this time if {CronosConstants.Name} or one of his allies is targeted by a new harmful non-Affliction ability, " +
+                      $"become {"invulnerable".HighlightInPurple()}. During this time if {CronosConstants.Name} or one of her allies is targeted by a new harmful non-Affliction ability, " +
                       $"they will become {"invulnerable".HighlightInPurple()} for 1 turn.";
         SelfCast = true;
         Harmful = true;
