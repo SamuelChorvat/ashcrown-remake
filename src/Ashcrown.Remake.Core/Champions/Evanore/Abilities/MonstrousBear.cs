@@ -14,7 +14,7 @@ public class MonstrousBear : AbilityBase
         : base(champion, 
             EvanoreConstants.MonstrousBear,
             1,
-            new int[] {0,1,0,1,0}, 
+            [0,1,0,1,0], 
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Ranged], 
             AbilityTarget.Enemy, 
             AbilityType.EnemyDamage, 

@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Garr",
-			"title": "The Raging Berserker",
-			"bio":  "Filled to the brim with a rage that can not be contained, Garr lives only to crush his enemies into dust and send them to the ground where they belong. A lost soul, Garr has no interest in any higher luxuries, stopping to eat and rest only as a means to fuel himself for his existence as a whirlwind wreaking destruction throughout Coela. Wherever the clamour of steel is mixed with the screams of the dying, Garr can be found doing what he does best and what he enjoys the most.",
-			"attributes": [3,2,0,0],
-			"artist": "Dean Spencer",
-			"abilities": [
-				{
-					"name": "Slam",
-					"description": "Garr slams one enemy with his axe dealing <color=#FF5C04>20 physical damage</color> to them.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						0,0,1,0,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Barbed Chain",
-					"description": "Garr slashes one enemy with his chain. They will receive <color=#FF5C04>10 physical damage</color> for 2 turns. Garr will also become <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 2,
-					"classes": [
-						"Physical", "Action", "Melee", "Instant"
-					],
-					"cost": [
-						0,1,0,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Recklessness",
-					"description": "Garr becomes more reckless, <color=#EAB65B>Slam</color> will deal an additional <color=#FF5C04>20 physical damage</color> and <color=#EAB65B>Barbed Chain</color> will deal an additional <color=#FF5C04>10 physical damage</color> per turn. Garr will receive <color=red>20 affliction damage</color> when this ability is used. This ability can only be used 3 times and the effect is permanent.",
-					"cooldown": 0,
-					"classes": [
-						"Affliction", "Instant"
-					],
-					"cost": [
-						0,0,0,0,0
-					],
-					"slot": 3
-				},
-				{
-					"name": "Intimidating Shout",
-					"description": "This ability makes Garr <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Gruber",
 			"title": "The Mad Scientist",
 			"bio":  "Within the discretion of the royal family, Gruber is allowed to practise a variety of his experiments under the guise of helping the crown’s interests. Paid handsomely to research and develop cures to some of the most common diseases that blight the land, the King is known to turn a blind eye to some of Gruber’s more unsavoury practises. Such as when a few children in Ingbridge who had gone missing were found in an alley, indescribably conjoined and twisted into something inhuman. At what point does the means of progress become too twisted to justify the ends? Gruber seeks to find the answer to this question.",

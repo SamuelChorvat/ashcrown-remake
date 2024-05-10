@@ -12,8 +12,8 @@ public class Revitalize : AbilityBase
     public Revitalize(IChampion champion) 
         : base(champion, 
             FaeConstants.Revitalize, 
-            1, 
-            new int[] {0,0,0,0,2}, 
+            1,
+            [0,0,0,0,2], 
             [AbilityClass.Strategic, AbilityClass.Instant], 
             AbilityTarget.Ally, 
             AbilityType.AllyHeal, 

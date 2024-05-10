@@ -14,6 +14,7 @@ using Ashcrown.Remake.Core.Champions.Dura.Champion;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 using Ashcrown.Remake.Core.Champions.Evanore.Champion;
 using Ashcrown.Remake.Core.Champions.Fae.Champion;
+using Ashcrown.Remake.Core.Champions.Garr.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 
 namespace Ashcrown.Remake.Core.Champion;
@@ -28,7 +29,7 @@ public static class ChampionConstants
         BrayaConstants.Name, CedricConstants.Name, CleoConstants.Name,
         CronosConstants.Name, DexConstants.Name, DuraConstants.Name, 
         EluardConstants.Name, EvanoreConstants.Name, FaeConstants.Name,
-        SarfuConstants.Name];
+        GarrConstants.Name, SarfuConstants.Name];
     
     public static string[] GetRandomChampionNames(int count)
     {
