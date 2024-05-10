@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Dex",
-			"title": "The Nightblade",
-			"bio":  "Sewer filth. Gutter scum. Rotten grime. These are all words that have been used to describe Dex, and all things he himself enjoys in plenty. Dex may not run anything significant in Ingbridge, but the people who do often call upon his services to keep things moving. In the rank streets of the capital, it is easy to find that Dex is far from the most disgusting thing there.",
-			"attributes": [2,1,0,1],
-			"artist": "WolfsBane",
-			"abilities": [
-				{
-					"name": "Shuriken Throw",
-					"description": "Dex throws shurikens, dealing <color=#FF5C04>15 physical damage</color> to all enemies. While <color=#EAB65B>Nightblade</color> is active this ability's cost is reduced by <sprite=4>.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,0,0,2
-					],
-					"slot": 1
-				},
-				{
-					"name": "Garrote",
-					"description": "Dex attacks one enemy from behind, dealing <color=#FF5C04>20 physical damage</color> and <color=#FF00CD>stunning</color> their Physical and Strategic abilities for 1 turn. During <color=#EAB65B>Nightblade</color> this ability is improved and targets all enemies and also its cost is reduced by <sprite=4>.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						0,1,0,0,1
-					],
-					"slot": 2
-				},
-				{
-					"name": "Nightblade",
-					"description": "The following 3 turns <color=#EAB65B>Shuriken Throw</color> and <color=#EAB65B>Garrote</color> will have their costs reduced by <sprite=4> and <color=#EAB65B>Garrote</color> will also affect all enemies. During this time Dex gains <color=yellow>30 destructible defense</color> and is <color=#FF00CD>invulnerable</color> to Physical and Strategic abilities.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,1,0,0,1
-					],
-					"slot": 3
-				},
-				{
-					"name": "Rat Pack",
-					"description": "This ability makes Dex <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Dura",
 			"title": "The Monk",
 			"bio":  "High in the mountains lies a well kept temple with a golden pavilion. The long periods of meditative silence are punctuated only by the unified shouts of the monks who train there, day in and day out. Here Dura came as a confused young man many years ago. Through the rigorous training the temple provided him, he honed his emotion into discipline, and his discipline into a sharp martial tool. Now, with the temple in the sights of people who wish to destroy it, he is ready to unleash the full spectrum of his abilities.",

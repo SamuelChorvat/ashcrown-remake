@@ -11,8 +11,8 @@ public class BattlefieldBulwark : AbilityBase
     public BattlefieldBulwark(IChampion champion) 
         : base(champion, 
             CronosConstants.BattlefieldBulwark, 
-            3, 
-            new int[] {0,0,0,1,0}, 
+            3,
+            [0,0,0,1,0], 
             [AbilityClass.Strategic, AbilityClass.Instant], 
             AbilityTarget.All, 
             AbilityType.AlliesBuffEnemiesDebuff, 

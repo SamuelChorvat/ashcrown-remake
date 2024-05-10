@@ -12,8 +12,8 @@ public class EMPBurst : AbilityBase
     public EMPBurst(IChampion champion) 
         : base(champion, 
             CronosConstants.EMPBurst, 
-            0, 
-            new int[] {0,1,1,1,0}, 
+            0,
+            [0,1,1,1,0], 
             [AbilityClass.Affliction, AbilityClass.Instant, AbilityClass.Ranged], 
             AbilityTarget.Enemies, 
             AbilityType.EnemiesDamageAndDebuff, 

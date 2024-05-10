@@ -48,7 +48,7 @@ public abstract class AbilityBase : IAbility
     public int[] OriginalCost { get; set; }
     public AbilityClass[] AbilityClasses { get; set; }
     public AbilityTarget Target { get; set; }
-    public AbilityType AbilityType { get; set; }
+    public virtual AbilityType AbilityType { get; set; }
     public int AbilitySlot { get; set; }
     public bool Active { get; set; } = true;
     public bool IgnoreInvulnerability { get; set; }
