@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Fae",
-			"title": "The Witch",
-			"bio":  "Deep in the Waldvollur forest, along the river and close to a certain peculiar cliff side a traveller can find a deep tunnel carved into the rocky wall. If they were to enter this tunnel and squeeze their way through the narrow passages, they would eventually find themselves in a large and homely cavern kept by a unique and powerful woman. Fae, the legendary witch of the Waldvollur forest is solitary and mysterious. Why she has come out of her home and travelled far past the Waldvollur treeline, know one knows yet.",
-			"attributes": [1,1,1,0],
-			"artist": "WolfsBane",
-			"abilities": [
-				{
-					"name": "Dagger Stab",
-					"description": "Fae stabs one enemy, dealing <color=#FF5C04>15 physical damage</color> to them.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 1
-				},
-				{
-					"name": "Corruption",
-					"description": "Fae corrupts one enemy who takes <color=red>10 affliction damage</color> for 3 turns. This ability may not be used on en enemy already affected by it.",
-					"cooldown": 1,
-					"classes": [
-						"Affliction", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 2
-				},
-				{
-					"name": "Revitalize",
-					"description": "Fae heals herself or one ally for <color=#1AB000>35 health</color> and <color=#FF00CD>removes</color> all enemy afflictions from them.",
-					"cooldown": 1,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,2
-					],
-					"slot": 3
-				},
-				{
-					"name": "Flash",
-					"description": "This ability makes Fae <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Garr",
 			"title": "The Raging Berserker",
 			"bio":  "Filled to the brim with a rage that can not be contained, Garr lives only to crush his enemies into dust and send them to the ground where they belong. A lost soul, Garr has no interest in any higher luxuries, stopping to eat and rest only as a means to fuel himself for his existence as a whirlwind wreaking destruction throughout Coela. Wherever the clamour of steel is mixed with the screams of the dying, Garr can be found doing what he does best and what he enjoys the most.",
