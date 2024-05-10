@@ -11,6 +11,7 @@ using Ashcrown.Remake.Core.Champions.Cedric.Champion;
 using Ashcrown.Remake.Core.Champions.Cleo.Champion;
 using Ashcrown.Remake.Core.Champions.Cronos.Champion;
 using Ashcrown.Remake.Core.Champions.Dex.Champion;
+using Ashcrown.Remake.Core.Champions.Dura.Champion;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
@@ -34,6 +35,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(CleoConstants.TestName, CleoConstants.SwarmSummoningActiveEffect)]
     [InlineData(CronosConstants.TestName, CronosConstants.MagitechCircuitryActiveEffect)]
     [InlineData(DexConstants.TestName, DexConstants.RatPackActiveEffect)]
+    [InlineData(DuraConstants.TestName, DuraConstants.MeditateActiveEffect)]
     [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldCorrectlyApplyActiveEffects(string championName, string activeEffectName)
@@ -70,6 +72,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(CleoConstants.TestName, CleoConstants.SwarmSummoningActiveEffect)]
     [InlineData(CronosConstants.TestName, CronosConstants.MagitechCircuitryActiveEffect)]
     [InlineData(DexConstants.TestName, DexConstants.RatPackActiveEffect)]
+    [InlineData(DuraConstants.TestName, DuraConstants.MeditateActiveEffect)]
     [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldBeInvulnerability(string championName, string activeEffectName)

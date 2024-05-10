@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Dura",
-			"title": "The Monk",
-			"bio":  "High in the mountains lies a well kept temple with a golden pavilion. The long periods of meditative silence are punctuated only by the unified shouts of the monks who train there, day in and day out. Here Dura came as a confused young man many years ago. Through the rigorous training the temple provided him, he honed his emotion into discipline, and his discipline into a sharp martial tool. Now, with the temple in the sights of people who wish to destroy it, he is ready to unleash the full spectrum of his abilities.",
-			"attributes": [2,2,1,1],
-			"artist": "Christof Grobielsky",
-			"abilities": [
-				{
-					"name": "Sonic Waves",
-					"description": "Dura deals <color=#FF5C04>25 physical damage</color> to one enemy for 2 turns. During this time, that enemy will deal 5 less damage with any non-Affliction ability.",
-					"cooldown": 1,
-					"classes": [
-						"Physical", "Action", "Melee"
-					],
-					"cost": [
-						1,0,0,0,1
-					],
-					"slot": 1
-				},
-				{
-					"name": "Whirlwind",
-					"description": "Dura becomes <color=#FF00CD>invulnerable</color> for 1 turn while dealing <color=#FF5C04>15 physical damage</color> to all enemies.",
-					"cooldown": 1,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						0,0,1,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Tempest",
-					"description": "Dura deals <color=#FF5C04>40 physical damage</color> to one enemy and <color=#FF00CD>removes</color> <sprite=4> from them.",
-					"cooldown": 1,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						1,0,1,0,0
-					],
-					"slot": 3
-				},
-				{
-					"name": "Meditate",
-					"description": "This ability makes Dura <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Evanore",
 			"title": "The Summoner",
 			"bio":  "Surrounded by a veil of fur and feathers, Evanore has launched herself onto the scene through her unique magical methods and intimidating aura. Receiving her training from the Guild and continuing her own studies deep in the Waldvollur forest, Evanore has rediscovered an old brand of mysticism and brought it back in full force. With a chip on her shoulder and desire to prove the power of her new style, Evanore is ready to showcase her fantastical art on the battlefield and show everyone what she can do.",
