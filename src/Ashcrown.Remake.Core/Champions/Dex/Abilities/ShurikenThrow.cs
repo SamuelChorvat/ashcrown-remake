@@ -15,7 +15,7 @@ public class ShurikenThrow : AbilityBase
             [0,0,0,0,2], 
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Ranged], 
             AbilityTarget.Enemies, 
-            Ability.Enums.AbilityType.EnemiesDamage, 
+            AbilityType.EnemiesDamage, 
             1)
     {
         Damage1 = 15;

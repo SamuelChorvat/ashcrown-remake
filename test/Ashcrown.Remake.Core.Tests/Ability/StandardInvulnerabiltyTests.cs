@@ -13,6 +13,7 @@ using Ashcrown.Remake.Core.Champions.Cronos.Champion;
 using Ashcrown.Remake.Core.Champions.Dex.Champion;
 using Ashcrown.Remake.Core.Champions.Dura.Champion;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
+using Ashcrown.Remake.Core.Champions.Evanore.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;
@@ -37,6 +38,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(DexConstants.TestName, DexConstants.RatPackActiveEffect)]
     [InlineData(DuraConstants.TestName, DuraConstants.MeditateActiveEffect)]
     [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
+    [InlineData(EvanoreConstants.TestName, EvanoreConstants.HoundDefenseActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldCorrectlyApplyActiveEffects(string championName, string activeEffectName)
     {
@@ -74,6 +76,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(DexConstants.TestName, DexConstants.RatPackActiveEffect)]
     [InlineData(DuraConstants.TestName, DuraConstants.MeditateActiveEffect)]
     [InlineData(EluardConstants.TestName, EluardConstants.EvadeActiveEffect)]
+    [InlineData(EvanoreConstants.TestName, EvanoreConstants.HoundDefenseActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldBeInvulnerability(string championName, string activeEffectName)
     {
