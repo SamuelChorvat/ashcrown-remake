@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Evanore",
-			"title": "The Summoner",
-			"bio":  "Surrounded by a veil of fur and feathers, Evanore has launched herself onto the scene through her unique magical methods and intimidating aura. Receiving her training from the Guild and continuing her own studies deep in the Waldvollur forest, Evanore has rediscovered an old brand of mysticism and brought it back in full force. With a chip on her shoulder and desire to prove the power of her new style, Evanore is ready to showcase her fantastical art on the battlefield and show everyone what she can do.",
-			"attributes": [1,2,0,0],
-			"artist": "Dean Spencer",
-			"abilities": [
-				{
-					"name": "Monstrous Bear",
-					"description": "Evanore summons a giant double headed bear that deals <color=#FF5C04>30 physical damage</color> to one enemy. The following 2 turns, any enemy that uses a new ability will be dealt <color=#FF5C04>15 <b>piercing</b> physical damage</color>.",
-					"cooldown": 1,
-					"classes": [
-						"Physical", "Instant", "Ranged"
-					],
-					"cost": [
-						0,1,0,1,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Murder of Crows",
-					"description": "Evanore summons a murder of crows to assault one enemy, dealing <color=#FF5C04>15 physical damage</color> to them for 3 turns.",
-					"cooldown": 3,
-					"classes": [
-						"Physical", "Action", "Ranged"
-					],
-					"cost": [
-						0,0,0,1,1
-					],
-					"slot": 2
-				},
-				{
-					"name": "Umbra Wolf",
-					"description": "Evanore summons an umbra wolf to aid her in battle. For 4 turns, Evanore will <color=#FF00CD>ignore stun</color> effects and gain <color=yellow>50% damage reduction</color>.",
-					"cooldown": 3,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 3
-				},
-				{
-					"name": "Hound Defense",
-					"description": "This ability makes Evanore <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Fae",
 			"title": "The Witch",
 			"bio":  "Deep in the Waldvollur forest, along the river and close to a certain peculiar cliff side a traveller can find a deep tunnel carved into the rocky wall. If they were to enter this tunnel and squeeze their way through the narrow passages, they would eventually find themselves in a large and homely cavern kept by a unique and powerful woman. Fae, the legendary witch of the Waldvollur forest is solitary and mysterious. Why she has come out of her home and travelled far past the Waldvollur treeline, know one knows yet.",
