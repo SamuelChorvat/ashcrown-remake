@@ -12,7 +12,7 @@ namespace Ashcrown.Remake.Api.Controllers;
 [Route("[controller]")]
 [Produces("application/json")]
 public class BattleController(IPlayerSessionService playerSessionService, 
-    IBattleService battleService) : ControllerBase
+    IBattleService battleService, IMatchHistoryService matchHistoryService) : ControllerBase
 {
     [HttpPut("ready", Name = nameof(ReadyMatch))]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -49,6 +49,7 @@ public class BattleController(IPlayerSessionService playerSessionService,
             && await playerSessionService.GetSessionAsync(battleLogic.GetOppositePlayer(playerNo).PlayerName) == null)
         {
             battleLogic.Surrender(battleLogic.GetOppositePlayer(playerNo).PlayerNo);
+            await matchHistoryService.AddBattleToMatchHistory(startedMatch);
         }
         
         if (battleLogic.BattleEndedUpdates is not null)
@@ -188,6 +189,7 @@ public class BattleController(IPlayerSessionService playerSessionService,
         var playerNo = battleLogic.GetBattlePlayerNo(playerRequest.Name);
 
         battleLogic.Surrender(playerNo);
+        await matchHistoryService.AddBattleToMatchHistory(startedMatch);
 
         return Ok();
     }

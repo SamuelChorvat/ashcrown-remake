@@ -30,6 +30,7 @@ public class PlayerSession
     public int DraftLosses { get; set; }
     public int BlindWins { get; set; }
     public int BlindLosses { get; set; }
+    public List<MatchRecord> MatchHistory { get; set; } = [];
 
     public bool ValidateSecret(string secret)
     {

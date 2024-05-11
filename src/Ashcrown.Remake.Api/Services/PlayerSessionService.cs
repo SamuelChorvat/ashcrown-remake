@@ -49,6 +49,19 @@ public class PlayerSessionService : IPlayerSessionService
 
         return Task.CompletedTask;
     }
+    
+    public Task UpdateSessionNoSecret(string playerName, Action<PlayerSession> updateAction)
+    {
+        _sessions.AddOrUpdate(playerName,
+            key => throw new KeyNotFoundException($"No session found for player {key}"), 
+            (_, existingSession) =>
+            {
+                updateAction(existingSession);
+                return existingSession; 
+            });
+
+        return Task.CompletedTask;
+    }
 
     public Task<IList<string>> GetCurrentInUsePlayerNames()
     {

@@ -9,6 +9,7 @@ public interface IPlayerSessionService
     Task<PlayerSession?> GetSessionAsync(string playerName);
     PlayerSession? GetSession(string playerName);
     Task UpdateSession(string playerName, string secret, Action<PlayerSession> updateAction);
+    Task UpdateSessionNoSecret(string playerName, Action<PlayerSession> updateAction);
     Task<IList<string>> GetCurrentInUsePlayerNames();
     Task<int> RemoveStaleSessions(int staleSessionLimitInMinutes);
     Task ValidateProvidedSecret(string playerName, string secret);

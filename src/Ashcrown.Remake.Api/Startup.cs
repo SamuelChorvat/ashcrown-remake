@@ -25,6 +25,7 @@ public class Startup
         services.AddSingleton<IMatchmakerService, MatchmakerService>();
         services.AddSingleton<IBattleService, BattleService>();
         services.AddSingleton<IDraftService, DraftService>();
+        services.AddSingleton<IMatchHistoryService, MatchHistoryService>();
     }
 
     public void Configure(WebApplication app, IWebHostEnvironment env)

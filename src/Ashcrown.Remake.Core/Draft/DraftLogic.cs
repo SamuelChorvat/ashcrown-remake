@@ -9,7 +9,7 @@ public class DraftLogic : IDraftLogic
 {
     private int[] CurrentBanNo { get; set; } = [0, 0];
     private int[] CurrentPickNo { get; set; } = [0, 0];
-    private string?[,] BannedChampions { get; } = new string[2,3];
+    public string?[,] BannedChampions { get; } = new string[2,3];
     public string?[,] PickedChampions { get; } = new string[2,3];
 
     public DraftState DraftState { get; private set; } = DraftState.Ban;

@@ -1,7 +1,6 @@
 ﻿using Ashcrown.Remake.Api.Dtos.Inbound;
 using Ashcrown.Remake.Api.Dtos.Outbound;
 using Ashcrown.Remake.Api.Services.Interfaces;
-using Ashcrown.Remake.Core.Battle;
 using Ashcrown.Remake.Core.Draft;
 using Ashcrown.Remake.Core.Draft.Dtos.Outbound;
 using Ashcrown.Remake.Core.Draft.Enums;
@@ -13,7 +12,7 @@ namespace Ashcrown.Remake.Api.Controllers;
 [Route("[controller]")]
 [Produces("application/json")]
 public class DraftController(IPlayerSessionService playerSessionService, 
-    IDraftService draftService) : ControllerBase
+    IDraftService draftService, IMatchHistoryService matchHistoryService) : ControllerBase
 {
     
     [HttpPut("select/ban", Name = nameof(SelectBan))]
@@ -94,6 +93,7 @@ public class DraftController(IPlayerSessionService playerSessionService,
         if (!draftMatch!.DraftLogic!.Players[0].Equals(playerRequest.Name)
             && !draftMatch.DraftLogic!.Players[1].Equals(playerRequest.Name)) return BadRequest();
         draftMatch.DraftLogic.Surrender(playerRequest.Name);
+        await matchHistoryService.AddDraftToMatchToHistory(draftMatch);
         return Ok();
 
     }
@@ -127,6 +127,7 @@ public class DraftController(IPlayerSessionService playerSessionService,
         if (await playerSessionService.GetSessionAsync(draftLogic.Players[opponentIndex]) == null)
         {
             draftLogic.Surrender(draftLogic.Players[opponentIndex]);
+            await matchHistoryService.AddDraftToMatchToHistory(draftMatch);
         }
         
         if (draftLogic.DraftState == DraftState.Ban 

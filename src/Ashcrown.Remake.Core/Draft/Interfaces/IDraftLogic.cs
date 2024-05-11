@@ -5,6 +5,7 @@ namespace Ashcrown.Remake.Core.Draft.Interfaces;
 
 public interface IDraftLogic
 {
+    string?[,] BannedChampions { get; }
     string?[,] PickedChampions { get; }
     DraftState DraftState { get; }
     DraftStatus[] DraftStatuses { get; set; }
