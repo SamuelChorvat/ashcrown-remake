@@ -13,7 +13,7 @@ public class BattleHistoryRecorder(IBattleLogic battleLogic) : IBattleHistoryRec
 	    foreach (var usedAbility in used)
 	    {
 		    if (usedAbility == null) continue;
-		    var abilityRecord = new AbilityHistoryRecord()
+		    var abilityRecord = new AbilityHistoryRecord
 		    {
 			    TurnNo = battleLogic.TurnCount,
 			    PlayerNo = battleLogic.WhoseTurn.PlayerNo,
@@ -33,9 +33,9 @@ public class BattleHistoryRecorder(IBattleLogic battleLogic) : IBattleHistoryRec
 				    .AbilityController.GetCurrentAbility(usedAbility.AbilityNo).Invisible
 		    };
 		    
-		    for (var i = 0; i < usedAbility!.Targets.Length; i++)
+		    for (var i = 0; i < usedAbility.Targets.Length; i++)
 		    {
-			    if (usedAbility!.Targets[i] != 1) continue;
+			    if (usedAbility.Targets[i] != 1) continue;
 			    if (i < 3) 
 			    {
 				    abilityRecord.TargetNames.Add($"{battleLogic.WhoseTurn.PlayerName}" +
@@ -43,7 +43,7 @@ public class BattleHistoryRecorder(IBattleLogic battleLogic) : IBattleHistoryRec
 			    } 
 			    else 
 			    {
-				    abilityRecord.TargetNames.Add($"{battleLogic.WhoseTurn.PlayerName}" +
+				    abilityRecord.TargetNames.Add($"{battleLogic.GetOppositePlayer(battleLogic.WhoseTurn.PlayerNo).PlayerName}" +
 				                                  $"_{battleLogic.GetOppositePlayer(battleLogic.WhoseTurn.PlayerNo).Champions[i - 3].Name}");
 			    }
 		    }

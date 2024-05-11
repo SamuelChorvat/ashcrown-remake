@@ -1,11 +1,12 @@
-﻿using Ashcrown.Remake.Core.Ability.Enums;
+﻿using Ashcrown.Remake.Core.Ability.Base;
+using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Sarfu.Abilities;
 
-public class Overpower : Ability.Abstract.Ability
+public class Overpower : AbilityBase
 {
     public Overpower(IChampion champion) 
         : base(champion, 
@@ -14,11 +15,12 @@ public class Overpower : Ability.Abstract.Ability
             [0,0,1,0,1],
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemyDamage)
+            AbilityType.EnemyDamage,
+            1)
     {
         Damage1 = 30;
         BonusDamage1 = 15;
-        Description = $"{SarfuConstants.Sarfu} slashes one enemy with his axe, dealing {$"{Damage1} physical damage".HighlightInOrange()}. " +
+        Description = $"{SarfuConstants.Name} slashes one enemy with his axe, dealing {$"{Damage1} physical damage".HighlightInOrange()}. " +
                       $"This ability will deal an additional {$"{BonusDamage1} physical damage".HighlightInOrange()} to an enemy affected by {SarfuConstants.Duel.HighlightInGold()}.";
         PhysicalDamage = true;
         Harmful = true;

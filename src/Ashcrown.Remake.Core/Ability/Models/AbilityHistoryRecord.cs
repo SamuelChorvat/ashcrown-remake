@@ -1,5 +1,4 @@
 using Ashcrown.Remake.Core.Ability.Enums;
-using Ashcrown.Remake.Core.Battle.Models.Dtos;
 using Ashcrown.Remake.Core.Battle.Models.Dtos.Outbound;
 
 namespace Ashcrown.Remake.Core.Ability.Models;
@@ -18,7 +17,7 @@ public class AbilityHistoryRecord
     public List<string> TargetNames { get; } = [];
     public required bool Invisible { get; set; }
 
-    public string GetClassesAsString() {
+    private string GetClassesAsString() {
         var toReturn = "";
 
         for (var i = 0; i < AbilityClasses.Count; i++) {
@@ -47,7 +46,7 @@ public class AbilityHistoryRecord
             AbilityDescription = AbilityDescription,
             AbilityFree = IsFree(),
             AbilityCost = AbilityCost,
-            AbilityClasses = AbilityClasses,
+            AbilityClasses = GetClassesAsString(),
             AbilityCooldown = AbilityCooldown,
             TargetNames = TargetNames
         };

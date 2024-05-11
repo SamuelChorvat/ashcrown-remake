@@ -1,0 +1,2774 @@
+{	
+	"Items":
+	[
+		{
+			"name": "Gruber",
+			"title": "The Mad Scientist",
+			"bio":  "Within the discretion of the royal family, Gruber is allowed to practise a variety of his experiments under the guise of helping the crown’s interests. Paid handsomely to research and develop cures to some of the most common diseases that blight the land, the King is known to turn a blind eye to some of Gruber’s more unsavoury practises. Such as when a few children in Ingbridge who had gone missing were found in an alley, indescribably conjoined and twisted into something inhuman. At what point does the means of progress become too twisted to justify the ends? Gruber seeks to find the answer to this question.",
+			"attributes": [2,1,1,1],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Poison Injection",
+					"description": "Gruber deals <color=#FF5C04>10 physical damage</color> to one enemy. The following turn, that enemy will be <color=#FF00CD>stunned</color> for 1 turn and will take <color=red>20 affliction damage</color>; that enemy will also be <color=#FF00CD>stunned</color> for one extra turn by this ability for the rest of the game. This ability cannot be used on a champion already affected by it.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Affliction", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Adaptive Virus",
+					"description": "Gruber releases a virus giving his allies <color=yellow>10 destructible defense</color> and dealing <color=red>5 affliction damage</color> each turn permanently to the enemy team. This effect can stack.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,1,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Explosive Leech",
+					"description": "Gruber hides an explosive leech on an ally. The first enemy champion to use a new harmful ability on that ally will take <color=red>20 affliction damage</color>; that ally will also take <color=red>10 affliction damage</color>. This damage <color=#FF00CD>ignores invulnerability</color>. This ability is <color=#FF00CD>invisible</color> and can stack.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "DNA Enhancement",
+					"description": "This ability makes Gruber <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Gwen",
+			"title": "The Succubus",
+			"bio":  "Whether meticulously trained in the art of seduction or simply born with a gift, Gwen has made a successful living entertaining some of the most prestigious clients in Coela. Duchesses, priests and lords alike have previously fallen under her spell, but now Gwen has her sights set on a much more ambitious client. The King himself. What better way to reach the king than working her way up the heirarchy of officers on the battlefield?",
+			"attributes": [1,1,0,2],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Charm",
+					"description": "Gwen charms all enemies and deals <color=#00A3FB>15 magic damage</color> to them each turn for 2 turns. The following 2 turns, Gwen gains <color=yellow>15 points of damage reduction</color> and <color=#EAB65B>Kiss</color> can be used.",
+					"cooldown": 1,
+					"classes": [
+						"Magic", "Action", "Ranged", "Instant"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Kiss",
+					"description": "Gwen kisses one enemy, dealing <color=red>10 affliction damage</color> to them and <color=#FF00CD>removing</color> <sprite=4> from them. This ability can only be used while <color=#EAB65B>Charm</color> is active.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Love Chains",
+					"description": "Gwen <color=#FF00CD>stuns</color> all enemies for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Lights Out",
+					"description": "This ability makes Gwen <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Hannibal",
+			"title": "The Blood Lord",
+			"bio":  "A once proud lord ruling over a vast estate tended by swathes of hypnotized peasants, Hannibal was suddenly forced into hiding after the first purging of all vampiric elements in Coela. Living quietly and yet feasting often, Hannibal has managed to survive a succession of several purges since then. Now he has been yanked from is simple life as a lowly vampire slayer of the name Aniel harangues him in her quest to find her father. Tired of a life on the run and his patience far past tested, Hannibal has decided that the next person who seeks to disturb him will not live to regret their decision.",
+			"attributes": [2,2,0,1],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Taste for Blood",
+					"description": "Hannibal bites an enemy, dealing <color=#FF5C04>35 physical damage</color> and healing himself for the amount of health lost by the target.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,1,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Health Funnel",
+					"description": "Hannibal targets one enemy for 3 turns, each turn <color=#FF00CD>stunning</color> their non-Strategic abilities, and <color=#FF00CD>stealing</color> <color=#1AB000>15 health</color> from them. This ability will end if Hannibal dies.",
+					"cooldown": 3,
+					"classes": [
+						"Affliction", "Ranged", "Control"
+					],
+					"cost": [
+						1,0,0,1,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Sacrificial Pact",
+					"description": "Hannibal targets one ally, if their health drops to <color=#1AB000>25 health</color> or below while Hannibal is dead, that character will heal to <color=#1AB000>75 health</color>, will have all friendly and harmful effects <color=#FF00CD>removed</color> from them and they will have all their abilities replaced by Hannibal's. This ability is <color=#FF00CD>invisible</color> and cannot be used while active.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						1,1,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Demonic Skin",
+					"description": "This ability makes Hannibal <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Hrom",
+			"title": "The Thunder King",
+			"bio":  "Worshipped as a god in Waldvollur, Hrom rules over the north from the frigid skies through a combination of force and fear. Legend says of how aeons ago his mother was courted by the heavens themselves, leading to the conception of Hrom and his many siblings. Coddled by his superstitious mother who believed in a late prophecy describing how Hrom would be usurped by his own brothers and sisters, she led him to murder his family in a twisted quest to rule over Waldvollur’s sky. Warped by power and trampled by the guilt of what he has done, Hrom wanders the stars casting down his misdirected anger on anyone he sees fit to do so.",
+			"attributes": [3,2,0,0],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Lightning Strike",
+					"description": "Hrom deals <color=#00A3FB>25 magic damage</color> to one enemy. <color=#EAB65B>Lightning Storm</color> may be used the following turn.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Lightning Barrier",
+					"description": "Hrom creates a barrier to protect himself or one ally for 1 turn. The first enemy harmful non-Strategic ability used on this ally will be <color=#FF00CD>countered</color>. This ability is <color=#FF00CD>invisible</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Lightning Storm",
+					"description": "Hrom conjures a lightning storm, dealing <color=#00A3FB>45 magic damage</color> to all enemies. This ability requires <color=#EAB65B>Lightning Strike</color> to be used in the previous turn.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,0,2
+					],
+					"slot": 3
+				},
+				{
+					"name": "Storm Shield",
+					"description": "This ability makes Hrom <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Izrin",
+			"title": "The Undead Warrior",
+			"bio":  "A less than average warrior in life and death, Izrin’s fate should have been to fade out of the forgetful memories of her close kin after dying at the start of a minor battle during the royal rebellion. It was not until after her death, when she was resurrected to be part of Nezhum’s undead army that Izrin’s life truly began. In a moment of wilful determination, Izrin broke free of the necromancer’s spell and escaped the undead horde. Now wandering the country, she seeks to find her purpose beyond the twilight realm in which she now resides.",
+			"attributes": [2,2,0,1],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Rake",
+					"description": "Izrin rakes an enemy, dealing <color=#FF5C04>15 physical damage</color> to them and lowering their non-affliction damage by 15 for 2 turns. <color=#EAB65B>Rake</color> will deal an additional <color=#FF5C04>10 physical damage</color>, and the damage reduction effect will last 1 additional turn for each ally that is dead.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Bloody Strike",
+					"description": "Izrin deals <color=#FF5C04>20 physical damage</color> to one enemy and gains <color=yellow>10 points of damage reduction</color> for 1 turn. The following turn this ability will deal and additional <color=#FF5C04>10 physical damage</color> and grant <color=yellow>10 more damage reduction</color>. <color=#EAB65B>Bloody Strike</color> will deal an additional <color=#FF5C04>10 physical damage</color> for every ally that is dead.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Bite",
+					"description": "Izrin bites one enemy dealing <color=#FF5C04>20 physical damage</color> to them. Bite will deal and additional <color=#FF5C04>20 physical damage</color> for each ally that is dead and an additional <color=#FF5C04>20 physical damage</color> for every <color=#1AB000>30 health</color> that Izrin is missing.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,0,0,2
+					],
+					"slot": 3
+				},
+				{
+					"name": "Will of the Undead",
+					"description": "This ability makes Izrin <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Jafali",
+			"title": "The Ifrit",
+			"bio":  "Hidden deep in the stones of the Tainowak palace walls, many find that it is possible to summon Jafali through a simple ritual. After coming out, the startled summoner may ask him one favour, which Jafali will grant with great pleasure. Many beggars of this dark art have found that the wording of their wish is often ... open to interpretation. The last victim of Jafali’s mischief spoke in such a way as to accidentally let him free, leading to the unfortunate possession of his body. Now at large, Jafali feels a pull towards a mass of people congregating in Coela. Just because he is free doesn’t mean that he’s lost his mischievous streak.",
+			"attributes": [1,2,0,2],
+			"artist": "PiotrTekien's Games",
+			"abilities": [
+				{
+					"name": "Anger",
+					"description": "Jafali applies <color=#EAB65B>Decaying Soul</color> to one enemy and gains <color=yellow>15 destructible defense</color>. Enemy that destroys the destructible defense will have <color=#EAB65B>Decaying Soul</color> applied to them. While the destructible defense is active this ability will be replaced by <color=#EAB65B>Decaying Soul</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Decaying Soul",
+					"description": "Jafali targets an enemy. They will receive <color=red>5 affliction damage</color> for 5 turns.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Envy",
+					"description": "Jafali applies <color=#EAB65B>Decaying Soul</color> to all enemies and gains <color=yellow>30 destructible defense</color>. Enemy that destroys the destructible defense will have <color=#EAB65B>Decaying Soul</color> applied to them. While the destructible defense is active this ability will be replaced by <color=#EAB65B>Avarice</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,2,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Avarice",
+					"description": "Jafali applies <color=#EAB65B>Decaying Soul</color> to all enemies.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,2
+					],
+					"slot": 2
+				},
+				{
+					"name": "Pride",
+					"description": "Jafali deals <color=red>20 affliction damage</color> to one enemy and <color=#FF00CD>removes</color> <sprite=4> for each <color=#EAB65B>Decaying Soul</color> on them.",
+					"cooldown": 2,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,2,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Devil's Game",
+					"description": "This ability makes Jafali <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Jane",
+			"title": "The Gunslinger",
+			"bio":  "Most of the saloon taverns in the Western provinces hold whispers of a lone gunslinger. Some call her crooked, others fair, but everyone can agree that she’s a dead shot with nothing to lose. Wandering with her wolf dog Benji, Jane makes a living in anyway her guns can for her, including taking out any “varmint” she meets on the battlefield.",
+			"attributes": [2,2,1,1],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Benji",
+					"description": "Jane calls Benji to aid her. The following 4 turns, she will gain <color=yellow>10 points of damage reduction</color>. During this time, this ability will be replaced by <color=#EAB65B>Go for the Throat</color> and any enemy that uses a new harmful non-Affliction ability on Jane will receive <color=#FF5C04>10 physical damage</color>.",
+					"cooldown": 4,
+					"classes": [
+						"Physical", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Go for the Throat",
+					"description": "Jane instructs Benji to attack an enemy, dealing <color=#FF5C04>25 <b>piercing</b> physical damage</color> to them.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Counter Shot",
+					"description": "Jane shoots one enemy, dealing <color=#FF5C04>30 <b>piercing</b> physical damage</color> to them. For 2 turns all new <color=#FF00CD>stun</color> abilities that the enemy uses will be decreased by 2 turns.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Flashbang",
+					"description": "Jane covers herself and her allies, making them <color=#FF00CD>invulnerable</color> to all non-Affliction abilities for 1 turn. Jane only carries 3 of these grenades at all times, so this ability can only be used 3 times.",
+					"cooldown": 3,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Misdirection",
+					"description": "This ability makes Jane <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Khan",
+			"title": "The Protector",
+			"bio":  "What god he follows no one knows. What he protects anyone from, if anything at all, is still unknown. Who he protects seems to depend on his passing fancies. Khan fashioned himself the title seemingly out of nowhere, introducing himself with it appended to his name to anyone who would listen. Whatever the state of his mind may be, everyone agrees that they’d rather have him on their side than against it.",
+			"attributes": [2,2,0,1],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Mortal Strike",
+					"description": "Khan deals <color=#FF5C04>35 physical damage</color> to one enemy. For 2 turns that enemy wll receive 50% less healing and healing they deal will be reduced by 25%.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Bladestorm",
+					"description": "Khan will deal <color=#FF5C04>5 physical damage</color> to all enemies for 3 turns. During this time, <color=#EAB65B>Mortal Strike</color> will deal an additional <color=#FF5C04>10 physical damage</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Melee", "Action"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Hand of the Protector",
+					"description": "This ability makes Khan <color=#FF00CD>invulnerable</color> for 2 turns and will heal him <color=#1AB000>15 health</color> each turn. <color=#EAB65B>Mortal Strike</color> will deal <color=#FF5C04>10 LESS physical damage</color> during this time.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Perception",
+					"description": "This ability makes Khan <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Lexi",
+			"title": "The Wood Elf",
+			"bio":  "Part of a dying race of people living along the Arikem river system, Lexi and her kin fled deep in the jungle after the Reconstruction era. Despite dreams of becoming a world renowned healer, Lexi found that she would have to adapt to a life of hunting on the fringes of Coelan society. As the trees that protect her people recede to the power of buzzing machines and hacking axes, Lexi has come out from the safety of the forest with the aim of wreaking justice to any outsiders she deems as a threat to her way of life.",
+			"attributes": [1,2,1,0],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Thorn Whip",
+					"description": "Lexi brings a vine to life that deals <color=#00A3FB>25 magic damage</color> to one enemy. While <color=#EAB65B>Tranquility</color> is active, this ability will deal <color=#00A3FB>35 magic damage</color> to one enemy and <color=#00A3FB>10 magic damage</color> to all others. Only the primary target can <color=#FF00CD>counter</color> or <color=#FF00CD>reflect</color> this ability.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Nourish",
+					"description": "Lexi heals half of hers or one ally's missing health (rounded down) and <color=#FF00CD>removes</color> all enemy affliction effects from them. While <color=#EAB65B>Tranquility</color> is active, this ability will cost <sprite=4> and have no cooldown.",
+					"cooldown": 1,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Tranquility",
+					"description": "Lexi gains 3 <color=#EAB65B>Tranquility</color> stacks. During this time, each time Lexi uses an ability other than <color=#EAB65B>Shadowmeld</color>, she will use up 1 <color=#EAB65B>Tranquility</color> stack. While <color=#EAB65B>Tranquility</color> is active, Lexi can use this ability again for no cost to restore <color=#1AB000>25 health</color> and <color=#FF00CD>remove</color> all enemy harmful effects on her.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Shadowmeld",
+					"description": "This ability makes Lexi <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Lucifer",
+			"title": "The Mysterious Traveler",
+			"bio":  "In the dead of night, a local saloon may hear a rapping on their door. Upon answering, a lone stranger will charm his way in, receiving any food and drink he asks for. He’ll spend the whole night making the landlords laugh and sing while he consumes their pantry, their coffers and their soul. If any landlord attempts to wake up from the spell, he’ll find that Lucifer can take on a very different form than the handsome young stranger they let in.",
+			"attributes": [3,1,0,0],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Heart of Darkness",
+					"description": "This ability affects <color=#EAB65B>Shadow Bolts</color>. First use changes Rank 1 to Rank 2. Second use changes Rank 2 to Rank 3. Third use changes Rank 3 back to Rank 1. This ability is <color=#FF00CD>invisible</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Shadow Bolts",
+					"description": "1) Rank 1 deals <color=#00A3FB>15 <b>piercing</b> magic damage</color> to one enemy and <color=#FF00CD>ignores invulnerability</color>.\n2) Rank 2 deals <color=#00A3FB>25 magic damage</color> to one enemy.\n3) Rank 3 deals <color=#00A3FB>20 magic damage</color> to all enemies.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Dark Chalice",
+					"description": "Lucifer drinks from his chalice. Lucifer will deal <color=#00A3FB>35 magic damage</color> to all enemies when he dies. This ability may only be used once and is <color=#FF00CD>invisible</color> until he dies. This ability becomes <color=#EAB65B>Cursed Crow</color> when used.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						1,1,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Cursed Crow",
+					"description": "Lucifer targets one enemy. <color=#EAB65B>Dark Chalice</color> will deal an additional <color=#00A3FB>10 magic damage</color> to that enemy permanently. This effect stacks. This ability is <color=#FF00CD>invisible</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Demon Form",
+					"description": "This ability makes Lucifer <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Luther",
+			"title": "The Blacksmith",
+			"bio":  "Deep in the pits of Fa’lmur the ringing of steel on steel would echo off the rock walls, the sound mixing with the stifling heat of the volcanic crater. Cursed by the mountain for his greed, Luther toiled away forging the war hammer Hrau’stal, his sweat hissing into steam as it rolled over his branded head. When the thundering of metal and rock finally ended and the cavern walls tore themselves apart, he felt the pull of the mountain spirits lead him into the cool outside air. Now, he fights fiercely on the battlefield with Hrau’stal by his side. For what purpose, only the mountain spirits seem to know.",
+			"attributes": [2,1,0,2],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Flamestrike",
+					"description": "Luther strikes one enemy for 2 turns, dealing <color=#FF5C04>20 physical damage</color> to them and increasing the cost of all their Strategic abilities by <sprite=4> during this time.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Action", "Melee"
+					],
+					"cost": [
+						0,1,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Fiery Brand",
+					"description": "Luther brands one enemy. The following turn, the first new Strategic ability that the enemy uses will be <color=#FF00CD>countered</color> and if <color=#EAB65B>Flamestrike</color> is used on that enemy, it will last 2 additional turns. This ability is <color=#FF00CD>invisible</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Living Forge",
+					"description": "Luther gains <color=yellow>20 points of damage reduction</color> for 4 turns. The following 4 turns, this ability will be replaced by <color=#EAB65B>Forge Spirit</color> and any time the enemy team uses a new Strategic ability, Luther's damage will be increased by 5 for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Forge Spirit",
+					"description": "Luther deals <color=#00A3FB>30 <b>piercing</b> magic damage</color> to one enemy and for 3 turns, all original non-affliction damage they deal will be reduced to a maximum of 30. <color=#EAB65B>Fiery Brand</color> will also be applied to one random enemy.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Molten Armor",
+					"description": "This ability makes Luther <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Moroz",
+			"title": "The Cryomancer",
+			"bio":  "Hailing from the fiery lands of Iskandar, Moroz started learning his craft to keep cool underneath the desert sun. When the guild of mages took notice of his talent, they forcibly moved him to the frigid North to hone his craft despite his protests. Now one of the most powerful Cryomancers in Coela, Moroz finds that the only way he can heat his icy veins is through the blood pumping action of combat.",
+			"attributes": [1,2,0,1],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Freeze",
+					"description": "Moroz freezes one enemy, <color=#FF00CD>stunning</color> their non-Strategic abilities for 2 turns. For 2 turns, that enemy cannot <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color>. During this time, this ability will be replaced by <color=#EAB65B>Shatter</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Ranged", "Control"
+					],
+					"cost": [
+						1,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Shatter",
+					"description": "Moroz shatters a frozen enemy. The enemy is <color=#FF00CD>instantly killed</color>. This ability requires <color=#EAB65B>Freeze</color> to be active on the enemy. This ability cannot be <color=#FF00CD>countered</color> or <color=#FF00CD>reflected</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						2,0,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Ice Barrier",
+					"description": "Moroz creates an ice barrier around himself. Until Moroz is targeted by new enemy Strategic ability, he will <color=#FF00CD>ignore</color> all <color=#FF00CD>stun</color> effects. This ability cannot be used while active.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Frozen Armor",
+					"description": "By covering himself with ice, Moroz permanently gains <color=yellow>40 points of destructible defense</color>. This ability cannot stack and will re-apply itself.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Ice Block",
+					"description": "This ability makes Moroz <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Nazuc",
+			"title": "The Stalker",
+			"bio":  "Many travellers go to the jungles of Arikem with the goal of mapping out new sections of the unforgiving rainforest. With heads full of the promise of fame, and their royal contracts promising even more on the discovery of new resources, they never take a moment to take a true look through the foliage of the jungle. It’s only when the leaves rustle, or a branch breaks that they realise where they truly are. By then, it’s too late.",
+			"attributes": [2,2,0,1],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Spear Throw",
+					"description": "This ability does <color=#FF5C04>30 physical damage</color> to one enemy. During <color=#EAB65B>Spear Barrage</color> this ability's cost is reduced by <sprite=4>.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Spear Barrage",
+					"description": "Nazuc attacks all enemies dealing <color=#FF5C04>15 physical damage</color> to them each turn for 3 turns. The following 3 turns <color=#EAB65B>Spear Throw</color> cost will be reduced by <sprite=4>. During this time Nazuc gains <color=yellow>15 points of damage reduction</color>.",
+					"cooldown": 3,
+					"classes": [
+						"Physical", "Action", "Ranged", "Instant"
+					],
+					"cost": [
+						0,1,1,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Hunter's Mark",
+					"description": "Nazuc mark one enemy who cannot <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color> for 3 turns. During this time <color=#EAB65B>Spear Throw</color> and <color=#EAB65B>Spear Barrage</color> will deal an additional <color=#FF5C04>5 physical damage</color> to them. <color=#EAB65B>Hunter's Mark</color> cannot be used on enemy already affected by it.",
+					"cooldown": 1,
+					"classes": [
+						"Strategic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Seasoned Stalker",
+					"description": "This ability makes Nazuc <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Nerissa",
+			"title": "The Mermaid",
+			"bio":  "When a sailor crosses the Axeina sea, they may be able to hear a shimmering melody emanating from beneath the ripples of the water. They find that the voice becomes clearer and louder as they spend more and more time looking over the taffrail. Eventually they all reach the same conclusion. The only way to really hear the music in its purest form is to dive underneath surface of the sea itself. It’s only until they’ve jumped in and swam down to it’s source, way past the point of no return, that they find the horror of Nerissa’s true form.",
+			"attributes": [1,2,0,1],
+			"artist": "PiotrTekien's Games",
+			"abilities": [
+				{
+					"name": "Overflow",
+					"description": "Nerissa targets one enemy. They will lose all <color=yellow>destructible defense</color> and receive <color=#00A3FB>15 <b>piercing</b> magic damage</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Drown",
+					"description": "Nerissa drowns one enemy. They will receive <color=red>10 affliction damage</color> for the rest of the game and <color=#EAB65B>Overflow</color> will deal an additional <color=#00A3FB>5 <b>piercing</b> magic damage</color> to them. This ability cannot target enemy already affected by it and will end if Nerissa dies.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Ranged", "Instant"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Ancient Spirits",
+					"description": "Nerissa heals herself for <color=#1AB000>25 health</color> and gains <color=yellow>25 destructible defense</color>.",
+					"cooldown": 3,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Mesmerizing Water",
+					"description": "This ability makes Nerissa <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Nezhum",
+			"title": "The Necromancer",
+			"bio":  "Once a promising young mage lauded with praise and approval by the Guild, Nezhum’s path took a dark turn after a longer than expected trip through the Eastern desert. Expelled from the Guild and in hiding, Nezhum has been biding his time to make his return. In the meanwhile, graves all over Coela have been found empty, the upturned soil fresh and the caskets empty. Where all these bodies have gone is unknown. Where they will end up is down to Nezhum.",
+			"attributes": [2,1,0,1],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Virulence",
+					"description": "When activated, any enemy champion that damages Nezhum with a new non-Affliction ability will receive <color=red>10 affliction damage</color> that cannot be removed for 3 turns. Afterwards, this ability can be used on one ally for 2 turns or double the damage of <color=#EAB65B>Virulence</color> against one enemy for 2 turns. This ability <color=#FF00CD>ignores invulnerability</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Affliction", "Instant"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Oppressive Gaze",
+					"description": "Nezhum gazes at his enemies, dealing <color=red>10 affliction damage</color> to them and reducing their non-affliction damage by 5 for 2 turns. Additionally, any enemy affected by <color=#EAB65B>Virulence</color> will also lose <sprite=4>.",
+					"cooldown": 2,
+					"classes": [
+						"Affliction", "Action"
+					],
+					"cost": [
+						0,0,0,0,2
+					],
+					"slot": 2
+				},
+				{
+					"name": "Reaper's Mark",
+					"description": "Nezhum marks an enemy, beginning a countdown of doom against them. After 4 new harmful abilities are used by that enemy, they will be <color=#FF00CD>instantly killed</color>. This ability does not stack and will end if Nezhum dies.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Bone Armor",
+					"description": "This ability makes Nezhum <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Nikto",
+			"title": "The Old God",
+			"bio":  "In the murky depths of the Axeina sea, a low hum has always resonated throughout the water.Madness has been known to creep into the minds of green sailors from their constant exposure to the “Ringing of the Axeina”. After a while, the noise simply became one of the many charms of the turbulent inland sea. Then all of a sudden, the humming stopped. Of late, the standard debauchery of pirates has turned into something much darker. They complain of twisted dreams of tendrils tugging them to a watery grave. More alarmingly, the surface of the water seems to be shifting in a way that no sea ever should.",
+			"attributes": [2,1,0,3],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Axe of Doom",
+					"description": "Nikto deals <color=red>10 affliction damage</color> to one enemy. The following turn, all new <color=#FF00CD>stun</color> abilities that the enemy uses will be decreased by 1 turn, and their new energy <color=#FF00CD>removal</color>/<color=#FF00CD>steal</color> abilities will <color=#FF00CD>remove</color>/<color=#FF00CD>steal</color> 1 less energy. <color=#EAB65B>Ancient Darkness</color> will also permanently deal an additional <color=red>5 affliction damage</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Mind Shatter",
+					"description": "For 1 turn, Nikto will target one enemy and will <color=#FF00CD>reflect</color> the first new non-Strategic harmful ability used on him to them. If that enemy uses a new non-Strategic ability during this time, <color=#EAB65B>Mind Shatter</color> will be replaced by that ability for 2 turns and will cost <sprite=4>. This ability is <color=#FF00CD>invisible</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Ancient Darkness",
+					"description": "Nikto deals <color=red>30 affliction damage</color> to one enemy. That enemy will also lose <sprite=4> and will be <color=#FF00CD>stunned</color> for 1 turn.",
+					"cooldown": 2,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						2,0,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "True Sight",
+					"description": "This ability makes Nikto <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Nixdrak",
+			"title": "The Ice Queen",
+			"bio":  "Flying free, the terror of the North Nixdrak terrorises her icy domain from the skies. Unchained from the earth of Coela, and untethered from any modicum of sanity, Nixdrak has carved her figure in Northern folklore as a force of nature. Venturing further than her usual snow covered roost, she seeks to see how far her havoc can be wreaked.",
+			"attributes": [1,2,0,2],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Icy Grip",
+					"description": "One enemy will have their non-Strategic abilities <color=#FF00CD>stunned</color> for 1 turn and will take <color=#FF5C04>15 physical damage</color>. If used during <color=#EAB65B>Deep Freeze</color>, this ability will also grant Nixdrak <color=yellow>5 points of destructible defense</color>.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Deep Freeze",
+					"description": "Nixdrak gains <color=yellow>15 points of destructible defense</color>. For 3 turns, the enemy team will deal 5 less <color=#FF5C04>physical</color> and <color=#00A3FB>magic</color> damage while taking an additional <color=#FF5C04>5 physical damage</color> from <color=#EAB65B>Icy Grip</color>.",
+					"cooldown": 3,
+					"classes": [
+						"Strategic", "Ranged", "Instant"
+					],
+					"cost": [
+						0,0,0,0,2
+					],
+					"slot": 2
+				},
+				{
+					"name": "Frost Breath",
+					"description": "Nixdrak deals <color=#00A3FB>35 magic damage</color> to one enemy and <color=#00A3FB>20 magic damage</color> to the rest of the enemy team. If <color=#EAB65B>Deep Freeze</color> is active, this ability will also <color=#FF00CD>stun</color> each enemy for 1 turn and will reduce the primary target's <color=#FF5C04>physical damage</color> by 10 permanently. Only the primary target can <color=#FF00CD>counter</color> or <color=#FF00CD>reflect</color> this ability.",
+					"cooldown": 2,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						2,0,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Cryo Armor",
+					"description": "This ability makes Nixdrak <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Nomagi",
+			"title": "The Spectre",
+			"bio":  "When the Eastern wind blows hard, under the cover of nightfall Nomagi is one of few who can get the job done. Highly trained in the art of long range reconnaissance and all the trials that come with it, Nomagi is a gun for hire that has travelled far beyond her desert home to fulfil the contracts offered to her. Her fee paid in full, she now seeks a certain religious warrior that has been converting tribes and causing issues for her... less than human client. He may be the only name on her contract, but anyone who gets within her line of sight will find Nomagi doesn’t take warning shots.",
+			"attributes": [2,2,0,1],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Decoy",
+					"description": "For 1 turn, the first new non-Strategic harmful ability that targets Nomagi will be <color=#FF00CD>reflected</color> back upon the caster.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Deadeye",
+					"description": "Nomagi targets one enemy. That enemy will have their non-Strategic abilities <color=#FF00CD>stunned</color> for 2 turns. During this time <color=#EAB65B>Headshot</color> will <color=#FF00CD>instantly kill</color> that enemy.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Ranged", "Control"
+					],
+					"cost": [
+						1,0,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Headshot",
+					"description": "Nomagi deals <color=#FF5C04>50 <b>piercing</b> physical damage</color> to one enemy. If that enemy is affected by <color=#EAB65B>Deadeye</color> they will be <color=#FF00CD>instantly killed</color>.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,1,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Reload",
+					"description": "This ability makes Nomagi <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Onog",
+			"title": "The Tracker",
+			"bio":  "Beginning as a humble fur trader, Onog has built a far reaching reputation as the best and brightest of the big game hunters. Whether in the jungle, the desert or the tundras of Akullaq, Onog has always found his prey and has never found his match. Tired of his so called “easy existence”, Onog has shifted his sights to the battlefield where maybe finally he can find the opponent he’s been seeking for his entire life.",
+			"attributes": [1,1,0,2],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Cleave",
+					"description": "Using his axe, Onog cleaves his opponents, dealing <color=#FF5C04>15 physical damage</color> to one enemy and <color=#FF5C04>5 physical damage</color> to all other enemies. On the following turn, <color=#EAB65B>Rifle Shot</color> will deal an additional <color=#FF5C04>5 physical damage</color>. Only the primary target can <color=#FF00CD>counter</color> or <color=#FF00CD>reflect</color> this ability.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Rifle Shot",
+					"description": "Onog shoots one enemy, dealing <color=#FF5C04>15 physical damage</color> to them and <color=#FF00CD>removing</color> <sprite=4> from them. On the following turn, <color=#EAB65B>Cleave</color> will deal an additional <color=#FF5C04>5 physical damage</color> to its primary target.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Bear Trap",
+					"description": "Onog sets a trap in the battlefield. For 1 turn if any enemy uses a new harmful non-Strategic ability it will be <color=#FF00CD>countered</color> and they will receive <color=#FF5C04>35 physical damage</color>. This ability ends when triggered and is <color=#FF00CD>invisible</color>.",
+					"cooldown": 3,
+					"classes": [
+						"Physical", "Instant"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Tough Skin",
+					"description": "This ability makes Onog <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Payne",
+			"title": "The Shadow Priest",
+			"bio":  "A worshipper of darkness locked into a torturous prison of his own design, Payne wanders Coela infesting its regions with the hideous darkness that emanates from the depths of his mind. Unsure of what reality he has found himself in, Payne has meandered into the sights of the heroes and brigands that make up the colourful population of Coela. They must be sure to not underestimate what they think is only a mad man, for when he turns sights onto them, they will learn the true torture of his fractured mind.",
+			"attributes": [1,1,1,1],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Shadow's Reach",
+					"description": "Payne envelops one enemy in shadows, marking them for 2 turns. If this ability is used on an enemy already affected by it, that enemy will be <color=#FF00CD>instantly killed</color>. The following 2 turns, this ability will cost <sprite=3> <sprite=3>. This effect cannot be <color=#FF00CD>removed</color> or <color=#FF00CD>ignored</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Shadow Prison",
+					"description": "Payne imprisons one enemy for 1 turn, <color=#FF00CD>countering</color> the first harmful ability they use. If an ability is successfully <color=#FF00CD>countered</color>, Payne will also use <color=#EAB65B>Shadow's Reach</color> on them. This ability is <color=#FF00CD>invisible</color> and ends if triggered.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Darkness Unleashed",
+					"description": "Payne gains <sprite=3>. The following turn, <color=#EAB65B>Shadow's Reach</color> will <color=#FF00CD>ignore invulnerability</color> and will be unable to be <color=#FF00CD>countered</color> or <color=#FF00CD>reflected</color> by the enemy.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Shadow Shield",
+					"description": "This ability makes Payne <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Qog",
+			"title": "The Banker",
+			"bio":  "There is no warrior, cultist, or headhunter more ruthless than an Ingbridge banker. While many people working in finance are in it just for the gold, Qog does what he does for his twisted love of the industry itself. Also the gold. Tricking clients into taking high interest loans over short term periods and then cancelling their overdraft without any warning is one of Qog’s favourite past times, however recently he’s been wanting to expand his clientele to the fighters and mercenaries that he’s sure have made a lot of money in their line of work. If they store their money in his coffers and unfortunately pass away, who’s going to come collect? All Qog needs to do is make sure that they don’t stick around to come get what’s his.",
+			"attributes": [1,1,1,2],
+			"artist": "Dean Spencer",
+			"abilities": [
+				{
+					"name": "Collect Debt",
+					"description": "Qog deals <color=#FF5C04>20 physical damage</color> to one enemy. For 1 turn, they will deal 5 less non-Affliction damage and cost of all their abilities will be increased by <sprite=4>. This effect will last 1 additional turn each time it is used on the same enemy.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Melee", "Instant"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Pyramid Scheme",
+					"description": "Qog targets himself or an ally. For 1 turn, the first new harmful ability used on them will be <color=#FF00CD>countered</color>. The <color=#FF00CD>countered</color> enemy will have the costs of all their abilities increased by <sprite=4> for 1 turn. This ability is <color=#FF00CD>invisible</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Insatiable Greed",
+					"description": "Qog deals <color=#FF5C04>25 <b>piercing</b> physical damage</color> to one enemy for each time <color=#EAB65B>Collect Debt</color> has been used on them and <color=#FF5C04>30 <b>piercing</b> physical damage</color> for each time they have been <color=#FF00CD>countered</color> by <color=#EAB65B>Pyramid Scheme</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Melee", "Instant"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Time Is Money",
+					"description": "This ability makes Qog <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Qynnir",
+			"title": "The Infernal Wyrm",
+			"bio":  "Living deep underground the deserts of Iskandar, Qynnir swims through the sand and tunnels beneath the dunes. Long respected and near worshipped by the desert tribes, Qynnir survives mostly off of the ritual sacrifices that are, by right, due to it. Recently, the tribes have been turning their attention away from Qynnir and worshipping a new god that has spread to their lands. That will not do, and Qynnir has started to show them why the sacrifices had begun in the first place.",
+			"attributes": [2,1,1,1],
+			"artist": "Daniel Comerci",
+			"abilities": [
+				{
+					"name": "Ignite",
+					"description": "Qynnir ignites one enemy. They will receive <color=red>15 affliction damage</color> for 3 turns. During this time, that enemy will be <color=#FF00CD>invulnerable</color> to all new friendly abilities. While this ability is on cooldown, it is replaced by <color=#EAB65B>Molten Fury</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Molten Fury",
+					"description": "Qynnir applies <color=#EAB65B>Living Bomb</color> to all enemies.",
+					"cooldown": 2,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Conflagration",
+					"description": "Qynnir protects himself or one ally. The first new enemy harmful non-Strategic ability used on them will be <color=#FF00CD>countered</color> and <color=#EAB65B>Living Bomb</color> will be applied to the caster. If no ability is countered, Qynnir will gain <sprite=3>. This ability is <color=#FF00CD>invisible</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Affliction", "Instant"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Living Bomb",
+					"description": "Qynnir targets one enemy, 3 turns after this ability is used or if removed, the bomb will detonate, dealing <color=red>25 affliction damage</color> and detonating all other <color=#EAB65B>Living Bombs</color> on the target. This ability is <color=#FF00CD>invisible</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Pyromaniac",
+					"description": "This ability makes Qynnir <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Ra'es",
+			"title": "The Cultist",
+			"bio":  "His mind warped beyond the recognition of even himself, Ra’es lurks in the dark corners of Ingbridge right under the noses of the city officials. Originally in search of an ancient source of power under the Axeina sea to help cure his small town of a plague that was ravishing the country side, Ra’es encountered a powerful source of magic that twisted his mind and began his lifelong worship of a strange and mysterious god-like creature. The cult now rapidly expanding, Ra’es plans to unleash the power he has found. The only issue is... he is no longer in control.",
+			"attributes": [1,2,1,2],
+			"artist": "Daniel Comerci",
+			"abilities": [
+				{
+					"name": "Infuse Evil",
+					"description": "Ra'es targets an ally or an enemy. If used on an enemy, he will deal <color=#00A3FB>15 magic damage</color> that <color=#FF00CD>ignores invulnerability</color>. If used on an ally, that ally will gain <color=yellow>15 points of damage reduction</color> for 1 turn.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Parasitic Link",
+					"description": "Ra'es plants a parasite onto one enemy. For 2 turns, all new harmful non-Strategic abilities used on Ra'es will be <color=#FF00CD>reflected</color> to that enemy. During this time, they cannot <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color>.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Control", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,2
+					],
+					"slot": 2
+				},
+				{
+					"name": "Abnormal Growth",
+					"description": "Ra'es gains <color=yellow>15 destructible defense</color>. If Parasitic Link is active, the enemy that it is active on will also receive <color=#00A3FB>20 magic damage</color> and be <color=#FF00CD>stunned</color> for 1 turn.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Tentacle Block",
+					"description": "This ability makes Ra'es <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Raz",
+			"title": "The Amphibian",
+			"bio":  "Who knows where Raz is really from? Only the water can be called his true home. As comfortable in the light blue ocean waters as he is in the whirlwind of the inland sea, Raz can be found pulling sailors to their murky demise anywhere a boat can be seen. Part myth, part man, part something unholy, Raz’s fluid movement in water and quick martial ability on land make him a force to be reckoned with anywhere in Coela.",
+			"attributes": [1,1,1,3],
+			"artist": "Estefano's Games",
+			"abilities": [
+				{
+					"name": "Explosive Jellyfish",
+					"description": "Raz targets one enemy, dealing <color=#00A3FB>20 magic damage</color> and <color=#FF00CD>stunning</color> their Magic and Strategic abilities for 1 turn.",
+					"cooldown": 1,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Shark Torpedo",
+					"description": "Raz does <color=#00A3FB>20 magic damage</color> to one enemy and <color=#FF00CD>stuns</color> their Physical and Affliction abilities for 1 turn.",
+					"cooldown": 1,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Whirlpool",
+					"description": "Raz unleashes a whirlpool upon one enemy. For 2 turns that enemy will receive <color=#00A3FB>15 magic damage</color> and will have <sprite=4> <color=#FF00CD>stolen</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Magic", "Ranged", "Action"
+					],
+					"cost": [
+						1,0,0,1,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Aqua Shield",
+					"description": "This ability makes Raz <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Samson",
+			"title": "The Golden Beast",
+			"bio":  "Blessed by the golden sun of the South, Samson stands above his animalistic kin with a marked intelligence and a glowing kindness. Though unable to speak directly, he makes his intentions known through the enchanted diadem that he dons. Having left his pride to travel Coela to seek knowledge to empower the quasi-kingdom he dwells over, Samson has made quite the impression on everyone he has met. Whether that impression is good or bad varies from person to person, and many have had to learn that the fierceness of his kind has not faded in the friendly Samson.",
+			"attributes": [2,2,1,1],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Show of Force",
+					"description": "Samson demonstrates his strength, dealing <color=#FF5C04>30 physical damage</color> to one enemy and healing himself <color=#1AB000>10 health</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "King of the Jungle",
+					"description": "<color=#EAB65B>Show of Force</color> will permanently deal an additional <color=#FF5C04>5 physical damage</color> and also heal an additional <color=#1AB000>5 health</color> each time it is used. During this time, Samson can use this ability to gain <sprite=4>.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic","Instant"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Golden Aura",
+					"description": "Samson gains an initial <color=yellow>10% damage reduction</color> and an additional <color=yellow>10% damage reduction</color> each time he is targeted by a new enemy harmful ability. This ability may not be used while active.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Kingdom Guardian",
+					"description": "For 2 turns, all enemies will deal 5 less <color=#FF5C04>physical</color> and <color=#00A3FB>magic</color> damage and all new harmful non-Strategic abilities used on Samson's team will be <color=#FF00CD>reflected</color> to Samson. Abilities that can target multiple enemies won't be <color=#FF00CD>reflected</color>. This ability <color=#FF00CD>ignores invulnerability</color> and ends if Samson dies.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,1,1,0,0
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Sanguimon",
+			"title": "The Sanguine Wind",
+			"bio":  "A legend runs down the Eastern coast of the devastating sanguine wind. Villagers can be heard in taverns murmuring “Once in a blood moon...”. Secret sects of nobles worship at private blood stained altars, praying for personal favour during the crimson nights. Whether a peasant myth or an elitist cult, no one can escape the reality that when the light of the blood moon shimmers off of the island waters it becomes difficult to see if the blood of the newly chosen prey of Sanguimon silently floats downstream. No one yet has survived the night after finding the mark of Sanguimon at their doorstep the previous morning. Very few can claim to have seen his face and lived. The ones who lie about this feat will be found swimming in the crimson tide the following day. Recently, the mark has been found outside the Eastern borders and deeper into Coela. The red glow of the blood moon can be seen lining the clouds of the battlefield as the cult of Sanguimon spreads in earnest.",
+			"attributes": [2,1,0,2],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Massacre",
+					"description": "Sanguimon brutally attacks one enemy, dealing <color=#FF5C04>30 physical damage</color> to them and <color=red>10 affliction damage</color> to himself.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Affliction","Instant", "Melee"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Hemospikes",
+					"description": "Sanguimon stabs all enemies with spikes conjured from blood. They will receive <color=#FF5C04>20 physical damage</color> and their non-Strategic abilities will be <color=#FF00CD>stunned</color> for 1 turn. Sanguimon will take <color=red>10 affliction damage</color>.",
+					"cooldown": 4,
+					"classes": [
+						"Physical", "Affliction","Instant", "Ranged"
+					],
+					"cost": [
+						0,1,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Blood Moon",
+					"description": "For 3 turns, all enemies will be unable to <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color>. For 2 turns, this ability will be replaced by <color=#EAB65B>Hunt</color>, and any time an enemy uses a new non-Strategic ability, they will be permanently affected by <color=#EAB65B>Hunted</color>. Each stack of <color=#EAB65B>Hunted</color> on the target, increases the health steal of <color=#EAB65B>Hunt</color> by <color=#1AB000>5 health</color>.",
+					"cooldown": 3,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,1,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Hunt",
+					"description": "Sanguimon targets and hunts down one enemy affected by <color=#EAB65B>Hunted</color>, <color=#FF00CD>stealing</color> <color=#1AB000>10 health</color> and <sprite=4> from them. Afterwards, <color=#EAB65B>Hunted</color> will end on that enemy.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Crimson Armor",
+					"description": "Covering himself in an armor of blood, for 1 turn, Sanguimon will <color=#FF00CD>counter</color> all new harmful abilities used on him, and Sanguimon will take <color=red>5 affliction damage</color>.",
+					"cooldown": 1,
+					"classes": [
+						"Strategic", "Affliction","Instant"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Seraph",
+			"title": "The Archangel",
+			"bio":  "Coela is a land of cheats, brigands and general chaos. By bringing order anywhere she goes, Seraph is one of the few heroes that can truly keep hold of her moniker. Many a “hero” have their own interests in mind, but Seraph has dedicated her life to keeping true evil at bay within Coela. Where she came from is a mystery, but from the moment she touched down from the heavens, life has been a little easier for the peasants and the trodden down upon. No one is entirely sure what her true motives are. Perhaps whoever is next to receive some righteous justice may find out.",
+			"attributes": [2,1,0,0],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Summon Feathers",
+					"description": "Seraph summons more feathers. <color=#EAB65B>Piercing Feathers</color> and <color=#EAB65B>Archangel's Mark</color> will deal an additional <color=#00A3FB>5 <b>piercing</b> magic damage</color> for 3 turns.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Archangel's Mark",
+					"description": "Seraph targets one enemy, dealing <color=#00A3FB>25 <b>piercing</b> magic damage</color> to them. This ability can only target enemies affected by <color=#EAB65B>Piercing Feathers</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Piercing Feathers",
+					"description": "Seraph deals <color=#00A3FB>12 <b>piercing</b> magic damage</color> to all enemies for 3 turns. During this time <color=#EAB65B>Archangel's Mark</color> may be used on affected enemies.",
+					"cooldown": 2,
+					"classes": [
+						"Magic", "Action", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,2
+					],
+					"slot": 3
+				},
+				{
+					"name": "Pure Soul",
+					"description": "This ability makes Seraph <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Seth",
+			"title": "The Brawler",
+			"bio":  "One of biggest entertainments for the average person in Ingbridge is to go down to their local pub and watch an illegal underground fight. One of the biggest entertainers in that industry is Seth. Known to drink gallons of ale up until the start of the fight and smoke heavily on his pipe in between rounds, no one’s entirely sure how Seth keeps racking up victories onto his already impressive record. Being paid entirely on whether you win or lose is no issue for Seth, but backroom brawls are starting to get a little boring. It looks like the big timers are all flocking to one place, and Seth intends to make his debut.",
+			"attributes": [2,2,1,1],
+			"artist": "Matt Forsyth",
+			"abilities": [
+				{
+					"name": "Knockout",
+					"description": "Seth knockouts one enemy, dealing <color=#FF5C04>40 physical damage</color> to them and <color=#FF00CD>stunning</color> their Physical and Melee abilities for 1 turn.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,1,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Unleash",
+					"description": "For 3 turns, Seth gains <color=yellow>75% damage reduction</color> and deals <color=#FF5C04>25 <b>piercing</b> physical damage</color> to one random enemy at the end of his turn. This damage <color=#FF00CD>ignores invulnerability</color>.",
+					"cooldown": 4,
+					"classes": [
+						"Physical", "Melee", "Action"
+					],
+					"cost": [
+						0,2,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Safeguard",
+					"description": "Seth safeguards one ally. That ally gains <color=yellow>20 points of destructible defense</color> permanently. Seth cannot use <color=#EAB65B>Safeguard</color> on himself.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Defensive Stance",
+					"description": "This ability makes Seth <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Skret",
+			"title": "The Greedy Goblin",
+			"bio":  "Gold, gold and gold. These are always said to be a goblin’s top priorities and Skret does nothing to help fight the stereotype. What began as the usual gold lust of his kind has turned into a bloody, deranged hunt for anything he deems shiny. Now uncharacteristically using his own coin to cause damage to whoever he sees as getting in his way, it’s hard to know what Skret is really after any more. It could be possible to find out if someone could just have a conversation with him face to face, but he always seems to be sneaking up from behind…",
+			"attributes": [1,2,0,1],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Throw Gold",
+					"description": "Skret throws gold at one enemy, dealing <color=#FF5C04>15 physical damage</color> to them. While <color=#EAB65B>Goblin Spirit</color> is active, this ability will deal an additional <color=#FF5C04>5 physical damage</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Backstab",
+					"description": "Skret backstabs one enemy, dealing <color=#FF5C04>15 physical damage</color> to them and <color=#FF00CD>stunning</color> their Strategic abilities for 1 turn. While <color=#EAB65B>Goblin Spirit</color> is active this ability will deal an additional <color=#FF5C04>5 physical damage</color>.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Goblin Spirit",
+					"description": "Skret gains <color=yellow>10 points of damage reduction</color> for 5 turns. During this time <color=#EAB65B>Throw Gold</color> and <color=#EAB65B>Backstab</color> will deal an additional <color=#FF5C04>5 physical damage</color>.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Golden Armor",
+					"description": "This ability makes Skret <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Strom",
+			"title": "The Treant",
+			"bio":  "For the first time since the mythical creation of Coela, the long slumbering Treants of Waldvollur have awakened in response to the hacking machines that are tearing them down. Strom, with deep roots in the nobility of his kind, has already felt the biting of the instruments of Coela’s “progress”. Angered by the intrusion and the loss of so many of his kind, Strom is stomping his way to the heartland, ready to show what ancient magic the people of Coela have unearthed.",
+			"attributes": [1,1,0,2],
+			"artist": "PiotrTekien's Games",
+			"abilities": [
+				{
+					"name": "Sapling Bomb",
+					"description": "Strom sends out a sapling that runs towards a random enemy, detonating on impact and dealing <color=#FF5C04>30 <b>piercing</b> physical damage</color> to them. That enemy will have their non-Strategic abilities <color=#FF00CD>stunned</color> for 1 turn, and they will be unable to <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color> during this time. This ability <color=#FF00CD>ignores invulnerability</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Root",
+					"description": "Strom roots one enemy, <color=#FF00CD>stunning</color> them for 4 turns. During this time, they cannot <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color>. While this ability is active, it will be replaced by <color=#EAB65B>Terrorize</color>.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Control", "Ranged"
+					],
+					"cost": [
+						0,0,2,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Terrorize",
+					"description": "Strom terrorizes one enemy dealing <color=#00A3FB>25 magic damage</color> to them.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Reciprocate",
+					"description": "Strom targets an enemy for 1 turn. If they use a new harmful ability, they will have the cooldowns of their abilities increased by 1 turn for 2 turns. This ability is <color=#FF00CD>invisible</color> and cannot be <color=#FF00CD>ignored</color>.",
+					"cooldown": 1,
+					"classes": [
+						"Strategic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Nature's Ally",
+					"description": "This ability makes Strom <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Thasar",
+			"title": "The Death Knight",
+			"bio":  "With a heart colder than the Akullaq nights, Thasar and his undead legion have been wreaking dread havoc on the tundra’s inhabitants. Killed in a bloody battle by Yesfiel as a man, his body was thrown into a glacial ravine only to be revived by a sorcerer to command his growing undead army. Too late the wily sorcerer discovered that Thasar serves no one but himself. With his magical benefactor slumped dead in the black gorge, and now in command of a ghoulish host, Thasar roams the tundra looking for the archangelic woman who twisted his fate.",
+			"attributes": [2,2,0,2],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Frost Strike",
+					"description": "Using his enchanted sword, Thasar stabs one enemy dealing <color=#FF5C04>25 physical damage</color> to them. The following turn, that enemy will receive <color=#00A3FB>20 magic damage</color>. Enemies affected by <color=#EAB65B>Hail Storm</color> will receive 10 additional <color=#FF5C04>physical</color> and <color=#00A3FB>magic</color> damage.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Magic", "Instant", "Melee"
+					],
+					"cost": [
+						1,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Frozen Might",
+					"description": "Thasar empowers himself. The first new harmful ability used on him that deals 20 or more original damage will be <color=#FF00CD>countered</color>. This ability is <color=#FF00CD>invisible</color> and cannot be used while active. This ability cannot be used the turn after it ends and will end during <color=#EAB65B>Ice Tomb</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Hail Storm",
+					"description": "Conjuring a hail storm, Thasar will increase the cost of all enemy abilities by <sprite=4> for 2 turns. During this time, this ability will be replaced by <color=#EAB65B>Ice Tomb</color> for 2 turns.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,1,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Ice Tomb",
+					"description": "Thasar trades fragments of his soul to imprison one enemy. They will receive <color=#00A3FB>25 <b>piercing</b> magic damage</color> and will be stunned. During this time, Thasar will receive <color=red>10 affliction damage</color>. This ability <color=#FF00CD>ignores invulnerability</color> and will last until Thasar uses a new ability or either champion dies.",
+					"cooldown": 5,
+					"classes": [
+						"Magic", "Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						1,1,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Army of Eternal Winter",
+					"description": "This ability makes Thasar <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Tien",
+			"title": "The Shadow Assassin",
+			"bio":  "Trained from childhood in the middle of the desert, Tien’s origin has been erased from his memory. During the long nights of hard training under new moons Tien has adapted to living in darkness. His order, whose name is never spoken in fear of summoning them, does not accept payment in goods or gold. Their reputation is enough to strike fear in the hearts of even His Royal Highness and their reputation is all they seek to improve. Fresh out of training and ready to prove himself, Tien is willing to do whatever it takes to make his mark. This is to be expected. The punishment for failure is most severe.",
+			"attributes": [2,1,0,1],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Death Mark",
+					"description": "Tien marks one enemy. That enemy will be dealt <color=#FF5C04>20 <b>piercing</b> physical damage</color> and have their Strategic and Ranged abilities <color=#FF00CD>stunned</color> for 1 turn. <color=#EAB65B>Forbidden Technique</color> may be used on the target the following turn.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Forbidden Technique",
+					"description": "Tien uses a forbidden technique on an enemy affected by <color=#EAB65B>Death Mark</color>. That enemy will lose <color=#1AB000>50% of their current health</color>. If that enemy drops to <color=#1AB000>20 or less health</color> they will be <color=#FF00CD>instantly killed</color>. This ability cannot be <color=#FF00CD>countered</color> or <color=#FF00CD>reflected</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,1,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Ambush",
+					"description": "Tien ambushes one enemy, dealing <color=#FF5C04>30 <b>piercing</b> physical damage</color> to them. This ability <color=#FF00CD>ignores invulnerability</color>.",
+					"cooldown": 2,
+					"classes": [	
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Shadow Mastery",
+					"description": "This ability makes Tien <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Tinky",
+			"title": "The Inventor",
+			"bio":  "Bombs! Rockets! Robots! Tinky doesn’t care what she’s working on as long as it goes BOOM. Blacklisted from well over half the workshops in Coela, Tinky still has plenty of work building all sorts of weapons for petty war chiefs and pirates across the world. Even the Royal Guard sometimes like to take a peek to see what Tinky has been building. Of course, Tinky saves the best inventions for herself. Come here, let her show you today’s favourite!",
+			"attributes": [2,2,1,1],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Saw",
+					"description": "Tinky deals <color=#FF5C04>15 physical damage</color> to one enemy for 2 turns. During this time, Tinky is <color=#FF00CD>invulnerable</color> to Physical abilities, and if <color=#EAB65B>Spike Bombs</color> are used on that enemy, Tinky will gain <sprite=1>. This ability will end if the target or Tinky dies.",
+					"cooldown": 2,
+					"classes": [
+						"Physical", "Action", "Melee"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Napalm",
+					"description": "Tinky deals <color=#FF5C04>35 <b>piercing</b> physical damage</color> to all enemies.",
+					"cooldown": 2,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Spike Bombs",
+					"description": "This ability deals <color=#FF5C04>15 physical damage</color> to one enemy for 2 turns. During this time, Tinky is <color=#FF00CD>invulnerable</color> to Magic abilities, and if <color=#EAB65B>Saw</color> is used on that enemy, Tinky will <color=#FF00CD>stun</color> all their abilities for 1 turn. This ability will end if the target or Tinky dies.",
+					"cooldown": 2,
+					"classes": [
+						"Physical", "Action", "Ranged"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Homing Missile",
+					"description": "Tinky sends out homing missile that deals <color=#FF5C04>55 <b>piercing</b> physical damage</color> to one enemy.",
+					"cooldown": 2,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						0,1,1,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Robot Suit",
+					"description": "Once activated, if Tinky's health drops to or below <color=#1AB000>50 health</color>, Tinky gains <color=yellow>70 points of destructible defense</color>, and all her abilities are replaced by their alternate versions. This ability ends when all the destructible defense is destroyed and can only be used once. This ability is <color=#FF00CD>invisible</color> until triggered and cannot be <color=#FF00CD>countered</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Barrier",
+					"description": "This ability makes Tinky <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				},
+				{
+					"name": "Overdrive",
+					"description": "This ability makes Tinky <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Ukyo",
+			"title": "The Samurai Master",
+			"bio":  "A warrior with no home, Ukyo wanders the Eastern coast with only one word in mind. Revenge. His wife murdered by Sanguimon, the blood beast of the shore, Ukyo then tore down his martial academy and has spent every waking moment since pursuing the mythical demon. Slicing through blood cults as he follows the murders along the coast, Ukyo means to put a stop to what he sees as ritual sacrifices. He can only hope for two outcomes at this point. To avenge his wife, or to join her.",
+			"attributes": [2,1,0,1],
+			"artist": "Thunderegg",
+			"abilities": [
+				{
+					"name": "Flowing Water Slash",
+					"description": "Ukyo deals <color=#FF5C04>20 <b>piercing</b> physical damage</color> to one enemy. For 1 turn, that enemy will deal 5 less non-affliction damage. The following turn, Ukyo will deal an additional 5 damage with his abilities.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Waterfall Strike",
+					"description": "Ukyo strikes one enemy, dealing <color=#FF5C04>20 <b>piercing</b> physical damage</color> to them. For 1 turn, that enemy will deal 5 less non-affliction damage. The following turn, Ukyo will deal an additional 5 damage with his abilities.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Full Moon",
+					"description": "For 2 turns Ukyo targets one enemy, if they use a new ability that <color=#FF00CD>removes</color> or <color=#FF00CD>steals</color> energy, Ukyo will gain <sprite=4>; if they use a new ability that <color=#FF00CD>stuns</color>, Ukyo's damaging abilities will <color=#FF00CD>stun</color> for 1 turn; if they use a new ability that deals damage, Ukyo will deal an additional 10 damage for 1 turn. This ability is <color=#FF00CD>invisible</color> and ends if triggered.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Crescent",
+					"description": "This ability makes Ukyo <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Ultrich",
+			"title": "The Merciless",
+			"bio":  "Shelled in dragonic steel, the beast Ultrich has spent thousands of years trapped deep in the mountains of Fa’lmur. Once a man, years of solitude surrounded by the dark secrets of the mountain have warped his mind into something unnatural. When one day a rogue band of treasure hunters cracked open a glowing seal in the side of a solitary cavern, all but one were swallowed into the abyss. The lone survivor, frantic, arrived at the nearest town spouting incoherent babble of the visions he saw. Whatever Ultrich may be, he is finally out.",
+			"attributes": [3,2,0,0],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Brutal Combat",
+					"description": "Ultrich deals <color=#FF5C04>10 physical damage</color> to one enemy for 3 turns. During this time he will also gain <color=yellow>10 points of damage reduction</color> and that enemy will receive an additional <color=#FF5C04>10 physical damage</color> from <color=#EAB65B>Spectral Wrath</color>. This ability will deal an additional <color=#FF5C04>15 physical damage</color> during <color=#EAB65B>Inner Dragon</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Action", "Melee", "Instant"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Spectral Wrath",
+					"description": "Ultrich channels the wrath of the onyx dragon, dealing <color=#FF5C04>30 physical damage</color> to one enemy. This ability will deal an additional <color=#FF5C04>30 physical damage</color> during <color=#EAB65B>Inner Dragon</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Inner Dragon",
+					"description": "Ultrich <color=#FF00CD>removes</color> all enemy harmful effects on him, receiving <color=red>50 affliction damage</color>, and then <color=#FF00CD>ignoring</color> all harmful effects except energy cost changes for 2 turns. The following 2 turns, this ability will be replaced by <color=#EAB65B>Impale</color>. The affliction damage this ability deals cannot kill Ultrich, <color=#FF00CD>ignores invulnerability</color> and <color=#FF00CD>cannot be ignored</color>.",
+					"cooldown": 4,
+					"classes": [
+						"Affliction", "Instant"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Impale",
+					"description": "Ultrich impales an enemy, dealing <color=#FF5C04>100 <b>piercing</b> physical damage</color> to them.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,2,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Dragonic Steel",
+					"description": "This ability makes Ultrich <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Vlk",
+			"title": "The Silver Moon",
+			"bio":  "In the dead of night with only the sliver of a waning moon illuminating the ground in front of him, Vlk stalks his prey. Ostracized and banished from his tribe on the Ashland wastes for his peculiar personality and his outlandish appearance, Vlk was forced to learn how to become a solitary hunter. Finding solace in the gold and pride of working as one of the King’s Guard, Vlk began branching out to private contracts after hearing some choice words muttered about him in the dark hallways of the royal palace. Once again alone, Vlk has no plans to get comfortable again. His only respite is the hot blooded thrill of the hunt on the battlefield.",
+			"attributes": [2,1,0,0],
+			"artist": "Dean Spencer",
+			"abilities": [
+				{
+					"name": "Silver Claws",
+					"description": "Using his razor sharp claws, Vlk deals <color=#FF5C04>30 <b>piercing</b> physical damage</color> to one enemy.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee" 
+					],
+					"cost": [
+						0,0,0,0,2
+					],
+					"slot": 1
+				},
+				{
+					"name": "Sweeping Strike",
+					"description": "Vlk deals <color=red>10 affliction damage</color> to all enemies.",
+					"cooldown": 1,
+					"classes": [
+						"Affliction", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Thrill of the Hunt",
+					"description": "For 4 turns, Vlk gains <color=yellow>15 destructible defense</color> and both of his damaging abilities will deal an additional 5 damage. This effect can stack.",
+					"cooldown": 1,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Beast Within",
+					"description": "This ability makes Vlk <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Volgrul",
+			"title": "The Lost Viking",
+			"bio":  "A Northern man through and through, Vogrul takes pride in his heritage even if his own kin have forsaken him. An adept warrior and dangerous adversary, Vogrul was banished from his frigid homeland after an incident caused by too much mead and his fiery temper at one of Coela’s famed Northern festivals. Now a wanderer, sometimes in the Axeila sea, othertimes in Ingsbridge, he has cooled his mind and honed his steel, ready to redeem himself in the eyes of his people. For reasons unknown, he’s made a few trips to the Eastern desert. What he hopes to find there he keeps to himself, but he’s bound to make a few more enemies before he can go home.",
+			"attributes": [2,2,0,0],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Furious Slash",
+					"description": "Volgrul deals <color=#FF5C04>15 physical damage</color> to one enemy. This ability will deal an additional <color=#FF5C04>5 physical damage</color> every time it is used.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Raging Blow",
+					"description": "Volgrul deals <color=#FF5C04>25 physical damage</color> to one enemy and gains <sprite=4>. This ability will deal an additional <color=#FF5C04>5 physical damage</color> every time it is used.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,1,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Weapon Mastery",
+					"description": "For 3 turns, Volgrul's attacks will <b>pierce</b> and deal an additional <color=#FF5C04>10 physical damage</color>. Volgrul will also gain <color=yellow>25 points of destructible defense</color>.",
+					"cooldown": 3,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Northern Guard",
+					"description": "This ability makes Volgrul <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Vrah",
+			"title": "The Killer",
+			"bio":  "His mind lost deep in his work, Vrah has given up whatever human soul he had left inside of him a long time ago. The best of his kind, he has worked for Borough Patrons, tribal chiefs and Royal clients alike. One day, when in the Far East on a job, something in his head snapped, though it was audible to no one but himself. Since then Vrah has forsaken any payments for his jobs, choosing to fund his own advancements in his career. Not having a boss gives him the freedom of choice to select whichever targets he desires. How he chooses them is as much of a mystery as what happened to him in that dark, Eastern desert.",
+			"attributes": [2,1,0,0],
+			"artist": "Yann Trolong",
+			"abilities": [
+				{
+					"name": "Rip and Tear",
+					"description": "Vrah deals <color=#FF5C04>25 physical damage</color> to one enemy. The following turn, that enemy will receive an extra <color=#FF5C04>20 physical damage</color>.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Heart Attack",
+					"description": "Vrah strikes a sense of impending doom into his enemies. All enemies lose 35% of their current health. This damage is <color=#FF5C04><b>piercing</b> physical</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,1,0,1,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Execute",
+					"description": "Vrah targets one enemy, and if that enemy's health is 25 or less, he will <color=#FF00CD>instantly kill</color> them. This ability <color=#FF00CD>ignores invulnerability</color> and cannot be <color=#FF00CD>countered</color> or <color=#FF00CD>reflected</color>.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Job Done",
+					"description": "This ability makes Vrah <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Xanthos",
+			"title": "The Arcanist",
+			"bio":  "Once a high art practised in the marble towers of the capital, Arcanists like Xanthos now study their arcane magic deep underground in the network of tunnels and cellars that run beneath the bustling city. Hunted by the King for his involvement in bringing the Patrons to power, no one truly knowns what role Xanthos had to play, if any at all. Repressed by Royalty and offered no protection by the Patrons, the paranoid Xanthos points his excess arcane energy towards anyone who crosses his path.",
+			"attributes": [1,1,0,2],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Arcane Mark",
+					"description": "Xanthos marks one enemy for 5 turns. This ability cannot be <color=#FF00CD>countered</color> or <color=#FF00CD>reflected</color> and cannot be used on an enemy already affected by it.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Ranged", "Instant"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Arcane Missiles",
+					"description": "Xanthos barrages all enemies, dealing <color=#00A3FB>15 <b>piercing</b> magic damage</color> to them and making them unable to <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color> for 1 turn. If an enemy is affected by <color=#EAB65B>Arcane Mark</color>, this ability will last 2 turns instead.",
+					"cooldown": 1,
+					"classes": [
+						"Magic", "Ranged", "Action"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Spellbind",
+					"description": "Xanthos traps all enemies in arcane chains, <color=#FF00CD>stunning</color> their non-Strategic abilities for 1 turn. Enemies affected by <color=#EAB65B>Arcane Mark</color> will instead have their non-Strategic abilities <color=#FF00CD>stunned</color> for 2 turns.",
+					"cooldown": 3,
+					"classes": [
+						"Strategic", "Ranged", "Control"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Arcane Aura",
+					"description": "This ability makes Xanthos <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Xik'an",
+			"title": "The Forest Guardian",
+			"bio":  "During the day, the hacking of lumberjacks in the forests of Coela can be heard for miles. The sound of progress, they say. In the dead of night, snapping branches and the rustling of vines moving like vipers fills the hearts of the axemen with dread. The forest spirits do not disdain to leave any intruders strung up in the canopy, hanged without trial. Xik’an is one of these spirits, a guardian of the natural world. Once laying dormant in peace, he has awoken to biting axes and chopping saws. In his eyes, anyone with a blade is fair game.",
+			"attributes": [1,1,3,1],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Heart of Nature",
+					"description": "Xik'an protects himself or one ally. The next time they receive a <color=#FF00CD>lethal damage</color>, their death will be prevented and they will have their health set to <color=#1AB000>25</color>. During this time, this ability will be replaced <color=#EAB65B>Leech Seed</color>. This ability will end if Xik'an dies.",
+					"cooldown": 0,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						1,0,0,1,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Leech Seed",
+					"description": "Xik'an plants a seed on one enemy. They will receive <color=red>10 affliction damage</color> for 3 turns while Xik'an will be healed by <color=#1AB000>10 health</color> each turn.",
+					"cooldown": 3,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Lifebloom",
+					"description": "Xik'an heals one ally for <color=#1AB000>100 health</color>.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						2,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Razor Leaf",
+					"description": "Xik'an deal <color=#00A3FB>25 magic damage</color> to one enemy and <color=#00A3FB>10 magic damage</color> to all other enemies. While this ability is on cooldown, it will be replaced by <color=#EAB65B>Nature's Grasp</color>. Only the primary target can <color=#FF00CD>counter</color> or <color=#FF00CD>reflect</color> this ability.",
+					"cooldown": 2,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Nature's Grasp",
+					"description": "Xik'an traps one enemy, <color=#FF00CD>removing</color> <sprite=4> from them for 3 turns. During this time, that enemy will be unable to <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color>. This ability will be replaced by <color=#EAB65B>Razor Leaf</color> once <color=#EAB65B>Razor Leaf</color> is off cooldown.",
+					"cooldown": 2,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,1,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Wild Growth",
+					"description": "This ability makes Xik'an <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Yesfiel",
+			"title": "The Valkyrie",
+			"bio":  "Daughter of the North, Princess of Steel, Queen of Thunder. These are some of the many names that are shouted in boasting matches when the people of Waldvollur and Akullaq have had too much to drink in the hot Southern cities, far from their homes. Many travellers lost in the shadows of the Bluewood trees or snow blind on the tundra have found themselves miraculously placed safely by the warm glow of the hearth in the nearest tavern. Equally, many a brigand on the road have found themselves plucked from their beds in the dead of night and dropped in a city jail. The chill of the dark North may blow cold, but Yesfiel is there provide a glowing light to guide travellers on their way.",
+			"attributes": [2,1,1,1],
+			"artist": "Matt Forsyth",
+			"abilities": [
+				{
+					"name": "Dancing Steel",
+					"description": "Yesfiel deals <color=#FF5C04>20 physical damage</color> to all enemies that cannot be <color=#FF00CD>countered</color> or <color=#FF00CD>reflected</color>. The following 2 turns, <color=#EAB65B>Blade Flurry</color> can be used on one of these enemies.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Blade Flurry",
+					"description": "Yesfiel attacks one enemy affected by <color=#EAB65B>Dancing Steel</color>, <color=#EAB65B>Blade Flurry</color> or <color=#EAB65B>Battle Dance</color>. Yesfiel deals <color=#FF5C04>25 <b>piercing</b> physical damage</color> that <color=#FF00CD>ignores invulnerability</color> and <color=#FF00CD>stuns</color> this enemy for 1 turn. The following turn, <color=#EAB65B>Blade Flurry</color> can be used again on this enemy.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,1,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Battle Dance",
+					"description": "Yesfiel protects her team. Yesfiel and her allies gain <color=yellow>10 points of damage reduction</color> for 2 turns. During this time, if an enemy uses a new harmful non-Strategic ability on Yesfiel or an affected ally, <color=#EAB65B>Blade Flurry</color> can be used on them for 2 turns.",
+					"cooldown": 1,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Shield Block",
+					"description": "This ability makes Yesfiel <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Yotul",
+			"title": "The Elementalist",
+			"bio":  "Too wild to even have a chance at being servant to the holiday goers arriving in Attina, Yotul was cast out by her own people to roam the Ashland wastes ever since she was a young girl. Some say she fell into the volcanic crater and morphed into the creature that she is now. Others that she was taken in by the Ashland wolf packs, eating as they eat and taking to hunting her former kin. Gone for years only to re-emerge something resembling more of a beast than a woman, she has become a scourge to the resort industry of her homeland, and to anyone who stands in her way.",
+			"attributes": [3,0,0,0],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Flame Shock",
+					"description": "Yotul shocks one enemy, dealing <color=#00A3FB>30 magic damage</color> to them. <color=#EAB65B>Elemental Fury</color> will deal an additional <color=#00A3FB>20 <b>piercing</b> magic damage</color>. This ability cannot be <color=#FF00CD>countered</color> or <color=#FF00CD>reflected</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Lava Burst",
+					"description": "Yotul hurls molten lava at one enemy, dealing <color=#00A3FB>40 magic damage</color> to them. <color=#EAB65B>Elemental Fury</color> will deal an additional <color=#00A3FB>30 <b>piercing</b> magic damage</color>. This ability cannot be <color=#FF00CD>countered</color> or <color=#FF00CD>reflected</color>.",
+					"cooldown": 1,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						1,0,0,1,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Fire Invocation",
+					"description": "Increase the damage of <color=#EAB65B>Elemental Fury</color> by <color=#00A3FB>10 <b>piercing</b> magic damage</color> at the start of your turn for 3 turns. During this time if enemy uses a new harmful ability on Yotul, <color=#EAB65B>Elemental Fury</color> will deal an additional <color=#00A3FB>10 <b>piercing</b> magic damage</color>.",
+					"cooldown": 3,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Elemental Fury",
+					"description": "This ability will deal <color=#00A3FB>0 <b>piercing</b> magic damage</color> to one enemy. This ability will deal an additional <color=#00A3FB>20 <b>piercing</b> magic damage</color> for every <color=#1AB000>30 health</color> she has lost. After this ability is used any stacked damage will be reset. This ability cannot be <color=#FF00CD>countered</color> or <color=#FF00CD>reflected</color>.",
+					"cooldown": 2,
+					"classes": [
+						"Magic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,3
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Zeas",
+			"title": "The Shaman",
+			"bio":  "It is well known fact that the greatest environment for the rapid proliferation of giant fauna is the humid, bubbling swamp biome. Nobody exemplifies this knowledge better than Zeas, the recluse shaman from deep in the heart of Arikem. Once a vocal adversary to the creeping technological boom that has swept over Coela, Zeas has retired from the public eye to lead a hermetic life cultivating the arts of the natural world. Many a traveller from far and wide make the perilous journey through the network of infested rivers in search of Zeas’ healing magic. A healer many know her to be, however in secret she has been developing her own peculiar branch of shamanistic battle magic. Now, she is ready to unleash it.",
+			"attributes": [1,1,1,1],
+			"artist": "WolfsBane",
+			"abilities": [
+				{
+					"name": "Energy Leech",
+					"description": "Zeas directs nature energy to target one enemy, dealing <color=red>20 affliction damage</color> and <color=#FF00CD>stealing</color> <sprite=4> from them.",
+					"cooldown": 1,
+					"classes": [
+						"Affliction", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Bio Grenade",
+					"description": "Zeas throws a grenade at one enemy. For 4 turns, new non-Affliction damage that enemy deals will be reduced by 5. During this time, <color=#EAB65B>Energy Leech</color> will deal an additional <color=red>5 affliction damage</color> to them. This effect stacks.",
+					"cooldown": 1,
+					"classes": [
+						"Strategic", "Instant", "Ranged"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 2
+				},
+				{
+					"name": "Life Defense",
+					"description": "Zeas protects herself and her team, giving them <color=yellow>20 points of destructible defense</color>.",
+					"cooldown": 3,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 3
+				},
+				{
+					"name": "Nature Barrier",
+					"description": "This ability makes Zeas <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Zoey",
+			"title": "The Sorceress",
+			"bio":  "Once long dead and buried underground, treasure hunters uncovered Zoey’s corpse in a tomb buried deep in the Birgskel mountain. As they read the inscription from a book they had found alongside the tomb, tendrils of flesh grew out of her crumbling skeleton. They watched in amazement as muscle, sinew, skin and hair appeared to crawl and climb at a rapid pace, taking the form of a beautiful woman. The only indication of how old she could have possibly been was her cold, pale skin and lifeless eyes. As they looked down at themselves they realised too late where the sorceress’ flesh had mystically come from, and why her tomb had been buried so deep in the heart of the mountain.",
+			"attributes": [2,1,0,1],
+			"artist": "Matt Forsyth",
+			"abilities": [
+				{
+					"name": "Overwhelming Knowledge",
+					"description": "Zoey becomes <color=#FF00CD>invulnerable</color>, enhancing <color=#EAB65B>Endless Suffering</color> and <color=#EAB65B>Induce Madness</color>. Their cost will double and their cooldown will be increased by 2. During this time, Zoey will receive <color=red>15 affliction damage</color> each turn and will <color=#FF00CD>ignore healing</color> effects. This ability can be used again for free to cancel it.",
+					"cooldown": 0,
+					"classes": [
+						"Affliction", "Instant"
+					],
+					"cost": [
+						0,0,0,1,0
+					],
+					"slot": 1
+				},
+				{
+					"name": "Endless Suffering",
+					"description": "Zoey targets one enemy, they will receive <color=red>10 affliction damage</color> each turn indefinitely. This ability does not stack and will end if Zoey dies. If used during <color=#EAB65B>Overwhelming Knowledge</color>, this ability will target all enemies and deal <color=#FF00CD>double damage</color>.",
+					"cooldown": 1,
+					"classes": [
+						"Affliction", "Ranged", "Instant"
+					],
+					"cost": [
+						1,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Induce Madness",
+					"description": "Zoey mentally tortures one enemy, dealing <color=red>20 affliction damage</color> and <color=#FF00CD>stunning</color> them for 1 turn. If used during <color=#EAB65B>Overwhelming Knowledge</color>, the <color=#FF00CD>stun</color> will last for 3 turns.",
+					"cooldown": 1,
+					"classes": [
+						"Affliction", "Ranged", "Instant"
+					],
+					"cost": [
+						0,1,0,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Seer",
+					"description": "This ability makes Zoey <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		},
+		{
+			"name": "Zrut",
+			"title": "The Devourer",
+			"bio":  "Would you believe he was once a man? A noble wizard from an old family line, they say. He went the way so many of these magic types do. A long night in a dark library. An old, musty tome tucked away deep in the back catalogs. One thing led to another, and here we are. Standing in front of this wretched beast. No, I don’t think there’s much we can do either.",
+			"attributes": [2,1,1,1],
+			"artist": "Dean Spencer",
+			"abilities": [
+				{
+					"name": "Voracious Appetite",
+					"description": "Zrut targets one enemy, destroying all their <color=yellow>destructible defense</color> and dealing <color=#FF5C04>25 <b>piercing</b> physical damage</color> to them.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,1,0,1
+					],
+					"slot": 1
+				},
+				{
+					"name": "Nurturing Nibble",
+					"description": "Zrut deals <color=red>15 affliction damage</color> to one ally or enemy, the target will gain <sprite=4>. This ability <color=#FF00CD>ignores invulnerability</color>.",
+					"cooldown": 3,
+					"classes": [
+						"Affliction", "Instant", "Melee"
+					],
+					"cost": [
+						0,0,0,0,0
+					],
+					"slot": 2
+				},
+				{
+					"name": "Ravenous Revelation",
+					"description": "Zrut reveals his full form, dealing <color=#FF5C04>45 physical damage</color> to one enemy. For the rest of the game, Zrut will gain an extra <sprite=4> at the start of his turn and this ability will be replaced by <color=#EAB65B>Traumatic Shock</color>.",
+					"cooldown": 0,
+					"classes": [
+						"Physical", "Instant", "Melee"
+					],
+					"cost": [
+						1,1,1,0,0
+					],
+					"slot": 3
+				},
+				{
+					"name": "Traumatic Shock",
+					"description": "Zrut inflicts a traumatic shock to an enemy, <color=#FF00CD>stunning</color> them for 1 turn. The following turn, he will attack them, dealing <color=#FF5C04>25 physical damage</color> to them.",
+					"cooldown": 1,
+					"classes": [
+						"Physical", "Control", "Melee"
+					],
+					"cost": [
+						0,0,0,0,2
+					],
+					"slot": 3
+				},
+				{
+					"name": "Devouring Abyss",
+					"description": "This ability makes Zrut <color=#FF00CD>invulnerable</color> for 1 turn.",
+					"cooldown": 4,
+					"classes": [
+						"Strategic", "Instant"
+					],
+					"cost": [
+						0,0,0,0,1
+					],
+					"slot": 4
+				}
+			]
+		}
+	]
+}	

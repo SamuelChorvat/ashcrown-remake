@@ -1,3 +1,4 @@
+using Ashcrown.Remake.Core.Ability.Base;
 using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
@@ -5,7 +6,7 @@ using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Eluard.Abilities;
 
-public class SwordStrike : Ability.Abstract.Ability
+public class SwordStrike : AbilityBase
 {
     public SwordStrike(IChampion champion) 
         : base(champion, 
@@ -14,12 +15,13 @@ public class SwordStrike : Ability.Abstract.Ability
             [0,0,1,0,0],
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemyDamage)
+            AbilityType.EnemyDamage,
+            1)
     {
         Damage1 = 20;
         BonusDamage1 = 10;
         Description =
-            $"{EluardConstants.Eluard} strikes one enemy, dealing {$"{Damage1} physical damage".HighlightInOrange()} to them. " +
+            $"{EluardConstants.Name} strikes one enemy, dealing {$"{Damage1} physical damage".HighlightInOrange()} to them. " +
             $"While {EluardConstants.UnyieldingWill.HighlightInGold()} is active this ability " +
             $"will deal an additional {$"{BonusDamage1} physical damage".HighlightInOrange()}.";
         Harmful = true;

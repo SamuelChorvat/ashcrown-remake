@@ -1,11 +1,12 @@
-﻿using Ashcrown.Remake.Core.Ability.Enums;
+﻿using Ashcrown.Remake.Core.Ability.Base;
+using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Sarfu.Abilities;
 
-public class Duel : Ability.Abstract.Ability
+public class Duel : AbilityBase
 {
     public Duel(IChampion champion) 
         : base(champion, 
@@ -14,14 +15,15 @@ public class Duel : Ability.Abstract.Ability
             [0,0,0,0,1],
             [AbilityClass.Strategic, AbilityClass.Instant], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemiesDebuff)
+            AbilityType.EnemiesDebuff,
+            3)
     {
         Duration1 = 4;
         ReceiveDamageReductionPoint1 = 10;
-        Description = $"{SarfuConstants.Sarfu} challenges one enemy to duel. " +
-                      $"For {Duration1} tuns, {SarfuConstants.Sarfu} will gain {$"{ReceiveDamageReductionPoint1} points of damage reduction".HighlightInYellow()}. " +
+        Description = $"{SarfuConstants.Name} challenges one enemy to duel. " +
+                      $"For {Duration1} tuns, {SarfuConstants.Name} will gain {$"{ReceiveDamageReductionPoint1} points of damage reduction".HighlightInYellow()}. " +
                       $"During this time that enemy will be unable to {"reduce damage".HighlightInPurple()} or become {"invulnerable".HighlightInPurple()}. " +
-                      $"{SarfuConstants.Duel.HighlightInGold()} ends if {SarfuConstants.Sarfu} dies.";
+                      $"{SarfuConstants.Duel.HighlightInGold()} ends if {SarfuConstants.Name} dies.";
         SelfDisplay = true;
         DisableDamageReceiveReduction = true;
         DisableInvulnerability = true;
@@ -29,7 +31,7 @@ public class Duel : Ability.Abstract.Ability
         Helpful = true;
         Debuff = true;
         Buff = true;
-        ActiveEffectOwner = SarfuConstants.Sarfu;
+        ActiveEffectOwner = SarfuConstants.Name;
         ActiveEffectName = SarfuConstants.DuelTargetActiveEffect;
     }
 

@@ -39,16 +39,17 @@ public class BattleLogic : IBattleLogic
             new AiEnergySelector(this, new AiEnergyUsageController()), 
             _loggerFactory.CreateLogger<AiController>());
     }
-
-    public event EventHandler<PlayerUpdate>? TurnChanged;
-    public event EventHandler<BattleEndedUpdate>? BattleEnded;
+    
     public IBattleHistoryRecorder BattleHistoryRecorder { get; init; }
     public IList<IChampion> DiedChampions { get; init; } = new List<IChampion>();
-    public DateTime StartTime { get; init; } = DateTime.UtcNow;
-    public DateTime? EndTime { get; private set; }
-    public int TurnCount { get; private set; }
+    public DateTime BattleStartTime { get; init; } = DateTime.UtcNow;
+    public DateTime? BattleEndTime { get; private set; }
+    public DateTime TurnStartTime { get; private set;}
+    public int TurnCount { get; private set; } = 1;
     public bool AiBattle { get; init; }
     public IBattlePlayer[] BattlePlayers { get; init; } = new IBattlePlayer[2];
+    public PlayerUpdate[] LatestPlayerUpdates { get; set; } = new PlayerUpdate[2];
+    public BattleStatus[]? BattleEndedUpdates { get; set; }
     public IBattlePlayer WhoseTurn { get; private set; } = null!;
 
     public void SetBattlePlayer(int playerNo, string playerName, string[] championNames, bool aiOpponent)
@@ -61,6 +62,11 @@ public class BattleLogic : IBattleLogic
     public IBattlePlayer GetBattlePlayer(int playerNo)
     {
         return BattlePlayers[playerNo - 1];
+    }
+
+    public int GetBattlePlayerNo(string playerName)
+    {
+        return BattlePlayers[0].PlayerName.Equals(playerName) ? 1 : 2;
     }
 
     public IBattlePlayer GetOppositePlayer(int playerNo)
@@ -100,7 +106,7 @@ public class BattleLogic : IBattleLogic
 
     public bool AbilitiesUsed(int playerNo, EndTurn endTurn, int[] spentEnergy)
     {
-        if (EndTime is not null)
+        if (BattleEndTime is not null)
         {
             throw new Exception($"{nameof(AbilitiesUsed)} can't be called as the battle ended");
         }
@@ -160,11 +166,14 @@ public class BattleLogic : IBattleLogic
     public void InitializePlayers()
     {
         WhoseTurn.GainGoingFirstEnergy();
+        TurnStartTime = DateTime.UtcNow;
+        LatestPlayerUpdates[0] = BattlePlayers[0].GetPlayerUpdate(WhoseTurn);
+        LatestPlayerUpdates[1] = BattlePlayers[1].GetPlayerUpdate(WhoseTurn);
     }
 
     public void EndTurnProcesses(int playerNo)
     {
-        if (EndTime is not null)
+        if (BattleEndTime is not null)
         {
             throw new Exception($"{nameof(EndTurnProcesses)} can't be called as the battle ended");
         }
@@ -191,19 +200,19 @@ public class BattleLogic : IBattleLogic
     public void EndBattleOnAiError(string errorMessage)
     {
         _logger.LogError("Ending battle due to AI error -> {ErrorMessage}", errorMessage);
-        OnBattleEnded(GetHumanBattlePlayer());
+        OnBattleEnded(BattlePlayers[0].AiOpponent ? BattlePlayers[1] : BattlePlayers[0]);
     }
 
-    public void EndPlayerTurn(EndTurn endTurn)
+    public void EndPlayerTurn(int playerNo, EndTurn endTurn)
     {
-        if (EndTime is not null)
+        if (BattleEndTime is not null)
         {
             throw new Exception($"{nameof(EndPlayerTurn)} can't be called as the battle ended");
         }
         
-        if (WhoseTurn.PlayerNo != GetHumanBattlePlayer().PlayerNo)
+        if (WhoseTurn.PlayerNo != playerNo)
         {
-            _logger.LogError("Can't end turn during AI turn");
+            _logger.LogError("Can't end turn during opponents turn");
             return;
         }
         
@@ -215,14 +224,14 @@ public class BattleLogic : IBattleLogic
             return;
         }
         
-        GetHumanBattlePlayer().SpendEnergy(endTurn.SpentEnergy!);
-        AbilitiesUsed(GetHumanBattlePlayer().PlayerNo, endTurn, endTurn.SpentEnergy!);
-        EndTurnProcesses(GetHumanBattlePlayer().PlayerNo);
+        GetBattlePlayer(playerNo).SpendEnergy(endTurn.SpentEnergy!);
+        AbilitiesUsed(playerNo, endTurn, endTurn.SpentEnergy!);
+        EndTurnProcesses(playerNo);
     }
 
     public void EndAiTurn()
     {
-        if (EndTime is not null)
+        if (BattleEndTime is not null)
         {
             throw new Exception($"{nameof(EndAiTurn)} can't be called as the battle ended");
         }
@@ -233,19 +242,20 @@ public class BattleLogic : IBattleLogic
     private void OnTurnChanged()
     {
         ChangeWhoseTurn();
-        TurnChanged?.Invoke(this, GetHumanBattlePlayer().GetPlayerUpdate(WhoseTurn));
+        LatestPlayerUpdates[0] = BattlePlayers[0].GetPlayerUpdate(WhoseTurn);
+        LatestPlayerUpdates[1] = BattlePlayers[1].GetPlayerUpdate(WhoseTurn);
     }
 
-    public void Surrender()
+    public void Surrender(int playerNo)
     {
-        OnBattleEnded(GetAiOpponentBattlePlayer());
+        OnBattleEnded(GetOppositePlayer(playerNo));
     }
     
-    public TargetsUpdate GetTargets(GetTargets getTargets)
+    public TargetsUpdate GetTargets(int playerNo, GetTargets getTargets)
     {
-        if (WhoseTurn.PlayerNo != GetHumanBattlePlayer().PlayerNo)
+        if (WhoseTurn.PlayerNo != playerNo)
         {
-            throw new Exception("Can't GetTargets during AI turn");
+            throw new Exception("Can't GetTargets during opponent's turn");
         }
         
         var validationResults = _getTargetsValidator.Validate(getTargets);
@@ -255,14 +265,14 @@ public class BattleLogic : IBattleLogic
             throw new Exception($"GetTargets validation failed -> {validationResults}");
         }
 
-        return GetHumanBattlePlayer().GetTargets((int) getTargets.ChampionNo!, (int) getTargets.AbilityNo!);
+        return GetBattlePlayer(playerNo).GetTargets((int) getTargets.ChampionNo!, (int) getTargets.AbilityNo!);
     }
     
-    public UsableAbilitiesUpdate GetUsableAbilities(GetUsableAbilities getUsableAbilities)
+    public UsableAbilitiesUpdate GetUsableAbilities(int playerNo, GetUsableAbilities getUsableAbilities)
     {
-        if (WhoseTurn.PlayerNo != GetHumanBattlePlayer().PlayerNo)
+        if (WhoseTurn.PlayerNo != playerNo)
         {
-            throw new Exception("Can't GetUsableActivities during AI turn");
+            throw new Exception("Can't GetUsableActivities during opponent's turn");
         }
         
         var validationResults = _getUsableAbilitiesValidator.Validate(getUsableAbilities);
@@ -272,60 +282,57 @@ public class BattleLogic : IBattleLogic
             throw new Exception($"GetUsableAbilities validation failed -> {validationResults}");
         }
 
-        return GetHumanBattlePlayer().GetUsableAbilities(getUsableAbilities.CurrentEnergy!, (int) getUsableAbilities.ToSubtract!);
+        return GetBattlePlayer(playerNo).GetUsableAbilities(getUsableAbilities.CurrentEnergy!, (int) getUsableAbilities.ToSubtract!);
     }
     
-    public ExchangeEnergyUpdate ExchangeEnergy(ExchangeEnergy exchangeEnergy)
+    public ExchangeEnergyUpdate ExchangeEnergy(int playerNo, ExchangeEnergy exchangeEnergy)
     {
-        if (WhoseTurn.PlayerNo != GetHumanBattlePlayer().PlayerNo)
+        if (WhoseTurn.PlayerNo != playerNo)
         {
-            throw new Exception("Can't ExchangeEnergy during AI turn");
+            throw new Exception("Can't ExchangeEnergy during opponent's turn");
         }
 
-        var exchangeEnergyValidator = new ExchangeEnergyValidator(GetHumanBattlePlayer());
-        var validationResults =exchangeEnergyValidator.Validate(exchangeEnergy);
+        var exchangeEnergyValidator = new ExchangeEnergyValidator(GetBattlePlayer(playerNo));
+        var validationResults = exchangeEnergyValidator.Validate(exchangeEnergy);
 
         if (!validationResults.IsValid)
         {
             throw new Exception($"ExchangeEnergy validation failed -> {validationResults}");
         }
 
-        if (!GetHumanBattlePlayer().SpendEnergy(exchangeEnergy.SpentEnergy!))
+        if (!GetBattlePlayer(playerNo).SpendEnergy(exchangeEnergy.SpentEnergy!))
         {
-            throw new Exception($"ExchangeEnergy failed spending energy");
+            throw new Exception("ExchangeEnergy failed spending energy");
         }
 
         for (var i = 0; i < 4; i++)
         {
-            GetHumanBattlePlayer().Energy[i] += exchangeEnergy.WantedEnergy![i];
+            GetBattlePlayer(playerNo).Energy[i] += exchangeEnergy.WantedEnergy![i];
         }
 
         return new ExchangeEnergyUpdate
         {
-            NewEnergy = GetHumanBattlePlayer().Energy,
-            UsableAbilitiesUpdate = GetHumanBattlePlayer().GetUsableAbilities(GetHumanBattlePlayer().Energy, 0)
+            NewEnergy = GetBattlePlayer(playerNo).Energy,
+            UsableAbilitiesUpdate = GetBattlePlayer(playerNo).GetUsableAbilities(GetBattlePlayer(playerNo).Energy, 0)
         };
     }
     
     private void OnBattleEnded(IBattlePlayer? winner = null)
     {
-        EndTime = DateTime.UtcNow;
-        var battleEndedUpdate = new BattleEndedUpdate();
+        BattleEndTime = DateTime.UtcNow;
         
         if (winner == null)
         {
-            battleEndedUpdate.BattleEndedState = BattleEndedState.Tie;
-        } 
-        else if (winner.AiOpponent)
-        {
-            battleEndedUpdate.BattleEndedState = BattleEndedState.Defeat;
+            BattleEndedUpdates = [BattleStatus.Tie, BattleStatus.Tie];
         }
         else
         {
-            battleEndedUpdate.BattleEndedState = BattleEndedState.Victory;
+            BattleEndedUpdates =
+            [
+                winner.PlayerNo == 1 ? BattleStatus.Victory : BattleStatus.Defeat,
+                winner.PlayerNo == 2 ? BattleStatus.Victory : BattleStatus.Defeat
+            ];
         }
-        
-        BattleEnded?.Invoke(this, battleEndedUpdate);
     }
 
     private bool IsCostValid(int playerNo, IEnumerable<int> spentEnergy, IEnumerable<UsedAbility?> usedAbilities)
@@ -423,10 +430,6 @@ public class BattleLogic : IBattleLogic
     {
         WhoseTurn = WhoseTurn == BattlePlayers[0] ? BattlePlayers[1] : BattlePlayers[0];
         TurnCount += 1;
-    }
-    
-    private IBattlePlayer GetHumanBattlePlayer()
-    {
-        return BattlePlayers[0].AiOpponent ? BattlePlayers[1] : BattlePlayers[0];
+        TurnStartTime = DateTime.UtcNow;
     }
 }

@@ -1,3 +1,4 @@
+using Ashcrown.Remake.Core.Ability.Base;
 using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
@@ -5,27 +6,28 @@ using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Eluard.Abilities;
 
-public class UnyieldingWill : Ability.Abstract.Ability
+public class UnyieldingWill : AbilityBase
 {
     public UnyieldingWill(IChampion champion) 
         : base(champion, 
             EluardConstants.UnyieldingWill, 
             3,
-            [0,0,0,0,1], 
-            new AbilityClass[] {AbilityClass.Strategic, AbilityClass.Instant }, 
+            [0,0,0,0,1],
+            [AbilityClass.Strategic, AbilityClass.Instant], 
             AbilityTarget.Self, 
-            AbilityType.AllyBuff)
+            AbilityType.AllyBuff,
+            3)
     {
         ReceiveDamageReductionPoint1 = 15;
         Duration1 = 4;
         BonusDamage1 = 10;
-        Description = $"{EluardConstants.Eluard} gains {$"{ReceiveDamageReductionPoint1} points of damage reduction".HighlightInYellow()} for {Duration1} turns. " +
+        Description = $"{EluardConstants.Name} gains {$"{ReceiveDamageReductionPoint1} points of damage reduction".HighlightInYellow()} for {Duration1} turns. " +
                       $"During this time {EluardConstants.SwordStrike.HighlightInGold()} will deal an additional {$"{BonusDamage1} physical damage".HighlightInOrange()} " +
                       $"and {EluardConstants.Devastate.HighlightInGold()} can be used.";
         Helpful = true;
         Buff = true;
         SelfCast = true;
-        ActiveEffectOwner = EluardConstants.Eluard;
+        ActiveEffectOwner = EluardConstants.Name;
         ActiveEffectName = EluardConstants.UnyieldingWillActiveEffect;
     }
 

@@ -11,7 +11,7 @@ public class DuelTests
     public void DuelAppliesCorrectActiveEffects()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Sarfu);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Name);
         var useDuel = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,3, 
             [0,0,0,1,0,0], [0,0,1,0]);
         
@@ -41,7 +41,7 @@ public class DuelTests
     public void DuelEndsIfSarfuDies()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Sarfu);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Name);
         var useDuel = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,3, 
             [0,0,0,1,0,0], [0,0,1,0]);
         

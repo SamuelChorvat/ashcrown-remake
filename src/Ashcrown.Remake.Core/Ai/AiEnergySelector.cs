@@ -46,7 +46,7 @@ public class AiEnergySelector(
         return energyLeftForSpending;
     }
     
-    private static int GetTotalRandomEnergyToSpend(IList<AiMaximizedAbility> selectedAbilities)
+    private static int GetTotalRandomEnergyToSpend(IEnumerable<AiMaximizedAbility> selectedAbilities)
     {
         return selectedAbilities.Sum(aiMaximizedAbility => aiMaximizedAbility.Ability!.GetCurrentCost()[4]);
     }
@@ -65,7 +65,7 @@ public class AiEnergySelector(
                 index = (int) aiEnergyUsageController.GetLeastUsedEnergyType(energyLeftToSpend);
             } catch (Exception) {
                 battleLogic.EndBattleOnAiError("Exception getting least used energy");
-                return [];
+                throw;
             }
             energyToSpendWithoutRandom[index] += 1;
             energyLeftToSpend[index] -= 1;

@@ -11,6 +11,9 @@ public interface IChampion
     int ChampionNo { get; init; }
     string Name { get; set; }
     string Title { get; set; }
+    string Bio { get; set; }
+    int[] Attributes { get; set; }
+    string Artist { get; set; }
     int Health { get; set; }
     bool Alive { get; set; }
     bool Died { get; set; }

@@ -6,5 +6,5 @@ namespace Ashcrown.Remake.Core.Ai.Interfaces;
 public interface IAiUtils
 {
     static abstract AiMaximizedAbility GetHigherPointsAbility(AiMaximizedAbility? ability1, AiMaximizedAbility ability2);
-    static abstract EndTurn PackSelectedAbilities(IList<AiMaximizedAbility> selectedAbilities);
+    static abstract EndTurn PackSelectedAbilities(IList<AiMaximizedAbility> selectedAbilities, int[] selectedEnergy);
 }

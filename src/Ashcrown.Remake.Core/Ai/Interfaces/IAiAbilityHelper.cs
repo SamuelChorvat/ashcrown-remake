@@ -1,5 +1,4 @@
-﻿using Ashcrown.Remake.Core.Ability.Interfaces;
-using Ashcrown.Remake.Core.Ai.Models;
+﻿using Ashcrown.Remake.Core.Ai.Models;
 
 namespace Ashcrown.Remake.Core.Ai.Interfaces;
 

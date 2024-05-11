@@ -11,7 +11,7 @@ public class OverpowerTests
     public void OverpowerDealsCorrectDamage() 
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Sarfu);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Name);
         var useOverpower = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 
             [0,0,0,1,0,0], [0,0,1,1]);
         
@@ -27,7 +27,7 @@ public class OverpowerTests
     public void OverpowerDealsBonusDamageToTargetAffectedByDuel()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Sarfu);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Name);
         var useDuel = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,3, 
             [0,0,0,1,0,0], [0,0,1,0]);
         var useOverpower = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 

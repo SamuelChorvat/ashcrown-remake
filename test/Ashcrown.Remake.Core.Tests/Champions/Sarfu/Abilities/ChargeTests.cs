@@ -11,7 +11,7 @@ public class ChargeTests
     public void ChargeDealsCorrectDamage() 
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Sarfu);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Name);
         var useCharge = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,2, 
             [0,0,0,1,0,0], [0,1,0,1]);
         
@@ -27,7 +27,7 @@ public class ChargeTests
     public void ChargeDealsBonusDamageToTargetAffectedByDuel()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Sarfu);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(SarfuConstants.Name);
         var useDuel = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,3, 
             [0,0,0,1,0,0], [0,0,1,0]);
         var useCharge = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,2, 

@@ -15,6 +15,7 @@ public interface IAbility
 	int OriginalCooldown { get; set; }
 	int[] OriginalCost { get; set; }
 	AbilityClass[] AbilityClasses { get; set; }
+	int AbilitySlot { get; set; }
 	bool Active { get; set; }
 	bool IgnoreInvulnerability { get; set; }
 	bool Counterable { get; set; }
@@ -68,7 +69,7 @@ public interface IAbility
 	int ReceiveDamageReductionPercent1 { get; set; }
 	int DestructibleDefense1 { get; set; }
 	int DealDamageReductionPoint1 { get; set; }
-	int DealDmgIncreasePoint1 { get; set; }
+	int DealDamageIncreasePoint1 { get; set; }
 	int DealHealIncreasePoint1 { get; set; }
 	int DealHealReductionPercent1 { get; set; }
 	int ReceiveHealReductionPercent1 { get; set; }
@@ -115,8 +116,8 @@ public interface IAbility
 	void EndTurnChecks();
 	void OnUse();
 	AiMaximizedAbility AiMaximizeAbility<T>() where T : IAiPointsCalculator;
-	int[] GetPossibleTargets(); // TODO Was List && int[] emptyTargets not needed as input param
+	int[] GetPossibleTargets();
 	int CalculateTotalPointsForTarget<T>(IChampion target) where T : IAiPointsCalculator;
-	int CalculateSingletonSelfEffectTotalPoints();
+	int CalculateSingletonSelfEffectTotalPoints<T>() where T : IAiPointsCalculator;
 	AbilityUpdate GetAbilityUpdate(int abilityNo);
 }

@@ -12,7 +12,7 @@ public class HammerOfJusticeTests
     public void HammerOfJusticeShouldDealCorrectDamageAndApplyActiveEffect()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var useHammerOfJustice = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 
             [0,0,0,1,0,0], [0,0,1,0]);
         
@@ -32,7 +32,7 @@ public class HammerOfJusticeTests
     public void HammerOfJusticeShouldDealCorrectBonusDamage()
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var useCrusaderOfLight = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,3,
             [1,0,0,0,0,0], [1,0,0,0]);
         var useHammerOfJustice = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1, 1,
@@ -55,7 +55,7 @@ public class HammerOfJusticeTests
     public void HammerOfJusticeShouldStunPhysicalAndStrategicAbilities(AbilityClass[] abilityClasses)
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var useHammerOfJustice = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 
             [0,0,0,1,0,0], [0,0,1,0]);
         battleLogic.GetBattlePlayer(2).Champions[0].CurrentAbilities[0].AbilityClasses = abilityClasses;
@@ -76,7 +76,7 @@ public class HammerOfJusticeTests
     public void HammerOfJusticeShouldNotStunNonPhysicalAndStrategicAbilities(AbilityClass[] abilityClasses)
     {
         // Arrange
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Althalos);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(AlthalosConstants.Name);
         var useHammerOfJustice = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1,1, 
             [0,0,0,1,0,0], [0,0,1,0]);
         battleLogic.GetBattlePlayer(2).Champions[0].CurrentAbilities[0].AbilityClasses = abilityClasses;

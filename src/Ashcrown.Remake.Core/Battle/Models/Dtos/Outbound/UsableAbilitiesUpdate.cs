@@ -2,5 +2,7 @@
 
 public class UsableAbilitiesUpdate
 {
-    public int[][] UsableAbilities { get; set; } = new int[3][];
+    public int[] UsableAbilitiesChampion1 { get; set; } = [];
+    public int[] UsableAbilitiesChampion2 { get; set; } = [];
+    public int[] UsableAbilitiesChampion3 { get; set; } = [];
 }

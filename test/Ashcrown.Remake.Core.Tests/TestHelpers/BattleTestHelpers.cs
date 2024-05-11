@@ -21,6 +21,33 @@ public static class BattleTestHelpers
         });
         return endTurn;
     }
+    
+    public static EndTurn CreateEndTurnWithTwoAbilitiesUsed(
+        int casterNo1, int abilityNo1, int[] targets1,
+        int casterNo2, int abilityNo2, int[] targets2,
+        int[] spentEnergy)
+    {
+        var endTurn = new EndTurn
+        {
+            EndTurnAbilities = new List<EndTurnAbility>(),
+            SpentEnergy = spentEnergy
+        };
+        endTurn.EndTurnAbilities.Add(new EndTurnAbility()
+        {
+            Order = 1,
+            CasterNo = casterNo1,
+            AbilityNo = abilityNo1,
+            Targets = targets1
+        });
+        endTurn.EndTurnAbilities.Add(new EndTurnAbility()
+        {
+            Order = 2,
+            CasterNo = casterNo2,
+            AbilityNo = abilityNo2,
+            Targets = targets2
+        });
+        return endTurn;
+    }
 
     public static void PassNumberOfTurns(int currentTurnPlayerNo, IBattleLogic battleLogic, int numberOfTurnsToPass)
     {

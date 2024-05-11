@@ -10,8 +10,8 @@ public class AbilityUpdate
     public required int ReadyIn { get; set; }
     public required int[] Cost { get; set; }
     public required bool CanUse { get; set; }
-    public required AbilityTarget Target { get; set; }
+    public required string Target { get; set; }
     public required bool SelfDisplay { get; set; }
     public required bool SelfCast { get; set; }
-    public required AbilityClass[] Classes { get; set; }
+    public required string[] Classes { get; set; }
 }

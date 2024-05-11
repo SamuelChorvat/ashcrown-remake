@@ -1,3 +1,4 @@
+using Ashcrown.Remake.Core.Ability.Base;
 using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
@@ -5,7 +6,7 @@ using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Sarfu.Abilities;
 
-public class Charge : Ability.Abstract.Ability
+public class Charge : AbilityBase
 {
     public Charge(IChampion champion) 
         : base(champion, 
@@ -14,11 +15,12 @@ public class Charge : Ability.Abstract.Ability
             [0,1,0,0,1],
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemyDamage)
+            AbilityType.EnemyDamage,
+            2)
     {
         Damage1 = 35;
         BonusDamage1 = 25;
-        Description = $"{SarfuConstants.Sarfu} stabs one enemy with his sword, dealing {$"{Damage1} {"piercing".HighlightInBold()} physical damage".HighlightInOrange()}. " +
+        Description = $"{SarfuConstants.Name} stabs one enemy with his sword, dealing {$"{Damage1} {"piercing".HighlightInBold()} physical damage".HighlightInOrange()}. " +
                       $"This ability will deal an additional {$"{BonusDamage1} {"piercing".HighlightInBold()} physical damage".HighlightInOrange()} to an enemy affected by {SarfuConstants.Duel.HighlightInGold()}.";
         Harmful = true;
         Damaging = true;

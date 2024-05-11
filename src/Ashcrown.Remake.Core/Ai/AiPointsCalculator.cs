@@ -137,7 +137,12 @@ public abstract class AiPointsCalculator : IAiPointsCalculator
         var effectiveDamage = Math.Max(0, !ability.AfflictionDamage ? 
             Math.Min(adjustedDamageAmountBeforeDestructible, target.Health + target.AiTotalDestructibleDefenseLeft - target.AiTotalDamageToReceiveAfterDestructible) 
             : Math.Min(adjustedDamageAmountBeforeDestructible, target.Health - target.AiTotalDamageToReceiveAfterDestructible));
-        var damagePoints = (int) (Math.Round(effectiveDamage * totalMultiplier) + AiCalculatorConstants.BaseDamagePoints);
+        
+        // Exponential growth with a delayed start
+        const double baseValue = 1.08; // The base growth rate
+        const int turnThreshold = 4; // Number of turns after which the growth starts kicking in
+        var effectiveTurnCount = Math.Max(0, target.BattleLogic.TurnCount - turnThreshold);
+        var damagePoints = (int) (Math.Round(effectiveDamage * totalMultiplier) + AiCalculatorConstants.BaseDamagePoints * Math.Pow(baseValue, effectiveTurnCount));
 
         int damageAfterDestructible;
         if(!ability.AfflictionDamage) {

@@ -11,10 +11,10 @@ public class EluardTests
     public void EluardHasCorrectName()
     {
         // Arrange & Act
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Eluard);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Name);
         
         // Assert
-        battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(EluardConstants.Eluard);
+        battleLogic.GetBattlePlayer(1).Champions[0].Name.Should().Be(EluardConstants.Name);
         battleLogic.GetBattlePlayer(1).Champions[0].Title.Should().Be(EluardConstants.Title);
     }
     
@@ -22,7 +22,7 @@ public class EluardTests
     public void EluardHasCorrectAbilities()
     {
         // Arrange & Act
-        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Eluard);
+        var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(EluardConstants.Name);
         
         // Assert
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[0].Name.Should().Be(EluardConstants.SwordStrike);

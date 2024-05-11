@@ -1,5 +1,5 @@
 using Ashcrown.Remake.Core.Ability.Interfaces;
-using Ashcrown.Remake.Core.ActiveEffect.Abstract;
+using Ashcrown.Remake.Core.ActiveEffect.Base;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 

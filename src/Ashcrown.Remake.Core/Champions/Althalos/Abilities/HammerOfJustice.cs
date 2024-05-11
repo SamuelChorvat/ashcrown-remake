@@ -1,11 +1,12 @@
-﻿using Ashcrown.Remake.Core.Ability.Enums;
+﻿using Ashcrown.Remake.Core.Ability.Base;
+using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Althalos.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Althalos.Abilities;
 
-public class HammerOfJustice : Ability.Abstract.Ability
+public class HammerOfJustice : AbilityBase
 {
     public HammerOfJustice(IChampion champion) 
         : base(champion, 
@@ -14,12 +15,13 @@ public class HammerOfJustice : Ability.Abstract.Ability
             [0,0,1,0,0],
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
-            AbilityType.EnemyDamageAndDebuff)
+            AbilityType.EnemyDamageAndDebuff,
+            1)
     {
         Damage1 = 20;
         BonusDamage1 = 10;
         Duration1 = 1;
-        Description = $"{AlthalosConstants.Althalos} hits one enemy with his hammer dealing {$"{Damage1} physical damage".HighlightInOrange()} to them " +
+        Description = $"{AlthalosConstants.Name} hits one enemy with his hammer dealing {$"{Damage1} physical damage".HighlightInOrange()} to them " +
                       $"and {"stunning".HighlightInPurple()} their Physical and Strategic abilities for {Duration1} turn. " +
                       $"While {AlthalosConstants.CrusaderOfLight.HighlightInGold()} is active " +
                       $"this will deal an additional {$"{BonusDamage1} physical damage".HighlightInOrange()}.";
@@ -29,7 +31,7 @@ public class HammerOfJustice : Ability.Abstract.Ability
         Debuff = true;
         PhysicalDamage = true;
         Damaging = true;
-        ActiveEffectOwner = AlthalosConstants.Althalos;
+        ActiveEffectOwner = AlthalosConstants.Name;
         ActiveEffectName = AlthalosConstants.HammerOfJusticeActiveEffect;
     }
 

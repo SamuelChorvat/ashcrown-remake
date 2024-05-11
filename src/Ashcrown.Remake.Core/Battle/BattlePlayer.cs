@@ -231,6 +231,8 @@ public class BattlePlayer : IBattlePlayer
         var playerUpdate = new PlayerUpdate
         {
             MyTurn = whoseTurn == this,
+            TurnTime = BattleConstants.TurnTimeInSeconds,
+            TurnStart = _battleLogic.TurnStartTime,
             Energy = Energy,
             TurnCount = _battleLogic.TurnCount,
             EnergyExchangeRatio = Math.Max(1, GetAliveChampions().Count),
@@ -264,9 +266,9 @@ public class BattlePlayer : IBattlePlayer
 
             playerUpdate.MyChampionUpdates[i] = myChampionsUpdate;
         }
-		
-        var opponentChampionsUpdate = new OpponentChampionUpdate();
+        
 		for (var i = 0; i < 3; i++) {
+            var opponentChampionsUpdate = new OpponentChampionUpdate();
 			var champion = _battleLogic.GetOppositePlayer(PlayerNo).Champions[i];
 			
 			opponentChampionsUpdate.Health = champion.Health;
@@ -298,13 +300,15 @@ public class BattlePlayer : IBattlePlayer
 
     public UsableAbilitiesUpdate GetUsableAbilities(int[] currentEnergy, int energyToSubtract)
     {
-        var usableAbilitiesUpdate = new UsableAbilitiesUpdate();
-        
-        for(var i = 0; i < Champions.Length; i++)
+        var usableAbilitiesUpdate = new UsableAbilitiesUpdate
         {
-            usableAbilitiesUpdate.UsableAbilities[i] = Champions[i].AbilityController
-                .GetUsableAbilities(currentEnergy, energyToSubtract);
-        }
+            UsableAbilitiesChampion1 = Champions[0].AbilityController
+                .GetUsableAbilities(currentEnergy, energyToSubtract),
+            UsableAbilitiesChampion2 = Champions[1].AbilityController
+                .GetUsableAbilities(currentEnergy, energyToSubtract),
+            UsableAbilitiesChampion3 = Champions[2].AbilityController
+                .GetUsableAbilities(currentEnergy, energyToSubtract)
+        };
 
         return usableAbilitiesUpdate;
     }

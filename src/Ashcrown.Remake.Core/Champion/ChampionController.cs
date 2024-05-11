@@ -61,7 +61,7 @@ public class ChampionController(
         var newAmount = ability.ReceiveAbilityDamageModifier(owner, amount);
 		
         newAmount = ApplyToReceiveDamageModifiers(newAmount, ability);
-        newAmount = EmpBurstActiveEffect.ApplyEmpBurstAfflictionDamageIncrease(owner, newAmount, ability);
+        newAmount = EMPBurstActiveEffect.ApplyEMPBurstAfflictionDamageIncrease(owner, newAmount, ability);
 
         SubtractHealth(newAmount, appliedAdditionalLogic, ability);
     }
@@ -73,7 +73,7 @@ public class ChampionController(
         newAmount = activeEffect.ReceiveActiveEffectDamageModifier(owner, newAmount);
 		
         newAmount = ApplyToReceiveDamageModifiers(newAmount, activeEffect:activeEffect);
-        newAmount = EmpBurstActiveEffect.ApplyEmpBurstAfflictionDamageIncrease(owner, newAmount, activeEffect:activeEffect);
+        newAmount = EMPBurstActiveEffect.ApplyEMPBurstAfflictionDamageIncrease(owner, newAmount, activeEffect:activeEffect);
 
         SubtractHealth(newAmount,appliedAdditionalLogic, activeEffect:activeEffect);
     }
@@ -384,7 +384,7 @@ public class ChampionController(
 			if (TotalAllDamageDealReduce.Points - TotalAllDamageDealIncrease.Points > newAmount) {
 				newAmount = 0;
 			} else {
-				newAmount -= (TotalAllDamageDealReduce.Points - TotalAllDamageDealIncrease.Points);
+				newAmount -= TotalAllDamageDealReduce.Points - TotalAllDamageDealIncrease.Points;
 			}
 		}
 			
@@ -396,17 +396,17 @@ public class ChampionController(
 				if (TotalMagicDamageDealReduce.Points - TotalMagicDamageDealIncrease.Points > newAmount) {
 					newAmount = 0;
 				} else {
-					newAmount -= (TotalMagicDamageDealReduce.Points - TotalMagicDamageDealIncrease.Points);
+					newAmount -= TotalMagicDamageDealReduce.Points - TotalMagicDamageDealIncrease.Points;
 				}
 			}
 		} else if (ability is {PhysicalDamage: true} || activeEffect is {PhysicalDamage: true})  {
 			if (TotalPhysicalDamageDealIncrease.Points > TotalPhysicalDamageDealReduce.Points) {
-				newAmount += (TotalPhysicalDamageDealIncrease.Points - TotalPhysicalDamageDealReduce.Points);
+				newAmount += TotalPhysicalDamageDealIncrease.Points - TotalPhysicalDamageDealReduce.Points;
 			} else if (TotalPhysicalDamageDealIncrease.Points < TotalPhysicalDamageDealReduce.Points) {
 				if (TotalPhysicalDamageDealReduce.Points > newAmount) {
 					newAmount = 0;
 				} else {
-					newAmount -= (TotalPhysicalDamageDealReduce.Points - TotalPhysicalDamageDealIncrease.Points);
+					newAmount -= TotalPhysicalDamageDealReduce.Points - TotalPhysicalDamageDealIncrease.Points;
 				}
 			}
 		}
@@ -559,7 +559,7 @@ public class ChampionController(
             if (TotalHealingDealReduce.Points - TotalHealingDealIncrease.Points > newAmount) {
                 newAmount = 0;
             } else {
-                newAmount -= (TotalHealingDealReduce.Points - TotalHealingDealIncrease.Points);
+                newAmount -= TotalHealingDealReduce.Points - TotalHealingDealIncrease.Points;
             }
         }
 		
