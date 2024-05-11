@@ -6,21 +6,17 @@ namespace Ashcrown.Remake.Core.Draft;
 
 public class DraftLogic
 {
-    public const int TimeToBanInSeconds = 15;
-    public const int TimeToPickInSeconds = 20;
-    public const int BattleReadyTimerDurationInSeconds = 5;
-    
     public int[] CurrentBanNo { get; set; } = [0, 0];
     public int[] CurrentPickNo { get; set; } = [0, 0];
     public string?[,] BannedChampions { get; } = new string[2,3];
     public string?[,] PickedChampions { get; } = new string[2,3];
 
     public DraftState DraftState { get; set; } = DraftState.Ban;
-    public DraftStatus[] DraftStatuses { get; set; } = new DraftStatus[2];
-    public string[] Players { get; init; }
+    public required DraftStatus[] DraftStatuses { get; set; }
+    public string[] Players { get; init; } = new string[2];
     public DateTime TurnStartTime { get; set;} = DateTime.UtcNow;
     public DateTime EndDraftTime { get; set; }
-    public string WhoseTurn { get; set; }
+    public required string WhoseTurn { get; set; }
 
     private bool IsChampionBanned(string championName) {
         if (championName.Equals("No Ban")) {
@@ -63,7 +59,11 @@ public class DraftLogic
             DraftStatuses[1 - GetWhoseTurnIndex()] = DraftStatus.OpponentsPick;
             return;
         }
-        CurrentBanNo[GetWhoseTurnIndex()] += 1;
+
+        if (CurrentBanNo[GetWhoseTurnIndex()] < 2)
+        {
+            CurrentBanNo[GetWhoseTurnIndex()] += 1;
+        }
         WhoseTurn = Players[1 - GetWhoseTurnIndex()];
         TurnStartTime = DateTime.UtcNow;
         DraftStatuses[GetWhoseTurnIndex()] = DraftStatus.YourBan;
@@ -100,7 +100,11 @@ public class DraftLogic
             EndDraftTime = DateTime.UtcNow;
             return;
         }
-        CurrentPickNo[GetWhoseTurnIndex()] += 1;
+
+        if (CurrentPickNo[GetWhoseTurnIndex()] < 2)
+        {
+            CurrentPickNo[GetWhoseTurnIndex()] += 1;
+        }
         WhoseTurn = Players[1 - GetWhoseTurnIndex()];
         TurnStartTime = DateTime.UtcNow;
         DraftStatuses[GetWhoseTurnIndex()] = DraftStatus.YourPick;
@@ -121,6 +125,11 @@ public class DraftLogic
     {
         return Players[0].Equals(WhoseTurn) ? 0 : 1;
     }
+    
+    public int GetPlayerIndex(string playerName)
+    {
+        return Players[0].Equals(playerName) ? 0 : 1;
+    }
 
     public DraftStatusUpdate GetDraftUpdate(string playerName)
     {
@@ -128,6 +137,7 @@ public class DraftLogic
         return new DraftStatusUpdate
         {
             DraftStatus = DraftStatuses[playerIndex],
+            TurnStartTime = TurnStartTime,
             YourBanNo = CurrentBanNo[playerIndex],
             OpponentBanNo = CurrentBanNo[1 - playerIndex],
             YourPickNo = CurrentPickNo[playerIndex],
@@ -152,9 +162,9 @@ public class DraftLogic
             ],
             OpponentPicks = 
             [
-                PickedChampions[1 -playerIndex, 0],
-                PickedChampions[1 -playerIndex, 1],
-                PickedChampions[1- playerIndex, 2]
+                PickedChampions[1 - playerIndex, 0],
+                PickedChampions[1 - playerIndex, 1],
+                PickedChampions[1 - playerIndex, 2]
             ],
         };
     }

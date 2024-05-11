@@ -2,6 +2,7 @@
 using Ashcrown.Remake.Api.Dtos.Outbound;
 using Ashcrown.Remake.Api.Services.Interfaces;
 using Ashcrown.Remake.Core.Battle;
+using Ashcrown.Remake.Core.Draft;
 using Ashcrown.Remake.Core.Draft.Dtos.Outbound;
 using Ashcrown.Remake.Core.Draft.Enums;
 using Microsoft.AspNetCore.Mvc;
@@ -104,10 +105,11 @@ public class DraftController(IPlayerSessionService playerSessionService,
         var draftMatch = await draftService.GetDraftMatch(Guid.Parse(matchId));
 
         var timeDifference = DateTime.UtcNow - draftMatch!.DraftLogic!.TurnStartTime;
-
+        
         return new TimerUpdate
         {
-            UpdatedTimer = (int) (BattleConstants.TurnTimeInSeconds - timeDifference.TotalSeconds)
+            UpdatedTimer = (int) ( draftMatch.DraftLogic.DraftState == DraftState.Ban ? DraftConstants.TimeToBanInSeconds 
+                : DraftConstants.TimeToPickInSeconds - timeDifference.TotalSeconds)
         };
     }
 
@@ -115,6 +117,35 @@ public class DraftController(IPlayerSessionService playerSessionService,
     [ProducesResponseType(typeof(DraftStatusUpdate), StatusCodes.Status200OK)]
     public async Task<DraftStatusUpdate> DraftUpdate(string matchId, string playerName)
     {
-        throw new NotImplementedException();
+        var draftMatch = await draftService.GetDraftMatch(Guid.Parse(matchId));
+        ArgumentNullException.ThrowIfNull(draftMatch);
+        ArgumentNullException.ThrowIfNull(draftMatch.DraftLogic);
+        var draftLogic = draftMatch.DraftLogic;
+
+        var playerIndex = draftLogic.GetPlayerIndex(playerName);
+        var opponentIndex = 1 - playerIndex;
+        if (await playerSessionService.GetSessionAsync(draftLogic.Players[opponentIndex]) == null)
+        {
+            draftLogic.Surrender(draftLogic.Players[opponentIndex]);
+        }
+        
+        if (draftLogic.DraftState == DraftState.Ban 
+            && draftLogic.TurnStartTime.AddSeconds(DraftConstants.TimeToBanInSeconds + 3) < DateTime.UtcNow)
+        {
+            draftLogic.ConfirmBan();
+        }
+        
+        if (draftLogic.DraftState == DraftState.Pick 
+            && draftLogic.TurnStartTime.AddSeconds(DraftConstants.TimeToPickInSeconds + 3) < DateTime.UtcNow)
+        {
+            draftLogic.ConfirmPick();
+        }
+
+        if (draftLogic.DraftState == DraftState.End)
+        {
+            await draftService.StartBattle(Guid.Parse(matchId));
+        }
+        
+        return draftLogic.GetDraftUpdate(playerName);
     }
 }

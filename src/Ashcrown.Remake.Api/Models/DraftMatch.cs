@@ -1,4 +1,5 @@
 ﻿using Ashcrown.Remake.Core.Draft;
+using Ashcrown.Remake.Core.Draft.Enums;
 
 namespace Ashcrown.Remake.Api.Models;
 
@@ -19,8 +20,12 @@ public class DraftMatch
             {
                 [0] = FoundMatch.PlayerNames[firstPlayerIndex],
                 [1] = FoundMatch.PlayerNames[secondPlayerIndex]
-            }
+            },
+            DraftStatuses = [
+                DraftStatus.YourBan,
+                DraftStatus.OpponentsBan
+            ],
+            WhoseTurn = FoundMatch.PlayerNames[firstPlayerIndex]
         };
-        DraftLogic.WhoseTurn = DraftLogic.Players[0];
     }
 }

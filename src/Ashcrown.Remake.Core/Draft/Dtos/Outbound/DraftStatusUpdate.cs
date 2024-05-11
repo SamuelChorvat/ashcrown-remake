@@ -4,10 +4,11 @@ namespace Ashcrown.Remake.Core.Draft.Dtos.Outbound;
 
 public class DraftStatusUpdate
 {
-    public int TimeToBan { get; set; } = DraftLogic.TimeToBanInSeconds;
-    public int TimeToPick { get; set; } = DraftLogic.TimeToPickInSeconds;
-    public int BattleStartingTime { get; } = DraftLogic.BattleReadyTimerDurationInSeconds;
+    public int TimeToBan { get; set; } = DraftConstants.TimeToBanInSeconds;
+    public int TimeToPick { get; set; } = DraftConstants.TimeToPickInSeconds;
+    public int BattleStartingTime { get; } = DraftConstants.BattleReadyTimerDurationInSeconds;
     public DraftStatus DraftStatus { get; set; }
+    public required DateTime TurnStartTime { get; set; }
     public required int YourBanNo { get; set; }
     public required int OpponentBanNo { get; set; }
     public required int YourPickNo { get; set; }
