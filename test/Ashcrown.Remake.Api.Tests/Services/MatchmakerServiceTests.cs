@@ -140,7 +140,7 @@ public class MatchmakerServiceTests
     {
         // Arrange
         var matchId = Guid.NewGuid();
-        _mockBattleService.Setup(x => x.IsAcceptedMatch(matchId)).Returns(true);
+        _mockBattleService.Setup(x => x.IsAcceptedMatchAlreadyAdded(matchId)).Returns(true);
 
         // Act
         var status = await _matchmakerService.GetFoundMatchStatus(matchId);

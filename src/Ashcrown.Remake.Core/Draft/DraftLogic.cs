@@ -1,20 +1,21 @@
 ﻿using Ashcrown.Remake.Core.Champion;
 using Ashcrown.Remake.Core.Draft.Dtos.Outbound;
 using Ashcrown.Remake.Core.Draft.Enums;
+using Ashcrown.Remake.Core.Draft.Interfaces;
 
 namespace Ashcrown.Remake.Core.Draft;
 
-public class DraftLogic
+public class DraftLogic : IDraftLogic
 {
-    public int[] CurrentBanNo { get; set; } = [0, 0];
-    public int[] CurrentPickNo { get; set; } = [0, 0];
-    public string?[,] BannedChampions { get; } = new string[2,3];
+    private int[] CurrentBanNo { get; set; } = [0, 0];
+    private int[] CurrentPickNo { get; set; } = [0, 0];
+    private string?[,] BannedChampions { get; } = new string[2,3];
     public string?[,] PickedChampions { get; } = new string[2,3];
 
-    public DraftState DraftState { get; set; } = DraftState.Ban;
+    public DraftState DraftState { get; private set; } = DraftState.Ban;
     public required DraftStatus[] DraftStatuses { get; set; }
     public string[] Players { get; init; } = new string[2];
-    public DateTime TurnStartTime { get; set;} = DateTime.UtcNow;
+    public DateTime TurnStartTime { get; private set;} = DateTime.UtcNow;
     public DateTime EndDraftTime { get; set; }
     public required string WhoseTurn { get; set; }
 

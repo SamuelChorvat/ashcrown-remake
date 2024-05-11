@@ -13,7 +13,7 @@ public class DraftService(IBattleService battleService) : IDraftService
         return _draftMatches.TryAdd(matchId, new DraftMatch(foundMatch));
     }
 
-    public bool IsAcceptedMatch(Guid matchId)
+    public bool IsAcceptedMatchAlreadyAdded(Guid matchId)
     {
         return _draftMatches.ContainsKey(matchId);
     }
@@ -27,7 +27,7 @@ public class DraftService(IBattleService battleService) : IDraftService
     public Task StartBattle(Guid matchId)
     {
         _draftMatches.TryGetValue(matchId, out var draftMatch);
-        if (draftMatch == null || battleService.IsAcceptedMatch(matchId)) return Task.CompletedTask;
+        if (draftMatch == null || battleService.IsAcceptedMatchAlreadyAdded(matchId)) return Task.CompletedTask;
         var playerIndex = draftMatch.DraftLogic!.Players[0].Equals(draftMatch.FoundMatch.PlayerNames[0]) ? 0 : 1;
         draftMatch.FoundMatch.PlayerBlindChampions[playerIndex] =
         [

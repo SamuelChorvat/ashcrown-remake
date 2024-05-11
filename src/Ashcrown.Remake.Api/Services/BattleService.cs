@@ -23,7 +23,7 @@ public class BattleService : IBattleService
         }
     }
 
-    public bool IsAcceptedMatch(Guid matchId)
+    public bool IsAcceptedMatchAlreadyAdded(Guid matchId)
     {
         lock (this)
         {

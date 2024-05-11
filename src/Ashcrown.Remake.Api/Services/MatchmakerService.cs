@@ -112,7 +112,7 @@ public class MatchmakerService(IPlayerSessionService playerSessionService,
     {
         lock (this)
         {
-            if (battleService.IsAcceptedMatch(matchId) || draftService.IsAcceptedMatch(matchId))
+            if (battleService.IsAcceptedMatchAlreadyAdded(matchId) || draftService.IsAcceptedMatchAlreadyAdded(matchId))
             {
                 return Task.FromResult(FoundMatchStatus.Confirmed);
             }
