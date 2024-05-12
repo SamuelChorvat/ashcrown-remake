@@ -69,6 +69,6 @@ public class SessionController(IPlayerSessionService playerSessionService) : Con
         {
             return Ok(session);
         } 
-        return NotFound($"No session for '{playerName}' exists");;
+        return NotFound($"No session for '{playerName}' exists");
     }
 }
