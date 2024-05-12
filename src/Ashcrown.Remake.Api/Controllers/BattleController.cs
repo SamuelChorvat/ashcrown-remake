@@ -62,7 +62,16 @@ public class BattleController(IPlayerSessionService playerSessionService,
 
         if (battleLogic.TurnStartTime.AddSeconds(BattleConstants.TurnTimeInSeconds + 3) < DateTime.UtcNow)
         {
-            battleLogic.EndTurnProcesses(battleLogic.WhoseTurn.PlayerNo);
+            try
+            {
+                battleLogic.EndTurnProcesses(battleLogic.WhoseTurn.PlayerNo);
+            }
+            catch
+            {
+                battleLogic.Surrender(battleLogic.WhoseTurn.PlayerNo);
+                throw;
+            }
+            
         }
 
         return new BattleStatusUpdate
@@ -105,9 +114,15 @@ public class BattleController(IPlayerSessionService playerSessionService,
         var battleLogic = startedMatch.BattleLogic;
         var playerNo = battleLogic.GetBattlePlayerNo(playerRequest.Name);
 
-        if (battleLogic.WhoseTurn.PlayerNo == playerNo)
+        if (battleLogic.WhoseTurn.PlayerNo != playerNo) return Ok();
+        try
         {
             battleLogic.EndPlayerTurn(playerNo, playerRequest.EndTurn);
+        }
+        catch
+        {
+            battleLogic.Surrender(playerNo);
+            throw;
         }
 
         return Ok();
