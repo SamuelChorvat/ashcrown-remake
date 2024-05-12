@@ -145,27 +145,27 @@ public class DraftLogic : IDraftLogic
             OpponentPickNo = CurrentPickNo[1 - playerIndex],
             YourBans =
             [
-                BannedChampions[playerIndex, 0],
-                BannedChampions[playerIndex, 1],
-                BannedChampions[playerIndex, 2]
+                BannedChampions[playerIndex, 0]!,
+                BannedChampions[playerIndex, 1]!,
+                BannedChampions[playerIndex, 2]!
             ],
             OpponentBans =
             [
-                BannedChampions[1 - playerIndex, 0],
-                BannedChampions[1 - playerIndex, 1],
-                BannedChampions[1 - playerIndex, 2]
+                BannedChampions[1 - playerIndex, 0]!,
+                BannedChampions[1 - playerIndex, 1]!,
+                BannedChampions[1 - playerIndex, 2]!
             ],
             YourPicks = 
             [
-                PickedChampions[playerIndex, 0],
-                PickedChampions[playerIndex, 1],
-                PickedChampions[playerIndex, 2]
+                PickedChampions[playerIndex, 0]!,
+                PickedChampions[playerIndex, 1]!,
+                PickedChampions[playerIndex, 2]!
             ],
             OpponentPicks = 
             [
-                PickedChampions[1 - playerIndex, 0],
-                PickedChampions[1 - playerIndex, 1],
-                PickedChampions[1 - playerIndex, 2]
+                PickedChampions[1 - playerIndex, 0]!,
+                PickedChampions[1 - playerIndex, 1]!,
+                PickedChampions[1 - playerIndex, 2]!
             ],
         };
     }

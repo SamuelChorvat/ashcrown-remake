@@ -31,15 +31,15 @@ public class DraftService(IBattleService battleService) : IDraftService
         var playerIndex = draftMatch.DraftLogic!.Players[0].Equals(draftMatch.FoundMatch.PlayerNames[0]) ? 0 : 1;
         draftMatch.FoundMatch.PlayerBlindChampions[playerIndex] =
         [
-            draftMatch.DraftLogic!.PickedChampions[0, 0],
-            draftMatch.DraftLogic!.PickedChampions[0, 1],
-            draftMatch.DraftLogic!.PickedChampions[0, 2]
+            draftMatch.DraftLogic!.PickedChampions[0, 0]!,
+            draftMatch.DraftLogic!.PickedChampions[0, 1]!,
+            draftMatch.DraftLogic!.PickedChampions[0, 2]!
         ];
         draftMatch.FoundMatch.PlayerBlindChampions[1 - playerIndex] =
         [
-            draftMatch.DraftLogic!.PickedChampions[1, 0],
-            draftMatch.DraftLogic!.PickedChampions[1, 1],
-            draftMatch.DraftLogic!.PickedChampions[1, 2]
+            draftMatch.DraftLogic!.PickedChampions[1, 0]!,
+            draftMatch.DraftLogic!.PickedChampions[1, 1]!,
+            draftMatch.DraftLogic!.PickedChampions[1, 2]!
         ];
         battleService.AddAcceptedMatch(matchId, draftMatch.FoundMatch, draftMatch);
         return Task.CompletedTask;
