@@ -30,7 +30,7 @@ public static class ChampionConstants
         BrayaConstants.Name, CedricConstants.Name, CleoConstants.Name,
         CronosConstants.Name, DexConstants.Name, DuraConstants.Name, 
         EluardConstants.Name, EvanoreConstants.Name, FaeConstants.Name,
-        GruberConstants.Name, GarrConstants.Name, SarfuConstants.Name];
+        GarrConstants.Name, GruberConstants.Name, SarfuConstants.Name];
     
     public static string[] GetRandomChampionNames(int count)
     {
