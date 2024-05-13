@@ -77,6 +77,25 @@ public class BattleService : IBattleService
         return Task.FromResult(startedMatch);
     }
 
+    public Task<int> ClearStaleMatches(int staleMatchLimitInMinutes)
+    {
+        lock (this)
+        {
+            var cutoffTime = DateTime.UtcNow.AddMinutes(-staleMatchLimitInMinutes);
+            var keysToRemoveAccepted = _acceptedMatches.Where(pair => pair.Value.CreatedAt < cutoffTime)
+                .Select(pair => pair.Key)
+                .ToList();
+            var keysToRemoveStarted = _startedMatches.Where(pair => pair.Value.CreatedAt < cutoffTime)
+                .Select(pair => pair.Key)
+                .ToList();
+
+            var matchesRemoved = keysToRemoveAccepted.Count(key => _acceptedMatches.TryRemove(key, out _));
+            matchesRemoved += keysToRemoveStarted.Count(key => _startedMatches.TryRemove(key, out _));
+
+            return Task.FromResult(matchesRemoved);
+        }
+    }
+
     private void UpdateAcceptedMatch(Guid matchId, Action<AcceptedMatch> updateAction)
     {
         lock (this)

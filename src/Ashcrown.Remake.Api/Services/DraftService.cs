@@ -44,4 +44,16 @@ public class DraftService(IBattleService battleService) : IDraftService
         battleService.AddAcceptedMatch(matchId, draftMatch.FoundMatch, draftMatch);
         return Task.CompletedTask;
     }
+
+    public Task<int> ClearStaleMatches(int staleMatchLimitInMinutes)
+    {
+        var cutoffTime = DateTime.UtcNow.AddMinutes(-staleMatchLimitInMinutes);
+        var keysToRemove = _draftMatches.Where(pair => pair.Value.CreatedAt < cutoffTime)
+            .Select(pair => pair.Key)
+            .ToList();
+
+        var matchesRemoved = keysToRemove.Count(key => _draftMatches.TryRemove(key, out _));
+
+        return Task.FromResult(matchesRemoved);
+    }
 }

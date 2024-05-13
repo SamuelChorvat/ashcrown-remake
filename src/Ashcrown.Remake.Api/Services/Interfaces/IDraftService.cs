@@ -8,4 +8,5 @@ public interface IDraftService
     bool IsAcceptedMatchAlreadyAdded(Guid matchId);
     Task<DraftMatch?> GetDraftMatch(Guid matchId);
     Task StartBattle(Guid matchId);
+    Task<int> ClearStaleMatches(int staleMatchLimitInMinutes);
 }
