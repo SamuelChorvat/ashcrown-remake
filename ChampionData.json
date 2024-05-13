@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Gruber",
-			"title": "The Mad Scientist",
-			"bio":  "Within the discretion of the royal family, Gruber is allowed to practise a variety of his experiments under the guise of helping the crown’s interests. Paid handsomely to research and develop cures to some of the most common diseases that blight the land, the King is known to turn a blind eye to some of Gruber’s more unsavoury practises. Such as when a few children in Ingbridge who had gone missing were found in an alley, indescribably conjoined and twisted into something inhuman. At what point does the means of progress become too twisted to justify the ends? Gruber seeks to find the answer to this question.",
-			"attributes": [2,1,1,1],
-			"artist": "Yann Trolong",
-			"abilities": [
-				{
-					"name": "Poison Injection",
-					"description": "Gruber deals <color=#FF5C04>10 physical damage</color> to one enemy. The following turn, that enemy will be <color=#FF00CD>stunned</color> for 1 turn and will take <color=red>20 affliction damage</color>; that enemy will also be <color=#FF00CD>stunned</color> for one extra turn by this ability for the rest of the game. This ability cannot be used on a champion already affected by it.",
-					"cooldown": 1,
-					"classes": [
-						"Physical", "Affliction", "Instant", "Melee"
-					],
-					"cost": [
-						0,0,0,1,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Adaptive Virus",
-					"description": "Gruber releases a virus giving his allies <color=yellow>10 destructible defense</color> and dealing <color=red>5 affliction damage</color> each turn permanently to the enemy team. This effect can stack.",
-					"cooldown": 0,
-					"classes": [
-						"Affliction", "Instant", "Ranged"
-					],
-					"cost": [
-						1,0,0,1,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Explosive Leech",
-					"description": "Gruber hides an explosive leech on an ally. The first enemy champion to use a new harmful ability on that ally will take <color=red>20 affliction damage</color>; that ally will also take <color=red>10 affliction damage</color>. This damage <color=#FF00CD>ignores invulnerability</color>. This ability is <color=#FF00CD>invisible</color> and can stack.",
-					"cooldown": 0,
-					"classes": [
-						"Affliction", "Instant"
-					],
-					"cost": [
-						0,0,0,0,0
-					],
-					"slot": 3
-				},
-				{
-					"name": "DNA Enhancement",
-					"description": "This ability makes Gruber <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Gwen",
 			"title": "The Succubus",
 			"bio":  "Whether meticulously trained in the art of seduction or simply born with a gift, Gwen has made a successful living entertaining some of the most prestigious clients in Coela. Duchesses, priests and lords alike have previously fallen under her spell, but now Gwen has her sights set on a much more ambitious client. The King himself. What better way to reach the king than working her way up the heirarchy of officers on the battlefield?",
