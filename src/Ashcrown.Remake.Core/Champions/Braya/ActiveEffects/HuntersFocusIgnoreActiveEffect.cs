@@ -1,3 +1,4 @@
+using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.ActiveEffect.Base;
 using Ashcrown.Remake.Core.Champion.Interfaces;
@@ -12,7 +13,7 @@ public class HuntersFocusIgnoreActiveEffect : ActiveEffectBase
     {
         Duration2 = originAbility.Duration2;
         
-        Description = "- This champion will <color=#FF00CD>ignore</color> all harmful effects except energy cost changes";
+        Description = $"- This champion will {"ignore".HighlightInPurple()} all harmful effects except energy cost changes";
         Duration = Duration2;
         TimeLeft = Duration2;
         Helpful = originAbility.Helpful;
