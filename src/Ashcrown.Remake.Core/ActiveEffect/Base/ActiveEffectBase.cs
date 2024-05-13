@@ -1,4 +1,5 @@
 using Ashcrown.Remake.Core.Ability.Enums;
+using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Ability.Interfaces;
 using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
@@ -101,12 +102,12 @@ public abstract class ActiveEffectBase(
         var turnsLeft = customTurnsLeft ?? TimeLeft;
         return turnsLeft switch
         {
-            > 1 when !Infinite => $"\n<color=#EAB65B>{turnsLeft} TURNS LEFT</color>",
+            > 1 when !Infinite => $"\n{$"{turnsLeft} TURNS LEFT".HighlightInGold()}",
             1 when !Infinite => 
                 Target.BattlePlayer.PlayerNo == Target.BattleLogic.WhoseTurn.PlayerNo
-                ? "\n<color=#EAB65B>1 TURN LEFT</color>"
-                : "\n<color=#EAB65B>ENDS THIS TURN</color>",
-            _ => Infinite ? "\n<color=#EAB65B>INFINITE</color>" : "\n<color=red>AFFIX ERROR</color>"
+                ? $"\n{"1 TURN LEFT".HighlightInGold()}"
+                : $"\n{"ENDS THIS TURN".HighlightInGold()}",
+            _ => Infinite ? $"\n{"INFINITE".HighlightInGold()}" : $"\n{"AFFIX ERROR".HighlightInRed()}"
         };
     }
 
@@ -115,32 +116,32 @@ public abstract class ActiveEffectBase(
         switch (TimeLeft)
         {
             case > 1 when !Infinite:
-                return "<color=#EAB65B>" + TimeLeft + " TURNS LEFT ON THE TARGET(S)</color>";
+                return $"{$"{TimeLeft} TURNS LEFT ON THE TARGET(S)".HighlightInGold()}";
             case 1 when !Infinite:
             {
                 return Target.BattlePlayer.PlayerNo != Target.BattleLogic.WhoseTurn.PlayerNo 
-                    ? "<color=#EAB65B>1 TURN LEFT ON THE TARGET(S)</color>" 
-                    : "<color=#EAB65B>ENDS THIS TURN ON THE TARGET(S)</color>";
+                    ? $"{"1 TURN LEFT ON THE TARGET(S)".HighlightInGold()}" 
+                    : $"{"ENDS THIS TURN ON THE TARGET(S)".HighlightInGold()}";
             }
             default:
             {
                 if (Infinite){
-                    return "<color=#EAB65B>INFINITE ON THE TARGET(S)</color>";
+                    return $"{"INFINITE ON THE TARGET(S)".HighlightInGold()}";
                 }
 
                 break;
             }
         }
 
-        return "<color=red>AFFIX ERROR ACTION/CONTROL</color>";
+        return $"{"AFFIX ERROR ACTION/CONTROL".HighlightInRed()}";
     }
 
     public string GetActionControlDescription()
     {
-        return $"- This champion is using <color=#EAB65B>{OriginAbility.Name}</color>" +
+        return $"- This champion is using {OriginAbility.Name.HighlightInGold()}" +
                $"\n{(Paused ? 
-                   "<color=red>PAUSED</color>" 
-                   : "<color=green>ACTIVE</color>")} - {GetTimeLeftAffixActionControl()}";
+                   $"{"PAUSED".HighlightInRed()}" 
+                   : $"{"ACTIVE".HighlightInGreen()}")} - {GetTimeLeftAffixActionControl()}";
     }
 
     public void TickDown()
