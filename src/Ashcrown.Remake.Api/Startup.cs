@@ -18,6 +18,7 @@ public class Startup
 
         services.AddHostedService<PlayerSessionCleanupService>();
         services.AddHostedService<MatchmakerCleanupService>();
+        services.AddHostedService<DraftBattleCleanupService>();
 
         services.AddSingleton<IChampionFactory, ChampionFactory>();
         services.AddSingleton<IChampionDataService, ChampionDataService>();

@@ -10,4 +10,5 @@ public interface IBattleService
     Task StartAcceptedMatchBattle(Guid matchId, string playerName);
     Task<AcceptedMatchStatus> GetAcceptedMatchBattleStatus(Guid matchId);
     Task<StartedMatch?> GetStartedMatch(Guid matchId);
+    Task<int> ClearStaleMatches(int staleMatchLimitInMinutes);
 }

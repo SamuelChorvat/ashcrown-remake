@@ -12,7 +12,8 @@ namespace Ashcrown.Remake.Api.Controllers;
 [Route("[controller]")]
 [Produces("application/json")]
 public class BattleController(IPlayerSessionService playerSessionService, 
-    IBattleService battleService, IMatchHistoryService matchHistoryService) : ControllerBase
+    IBattleService battleService, IMatchHistoryService matchHistoryService,
+    ILogger<BattleController> logger) : ControllerBase
 {
     [HttpPut("ready", Name = nameof(ReadyMatch))]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -66,9 +67,10 @@ public class BattleController(IPlayerSessionService playerSessionService,
             {
                 battleLogic.EndTurnProcesses(battleLogic.WhoseTurn.PlayerNo);
             }
-            catch
+            catch (Exception e)
             {
                 battleLogic.Surrender(battleLogic.WhoseTurn.PlayerNo);
+                logger.LogError(e, "Error ending turn -> {ExceptionMessage}", e.Message);
                 throw;
             }
             
@@ -119,9 +121,10 @@ public class BattleController(IPlayerSessionService playerSessionService,
         {
             battleLogic.EndPlayerTurn(playerNo, playerRequest.EndTurn);
         }
-        catch
+        catch (Exception e)
         {
             battleLogic.Surrender(playerNo);
+            logger.LogError(e, "Error ending turn -> {ExceptionMessage}", e.Message);
             throw;
         }
 
