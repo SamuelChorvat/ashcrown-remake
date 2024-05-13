@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Gwen",
-			"title": "The Succubus",
-			"bio":  "Whether meticulously trained in the art of seduction or simply born with a gift, Gwen has made a successful living entertaining some of the most prestigious clients in Coela. Duchesses, priests and lords alike have previously fallen under her spell, but now Gwen has her sights set on a much more ambitious client. The King himself. What better way to reach the king than working her way up the heirarchy of officers on the battlefield?",
-			"attributes": [1,1,0,2],
-			"artist": "Yann Trolong",
-			"abilities": [
-				{
-					"name": "Charm",
-					"description": "Gwen charms all enemies and deals <color=#00A3FB>15 magic damage</color> to them each turn for 2 turns. The following 2 turns, Gwen gains <color=yellow>15 points of damage reduction</color> and <color=#EAB65B>Kiss</color> can be used.",
-					"cooldown": 1,
-					"classes": [
-						"Magic", "Action", "Ranged", "Instant"
-					],
-					"cost": [
-						0,0,0,1,1
-					],
-					"slot": 1
-				},
-				{
-					"name": "Kiss",
-					"description": "Gwen kisses one enemy, dealing <color=red>10 affliction damage</color> to them and <color=#FF00CD>removing</color> <sprite=4> from them. This ability can only be used while <color=#EAB65B>Charm</color> is active.",
-					"cooldown": 0,
-					"classes": [
-						"Affliction", "Instant", "Melee"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 2
-				},
-				{
-					"name": "Love Chains",
-					"description": "Gwen <color=#FF00CD>stuns</color> all enemies for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,0,1,1
-					],
-					"slot": 3
-				},
-				{
-					"name": "Lights Out",
-					"description": "This ability makes Gwen <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Hannibal",
 			"title": "The Blood Lord",
 			"bio":  "A once proud lord ruling over a vast estate tended by swathes of hypnotized peasants, Hannibal was suddenly forced into hiding after the first purging of all vampiric elements in Coela. Living quietly and yet feasting often, Hannibal has managed to survive a succession of several purges since then. Now he has been yanked from is simple life as a lowly vampire slayer of the name Aniel harangues him in her quest to find her father. Tired of a life on the run and his patience far past tested, Hannibal has decided that the next person who seeks to disturb him will not live to regret their decision.",

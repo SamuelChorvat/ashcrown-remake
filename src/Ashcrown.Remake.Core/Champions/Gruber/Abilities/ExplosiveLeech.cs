@@ -12,8 +12,8 @@ public class ExplosiveLeech : AbilityBase
     public ExplosiveLeech(IChampion champion) 
         : base(champion, 
             GruberConstants.ExplosiveLeech, 
-            0, 
-            new int[] {0,0,0,0,0}, 
+            0,
+            [0,0,0,0,0], 
             [AbilityClass.Affliction, AbilityClass.Instant], 
             AbilityTarget.Ally, 
             AbilityType.AllyBuff, 

@@ -12,8 +12,8 @@ public class AdaptiveVirusTests
     {
         // Arrange
         var battleLogic = BattleTestSetup.StandardMockedSetupWithSingleChampion(GruberConstants.Name);
-        var usedAbilities = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1, 2, 
-            new[] { 1, 1, 1, 1, 1, 1 }, new[] { 1, 0, 0, 1 });
+        var usedAbilities = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1, 2,
+            [1, 1, 1, 1, 1, 1], [1, 0, 0, 1]);
 
         // Act
         battleLogic.AbilitiesUsed(1, usedAbilities, [1, 0, 0, 1]).Should().BeTrue();

@@ -4,6 +4,7 @@ using Ashcrown.Remake.Core.Champion;
 using Ashcrown.Remake.Core.Champions.Arabela.Champion;
 using Ashcrown.Remake.Core.Champions.Branley.Champion;
 using Ashcrown.Remake.Core.Champions.Cedric.Champion;
+using Ashcrown.Remake.Core.Champions.Gwen.Champion;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Xunit;
@@ -47,7 +48,7 @@ public class ChampionsAiTests
         for (var i = 0; i < 1; i++)
         {
             // Arrange
-            var battleLogic = SetupAiBattle([ArabelaConstants.TestName, BranleyConstants.TestName, CedricConstants.Name]);
+            var battleLogic = SetupAiBattle([GwenConstants.Name, BranleyConstants.TestName, CedricConstants.Name]);
         
             // Act
             while (battleLogic.TurnCount < BattleConstants.TurnLimit)
