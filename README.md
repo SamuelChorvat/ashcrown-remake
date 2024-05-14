@@ -1,6 +1,8 @@
 # Ashcrown Remake
 [![Run Tests](https://github.com/SamuelChorvat/ashcrown-remake/actions/workflows/run-tests.yml/badge.svg?branch=develop&event=push)](https://github.com/SamuelChorvat/ashcrown-remake/actions/workflows/run-tests.yml)
 <br>
+<a href="https://www.digitalocean.com/?refcode=cb8e8f9127b0&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="DigitalOcean Referral Badge" /></a>
+<br>
 
 Welcome to the backend of Ashcrown, a PvP strategy game. This backend has been rebuilt from the ground up and contains all the game’s logic and mechanics. While the client code is proprietary due to licensing issues, this repo is where the interesting stuff happens. Explore the code and contribute to the evolution of Ashcrown!
 ## Background on the Remake
