@@ -21,7 +21,7 @@ public class PlayerSessionServiceTests
     }
 
     [Fact]
-    public async Task CreateSession_ShouldReturnExistingSession_WhenSessionAlreadyExists()
+    public async Task CreateSession_ShouldReturnNull_WhenSessionAlreadyExists()
     {
         // Arrange
         var service = new PlayerSessionService();
@@ -31,7 +31,7 @@ public class PlayerSessionServiceTests
         var session = await service.CreateSession("player1");
     
         // Assert
-        session.Should().NotBeNull();
+        session.Should().BeNull();
     }
 
     [Fact]

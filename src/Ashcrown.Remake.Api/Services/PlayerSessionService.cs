@@ -10,10 +10,13 @@ public class PlayerSessionService : IPlayerSessionService
 
     public Task<PlayerSession?> CreateSession(string playerName)
     {
-        _sessions.TryAdd(playerName, new PlayerSession
+        if (!_sessions.TryAdd(playerName, new PlayerSession
+            {
+                PlayerName = playerName
+            }))
         {
-            PlayerName = playerName
-        });
+            return Task.FromResult<PlayerSession?>(null);
+        }
         _sessions.TryGetValue(playerName, out var session);
         return Task.FromResult(session);
     }
