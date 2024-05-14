@@ -18,7 +18,7 @@ public class Startup
         {
             options.AddPolicy("AllowAshcrownOrigins",
                 builder => builder.SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .WithOrigins("https://ashcrown.com", "https://*.ashcrown.com")
+                    .WithOrigins("https://ashcrown.com", "https://*.ashcrown.com", "https://walrus-app-hw8xn.ondigitalocean.app")
                     .AllowAnyHeader()
                     .AllowAnyMethod());
         });
