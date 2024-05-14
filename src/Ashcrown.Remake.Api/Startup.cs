@@ -14,6 +14,15 @@ public class Startup
         services.AddControllers();
         services.AddSwaggerGen();
         
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAshcrownOrigins",
+                builder => builder.SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .WithOrigins("https://ashcrown.com", "https://*.ashcrown.com", "https://walrus-app-hw8xn.ondigitalocean.app")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+        });
+        
         services.AddRouting(options => options.LowercaseUrls = true);
 
         services.AddHostedService<PlayerSessionCleanupService>();
@@ -35,6 +44,10 @@ public class Startup
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+        }
+        else
+        {
+            app.UseCors("AllowAshcrownOrigins");
         }
 
         app.UseHttpsRedirection();
