@@ -8,6 +8,7 @@ namespace Ashcrown.Remake.Api.Controllers;
 [ApiController]
 [Route("[controller]")]
 [Produces("application/json")]
+[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
 public class ProfileController(IPlayerSessionService playerSessionService) : ControllerBase
 {
     [HttpPut("update/icon", Name = nameof(UpdateIcon))]

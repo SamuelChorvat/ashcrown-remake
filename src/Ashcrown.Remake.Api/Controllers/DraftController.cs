@@ -11,6 +11,7 @@ namespace Ashcrown.Remake.Api.Controllers;
 [ApiController]
 [Route("[controller]")]
 [Produces("application/json")]
+[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
 public class DraftController(IPlayerSessionService playerSessionService, 
     IDraftService draftService, IMatchHistoryService matchHistoryService) : ControllerBase
 {

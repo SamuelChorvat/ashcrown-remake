@@ -7,6 +7,7 @@ namespace Ashcrown.Remake.Api.Controllers;
 [ApiController]
 [Route("[controller]")]
 [Produces("application/json")]
+[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
 public class ChampionDataController(IChampionDataService championDataService) : ControllerBase
 {
     [HttpGet(Name = nameof(GetChampionsData))]
