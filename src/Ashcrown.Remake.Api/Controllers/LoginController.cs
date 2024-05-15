@@ -7,6 +7,7 @@ namespace Ashcrown.Remake.Api.Controllers;
 [ApiController]
 [Route("[controller]")]
 [Produces("application/json")]
+[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
 public class LoginController(IChampionDataService championDataService) : ControllerBase
 {
     [HttpGet("version", Name = nameof(GetVersionInfo))]

@@ -8,6 +8,7 @@ namespace Ashcrown.Remake.Api.Controllers;
 [ApiController]
 [Route("[controller]")]
 [Produces("application/json")]
+[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
 public class SessionController(IPlayerSessionService playerSessionService) : ControllerBase
 {
     [HttpPost("create", Name = nameof(CreatePlayerSession))]
