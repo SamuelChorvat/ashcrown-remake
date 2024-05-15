@@ -56,6 +56,7 @@ public class BattleController(IPlayerSessionService playerSessionService,
         
         if (battleLogic.BattleEndedUpdates is not null)
         {
+            await matchHistoryService.AddBattleToMatchHistory(startedMatch);
             return new BattleStatusUpdate
             {
                 BattleStatus = battleLogic.BattleEndedUpdates[playerNo - 1]

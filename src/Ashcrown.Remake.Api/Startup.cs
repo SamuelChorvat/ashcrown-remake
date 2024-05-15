@@ -23,6 +23,17 @@ public class Startup
                     .AllowAnyMethod());
         });
         
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+        });
+        
         services.AddRouting(options => options.LowercaseUrls = true);
 
         services.AddHostedService<PlayerSessionCleanupService>();
@@ -44,6 +55,7 @@ public class Startup
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.UseCors("AllowAllOrigins");
         }
         else
         {
