@@ -19,6 +19,7 @@ using Ashcrown.Remake.Core.Champions.Garr.Champion;
 using Ashcrown.Remake.Core.Champions.Gruber.Champion;
 using Ashcrown.Remake.Core.Champions.Gwen.Champion;
 using Ashcrown.Remake.Core.Champions.Hannibal.Champion;
+using Ashcrown.Remake.Core.Champions.Hrom.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;
@@ -49,6 +50,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(GruberConstants.TestName, GruberConstants.DNAEnhancementActiveEffect)]
     [InlineData(GwenConstants.TestName, GwenConstants.LightsOutActiveEffect)]
     [InlineData(HannibalConstants.TestName, HannibalConstants.DemonicSkinActiveEffect)]
+    [InlineData(HromConstants.TestName, HromConstants.StormShieldActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldCorrectlyApplyActiveEffects(string championName, string activeEffectName)
     {
@@ -92,6 +94,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(GruberConstants.TestName, GruberConstants.DNAEnhancementActiveEffect)]
     [InlineData(GwenConstants.TestName, GwenConstants.LightsOutActiveEffect)]
     [InlineData(HannibalConstants.TestName, HannibalConstants.DemonicSkinActiveEffect)]
+    [InlineData(HromConstants.TestName, HromConstants.StormShieldActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldBeInvulnerability(string championName, string activeEffectName)
     {

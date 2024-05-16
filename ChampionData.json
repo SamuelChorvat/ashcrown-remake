@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Hrom",
-			"title": "The Thunder King",
-			"bio":  "Worshipped as a god in Waldvollur, Hrom rules over the north from the frigid skies through a combination of force and fear. Legend says of how aeons ago his mother was courted by the heavens themselves, leading to the conception of Hrom and his many siblings. Coddled by his superstitious mother who believed in a late prophecy describing how Hrom would be usurped by his own brothers and sisters, she led him to murder his family in a twisted quest to rule over Waldvollur’s sky. Warped by power and trampled by the guilt of what he has done, Hrom wanders the stars casting down his misdirected anger on anyone he sees fit to do so.",
-			"attributes": [3,2,0,0],
-			"artist": "Yann Trolong",
-			"abilities": [
-				{
-					"name": "Lightning Strike",
-					"description": "Hrom deals <color=#00A3FB>25 magic damage</color> to one enemy. <color=#EAB65B>Lightning Storm</color> may be used the following turn.",
-					"cooldown": 0,
-					"classes": [
-						"Magic", "Instant", "Ranged"
-					],
-					"cost": [
-						1,0,0,0,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Lightning Barrier",
-					"description": "Hrom creates a barrier to protect himself or one ally for 1 turn. The first enemy harmful non-Strategic ability used on this ally will be <color=#FF00CD>countered</color>. This ability is <color=#FF00CD>invisible</color>.",
-					"cooldown": 2,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 2
-				},
-				{
-					"name": "Lightning Storm",
-					"description": "Hrom conjures a lightning storm, dealing <color=#00A3FB>45 magic damage</color> to all enemies. This ability requires <color=#EAB65B>Lightning Strike</color> to be used in the previous turn.",
-					"cooldown": 0,
-					"classes": [
-						"Magic", "Instant", "Ranged"
-					],
-					"cost": [
-						1,0,0,0,2
-					],
-					"slot": 3
-				},
-				{
-					"name": "Storm Shield",
-					"description": "This ability makes Hrom <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Izrin",
 			"title": "The Undead Warrior",
 			"bio":  "A less than average warrior in life and death, Izrin’s fate should have been to fade out of the forgetful memories of her close kin after dying at the start of a minor battle during the royal rebellion. It was not until after her death, when she was resurrected to be part of Nezhum’s undead army that Izrin’s life truly began. In a moment of wilful determination, Izrin broke free of the necromancer’s spell and escaped the undead horde. Now wandering the country, she seeks to find her purpose beyond the twilight realm in which she now resides.",
