@@ -2,7 +2,7 @@
 
 namespace Ashcrown.Remake.Core.Champions.Akio.Champion;
 
-public class AkioConstants : IChampionConstants
+public abstract class AkioConstants : IChampionConstants
 {
     public static string Name => "Akio";
     public static string Title  => "The Ronin";
