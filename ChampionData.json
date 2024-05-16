@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Izrin",
-			"title": "The Undead Warrior",
-			"bio":  "A less than average warrior in life and death, Izrin’s fate should have been to fade out of the forgetful memories of her close kin after dying at the start of a minor battle during the royal rebellion. It was not until after her death, when she was resurrected to be part of Nezhum’s undead army that Izrin’s life truly began. In a moment of wilful determination, Izrin broke free of the necromancer’s spell and escaped the undead horde. Now wandering the country, she seeks to find her purpose beyond the twilight realm in which she now resides.",
-			"attributes": [2,2,0,1],
-			"artist": "WolfsBane",
-			"abilities": [
-				{
-					"name": "Rake",
-					"description": "Izrin rakes an enemy, dealing <color=#FF5C04>15 physical damage</color> to them and lowering their non-affliction damage by 15 for 2 turns. <color=#EAB65B>Rake</color> will deal an additional <color=#FF5C04>10 physical damage</color>, and the damage reduction effect will last 1 additional turn for each ally that is dead.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						0,1,0,0,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Bloody Strike",
-					"description": "Izrin deals <color=#FF5C04>20 physical damage</color> to one enemy and gains <color=yellow>10 points of damage reduction</color> for 1 turn. The following turn this ability will deal and additional <color=#FF5C04>10 physical damage</color> and grant <color=yellow>10 more damage reduction</color>. <color=#EAB65B>Bloody Strike</color> will deal an additional <color=#FF5C04>10 physical damage</color> for every ally that is dead.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						0,1,0,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Bite",
-					"description": "Izrin bites one enemy dealing <color=#FF5C04>20 physical damage</color> to them. Bite will deal and additional <color=#FF5C04>20 physical damage</color> for each ally that is dead and an additional <color=#FF5C04>20 physical damage</color> for every <color=#1AB000>30 health</color> that Izrin is missing.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						0,0,0,0,2
-					],
-					"slot": 3
-				},
-				{
-					"name": "Will of the Undead",
-					"description": "This ability makes Izrin <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Jafali",
 			"title": "The Ifrit",
 			"bio":  "Hidden deep in the stones of the Tainowak palace walls, many find that it is possible to summon Jafali through a simple ritual. After coming out, the startled summoner may ask him one favour, which Jafali will grant with great pleasure. Many beggars of this dark art have found that the wording of their wish is often ... open to interpretation. The last victim of Jafali’s mischief spoke in such a way as to accidentally let him free, leading to the unfortunate possession of his body. Now at large, Jafali feels a pull towards a mass of people congregating in Coela. Just because he is free doesn’t mean that he’s lost his mischievous streak.",

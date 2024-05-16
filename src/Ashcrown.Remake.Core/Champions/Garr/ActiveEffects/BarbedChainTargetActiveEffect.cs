@@ -32,7 +32,7 @@ public class BarbedChainTargetActiveEffect : ActiveEffectBase
     public override void OnApply()
     {
         if (!Paused) {
-            int toDeal = Damage1;
+            var toDeal = Damage1;
 			
             if (OriginAbility.Owner.ActiveEffectController
                 .ActiveEffectPresentByActiveEffectName(GarrConstants.RecklessnessActiveEffect)) {

@@ -439,7 +439,7 @@ public class ChampionController(
 
     public int ReceiveDamageModifiersCaseNoDisables(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
-        int newAmount = amount;
+        var newAmount = amount;
 		
 		if (TotalAllDamageReceiveIncrease.Percentage > 0 || TotalAllDamageReceiveReduce.Percentage > 0) {
 			if (newAmount > 0) {

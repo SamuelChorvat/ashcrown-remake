@@ -19,7 +19,7 @@ public class FireWhirlTests
             [0, 0, 0, 1, 0, 0], [1, 0, 0, 1]);
 
         // Act
-        for (int i = 0; i < 5; i++)
+        for (var i = 0; i < 5; i++)
         {
             battleLogic.AbilitiesUsed(1, usePhoenixFlames, usePhoenixFlames.SpentEnergy!).Should().BeTrue();
             BattleTestHelpers.PassNumberOfTurns(1, battleLogic, 2);
