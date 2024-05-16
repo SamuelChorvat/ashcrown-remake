@@ -33,7 +33,7 @@ public class UnyieldingWill : AbilityBase
 
     public override int CalculateTotalPointsForTarget<T>(IChampion target)
     {
-        int totalPoints = T.GetPointsReductionPoints(ReceiveDamageReductionPoint1, Duration1, Owner);
+        var totalPoints = T.GetPointsReductionPoints(ReceiveDamageReductionPoint1, Duration1, Owner);
         totalPoints += T.GetSpecialConditionPoints(Duration1);
         return totalPoints;
     }

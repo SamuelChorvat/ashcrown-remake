@@ -37,7 +37,7 @@ public class PhoenixFlamesTests
         var usePhoenixFlames = BattleTestHelpers.CreateEndTurnWithOneAbilityUsed(1, 3, [1, 0, 0, 0, 0, 0], [0, 0, 0, 0]);
 
         // Act
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             battleLogic.AbilitiesUsed(1, usePhoenixFlames, usePhoenixFlames.SpentEnergy!).Should().BeTrue();
             BattleTestHelpers.PassNumberOfTurns(1, battleLogic, 2);
@@ -64,7 +64,7 @@ public class PhoenixFlamesTests
         // Act and Assert
         battleLogic.GetBattlePlayer(1).Champions[0].AbilityController
             .GetCurrentAbility(2).Name.Should().Be(AshConstants.Fireball);
-        for (int i = 0; i < 5; i++)
+        for (var i = 0; i < 5; i++)
         {
             battleLogic.AbilitiesUsed(1, usePhoenixFlames, usePhoenixFlames.SpentEnergy!).Should().BeTrue();
             BattleTestHelpers.PassNumberOfTurns(1, battleLogic, 2);
@@ -85,7 +85,7 @@ public class PhoenixFlamesTests
         // Act and Assert
         battleLogic.GetBattlePlayer(1).Champions[0].AbilityController
             .GetCurrentAbility(2).Name.Should().Be("Fireball");
-        for (int i = 0; i < 8; i++)
+        for (var i = 0; i < 8; i++)
         {
             battleLogic.AbilitiesUsed(1, usePhoenixFlames, usePhoenixFlames.SpentEnergy!).Should().BeTrue();
             BattleTestHelpers.PassNumberOfTurns(1, battleLogic, 2);
