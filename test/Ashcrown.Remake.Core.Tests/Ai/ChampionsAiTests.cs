@@ -1,7 +1,6 @@
 ﻿using Ashcrown.Remake.Core.Battle;
 using Ashcrown.Remake.Core.Battle.Enums;
 using Ashcrown.Remake.Core.Champion;
-using Ashcrown.Remake.Core.Champions.Arabela.Champion;
 using Ashcrown.Remake.Core.Champions.Branley.Champion;
 using Ashcrown.Remake.Core.Champions.Cedric.Champion;
 using Ashcrown.Remake.Core.Champions.Gwen.Champion;

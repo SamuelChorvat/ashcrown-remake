@@ -1,6 +1,5 @@
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Ability.Interfaces;
-using Ashcrown.Remake.Core.Ability.Models;
 using Ashcrown.Remake.Core.ActiveEffect.Base;
 using Ashcrown.Remake.Core.ActiveEffect.Interfaces;
 using Ashcrown.Remake.Core.Champion.Interfaces;
