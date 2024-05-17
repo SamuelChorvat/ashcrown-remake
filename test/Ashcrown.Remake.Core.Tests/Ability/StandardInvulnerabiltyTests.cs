@@ -22,6 +22,7 @@ using Ashcrown.Remake.Core.Champions.Hannibal.Champion;
 using Ashcrown.Remake.Core.Champions.Hrom.Champion;
 using Ashcrown.Remake.Core.Champions.Izrin.Champion;
 using Ashcrown.Remake.Core.Champions.Jafali.Champion;
+using Ashcrown.Remake.Core.Champions.Jane.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;
@@ -55,6 +56,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(HromConstants.TestName, HromConstants.StormShieldActiveEffect)]
     [InlineData(IzrinConstants.TestName, IzrinConstants.WillOfTheUndeadActiveEffect)]
     [InlineData(JafaliConstants.TestName, JafaliConstants.DevilsGameActiveEffect)]
+    [InlineData(JaneConstants.TestName, JaneConstants.MisdirectionActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldCorrectlyApplyActiveEffects(string championName, string activeEffectName)
     {
@@ -101,6 +103,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(HromConstants.TestName, HromConstants.StormShieldActiveEffect)]
     [InlineData(IzrinConstants.TestName, IzrinConstants.WillOfTheUndeadActiveEffect)]
     [InlineData(JafaliConstants.TestName, JafaliConstants.DevilsGameActiveEffect)]
+    [InlineData(JaneConstants.TestName, JaneConstants.MisdirectionActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldBeInvulnerability(string championName, string activeEffectName)
     {
