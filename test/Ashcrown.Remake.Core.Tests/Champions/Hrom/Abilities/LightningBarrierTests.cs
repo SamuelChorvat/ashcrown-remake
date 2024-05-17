@@ -1,4 +1,3 @@
-using Ashcrown.Remake.Core.Champions.Arabela.Champion;
 using Ashcrown.Remake.Core.Champions.Branley.Champion;
 using Ashcrown.Remake.Core.Champions.Hrom.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;

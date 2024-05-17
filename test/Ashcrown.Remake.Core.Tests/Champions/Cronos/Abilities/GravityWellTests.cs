@@ -1,4 +1,3 @@
-using Ashcrown.Remake.Core.Ability.Base;
 using Ashcrown.Remake.Core.Champions.Cronos.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;

@@ -12,7 +12,7 @@ public class Rake : AbilityBase
         : base(champion, 
             IzrinConstants.Rake, 
             0,
-            new int[] {0,1,0,0,0}, 
+            [0,1,0,0,0], 
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
             AbilityType.EnemyDamageAndDebuff, 

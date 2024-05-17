@@ -1,7 +1,6 @@
 using Ashcrown.Remake.Core.Ability.Base;
 using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Champion.Interfaces;
-using Ashcrown.Remake.Core.Champions.Cedric.ActiveEffects;
 using Ashcrown.Remake.Core.Champions.Cedric.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Cedric.Abilities;

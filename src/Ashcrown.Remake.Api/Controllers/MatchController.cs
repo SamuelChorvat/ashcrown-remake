@@ -1,7 +1,6 @@
 using Ashcrown.Remake.Api.Dtos.Inbound;
 using Ashcrown.Remake.Api.Dtos.Outbound;
 using Ashcrown.Remake.Api.Services.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashcrown.Remake.Api.Controllers;

@@ -1,5 +1,4 @@
-﻿using Ashcrown.Remake.Core.Champions.Althalos.Champion;
-using Ashcrown.Remake.Core.Champions.Azrael.Champion;
+﻿using Ashcrown.Remake.Core.Champions.Azrael.Champion;
 using Ashcrown.Remake.Core.Champions.Eluard.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;
