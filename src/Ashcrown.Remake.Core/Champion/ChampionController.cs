@@ -620,21 +620,24 @@ public class ChampionController(
     public int ApplyDestructibleDefense(int amount, IAbility? ability = null, IActiveEffect? activeEffect = null)
     {
         var newAmount = amount;
-		
-        foreach (var presentActiveEffect in owner.ActiveEffects)
+
+        for (var i = 0; i < owner.ActiveEffects.Count; i++)
         {
-            if (presentActiveEffect.DestructibleDefense <= newAmount) {
+            var presentActiveEffect = owner.ActiveEffects[i];
+            if (presentActiveEffect.DestructibleDefense <= newAmount)
+            {
                 newAmount -= presentActiveEffect.DestructibleDefense;
                 presentActiveEffect.DestructibleDefense = 0;
                 presentActiveEffect.RemoveDestructibleDefense(ability, activeEffect);
-				
-            } else if(presentActiveEffect.DestructibleDefense > newAmount) {
+            }
+            else if (presentActiveEffect.DestructibleDefense > newAmount)
+            {
                 presentActiveEffect.DestructibleDefense -= newAmount;
                 newAmount = 0;
                 break;
             }
         }
-		
+
         return newAmount;
     }
 

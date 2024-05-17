@@ -10,7 +10,7 @@ public class Anger : AbilityBase
 {
     public Anger(IChampion champion) 
         : base(champion, 
-            JafaliConstants.Name, 
+            JafaliConstants.Anger, 
             0,
             [0,1,0,0,0], 
             [AbilityClass.Affliction, AbilityClass.Instant, AbilityClass.Ranged], 
