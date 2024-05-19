@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Lexi",
-			"title": "The Wood Elf",
-			"bio":  "Part of a dying race of people living along the Arikem river system, Lexi and her kin fled deep in the jungle after the Reconstruction era. Despite dreams of becoming a world renowned healer, Lexi found that she would have to adapt to a life of hunting on the fringes of Coelan society. As the trees that protect her people recede to the power of buzzing machines and hacking axes, Lexi has come out from the safety of the forest with the aim of wreaking justice to any outsiders she deems as a threat to her way of life.",
-			"attributes": [1,2,1,0],
-			"artist": "WolfsBane",
-			"abilities": [
-				{
-					"name": "Thorn Whip",
-					"description": "Lexi brings a vine to life that deals <color=#00A3FB>25 magic damage</color> to one enemy. While <color=#EAB65B>Tranquility</color> is active, this ability will deal <color=#00A3FB>35 magic damage</color> to one enemy and <color=#00A3FB>10 magic damage</color> to all others. Only the primary target can <color=#FF00CD>counter</color> or <color=#FF00CD>reflect</color> this ability.",
-					"cooldown": 0,
-					"classes": [
-						"Magic", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,0,1,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Nourish",
-					"description": "Lexi heals half of hers or one ally's missing health (rounded down) and <color=#FF00CD>removes</color> all enemy affliction effects from them. While <color=#EAB65B>Tranquility</color> is active, this ability will cost <sprite=4> and have no cooldown.",
-					"cooldown": 1,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						1,0,0,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Tranquility",
-					"description": "Lexi gains 3 <color=#EAB65B>Tranquility</color> stacks. During this time, each time Lexi uses an ability other than <color=#EAB65B>Shadowmeld</color>, she will use up 1 <color=#EAB65B>Tranquility</color> stack. While <color=#EAB65B>Tranquility</color> is active, Lexi can use this ability again for no cost to restore <color=#1AB000>25 health</color> and <color=#FF00CD>remove</color> all enemy harmful effects on her.",
-					"cooldown": 0,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 3
-				},
-				{
-					"name": "Shadowmeld",
-					"description": "This ability makes Lexi <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Lucifer",
 			"title": "The Mysterious Traveler",
 			"bio":  "In the dead of night, a local saloon may hear a rapping on their door. Upon answering, a lone stranger will charm his way in, receiving any food and drink he asks for. He’ll spend the whole night making the landlords laugh and sing while he consumes their pantry, their coffers and their soul. If any landlord attempts to wake up from the spell, he’ll find that Lucifer can take on a very different form than the handsome young stranger they let in.",
