@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Khan",
-			"title": "The Protector",
-			"bio":  "What god he follows no one knows. What he protects anyone from, if anything at all, is still unknown. Who he protects seems to depend on his passing fancies. Khan fashioned himself the title seemingly out of nowhere, introducing himself with it appended to his name to anyone who would listen. Whatever the state of his mind may be, everyone agrees that they’d rather have him on their side than against it.",
-			"attributes": [2,2,0,1],
-			"artist": "Yann Trolong",
-			"abilities": [
-				{
-					"name": "Mortal Strike",
-					"description": "Khan deals <color=#FF5C04>35 physical damage</color> to one enemy. For 2 turns that enemy wll receive 50% less healing and healing they deal will be reduced by 25%.",
-					"cooldown": 1,
-					"classes": [
-						"Physical", "Instant", "Melee"
-					],
-					"cost": [
-						0,1,0,0,1
-					],
-					"slot": 1
-				},
-				{
-					"name": "Bladestorm",
-					"description": "Khan will deal <color=#FF5C04>5 physical damage</color> to all enemies for 3 turns. During this time, <color=#EAB65B>Mortal Strike</color> will deal an additional <color=#FF5C04>10 physical damage</color>.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Melee", "Action"
-					],
-					"cost": [
-						0,0,1,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Hand of the Protector",
-					"description": "This ability makes Khan <color=#FF00CD>invulnerable</color> for 2 turns and will heal him <color=#1AB000>15 health</color> each turn. <color=#EAB65B>Mortal Strike</color> will deal <color=#FF5C04>10 LESS physical damage</color> during this time.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,1,0,0
-					],
-					"slot": 3
-				},
-				{
-					"name": "Perception",
-					"description": "This ability makes Khan <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Lexi",
 			"title": "The Wood Elf",
 			"bio":  "Part of a dying race of people living along the Arikem river system, Lexi and her kin fled deep in the jungle after the Reconstruction era. Despite dreams of becoming a world renowned healer, Lexi found that she would have to adapt to a life of hunting on the fringes of Coelan society. As the trees that protect her people recede to the power of buzzing machines and hacking axes, Lexi has come out from the safety of the forest with the aim of wreaking justice to any outsiders she deems as a threat to her way of life.",
