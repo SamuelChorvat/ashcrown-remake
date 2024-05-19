@@ -11,8 +11,8 @@ public class GoForTheThroat : AbilityBase
     public GoForTheThroat(IChampion champion) 
         : base(champion, 
             JaneConstants.GoForTheThroat, 
-            0, 
-            new int[] {0,0,1,0,0}, 
+            0,
+            [0,0,1,0,0], 
             [AbilityClass.Physical, AbilityClass.Instant, AbilityClass.Melee], 
             AbilityTarget.Enemy, 
             AbilityType.EnemyDamage, 
