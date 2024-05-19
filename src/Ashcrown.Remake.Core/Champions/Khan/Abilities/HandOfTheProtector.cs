@@ -23,7 +23,7 @@ public class HandOfTheProtector : AbilityBase
         BonusDamage1 = -10;
         
         Description = $"This ability makes {KhanConstants.Name} {"invulnerable".HighlightInPurple()} for {Duration1} turns and will heal him {$"{Heal1} health".HighlightInGreen()} each turn. " +
-                      $"{KhanConstants.MortalStrike.HighlightInGold()} will deal {$"{BonusDamage1} LESS physical damage".HighlightInOrange()} during this time.";
+                      $"{KhanConstants.MortalStrike.HighlightInGold()} will deal {$"{-BonusDamage1} LESS physical damage".HighlightInOrange()} during this time.";
         SelfCast = true;
         Invulnerability = true;
         TypeOfInvulnerability = [AbilityClass.All];
