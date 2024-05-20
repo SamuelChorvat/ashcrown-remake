@@ -12,7 +12,7 @@ public class ForgeSpirit : AbilityBase
 {
     public ForgeSpirit(IChampion champion) 
         : base(champion, 
-            LutherConstants.LivingForge, 
+            LutherConstants.ForgeSpirit, 
             0,
             [0,0,0,1,1], 
             [AbilityClass.Magic, AbilityClass.Instant, AbilityClass.Melee], 

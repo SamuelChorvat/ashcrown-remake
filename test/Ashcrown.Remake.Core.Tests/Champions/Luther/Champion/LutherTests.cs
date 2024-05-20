@@ -28,7 +28,7 @@ public class LutherTests
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[0].Name.Should().Be(LutherConstants.Flamestrike);
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[1].Name.Should().Be(LutherConstants.FieryBrand);
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[2].Name.Should().Be(LutherConstants.LivingForge);
-        battleLogic.GetBattlePlayer(1).Champions[0].Abilities[2][1].Name.Should().Be(LutherConstants.LivingForge);
+        battleLogic.GetBattlePlayer(1).Champions[0].Abilities[2][1].Name.Should().Be(LutherConstants.ForgeSpirit);
         battleLogic.GetBattlePlayer(1).Champions[0].CurrentAbilities[3].Name.Should().Be(LutherConstants.MoltenArmor);
     }
 }
