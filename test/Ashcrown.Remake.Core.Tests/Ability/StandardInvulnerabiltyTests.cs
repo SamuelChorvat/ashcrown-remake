@@ -26,6 +26,7 @@ using Ashcrown.Remake.Core.Champions.Jane.Champion;
 using Ashcrown.Remake.Core.Champions.Khan.Champion;
 using Ashcrown.Remake.Core.Champions.Lexi.Champion;
 using Ashcrown.Remake.Core.Champions.Lucifer.Champion;
+using Ashcrown.Remake.Core.Champions.Luther.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 using Ashcrown.Remake.Core.Tests.TestHelpers;
 using FluentAssertions;
@@ -63,6 +64,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(KhanConstants.TestName, KhanConstants.PerceptionActiveEffect)]
     [InlineData(LexiConstants.TestName, LexiConstants.ShadowmeldActiveEffect)]
     [InlineData(LuciferConstants.TestName, LuciferConstants.DemonFormActiveEffect)]
+    [InlineData(LutherConstants.TestName, LutherConstants.MoltenArmorActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldCorrectlyApplyActiveEffects(string championName, string activeEffectName)
     {
@@ -113,6 +115,7 @@ public class StandardInvulnerabiltyTests
     [InlineData(KhanConstants.TestName, KhanConstants.PerceptionActiveEffect)]
     [InlineData(LexiConstants.TestName, LexiConstants.ShadowmeldActiveEffect)]
     [InlineData(LuciferConstants.TestName, LuciferConstants.DemonFormActiveEffect)]
+    [InlineData(LutherConstants.TestName, LutherConstants.MoltenArmorActiveEffect)]
     [InlineData(SarfuConstants.TestName, SarfuConstants.DeflectActiveEffect)]
     public void InvulnerabilityShouldBeInvulnerability(string championName, string activeEffectName)
     {

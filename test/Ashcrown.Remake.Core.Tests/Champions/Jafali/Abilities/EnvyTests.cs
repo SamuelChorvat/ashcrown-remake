@@ -30,7 +30,7 @@ public class EnvyTests
         envyAe.DestructibleDefense.Should().Be(30);
         champion.AbilityController.GetCurrentAbility(2).Name.Should().Be("Avarice");
 
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             var enemyChampion = battleLogic.GetBattlePlayer(2).Champions[i];
             enemyChampion.Health.Should().Be(95);

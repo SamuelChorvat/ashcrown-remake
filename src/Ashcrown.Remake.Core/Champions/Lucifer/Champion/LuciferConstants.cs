@@ -2,7 +2,7 @@ using Ashcrown.Remake.Core.Champion.Interfaces;
 
 namespace Ashcrown.Remake.Core.Champions.Lucifer.Champion;
 
-public class LuciferConstants : IChampionConstants
+public abstract class LuciferConstants : IChampionConstants
 {
     public static string Name => "Lucifer";
     public static string Title => "The Mysterious Traveler";

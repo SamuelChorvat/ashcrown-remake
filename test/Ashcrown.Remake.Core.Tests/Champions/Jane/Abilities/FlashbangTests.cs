@@ -21,7 +21,7 @@ public class FlashbangTests
         BattleTestHelpers.PassNumberOfTurns(1, battleLogic, 1);
 
         // Assert
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             var champion = battleLogic.GetBattlePlayer(1).Champions[i];
             champion.ActiveEffectController
