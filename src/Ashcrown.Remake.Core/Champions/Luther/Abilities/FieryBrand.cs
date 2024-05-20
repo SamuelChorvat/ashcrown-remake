@@ -2,7 +2,6 @@ using Ashcrown.Remake.Core.Ability.Base;
 using Ashcrown.Remake.Core.Ability.Enums;
 using Ashcrown.Remake.Core.Ability.Extensions;
 using Ashcrown.Remake.Core.Champion.Interfaces;
-using Ashcrown.Remake.Core.Champions.Lucifer.Champion;
 using Ashcrown.Remake.Core.Champions.Luther.Champion;
 
 namespace Ashcrown.Remake.Core.Champions.Luther.Abilities;
