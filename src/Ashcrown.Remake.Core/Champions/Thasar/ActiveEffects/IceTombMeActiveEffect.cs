@@ -1,6 +1,6 @@
 using Ashcrown.Remake.Core.Champion.Interfaces;
 
-namespace Ashcrown.Remake.Core.Champions.Moroz.ActiveEffects;
+namespace Ashcrown.Remake.Core.Champions.Thasar.ActiveEffects;
 
 public class IceTombMeActiveEffect
 {

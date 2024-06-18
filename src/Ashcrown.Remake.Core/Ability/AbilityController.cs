@@ -7,6 +7,7 @@ using Ashcrown.Remake.Core.Ai.Models;
 using Ashcrown.Remake.Core.Battle.Models;
 using Ashcrown.Remake.Core.Champion.Interfaces;
 using Ashcrown.Remake.Core.Champions.Moroz.ActiveEffects;
+using Ashcrown.Remake.Core.Champions.Thasar.ActiveEffects;
 
 namespace Ashcrown.Remake.Core.Ability;
 
