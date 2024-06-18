@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Nazuc",
-			"title": "The Stalker",
-			"bio":  "Many travellers go to the jungles of Arikem with the goal of mapping out new sections of the unforgiving rainforest. With heads full of the promise of fame, and their royal contracts promising even more on the discovery of new resources, they never take a moment to take a true look through the foliage of the jungle. It’s only when the leaves rustle, or a branch breaks that they realise where they truly are. By then, it’s too late.",
-			"attributes": [2,2,0,1],
-			"artist": "WolfsBane",
-			"abilities": [
-				{
-					"name": "Spear Throw",
-					"description": "This ability does <color=#FF5C04>30 physical damage</color> to one enemy. During <color=#EAB65B>Spear Barrage</color> this ability's cost is reduced by <sprite=4>.",
-					"cooldown": 0,
-					"classes": [
-						"Physical", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,1,0,1
-					],
-					"slot": 1
-				},
-				{
-					"name": "Spear Barrage",
-					"description": "Nazuc attacks all enemies dealing <color=#FF5C04>15 physical damage</color> to them each turn for 3 turns. The following 3 turns <color=#EAB65B>Spear Throw</color> cost will be reduced by <sprite=4>. During this time Nazuc gains <color=yellow>15 points of damage reduction</color>.",
-					"cooldown": 3,
-					"classes": [
-						"Physical", "Action", "Ranged", "Instant"
-					],
-					"cost": [
-						0,1,1,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Hunter's Mark",
-					"description": "Nazuc mark one enemy who cannot <color=#FF00CD>reduce damage</color> or become <color=#FF00CD>invulnerable</color> for 3 turns. During this time <color=#EAB65B>Spear Throw</color> and <color=#EAB65B>Spear Barrage</color> will deal an additional <color=#FF5C04>5 physical damage</color> to them. <color=#EAB65B>Hunter's Mark</color> cannot be used on enemy already affected by it.",
-					"cooldown": 1,
-					"classes": [
-						"Strategic", "Instant", "Ranged"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 3
-				},
-				{
-					"name": "Seasoned Stalker",
-					"description": "This ability makes Nazuc <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Nerissa",
 			"title": "The Mermaid",
 			"bio":  "When a sailor crosses the Axeina sea, they may be able to hear a shimmering melody emanating from beneath the ripples of the water. They find that the voice becomes clearer and louder as they spend more and more time looking over the taffrail. Eventually they all reach the same conclusion. The only way to really hear the music in its purest form is to dive underneath surface of the sea itself. It’s only until they’ve jumped in and swam down to it’s source, way past the point of no return, that they find the horror of Nerissa’s true form.",
