@@ -2,63 +2,6 @@
 	"Items":
 	[
 		{
-			"name": "Nerissa",
-			"title": "The Mermaid",
-			"bio":  "When a sailor crosses the Axeina sea, they may be able to hear a shimmering melody emanating from beneath the ripples of the water. They find that the voice becomes clearer and louder as they spend more and more time looking over the taffrail. Eventually they all reach the same conclusion. The only way to really hear the music in its purest form is to dive underneath surface of the sea itself. It’s only until they’ve jumped in and swam down to it’s source, way past the point of no return, that they find the horror of Nerissa’s true form.",
-			"attributes": [1,2,0,1],
-			"artist": "PiotrTekien's Games",
-			"abilities": [
-				{
-					"name": "Overflow",
-					"description": "Nerissa targets one enemy. They will lose all <color=yellow>destructible defense</color> and receive <color=#00A3FB>15 <b>piercing</b> magic damage</color>.",
-					"cooldown": 0,
-					"classes": [
-						"Magic", "Instant", "Ranged"
-					],
-					"cost": [
-						1,0,0,0,0
-					],
-					"slot": 1
-				},
-				{
-					"name": "Drown",
-					"description": "Nerissa drowns one enemy. They will receive <color=red>10 affliction damage</color> for the rest of the game and <color=#EAB65B>Overflow</color> will deal an additional <color=#00A3FB>5 <b>piercing</b> magic damage</color> to them. This ability cannot target enemy already affected by it and will end if Nerissa dies.",
-					"cooldown": 0,
-					"classes": [
-						"Affliction", "Ranged", "Instant"
-					],
-					"cost": [
-						1,0,0,0,0
-					],
-					"slot": 2
-				},
-				{
-					"name": "Ancient Spirits",
-					"description": "Nerissa heals herself for <color=#1AB000>25 health</color> and gains <color=yellow>25 destructible defense</color>.",
-					"cooldown": 3,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,1,1
-					],
-					"slot": 3
-				},
-				{
-					"name": "Mesmerizing Water",
-					"description": "This ability makes Nerissa <color=#FF00CD>invulnerable</color> for 1 turn.",
-					"cooldown": 4,
-					"classes": [
-						"Strategic", "Instant"
-					],
-					"cost": [
-						0,0,0,0,1
-					],
-					"slot": 4
-				}
-			]
-		},
-		{
 			"name": "Nezhum",
 			"title": "The Necromancer",
 			"bio":  "Once a promising young mage lauded with praise and approval by the Guild, Nezhum’s path took a dark turn after a longer than expected trip through the Eastern desert. Expelled from the Guild and in hiding, Nezhum has been biding his time to make his return. In the meanwhile, graves all over Coela have been found empty, the upturned soil fresh and the caskets empty. Where all these bodies have gone is unknown. Where they will end up is down to Nezhum.",

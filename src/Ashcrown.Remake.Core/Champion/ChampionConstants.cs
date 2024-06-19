@@ -28,6 +28,7 @@ using Ashcrown.Remake.Core.Champions.Lucifer.Champion;
 using Ashcrown.Remake.Core.Champions.Luther.Champion;
 using Ashcrown.Remake.Core.Champions.Moroz.Champion;
 using Ashcrown.Remake.Core.Champions.Nazuc.Champion;
+using Ashcrown.Remake.Core.Champions.Nerissa.Champion;
 using Ashcrown.Remake.Core.Champions.Sarfu.Champion;
 
 namespace Ashcrown.Remake.Core.Champion;
@@ -46,7 +47,8 @@ public static class ChampionConstants
         HannibalConstants.Name, HromConstants.Name, IzrinConstants.Name,
         JafaliConstants.Name, JaneConstants.Name, KhanConstants.Name,
         LexiConstants.Name, LuciferConstants.Name, LutherConstants.Name,
-        MorozConstants.Name, NazucConstants.Name, SarfuConstants.Name];
+        MorozConstants.Name, NazucConstants.Name, NerissaConstants.Name,
+        SarfuConstants.Name];
     
     public static string[] GetRandomChampionNames(int count)
     {
